@@ -1,0 +1,118 @@
+\documentclass[12pt]{report}
+%\documentclass{article}
+
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage{amsmath,amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{longtable, booktabs}
+\usepackage{makeidx}
+% http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
+% Cleveref can’t cope with active characters being present in cross-reference
+% label names. For example, if French babel support is loaded, the commonly
+% used “:”
+\usepackage[french,capitalize]{cleveref}
+
+\usepackage{tikz,pgfplots,pgfgantt}
+\usepackage{lscape,afterpage}
+
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    maxnames=99]{biblatex}
+\addbibresource{these.bib}
+
+\newcommand{\firstinit}{D.}
+\newcommand{\prenom}{Dimitri}
+\newcommand{\nom}{Pertin}
+
+% déclaration de la catégorie mine pour biblatex
+\DeclareBibliographyCategory{mine}
+
+\DeclareIndexNameFormat{mine}{%
+  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
+               and ( test {\ifdefstring{\prenom}{#3}}
+                     or test {\ifdefstring{\firstinit}{#4}} ) }
+    {\addtocategory{mine}{\thefield{entrykey}}}
+    {}}
+
+\AtDataInput{%
+  \indexnames[mine]{author}}
+
+\defbibfilter{publications}{
+  type=article or
+  type=inproceedings
+}
+
+% environnement pour bibliographie sans labels
+\defbibenvironment{midbib}
+  {\list
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
+% Clear the url field if doi is defined
+\AtEveryBibitem{\iffieldundef{doi}{}{\clearfield{url}}}
+
+%                                                                              %
+% Emphasize a particular author
+% adapted from: file:///usr/local/texlive/2010/texmf-dist/doc/latex/biblatex/biblatex.pdf
+\DeclareNameFormat{author}{%
+  \ifthenelse{\equal{#1}{\nom}}
+    {{\bf\ifblank{#3}{}{#3\space}%
+     #1}}%
+    {\ifblank{#3}{}{#3\space}%
+     #1}%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}
+    {}}
+%              
+
+% relatif au papier reprojection
+\DeclareMathOperator*{\bigast}{\ast}
+\DeclareMathOperator*{\bigastinv}{\ast^{-1}}
+\def\dirset#1{\left\{#1\right\}}
+\def\ghost#1{G_{\dirset{#1}}}
+
+\makeatletter
+\renewcommand{\ALG@name}{Algoritme}
+\makeatother
+
+\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
+\algrenewcommand\algorithmicfor{\textbf{pour}}
+\algrenewcommand\algorithmicforall{\textbf{pour tout}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicend{\textbf{fin}}
+
+% http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
+% filtrer par date
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite=true]{
+      \step[fieldsource=year,
+      match=\regexp{^20(0[8-9]|[1-9][0-9])$},
+      final]
+      \step[fieldsource=keywords, match=\regexp{^}, replace=\regexp{recent,}]
+    }
+  }
+}
+
