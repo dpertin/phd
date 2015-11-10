@@ -1,7 +1,159 @@
 
-# Problème de génération de mots encodés
+# Problème de génération de mots encodés {#gen_redondance}
+
+% replenishing = réapprovisionner
+
+Nous avons vu dans les chapitres précédents que les défaillances sont
+inévitables. Il est nécessaire alors de disposer de redondance pour supporter
+la perte d'information. Les codes à effacement permettent de générer cette
+redondance, et à moindre frais comparé aux techniques de réplication.
+Ainsi, il est possible de reconstruire la donnée initiale à partir d'un
+ensemble suffisant de données encodées.
+
+Parfois, ce n'est pas la donnée initiale qui nous intéresse, mais les données
+encodées. Ainsi il peut être nécessaire de rétablir la redondance perdue par
+ces défaillances, ou d'en générer davantage pour adapter la tolérance aux
+pannes à un canal particulièrement bruité.
 
 
+%      - 
+%      -                -
+%      -                -               -
+%      -    DECODING    -   ENCODING    -   RE-INSERT
+%      -                -
+%      -
+%
+% n encoded blocks   k blocks       recreate lost blocks
+
+
+On parle alors de réparation de la donnée. Cette réparation peut se faire de
+deux manières :
+
+  * réparation exacte : il s'agit de réconstruire exactement les données qui
+  ont été perdues ;
+
+  * réparation fonctionnelle : cette réparation reconstruit de nouveaux
+  symboles encodés au sein du mot de code.
+
+La réparation exacte est plus contrainte que la réparation fonctionnelle
+puisqu'il s'agit de reconstruire un ensemble de symboles exactes parmis les
+symboles du code.
+
+
+Le coût de ce processus de réparation peut être élevé. Considèrons la
+réparation d'un bloc encodé par un code $(n,k)$. Pour être reconstruit, il est
+nécessaire de réaliser $k$ E/S sur les disques, ainsi que $k$ transferts
+réseau.
+Le recours à une approche naïve induit des coûts de réparation qui sont chers.
+C'est pourquoi de nombreux travaux ont été menés pour développer des codes à
+effacement adaptés à ce problème de réparation. Les critères qui détermine un
+bon code pour la réparation sont les suivants :
+
+  1. un surcoût de stockage minimal ;
+
+  2. une bonne tolérance aux pannes ;
+
+  3. un nombre de noeuds contacté minimum ;
+
+  4. un nombre d'entrées-sorties minimal pour les disques ;
+
+  5. une bonne utilisation de la bande passante ...
+
+Les deux premiers critères sont réalisés par les codes à effacement MDS.
+
+% Quand reconstruire :
+
+% load balancing : éviter des points chauds de calcul
+
+% rolling upgrade (?)
+
+% panne temporaire ou permanente ?
+
+Nous faisons deux hypothèses :
+
+  1. toutes les pannes sont équivalentes, et le processus de réparation est
+  identique quelque soit le bloc perdu ;
+
+  2. dans une application de stockage en nuage, la probabilité d'avoir une
+  panne est largement supérieure à la probabilité d'avoir deux pannes.
+
+Il est donc intéressant de fournir une méthode optimisée pour un faible nombre
+de pannes, notamment pour le cas d'une unique panne.
+
+## Les codes pyramides {#pyramides}
+
+Les codes pyramides fournissent des blocs de redondance à plusieurs niveaux.
+
+### Les codes à reconstruction locale
+
+% \cite{huang2007nca}
+
+% \cite{huang2012atc}
+
+Les codes à reconstruction locale (LRC) sont des codes pyramides à deux
+niveaux. Ils sont basés sur un code MDS afin de fournir des symboles de parité
+globale à l'ensemble des symboles de données. À cela on ajoute des symboles de
+parité locale qui permettent la reconstruction d'un sous-ensemble des
+symboles de données.
+
+Par exemple, un code LRC $(12,2,2)$ construit $2$ blocs sur parité globale
+et 2 blocs de parité locale à partir de $12$ blocs de données.
+
+% systèmatique
+
+La sûrcout de cette redondance est de $(12+2+2)/12=1.33$. En revanche, la
+reconstruction d'un bloc de donnée ne coûte à présent que $6$ E/S et $6$
+transferts réseaux.
+
+Il s'agit ainsi d'une technique idéale lors de lectures dégradées puisqu'elle
+tire partie de la localité de la donnée offerte par les blocs de parité locale.
+
+
+## Les codes régénérants
+
+% regenerating codes
+
+### Codes Self-repairing
+
+% \cite{oggier2011infocom}
+
+% \cite{oggier2011itw}
+
+
+% \cite{pamies-juarez2013infocom}
+
+% \cite{pamies-juarez2013dcn}
+
+
+## Reconstruction de
+
+## Codage réseau
+
+    "You know you have a large storage system when you get paged at 1 AM
+    because you only have a few petabytes of storage left." – from Andrew Fikes
+
+Lorsqu'un émetteur transmet de la donnée vers un destinataire à travers un
+réseau, l'information transitte par des noeuds intermédiaires.
+
+À contrario des techniques traditionnelles d'encodage où seuls les émetteurs
+génèrent des paquets encodés (source-based coding), le *codage réseau* est une
+méthode permettant à des noeuds intermédiaires d'encoder des paquets reçus en
+entrée en un paquet de sortie à travers une combinaison linéaire
+\cite{ahlswede2000it}. Elle généralise ainsi les techniques de commutation
+différée (store-and-forward) où les paquets sont stockés puis examinés avant
+traitement. L'avantage d'encoder des paquets sur les noeuds intermédiaire est
+d'augmenter la quantité d'information qui transite et donc, d'augmenter le
+débit dans certaines topologies. Une source peut ainsi distribuer en multicast
+des données avec un taux de transfert de données maximal.
+Le codage réseau s'intéresse alors à trois points :
+
+  1. la quantité de données que l'on est capable de transmettre en considérant une certaine topologie réseau,
+
+  2. aux techniques d'encodage au niveau de la source et des noeuds
+  intermédiaires,
+
+  3. aux techniques de décodage employées par le destinataire pour retrouver le
+  message initial.
 
 # Décomposition de la reconstruction {#decomposition}
 
