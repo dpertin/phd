@@ -20,6 +20,7 @@ OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
 all: these.pdf clean
 
+# compute the .pdf file using latexmk
 $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
 	latexmk  				\
 		-pdf 				\
@@ -33,6 +34,7 @@ $(MAIN).fmt: header.tex
 	    -jobname="$(MAIN)"  \
 	    "&$(TEX) header.tex\dump"
 
+# compute .tex files from .md files related to chapters
 $(OBJS):
 		cd $(CHPTDIR); make
 
