@@ -39,7 +39,7 @@ $(OBJS):
 # clean temporary files
 clean: 
 	latexmk -c
-	cd $(CHPTDIR); make clean
+	# cd $(CHPTDIR); make clean
 
 # clean temporary files + PDF output
 mrproper: 
