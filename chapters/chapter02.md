@@ -247,7 +247,7 @@ alors le code Mojette comme étant *quasi-MDS* \cite{parrein2001dcc}. On
 évaluera l'impact de ce surcout de stockage dans une partie future.
 
 
-# Nouvelle mise en œuvre systématique
+\chapter{Nouvelle mise en œuvre systématique}
 
 Nous avons vu précédemment la réalisation du code à effacement Mojette en
 version non systématique. Dans cette partie, nous verrons une nouvelle
@@ -259,7 +259,7 @@ verrons dans un premier temps comment nous avons réalisé cette nouvelle mise e
 de cette nouvelle méthode sur les performances du code, avant d'étudier et
 comparer la quantité de redondance générée par rapport aux autre codes.
 
-## Mise en œuvre d'une version systématique
+# Mise en œuvre d'une version systématique
 
 Cette partie présente une nouvelle mise en œuvre du code à effacement basé
 sur la transformée Mojette. Précédemment nous avons vu qu'il était possible
@@ -280,7 +280,7 @@ cas où $(n-k)$ projections sont inaccessibles.
 Nous verrons dans les deux parties qui suivent, les bénéfices de cette nouvelle
 approche pour l'encodage, puis pour le décodage.
 
-### Bénéfice de cette nouvelle technique sur l'encodage
+## Bénéfice de cette nouvelle technique sur l'encodage
 
 Les modifications de cette nouvelle technique sont l'encodage sont simples.
 Précédemment avec la version systématique, il était nécessaire de calculer $n$
@@ -302,12 +302,12 @@ fois moins de projections.
 Nous verrons dans la prochaine partie que le décodage nécessite davantage de
 travail.
 
-### Bénéfice de cette technique sur le décodage
+## Bénéfice de cette technique sur le décodage
 
 Dans cette partie nous allons distinguer le cas où aucun effacement ne
 survient, et le cas dégradé où certaines données sont perdues.
 
-#### Accès direct sans dégradation
+### Accès direct sans dégradation
 
 Le principal avantage de cette technique est de ne pas avoir besoin d'exécuter
 d'opération de décodage quand aucune des $k$ lignes de données ne subit 
@@ -317,7 +317,7 @@ performances sont considérées comme optimales.
 En revanche, lorsque des effacements surviennent sur la donnée, il est
 nécessaire d'appliquer un algorithme de décodage afin de les reconstruire.
 
-#### Dégradation partielle des données
+### Dégradation partielle des données
 
 \begin{figure}
     \def\svgwidth{.7\textwidth}
@@ -360,7 +360,7 @@ de décodage correspond à la reconstruction d'une grille partiellement
 reconstruite, moins d'éléments dans la grille doivent être reconstruite. En
 conséquence, moins d'opérations sont nécessaires pour rétablir les données.
 
-#### Perte complète des données
+### Perte complète des données
 
 Dans le cas où l'ensemble des $e = k$ lignes de la grille est effacé, il est
 nécessaire de décoder l'information à partir de $k$ projections. Dans le cas où
@@ -372,7 +372,7 @@ au pire similaire à celles obtenues en non-systématique. Pour le reste des cas
 vu précédemment, ces performances sont au mieux optimales, sinon meilleures.
 
 
-### Algorithme inverse en systématique 
+## Algorithme inverse en systématique 
 
 L'algorithme inverse présenté dans cette partie correspond à une extension de
 l'algorithme inventé pour la version non-systématique par
@@ -383,11 +383,11 @@ algorithme. La première concerne la détermination des offsets pour chaque
 projection. La seconde correspond au calcul de la valeur du pixel à
 reconstruire.
 
-#### Détermination des offsets pour chaque projection
+### Détermination des offsets pour chaque projection
 
 
 
-#### Calcul de la valeur du pixel à reconstruire
+### Calcul de la valeur du pixel à reconstruire
 
 L'algorithme BMI repose sur deux choses. La première est la détermination des
 offsets afin de toujours traiter des pixels qui ne possèdent aucune dépendance. 
@@ -461,8 +461,302 @@ En conséquence, la valeur du pixel à reconstruire est donné par :
 \end{algorithm}
 
 
-## Évaluation du surcout de stockage
 
-## Analyse des performances
+# Évaluation du surcout de stockage
+
+Un code MDS génère la quantité minimale de redondance pour une tolérance aux
+pannes donnée. Dans la partie précédente, nous avons vu que le code à
+effacement Mojette n'est pas tout à fait MDS mais $(1+\epsilon)$ MDS. En effet,
+bien qu'il soit capable de décoder $k$ blocs de données à partir de $k$ blocs
+encodés, la taille de ces blocs peuvent dépasser la taille optimale. En
+conséquence, pour une protection donnée, notre code génère plus de données que
+la quantité minimale.
+
+Dans cette partie, nous allons définir et évaluer le surcout de redondance
+généré par le code à effacement Mojette. Nous définissons pour cela $f$ comme
+étant le facteur de redondance du code. Plus particulièrement, $f$ correspond
+au quotient du nombre d'éléments généré par le code, sur le nombre d'éléments
+du message à encoder.
+%
+Dans notre évaluation, nous allons considérer trois techniques qui permettent
+de générer de la redondance : la réplication, le code à effacement MDS, et le
+code à effacement Mojette. Dans le cas des codes à effacement, nous allons
+considérer un taux de codage de $r = \frac{2}{3}$ afin de les comparer
+équitablement. Nous allons comparer ces techniques pour plusieurs paramètres de
+protection, correspondant à une, deux et quatre pannes. En conséquence, les
+paramètres $(n,k)$ des codes à effacement correspondant seront définis dans
+l'ensemble $\left\{(3,2),(6,4),(12,8)\right\}$.
+
+Dans le cas de la réplication, le facteur de redondance $f$ correspond au
+nombre de copies généré, c'est à dire, à la tolérance aux pannes plus un. Par
+exemple, dans le cas où l'on souhaite protéger la donnée face à deux pannes, il
+est nécessaire de générer trois copies de l'information. En conséquence, dans
+le cas de la réplication par trois, le facteur de redondance $f$ vaut trois.
+
+Pour les codes MDS, la valeur du facteur de redondance $f$ correspond à
+l'inverse du taux de codage. En effet $r$ correspond à la quantité de donnée
+en entrée $k$ sur la quantité de donnée de sortie $n$. C'est pourquoi, si l'on
+fixe un taux de codage $r$, quelque soit la tolérance au panne de notre code,
+la quantité de redondance produite reste la même, à savoir $\frac{1}{r}$.
+
+Pour le code à effacement Mojette, c'est moins trivial. Nous avons vu dans la
+partie précédente que la taille des projections varie en fonction des
+paramètres de la grille discrète $P$ et $Q$, ainsi que des paramètres des
+directions de projections $(p_i, q_i)$. Sa valeur est donnée dans
+\cref{eqn.nombre_bins}. 
+
+Dans le cas du code à effacement non systématique, la valeur de $f$ correspond
+à :
+
+\begin{equation}
+    f = \frac
+        {\sum\limits_{i=0}^{n-1} B(P,Q,p_i,q_i)}
+        {P \times Q}.
+    \label{eqn.f_non_systematic}
+\end{equation}
+
+Dans le cas où le code est systématique, $k$ projections sont remplacées par
+$k$ lignes de la grille discrète. En conséquence, la valeur de $f$ correspond à
+:
+
+\begin{equation}
+    f = \frac
+        {P \times Q \sum\limits_{i=0}^{n-k-1} B(P,Q,p_i,q_i)}
+        {P \times Q}.
+    \label{eqn.f_non_systematic}
+\end{equation}
+
+Dans notre évaluation, nous considérons un ensemble de projection de telle
+sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, alors $B(P,Q,p_i,1) = (Q-1)|p_i|
++ P$.
+
+La valeur de $f$ dépend ainsi de l'ensemble de projection choisi. En
+particulier, la valeur de $p_i$ influence sa valeur. Afin de réduire cette
+valeur, nous choisirons alternativement des entiers positifs puis négatifs,
+dont la valeur croît à partir de zéro, comme valeurs de $p_i$.
+En particulier, dans notre évaluation, nous considérerons les ensembles de
+projection suivants:
+
+1. $S_1 = \left\{(0,1)\right\}$,
+
+2. $S_2 = \left\{(0,1),(1,1)\right\}$,
+
+3. $S_4 = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$,
+
+afin de protéger la donnée face à une, deux et quatre pannes respectivement.
+Observons que dans le premier cas, la taille de la projection calculée selon la
+verticale est optimale. En conséquence, dans cette configuration particulière,
+le code est MDS. Ce n'est pas le cas en général.
 
 # Évaluation des performances
+
+## Analyse du nombre d'opérations
+
+## Expérimentations
+
+Dans cette partie, nous évaluons les performances du code à effacement
+Mojette et comparons ces résultats avec les performances des meilleures
+implémentations des codes de Reed-Solomon.
+Nous détaillons dans une première section les caractéristiques des codes
+étudiés. Dans la suite, nous présenterons comment nous avons réalisé cette
+expérimentation avant de nous intéresser aux résultats.
+
+### Les implémentations à comparer
+
+Nous avons choisi de comparer nos implémentations du code à effacement Mojette
+avec une implémentation des codes de Reed-Solomon. De par leur popularité et
+leur accessibilité, les codes de Reed-Solomon représentent le candidat évident
+pour notre comparaison. Ces codes sont en effet largement distribués à travers
+des bibliothèques.
+
+#### Implémentations Mojette
+
+Nous avons implémenté une version systématique du code à effacement Mojette en
+langage C. Le choix de ce langage est judicieux lorsque l'on développe une
+technique de codage devant fournir de hautes performances. En effet la
+possibilité de laisser la gestion mémoire à l'utilisateur, ainsi que le recours
+à diverses instructions particulières du processeur, permettent d'atteindre
+d'excellentes performances.
+%
+Dans la suite, nous reprenons la terminologie utilisée dans la partie
+précédente \ref{sec:mojette_directe}. En pratique, la taille des pixels de la
+grille discrète, et des bins des projections, doivent correspondre à un mot
+machine. Un mot correspond à l'unité de base, exprimée en bits, manipulée par
+un processeur. Pour les architectures classiques, la taille d'un mot
+correspond à $32$ ou $64$ bits. Il s'agit plus précisément de la taille des
+registres du processeurs. En conséquence, un processeur est d'autant plus
+rapide que ses mots sont longs puisqu'une plus grande quantité d'information
+est traitée à chaque cycle. En conséquence nous avons fixé la taille des bins
+et pixels à $64$ bits, ce qui correspond aux tailles de registres des
+architectures largement déployés aujourd'hui.
+%
+La plupart des processeurs proposent depuis 1997 des extensions de leur jeu
+d'instructions afin d'améliorer les performances de certains traitements. Les
+instructions *Single Instruction, Multiple Data* (SIMD) correspondent à un mode
+de fonctionnement du processeur afin de profiter de parallélisme. Plus
+particulièrement, il s'agit d'appliquer en parallèle la même instruction sur
+plusieurs données afin d'obtenir plusieurs résultats. Dans le cas d'Intel par
+exemple, les extensions pour flux SIMD (*Streaming SIMD Extensions* SSE)
+ajoutent jusqu'à 16 registres de 128 bits et 70 instructions supplémentaires
+pour les processeurs x86. Ce mode de fonctionnement permet donc de traiter
+$2048$ octets en parallèle, en un cycle processeur. Les applications tirent
+donc un gain de performance significatif dés lors qu'une instruction peut être
+réalisée sur plusieurs données. En pratique, ce mode est largement utilisé dans
+les applications multimédias, scientifiques ou financières. Il permet notamment
+d'augmenter les performances du RAID logiciel utilisé dans Linux
+\cite{anvin2004raid}.
+%
+Ce mode de fonctionnement est donc très intéressant pour notre code à
+effacement étant donné que les performances sont cruciales dans les systèmes
+temps-réel. Les algorithmes d'encodage et de décodage Mojette sont adaptés à ce
+fonctionnement puisque nous appliquons une instruction, qui correspond à
+l'addition, sur une multitude de données, représentées par les éléments de la
+grille discrète et des projections. En conséquence, dans notre mise en œuvre,
+l'addition est implémenté par des opérations de OU exclusif (XOR),
+correspondant à des additions modulo deux, sur des données de $128$ bits.
+
+Dans cette partie, nous allons comparer les performances de deux
+implémentations de notre code à effacement Mojette : une première version
+non-systématique, que l'on appellera *NS-Mojette* dans la suite de la
+rédaction, puis une implémentation systématique que l'on désignera simplement
+par *Mojette*.
+
+#### Implémentations Reed-Solomon
+
+De nombreuses implémentations existent pour les codes de Reed-Solomon.
+Plusieurs bibliothèques de codes à effacement proposent différentes
+implémentations et les codes de Reed-Solomon s'y retrouvent dans la majorité
+des cas. Les bibliothèques les plus connus sont OpenFEC \cite{openfec},
+Jerasure \cite{plank2008jerasure} et ISA-L \cite{isa-l}.
+Dans le contexte de nos tests, l'implémentation développée dans ISA-L offre les
+meilleurs résultats en terme de performance. C'est pourquoi notre choix s'est
+porté dessus pour notre comparaison. L'implémentation des codes de Reed-Solomon
+proposée dans ISA-L se base sur des matrices de Vandermonde construite à partir
+d'un corps de Galois GF($2^8$) et un polynôme primitif
+$x^8 + x^4 + x^3 + x^2 + 1$.
+
+### Configuration de l'expérimentation
+
+Dans cette partie, nous allons évalué les performances d'encodage et de
+décodage des implémentations des code à effacement Mojette et Reed-Solomon,
+présentés précédemment. Ces tests sont réalisés sur un seul processeur afin de
+mettre en évidence la différence de performance entre les différentes
+implémentations.
+
+Les tests que nous réalisons dans cette partie mettent en jeu plusieurs
+plusieurs paramètres. Ainsi nous allons faire varier les paramètres $n$ et $k$
+des codes à effacement, qui définissent implicitement la tolérance aux pannes
+que fourni le code. En pratique, ce facteur dépend de la nature des données,
+des applications et du support sur lequel transite la donnée.
+Les fournisseurs de service web proposent en général une protection face à
+quatre pannes. C'est le cas de Facebook, qui utilise des codes de Reed-Solomon
+$(n,k)$ au sein de leurs grappe de stockage.
+Un second paramètre concerne la taille des données $\mathcal{M}$ que nous
+allons traiter. Dans la terminologie Mojette, cette taille correspond au nombre
+d'éléments de la grille discrète. Ce paramètre dépend de l'application
+utilisée. Dans le cadre de stockage de données POSIX, on choisira une taille
+$\mathcal{M}$ correspondante à la taille des blocs du système de fichiers. Dans
+l'exemple d'*ext4*, cette taille de blocs est de $4$ Ko. En revanche, dans des
+applications mettant en jeu des accès séquentiels sur de grands fichiers, on
+choisira une taille de bloc beaucoup plus importante afin de limiter le nombre
+d'entrées/sorties. C'est le cas dans *Hadoop Distributed File Systems* HDFS,
+qui met en jeu des applications d'analyse parallèle grâce à *Hadoop Map-Reduce*
+sur des blocs de *128* Mo par défaut.
+
+Les performances enregistrées lors de l'encodage correspondent au
+nombre de cycles CPU nécessaire pour générer $n$ blocs encodés à
+partir de $k$ blocs de données. Ces $k$ blocs totalisent $\mathcal{M}$ octets.
+Plus particulièrement dans notre mise en œuvre, ces $k$ blocs correspondent à
+une zone mémoire de $\mathcal{M}$ octets de données aléatoire, dont on
+représente chaque bloc par $k$ pointeurs vers l'adresse de début de ces blocs.
+L'encodage non systématique consiste alors à la génération de $n$ blocs de
+données encodés à partir de ces données d'entrées. En revanche, pour les
+versions systématiques, les performances d'encodage correspondent à la copie
+des $k$ blocs de données, plus la génération de $(n-k)$ blocs de parité. Le
+critère de comparaison de performance entre les différents codes correspond
+donc au nombre d'opérations du CPU nécessaire pour offrir une certaine
+tolérance aux pannes. Nous verrons dans la suite d'autres critères telles que
+la consommation mémoire.
+
+Concernant le décodage, les performances enregistrées correspondent à la
+reconstruction des $k$ blocs de données. Un nouveau paramètre entre en jeu dans
+les opérations de décodage puisque le schéma de perte influence les
+performances du code à effacement. En conséquence, nous enregistrons les
+performances du CPU pendant le décodage tout en augmentant le nombre de pannes
+jusqu'à la tolérance limite qu'offre le code. Dans notre cas, une panne
+correspond à l'absence d'information dans un bloc de données si le code est
+systématique, sinon il s'agira de la perte d'un bloc encodé.
+
+Nos tests sont exécutés sur une seule machine, un seul processeur et un seul
+*thread*. Toutes les opérations sont réalisées en mémoire, en prenant soin de
+ne pas créer d'interactions avec le disque dur. Les cycles CPU concernent
+précisément les opérations décrites précédemment. Plus exactement, nous ne
+considérons pas certains pré-traitements tels que la génération des matrices
+d'encodage dans le cas des codes de Reed-Solomon, ou la détermination du chemin
+de reconstruction dans le cas des codes Mojette.
+
+Puisque l'on mesure des fonctions d'encodage et de décodage hautement
+optimisées pour nos architectures processeurs dont les temps d'exécution sont
+de l'ordre de la nanoseconde, il est imprécis, voire impossible, de mesurer le
+temps d'exécution de ces fonctions de nos implémentations. En revanche, puisque
+ces calculs sont bornées par les considérations vues dans la partie
+précédentes, et puisque nos instructions sur réalisées au sein d'un thread sur
+un processeur, il est possible d'obtenir une mesure sur le nombre de cycles du
+processeur. Plus précisément, on utilise le compteur temporel (*Time Stamp
+Counter* TSC) qui est un registre spécial qui s'incrémente à chaque cycle CPU.
+Pour cela, on utilise l'instruction *ReaD Time Stamp Counter* (ou RDTSC) qui
+permet de récupérer la valeur de ce registre. Il suffit alors d'enregistrer sa
+valeur avant et après nos fonctions d'encodage et de décodage et d'afficher la
+différence. Intel propose une mise en œuvre afin de filtrer les résultats
+aberrants \cite{intel1997rdtsc}.
+
+Enfin, nous affichons la valeur moyenne qui résulte de $100$ itérations.
+L'écart type n'est pas présenté puisqu'il est trop négligeable (et correspond à
+moins d'un pour-cent des valeurs présentées). La machine utilisée provient de
+la plate-forme *FEC4Cloud* située à Polytech Nantes. Cette machine dispose d'un
+processeur Intel Xeon à $1,80$GHz, de $16$Go de mémoire RAM et de caches
+processeurs de $128$Ko, $1$Mo et $10$Mo pour les niveaux *L1*, *L2* et *L3*
+respectivement.
+
+### Résultats de l'expérimentation
+
+Nous présentons dans cette partie les résultats de notre expérimentation. Plus
+précisément, nous verrons dans un premier temps les performances d'encodage,
+puis de décodage. Par la suite, nous analyserons l'influence du facteur de
+protection, paramétré par le couple $(n,k)$, puis nous étudierons l'impact
+de la taille des blocs de données $\mathcal{M}$ sur les performances des codes.
+
+#### Performance d'encodage
+
+\begin{figure}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \caption{$\mathcal{M}=4096$ octets.}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/enc12.tex}
+        \label{fig:encoding4k}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \caption{$\mathcal{M}=8192$ octets.}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/enc13.tex}
+        \label{fig:encoding8k}
+    \end{subfigure}
+    \centering
+    \ref{named}
+    \caption{Comparaison des performances d'encodage sur des blocs de données
+    de $4$Ko (a) et $8$Ko (b). Les performances des codes Mojette et
+    Reed-Solomon sont comparées par le nombre de cycles CPU nécessaire pour
+    réaliser l'opération d'encodage (plus le résultat est petit, plus il est
+    bon). Deux paramètres de codage ont été utilisés: $(6,4)$ et $(12,8)$. Les
+    performances optimales sont représentées par \emph{no coding}.}
+    \label{fig:encoding}
+\end{figure}
+
+#### Performance de décodage
+
+#### Influence de la tolérance aux pannes
+
+#### Impact de la taille des blocs
+
