@@ -1,0 +1,36 @@
+\begin{tikzpicture}
+ %\tikzstyle{every node}=[font=\scriptsize]
+\begin{axis}[
+    ybar=5pt,              % écarte les bars
+    enlarge x limits=0.12,   % top ça ! écarte les côtés
+    %legend pos=north west, % ne marche plus :((
+    legend style={legend columns=1},
+    legend style={at={(-0.0225,1.0865)}, anchor=west}, % c'est moche :((
+    ylabel={Cumulated throughput (MB/s)},
+    xlabel={Number of clients},
+    %symbolic x coords={1,2,3,4,5},
+    bar width=5pt,
+    ymin=0,
+    ymax=5000,
+    xtick={3,...,9},%
+    %xticklabels={0,1,2,3,4},
+    error bars/.cd,
+    yminorgrids=true,
+    ymajorgrids=true,
+    %nodes near coords,
+    %every node near coord/.append style={font=\small, rotate=90, anchor=west},
+    %nodes near coords/.append style={rotate=90}
+    scaled y ticks=base 10:-3,     %insane 
+    cycle list = {black,black!60,black!40,black!10},
+]
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x index=0, y index=1, y error index=2] {expe_data/rozofs.dat};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x index=0, y index=1, y error index=2] {expe_data/ceph.dat};
+
+\legend{RozoFS, CephFS}
+
+\end{axis}
+\end{tikzpicture}

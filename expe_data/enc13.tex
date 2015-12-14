@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+ %\tikzstyle{every node}=[font=\scriptsize]
+\begin{axis}[
+    ybar=8pt,              % écarte les bars
+    enlarge x limits=0.4,   % top ça ! écarte les côtés
+    ylabel={CPU cycles},
+    symbolic x coords={1,2},
+    bar width=10pt,
+    ymin=0,
+    ymax=7000,
+    %title={$\mathcal{M}=8192$},
+    %x tick label style={ rotate=45 },
+    %y tick label style={ rotate=90 },
+    xtick=data,%
+    xticklabels={$(6{,}4)$ encoding,$(12{,}8)$ encoding},
+    error bars/.cd,
+    yminorgrids=true,
+    ymajorgrids=true,
+    nodes near coords,
+    every node near coord/.append style={font=\footnotesize},
+    scaled y ticks=base 10:-3,   % insane !
+    cycle list = {pattern=north east lines,black!80,black!50,black!30}
+]
+\addplot+[pattern=north east lines, text=black, error bars/.cd,
+y dir=both, y explicit]
+coordinates {
+    (1, 1052)
+    (2, 1052)
+};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={mojetteDim}] {expe_data/enc13.dat};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={mojetteDidier}] {expe_data/enc13.dat};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={isal}] {expe_data/enc13.dat};
+
+\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,47 @@
+\begin{tikzpicture}
+ %\tikzstyle{every node}=[font=\scriptsize]
+\begin{axis}[
+    ybar=5pt,              % écarte les bars
+    enlarge x limits=0.15,   % top ça ! écarte les côtés
+    ylabel={CPU cycles},
+    xlabel={Number of erasures},
+    symbolic x coords={1,2,3,4,5},
+    bar width=3pt,
+    %x tick label style={ rotate=45 },
+    %y tick label style={ rotate=90 },
+    ymin=0,
+    ymax=3500,
+    xtick={1,2,3,4,5},%
+    xticklabels={0,1,2,3,4},
+    error bars/.cd,
+    yminorgrids=true,
+    ymajorgrids=true,
+    nodes near coords,
+    every node near coord/.append style=%
+        {font=\footnotesize, rotate=90, anchor=west},
+    %nodes near coords/.append style={rotate=90}
+    scaled y ticks=base 10:-3,     %insane 
+    cycle list = {pattern=north east lines,black!80,black!50,black!30},
+]
+
+\addplot+[pattern=north east lines, text=black, error bars/.cd,
+y dir=both, y explicit]
+coordinates {
+    (1, 337)
+    (2, 337)
+    (3, 337)
+    (4, 337)
+    (5, 337)
+};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={mojetteDim}] {expe_data/dec12_2.dat};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={mojetteDidier}] {expe_data/dec12_2.dat};
+
+\addplot+[fill, text=black, error bars/.cd, y dir=both, y explicit]
+table [x={x}, y={isal}] {expe_data/dec12_2.dat};
+
+\end{axis}
+\end{tikzpicture}
