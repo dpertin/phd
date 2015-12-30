@@ -1,7 +1,25 @@
 
 # Introduction à la géométrie discrète
 
+% grille discrète
+
+% angle de projection (Farey)
+
+% forme convexe
+
 # Code MDS par transformée de Radon finie (FRT)
+
+## Introduction à la transformée de Radon
+
+## Transformée de Radon finie
+
+### FRT directe
+
+### FRT inverse
+
+## Code à effacement par FRT
+
+## Relation avec d'autres codes à effacement
 
 # Code à effacement par transformée Mojette
 
@@ -246,6 +264,12 @@ unique, mais que la taille des blocs encodés n'est pas optimale, on considère
 alors le code Mojette comme étant *quasi-MDS* \cite{parrein2001dcc}. On
 évaluera l'impact de ce surcout de stockage dans une partie future.
 
+## Relations avec d'autres codes à effacement
+
+
+
+### Connexions avec les codes LDPC
+
 
 \chapter{Nouvelle mise en œuvre systématique}
 
@@ -372,7 +396,7 @@ au pire similaire à celles obtenues en non-systématique. Pour le reste des cas
 vu précédemment, ces performances sont au mieux optimales, sinon meilleures.
 
 
-## Algorithme inverse en systématique 
+# Algorithme inverse en systématique 
 
 L'algorithme inverse présenté dans cette partie correspond à une extension de
 l'algorithme inventé pour la version non-systématique par
@@ -383,11 +407,44 @@ algorithme. La première concerne la détermination des offsets pour chaque
 projection. La seconde correspond au calcul de la valeur du pixel à
 reconstruire.
 
-### Détermination des offsets pour chaque projection
+## Détermination des offsets pour la reconstruction
 
+De manière comparable à ce qui est réalisé dans l'algorithme de
+\citeauthor{normand2006dgci}, il est nécessaire de déterminer la valeur des
+offsets pour chaque ligne. De manière graphique, ces offsets correspondent aux
+décalages nécessaires sur chaque ligne relativement au chemin de
+reconstruction. Plus précisément, ils permettent à l'algorithme de déterminer
+quelle ligne de la grille discrète doit être considérée afin de garantir la
+reconstruction d'un nouveau pixel.
 
+Dans le cas de la version non-systématique, ces offsets étaient simplement
+déterminés à partir de l'index de la ligne à reconstruire et de la direction de
+la projection utilisée pour la reconstruire. Dans la version systématique, il
+est de plus nécessaire de prendre en compte le schéma de perte. Puisque
+dans cette version, certaines lignes de la grille peuvent être déjà présentes,
+la reconstruction met en jeu un sous-ensemble de lignes à reconstruire. En
+conséquence, il est nécessaire de prendre en compte les lignes déjà présentes
+dans le calcul des offsets des lignes à reconstruire.
 
-### Calcul de la valeur du pixel à reconstruire
+Ainsi, on calcule l'offset de la dernière ligne à reconstruire :
+
+\begin{align}
+    \text{Offset}(\text{failures}(e-1)) & \\
+        & = max(max(0,-p_r) + S_{minus}, max(0,p_r) + S_{plus}).
+    \label{eqn.offset_last_sys}
+\end{align}
+
+Puis les offsets des lignes à reconstruire.
+
+\begin{align}
+    \text{Offset}(\text{failures}(i) & \\
+        & & = \text{Offset}(\text{failures}(i+1) + p_{i+1} \\
+    \text{Offset}(\text{failures}(j) & \\
+        & - & = (\text{failures}(i+1) - \text{failures}(i) - 1) * p_{i+1}
+    \label{eqn.offset_sys}
+\end{align}
+
+## Calcul de la valeur du pixel à reconstruire
 
 L'algorithme BMI repose sur deux choses. La première est la détermination des
 offsets afin de toujours traiter des pixels qui ne possèdent aucune dépendance. 
@@ -462,7 +519,22 @@ En conséquence, la valeur du pixel à reconstruire est donné par :
 
 
 
-# Évaluation du surcout de stockage
+# Évaluations du code Mojette
+
+## Évaluation du surcout de stockage
+
+\begin{figure}
+\centering
+%\input{./figures/ec_vs_rep.tikz}
+\caption{Comparaison du facteur de coût de stockage $f$ généré par différentes
+    techniques de codes à effacement, en fonction de la tolérance aux pannes.
+    Les paramètres des codes correspondent à $(n,k)$ égal $(3,2)$, $(6,4)$ et
+    $(12,8)$, fournissant une protection face à une, deux et quatre pannes
+    respectivement. Dans le cas particulier du code à effacement Mojette, deux
+    tailles de bloc de données sont données : $\mathcal{M} = 4$Ko et $8$Ko.}
+\label{fig:ec_vs_rep}
+\end{figure}
+
 
 Un code MDS génère la quantité minimale de redondance pour une tolérance aux
 pannes donnée. Dans la partie précédente, nous avons vu que le code à
@@ -548,9 +620,48 @@ Observons que dans le premier cas, la taille de la projection calculée selon la
 verticale est optimale. En conséquence, dans cette configuration particulière,
 le code est MDS. Ce n'est pas le cas en général.
 
-# Évaluation des performances
+## Évaluation des performances
 
-## Analyse du nombre d'opérations
+### Analyse du nombre d'opérations
+
+\begin{table*}
+\centering
+\begin{tabular}{@{} l L L L L L @{} >{\kern\tabcolsep}l @{}}    \toprule
+    \emph{Code} & \emph{Encoder $P$}& \emph{Encoder $Q$} & \emph{Mise à jour} &
+    \emph{Décoder depuis $P$} & \emph{Décoder depuis $Q$} \\\midrule
+    RS  & 
+        $(k-1)w$ & 
+        $(k-1)w + (kw)_{\otimes}$ & 
+        $3 + 1_{\otimes}$ &
+        $(k-1)w$ &
+        $(k-1)w + (kw)_{\otimes}$  \\ 
+    \rowcolor{black!20}[0pt][0pt] EVENODD & 
+        $(k-1)w$ &
+        $(k-1)w + k-2$ &
+        $w+2$ &
+        $(k-1)w$ &
+        $(k-1)w+2(k-2)$ \\ 
+    RDP &
+        $(k-1)w$ &
+        $(k-1)w$ &
+        $4$ &
+        $(k-1)w$ & 
+        $(k-1)w$ \\ 
+    \rowcolor{black!20}[0pt][0pt]Mojette &
+        $(k-1)w$ &
+        $(k-1)w-k+1$ &
+        $3$ &
+        $(k-1) w$ &
+        $c_{decode}(l,k,w)$ (i.e.\ \cref{eqn.mojette_decoding}) \\\bottomrule
+\end{tabular}
+ \caption{Tableau de comparaison du nombre d'opérations nécessaires pour
+ différents code à effacement selon les métriques définies dans la partie
+ \cref{sec.nomenclature}. Pour les codes de Reed-Solomon, les opérations de
+ multiplications sont symbolisées par $\otimes$. Lorsque différents résultats
+ existent, le pire cas est affiché (e.g. les performances de décodage pour les
+ codes EVENODD pour $Q$ dépendent du calcul de $S$).}
+ \label{tab.comparison}
+\end{table*}
 
 ## Expérimentations
 
@@ -726,7 +837,7 @@ puis de décodage. Par la suite, nous analyserons l'influence du facteur de
 protection, paramétré par le couple $(n,k)$, puis nous étudierons l'impact
 de la taille des blocs de données $\mathcal{M}$ sur les performances des codes.
 
-#### Performance d'encodage
+#### Performances d'encodage
 
 \begin{figure}
     \begin{subfigure}{.49\textwidth}
@@ -734,14 +845,14 @@ de la taille des blocs de données $\mathcal{M}$ sur les performances des codes.
         \caption{$\mathcal{M}=4096$ octets.}
         \tikzset{every picture/.style={scale=0.85}}
         \input{expe_data/enc12.tex}
-        \label{fig:encoding4k}
+        \label{fig.encoding4k}
     \end{subfigure}
     \begin{subfigure}{.49\textwidth}
         \centering
         \caption{$\mathcal{M}=8192$ octets.}
         \tikzset{every picture/.style={scale=0.85}}
         \input{expe_data/enc13.tex}
-        \label{fig:encoding8k}
+        \label{fig.encoding8k}
     \end{subfigure}
     \centering
     \ref{named}
@@ -751,10 +862,155 @@ de la taille des blocs de données $\mathcal{M}$ sur les performances des codes.
     réaliser l'opération d'encodage (plus le résultat est petit, plus il est
     bon). Deux paramètres de codage ont été utilisés: $(6,4)$ et $(12,8)$. Les
     performances optimales sont représentées par \emph{no coding}.}
-    \label{fig:encoding}
+    \label{fig.encoding}
 \end{figure}
 
-#### Performance de décodage
+Nous analysons dans cette partie les résultats à l'issu de notre
+expérimentation sur les performances d'encodage. Les 
+\cref{fig.encoding4k,fig.encoding8k} montre les résultats obtenus pour
+des tailles de blocs $\mathcal{M}$ équivalent à $4096$ et $8192$ octets
+respectivement. Nous avons représenté sur ces courbes, les performances
+optimales obtenues par une opération équivalente sans encodage. Plus
+précisément, ces performances correspondent à la copie de $n$ blocs de données.
+Dans le cas où $\mathcal{M}$ vaut $4$Ko, cela correspond à la copie de $6144$
+octets. Pour une taille de bloc de $8$Ko, cela correspond à la copie de $12288$
+octets. L'opération de copie de cette information est implémentée dans la
+fonction *memcpy()* de la bibliothèque standard du C.
+
+La première observation générale que l'on peut faire sur ces courbes d'encodage
+est que les performances de la Mojette non-systématique sont comparables à
+celles fournies par l'implémentation des codes de Reed-Solomon d'ISA-L. Plus
+précisément, ces derniers sont moins performants lors de trois tests sur
+quatre (la tendance s'inverse dans le test $(12,8)$ présenté dans
+\cref{fig.encoding8k}). En réalité, il est important de rappeler que cette
+implémentation du code Mojette doit calculer trois fois plus de données que les
+autres implémentations testées dans notre expérimentation. En effet, puisque
+cette version est systématique, elle doit calculer $12$ projections Mojette
+dans le cas d'un code $(12,8)$, tandis que le code de Reed-Solomon doit
+calculer seulement $4$ blocs de parité. On observe cependant qu'il nécessite
+dans le cas de le test de \cref{fig.encoding4k} plus de $30$\% de cycles
+supplémentaires par rapport à NS Mojette, pour protéger la donnée face à $4$
+pannes. On observe donc que malgré le désavantage de notre code en version
+non-systématique, il parvient dans le cadre de nos tests à être compétitif avec
+des codes systématiques.
+
+Une deuxième observation est que la version systématique du code Mojette est
+plus performante que sa version non systématique. Ce résultat était attendu
+puisque comme on l'a précisé précédemment, cette dernière version doit calculer
+trois fois plus d'information lors de l'encodage. Notons cependant que la
+différence observée entre les résultats de ces deux implémentations n'est pas
+un facteur trois. Lors de nos tests d'encodage, nous avons enregistré
+le nombre de cycles CPU des implémentations systématiques comme étant la copie
+des $k$ blocs d'informations en clair, plus le calcul des $(n-k)$ blocs de
+parité. Les résultats observés correspondent donc à la somme de cette copie et
+de l'encodage. En revanche, si l'on prend l'exemple des résultats du code
+Mojette $(6,4)$ sur des blocs de $4$Ko, présentés dans \cref{fig.encoding4k},
+on observe que $(705-321)*3 = 1152$, où $321$ correspond aux nombres de cycles
+CPU nécessaire pour copier $4096$ octets, et où $1152$ correspond à la valeur
+observée dans les résultats de la version non-systématique de la même courbe.
+Ces résultats nous permettent donc de valider que l'encodage systématique est
+trois fois plus performant que l'encodage non-systématique dans le cas où nos
+codes sont réglés sur un taux $r=\frac{2}{3}$.
+
+En conséquence, nos courbes de résultats montrent que pour les paramètres
+choisis dans nos expériences, l'encodage de l'implémentation non-systématique
+offre des performances comparables à la meilleure implémentation des codes de
+Reed-Solomon développée par Intel. De plus, la version systématique du code
+Mojette que nous avons développés offre des performances d'encodage largement
+supérieures à ce que proposent les autres codes utilisés dans nos tests. En
+particulier, les résultats atteint par notre nouvelle mise en œuvre sont
+proches des résultats optimaux correspondant à la copie de l'information, sans
+opération d'encodage. Ceci montre que le surcout calculatoire de cette nouvelle
+version est particulièrement réduit.
+
+
+#### Performances de décodage
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        \caption{$(n,k) = (6,4)$, $\mathcal{M} = 4096$ octets}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/dec12_1.tex}
+        \label{fig.decoding_4k_l1}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \caption{$(n,k) = (6,4)$, $\mathcal{M}= 8192$ octets}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/dec13_1.tex}
+        \label{fig.decoding_8k_l1}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \caption{$(n,k) = (12,8)$, $\mathcal{M}= 4096$ octets}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/dec12_2.tex}
+        \label{fig.decoding_4k_l2}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \caption{$(n,k) = (12,8)$, $\mathcal{M}= 8192$ octets}
+        \tikzset{every picture/.style={scale=0.85}}
+        \input{expe_data/dec13_2.tex}
+        \label{fig.decoding_8k_l2}
+    \end{subfigure}
+    \ref{named}
+    \caption{Comparaison des performances de décodage pour des paramètres de
+    codes $(6,4)$ (a,b) et $(12,8)$ (c,d). Les courbes à gauche montrent les
+    résultats pour des tailles de blocs de $4$Ko (a,c) tandis que les courbes
+    de droite concernent des blocs de $8$Ko (b,d). Les performances des codes
+    Mojette et Reed-Solomon sont comparées par le nombre de cycles CPU
+    enregistré durant l'opération de décodage (plus c'est bas, mieux c'est)
+    alors que l'on augmente progressivement le nombre d'effacement. Un
+    effacement correspond à la perte d'un bloc encodé. Les valeurs optimales
+    sont représentées par "No coding".}
+    \label{fig:decoding}
+\end{figure}
+
+Nous analysons dans cette partie les résultats à l'issu de notre
+expérimentation sur les performances de décodage. Les 
+\cref{fig.decoding_4k_l1,fig.decoding_8k_l1} donnent les nombres de cycles CPU
+nécessaires pour le décodage des codes $(6,4)$ pour des blocs de $4$Ko et $8$Ko
+respectivement.
+De manière similaire, les \cref{fig.decoding_4k_l2,fig.decoding_8k_l2}
+concernent des codes $(12,8)$. Nous avons représenté sur ces courbes les
+performances optimales de décodage correspondant à la copie de $k$ blocs
+d'information.
+
+La première observation générale que l'on peut faire concerne le cas où aucun
+effacement ne survient lors du décodage. Dans ce cas, les deux codes
+systématiques Mojette et Reed-Solomon atteignent les performances optimales
+représentées sur nos courbes par "no coding". Ce résultat était attendu puisque
+dans le cas des codes systématiques, lorsqu'aucun des $k$ blocs de données
+n'est effacé, le décodage correspond à la lecture direct de ces $k$ blocs. Au
+niveau de l'implémentation, cette lecture correspond à la copie de cette
+information en clair.
+
+À présent, lorsque des effacements surviennent, des opérations de décodage sont
+déclenchées. Une première remarque globale est que l'influence des effacement
+n'est pas le même selon si le code est systématique ou non. Pour NS Mojette, le
+nombre d'effacement $e$ n'a pas d'influence sur les performances de décodage.
+Ce résultat provient du fait que le décodage des codes non-systématiques
+correspond à la reconstruction entière des informations utilisateurs. Ainsi le
+nombre d'opérations est comparable quelque soit l'ensemble des blocs encodés
+utilisé pour cette reconstruction.
+%
+Dans le cas des codes systématiques en revanche, le décodage correspond à
+reconstruire un ensemble partiellement reconstruit de la donnée. En
+conséquence, le nombre de CPU nécessaire pour le décodage augmente au fur et à
+mesure que l'on augmente le nombre de blocs de données effacés. En particulier,
+la différence entre les performances de l'implémentation systématique du code
+Mojette et des valeurs optimales augmente avec le nombre d'effacement puisque
+l'on supprime progressivement des lignes de la grille discrète. En effet,
+puisque l'on considère une grille de moins en moins remplie, et puisque les
+opérations d'additions nécessaires à la reconstruction Mojette sont plus
+coûteuses que la copie utilisée dans memcpy(), les performances décroissent.
+%
+Notons cependant que malgré la baisse de performances du décodage observée
+lorsque l'on augmente le nombre d'effacement pour le code systématique Mojette,
+les valeurs enregistrées sont d'une part toujours meilleures que celles
+observées pour la version non systématique (puisqu'il s'agit du cas où la
+grille doit être entièrement reconstruite). D'autre part, ces performances sont
+significativement meilleures que les performances observées par
+l'implémentation systématique des codes de Reed-Solomon.
 
 #### Influence de la tolérance aux pannes
 

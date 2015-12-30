@@ -21,6 +21,9 @@
 % label names. For example, if French babel support is loaded, the commonly
 % used “:”
 \usepackage[french,capitalize]{cleveref}
+\usepackage{array,booktabs}
+\newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
+\usepackage{colortbl}
 
 \usepackage{tikz,pgfplots,pgfgantt}
 \usepackage{lscape,afterpage}
@@ -32,6 +35,7 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
+
 \usepackage[
     backend=biber,
     style=alphabetic,
@@ -44,6 +48,8 @@
 
 \def\proj{\mathrm{proj}}
 \def\M{\mathcal{M}}
+
+\DeclareMathOperator*{\xor}{\bigoplus}
 
 % déclaration de la catégorie mine pour biblatex
 \DeclareBibliographyCategory{mine}
