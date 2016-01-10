@@ -1,0 +1,75 @@
+\begin{tikzpicture}[scale=0.4]
+\tikzstyle{every node}=[font=\huge]
+\begin{axis}[
+    compat=newest, %Better label placement
+    xlabel = {Fault-tolerance},
+    ylabel = {Storage cost factor $f$},
+    width=1.5\textwidth,
+    height=\textwidth,
+    xticklabels={ 1, 2, 3, 4 },
+    xtick={1, 2, 3, 4},
+    ytick={1,...,5},
+    axis lines*=left,
+    cycle list={
+        {draw=black!100},
+        {draw=black!80},
+        {draw=black!60},
+        {draw=black!40},
+        {draw=black!70}
+    },
+    smooth,
+    ultra thick,
+    xmin=1,
+    enlarge x limits={rel=0.1},
+    clip=false,
+    ymajorgrids
+    ]
+    \addplot [dotted] plot coordinates {
+        (1, 1.0)
+        (2, 1.0)
+        (3, 1.0)
+        (4, 1.0)
+    } node[pos=1] (endofplotnocoding) {};
+    \node[right=1em]
+            at (endofplotnocoding) {No coding};
+
+    \addplot plot coordinates {
+        (1, 1.5)
+        (2, 1.547)
+        %(3, 4.0)
+        (4, 1.9375)
+    } node[pos=1] (endofplotmojette) {};
+    \node[above=0.5cm, right=1em]
+            at (endofplotmojette) {Mojette $4$~KB};
+
+    \addplot plot coordinates {
+        (1, 1.5)
+        (2, 1.523)
+        %(3, 4.0)
+        (4, 1.72)
+    } node[pos=1] (endofplotmojette) {};
+    \node[above=0.2cm, right=1em]
+            at (endofplotmojette) {Mojette $8$~KB};
+    
+    \addplot [dash pattern=on 10pt off 2pt on 5pt off 6pt] plot coordinates {
+        (1, 1.5)
+        (2, 1.5)
+        %(3, 1.5)
+        (4, 1.5)
+    } node[pos=1] (endofplotmds) {};
+    \node[right=1em]
+            at (endofplotmds) {MDS};
+
+    \addplot plot coordinates {
+        (1, 2.0)
+        (2, 3.0)
+        (3, 4.0)
+        (4, 5.0)
+    } node[pos=1] (endofplotrep) {};
+    \node[right=1em]
+            at (endofplotrep) {Replication};
+
+    %\legend{no overhead, MDS erasure code, Mojette erasure code, Replication}
+
+\end{axis}
+\end{tikzpicture}

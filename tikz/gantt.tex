@@ -1,0 +1,115 @@
+
+% magouille pour afficher les semaines par leur numéro
+%http://tex.stackexchange.com/questions/230968/getting-gantt-chart-week-to-show-week-number
+%\newcounter{myWeekNum}
+%\stepcounter{myWeekNum}
+%
+%\newcommand{\myWeek}{\themyWeekNum
+%    \stepcounter{myWeekNum}
+%    \ifnum\themyWeekNum=53
+%         \setcounter{myWeekNum}{1}
+%    \else\fi
+%}
+%
+%\setcounter{myWeekNum}{13}
+
+%\ganttset{%{2014-03-31}{2015-03-31}
+%    calendar week text={\myWeek{}}%
+%}
+
+%\ganttset{%
+%    calendar week text={%
+%        \pgfcalendarmonthshortname{\startmonth}~\startday%, \startyear%
+%    }%
+%}
+
+\begin{ganttchart}[
+    hgrid,
+    vgrid,
+    x unit=8mm,
+    y unit chart=.7cm,
+    newline shortcut=true,
+    bar label node/.append style={align=right},
+    time slot format=isodate,
+    today=2015-05-30,
+    milestone height=.4,
+    milestone inline label node/.append style={below,font=\footnotesize},
+    compress calendar
+    ]{2014-04-01}{2016-03-31}
+    \gantttitlecalendar{year, month=shortname} \\
+%    \gantttitlecalendar{year, month=shortname, week} \\
+
+%    \ganttgroup{Conferences}{2014-04-01}{2016-03-31}\\
+
+%    \ganttmilestone{CLOSER'14}{2014-04-04}\\
+%    \ganttmilestone{Eurosys'14}{2014-04-13}\\
+%    \ganttmilestone{ACN'14}{2014-06-16}\\
+%    \ganttmilestone{PSES'14}{2014-06-26}\\
+%    \ganttmilestone{Reims Image'14}{2014-11-25}\\
+%    \ganttmilestone{WOS'4}{2014-12-03}\\
+%    \ganttmilestone{Mojette Day}{2015-02-05}\\
+%    \ganttmilestone{HTDC'15}{2015-03-15}\\
+
+    \ganttmilestone[inline]{CLOSER'14}{2014-04-04}
+    \ganttmilestone[inline]{ACN'14}{2014-06-16}
+    \ganttmilestone[inline]{Reims Image'14}{2014-11-25}
+    \ganttmilestone[inline]{HTDC'15}{2015-03-15}\\
+    \ganttmilestone[inline]{Eurosys'14}{2014-04-13}
+    \ganttmilestone[inline]{PSES'14}{2014-06-26}
+    \ganttmilestone[inline]{WOS'4}{2014-12-03}
+    \ganttmilestone[inline]{Mojette Day}{2015-02-05}
+    \ganttmilestone[inline]{Eurosys'15}{2015-04-22}\\
+
+
+    %\ganttgroup{Tâche 1 :}{2014-04-01}{2016-03-31}
+    %\ganttbar{\\\scriptsize\bf Bibliographie}{2014-04-01}{2014-03-30}\\
+
+    \ganttgroup{Tâche 2 :}{2015-03-01}{2015-06-30}
+    \ganttbar{\\\scriptsize\bf Comparaison codes}{2014-04-01}{2014-03-30}\\
+
+    \ganttbar{\scriptsize analyse de codes}
+        {2015-02-01}
+        {2015-03-31}\\
+
+    \ganttbar{\scriptsize RAID-6 codes}
+        {2015-04-01}
+        {2015-04-30}\\
+
+    \ganttbar{\scriptsize Mojette systématique}
+        {2015-05-01}
+        {2015-06-30}\\
+
+    %\ganttgroup{Tâche 3 :}{2014-07-01}{2014-09-30}
+    \ganttgroup{Tâche 3 :}{2014-07-01}{2014-12-31}
+    \ganttbar{\\\scriptsize\bf Traitement distribué}{2014-04-01}{2014-03-30}\\
+
+    \ganttbar{\scriptsize reprojection}
+        {2014-07-01}
+        {2014-09-30}\\
+
+    \ganttgroup{Tâche 4 :}{2015-06-01}{2015-06-30}
+    \ganttbar{\\\scriptsize\bf Développement RozoFS}{2014-04-01}{2014-03-30}\\
+
+    \ganttbar{\scriptsize Mojette systématique}
+        {2015-06-01}
+        {2015-06-30}\\
+
+    \ganttgroup{Tâche 5 :}{2014-04-01}{2014-06-30}
+    \ganttgroup{        } {2015-01-01}{2015-02-28}
+    \ganttbar{\\\scriptsize\bf Performances des codes}{2014-04-01}{2014-03-30}\\
+
+    \ganttbar{\scriptsize plateforme F4C}
+        {2014-04-01}
+        {2014-05-31}\\
+    \ganttbar{\scriptsize benchmark RozoFS}
+        {2014-05-01}
+        {2014-06-30}\\
+    \ganttbar{\scriptsize benchmark codes}
+        {2015-01-01}
+        {2015-02-28}\\
+
+    \ganttgroup{Tâche 6 :}{2015-07-01}{2016-03-31}
+    \ganttbar{\\\scriptsize\bf Rédaction}{2014-04-01}{2014-03-30}\\
+
+\end{ganttchart}
+

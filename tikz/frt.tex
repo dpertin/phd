@@ -1,0 +1,51 @@
+ \begin{tikzpicture}[y=-1cm, x=1cm, every node/.style={scale=.8},
+ 	every matrix/.style={row sep={-\pgflinewidth,between borders}, column
+	sep={-\pgflinewidth,between borders}},
+	space/.style={matrix of math nodes, nodes={draw, minimum size=1cm,
+	anchor=center}},
+	reconstruct/.style={matrix of nodes, nodes={draw, 
+	minimum size=1cm, anchor=center, text width=5mm, align=center}},
+	image/.style={matrix of math nodes, nodes={draw, minimum size=1cm,
+	anchor=center}},
+	radon/.style={matrix of math nodes, nodes={draw, minimum size=1.42cm,
+	anchor=center}}]
+{
+
+\def\s{0.2}
+\matrix (image) [space] at (-3.5-\s,0)
+{
+	\node{a}; \node[dashed, red, circle]{}; & b & c \\
+	d & e & \node{f}; \node[dashed, red, circle]{}; \\
+	g & \node{h}; \node[dashed, red, circle]{}; & i \\
+};
+%\draw[dashed, red, ->] (image-1-1) |- (image-2-3);
+\draw(-3.5-\s,3.5) node[align=center, anchor=center, text width=3cm, below]
+    {Image $(x,y)$ \\ (a)};
+
+\matrix[space] at (0,0.42)
+{
+	adg & beh & cfi \\
+	aei & bfg & cdh \\
+	\node{afh}; \node[dashed, red, circle]{}; & bdi & ceg \\
+	abc & def & ghi \\
+};
+\draw(0,3.5) node[align=center, anchor=center, text width=5cm, below]
+    {Radon $(t,m)$ \\ (b)};
+
+\matrix[reconstruct] at (3.5+\s,0.98)
+{
+	{$\textcolor{red}{a}dg$ \\ $\textcolor{red}{a}ei$ \\
+	$\textcolor{red}{a}fh$ \\ $abc$} &
+	{$beh$ \\ $bfg$ \\ $bdi$ \\ $abc$} &
+	{$cfi$ \\ $cdh$ \\ $ceg$ \\ $abc$} \\
+	{$adg$ \\ $cdh$ \\ $bdi$ \\ $def$} &
+	{$beh$ \\ $aei$ \\ $ceg$ \\ $def$} &
+	{$cfi$ \\ $bfg$ \\ $afh$ \\ $def$} \\
+	{$adg$ \\ $bfg$ \\ $ceg$ \\ $ghi$} &
+	{$beh$ \\ $cdh$ \\ $afh$ \\ $ghi$} &
+	{$cfi$ \\ $aei$ \\ $bdi$ \\ $ghi$} \\
+};
+\draw(3.5+\s,3.5) node[align=center, anchor=center, text width=5cm, below]
+    {Reconstruction $(x,y)$ \\ (c)};
+
+}\end{tikzpicture}
