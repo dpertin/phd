@@ -1,23 +1,650 @@
 
-# Introduction à la géométrie discrète
+Nous avons vu précédemment que les codes à effacement linéaires correspondent à
+des applications linéaires capables de calculer des informations redondantes à
+partir des données utilisateurs. Également, ces applications doivent être
+capables de reconstituer l'information initiale à partir d'un sous-ensemble
+suffisant d'informations (problème inverse). En imagerie, la tomographie
+correspond à une telle application.
 
-% grille discrète
+La tomographie est une technique qui vise à reconstruire de manière
+mathématique l'intérieur d'un objet à partir de mesures prises en dehors de
+l'objet, appelées *projections*. En conséquence, cette technique permet la
+visualisation et le stockage d'une version numérique de l'objet.
 
-% angle de projection (Farey)
+% La tomographie discrète étudie le cas où l'objet est une image numérique,
+% représentée par un nombre limité de projections.
 
-% forme convexe
+Bien que la tomographie discrète ait été rendue possible grâce au
+développement de l'informatique moderne dans les années $1960$, le principe
+théorique remonte au début du siècle avec les travaux du
+mathématicien Autrichien \citeauthor{radon1917akad} \cite{radon1917akad}.
+Dans son œuvre, \citeauthor{radon1917akad} pose les fondations de la
+tomographie et montre qu'il est non seulement possible de représenter le
+contenu d'un objet à travers un ensemble de projections, mais qu'il est
+également possible d'inverser cette opération pour reconstruire l'objet.
+Plus précisément, ces projections correspondent aux valeurs des intégrales le
+long des lignes de projection qui traversent l'objet suivant différents angles.
+
+La première application de cette théorie s'inscrit dans le travaux en
+radioastronomie de \citeauthor{bracewell1956ajp} sur la détermination de la
+position des astres à partir de mesures par ondes radios
+\cite{bracewell1956ajp}.
+Dans le milieu médical, il faudra attendre $1972$ avant que
+\citeauthor{hounsfield1973bjr} ne parvienne à concevoir le premier scanner à
+rayon X, sans qu'il n'est eu au préalable connaissance des travaux de
+\citeauthor{radon1917akad}. Il remportera le prix Nobel de médecine en $1979$
+avec \citeauthor{cormack1963jap} pour leurs travaux respectifs sur le
+développement de la tomographie numérique qui est une technique encore
+largement utilisée aujourd'hui, notamment dans le milieu médical
+\cite{cormack1963jap,hounsfield1973bjr}.
+
+# Introduction à la reconstruction et à la géométrie discrète
+
+## Transformée de Radon dans le domaine continu
+
+### Problème inverse
+
+Un *problème inverse* correspond au processus qui permet de déterminer les
+causes à partir d'un ensemble d'observations. En tomographie, ce problème
+consiste à reconstituer une image à partir d'un ensemble de projections
+mesurées sur l'image. On distingue alors deux processus dans la
+résolution de ce problème : *l'acquisition* des données et la *reconstruction*
+de l'image.
+
+En tomographie médicale, cette acquisition met en jeu la rotation d'un capteur
+qui mesure des projections monodimensionnel autour d'une zone du
+patient. Cette technique est largement utilisée dans les scanners à rayons X.
+Ces appareils envoient une série de rayons X à travers le patient à différents
+angles. Les récepteurs situés de l'autre côté du patient mesurent alors
+l'absorption des rayons X par ses tissus. Il est alors possible de
+déterminer le volume de tissu traversé par ces rayons.
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{.43\textwidth}
+		\centering
+        \def\svgwidth{.6\textwidth}
+		\includesvg{img/inverse0}
+        \caption{Exemple d'une projection}
+        \label{fig.inverse1}
+    \end{subfigure}
+    \begin{subfigure}{.43\textwidth}
+		\centering
+        \def\svgwidth{.6\textwidth}
+		\includesvg{img/inverse1}
+        \caption{Reprojection de $1$ projection}
+        \label{fig.farey2}
+    \end{subfigure}
+	\begin{subfigure}{.43\textwidth}
+		\centering
+        \def\svgwidth{.6\textwidth}
+		\includesvg{img/inverse22}
+        \caption{Reprojection de $2$ projections}
+        \label{fig.farey3}
+    \end{subfigure}
+    \begin{subfigure}{.43\textwidth}
+		\centering
+        \def\svgwidth{.6\textwidth}
+		\includesvg{img/inverse32}
+        \caption{Reprojection de $3$ projections}
+        \label{fig.farey4}
+    \end{subfigure}
+    \caption{Représentation des différents angles discrets $(p,q)$ obtenus par
+    la suite de Farey $F_3$.}
+    \label{fig:farey}
+\end{figure}
+
+Une fois l'acquisition terminée, un traitement informatique permet de
+reconstruire les structures anatomiques par une opération inverse.
+Une technique pour reconstruire cette image consiste à rétroprojeter la valeur
+des projections dans le support à reconstruire. Si suffisamment de projections
+sont disponible, alors une reconstruction partielle de l'image est obtenue. Il
+est en général nécessaire de filtrer l'image obtenue pour obtenir une
+approximation de l'objet.
+
+
+### Transformée Radon
+
+\begin{figure}[t]
+    \centering
+    \def\svgwidth{.7\textwidth}
+    \includesvg{img/radon3}
+    \caption{Représentation de la transformée de Radon $r[f](\varphi)$ de
+    l'objet $f(x,y)$ suivant l'angle de projection $\varphi$.}
+    \label{fig.pavage}
+\end{figure}
+
+La transformation de \citeauthor{radon1917akad} est une application
+mathématique linéaire introduite en \citeyear{radon1917akad}
+\cite{radon1917akad}.
+Cette application permet de calculer une projection $r$ définie dans un
+sous-espace $F$ de dimension $D$ à partir d'une fonction $f$ définie dans un
+espace $E$ de dimension $D+1$. Par exemple, la transformée de Radon d'une
+fonction $f(x,y)$ bidimensionnelle correspond à une projection
+$r_{\varphi}(t)$ monodimensionnelle où $\varphi$ correspond à un angle de
+projection, et $t$ correspond à l'index de la ligne de projection.
+Dans la suite nous considérons notre étude sur $\mathbb{R}^2$. On définit $P$
+un point de ce plan, de coordonnées $(x,y)$, et $\mathcal{L}$ une droite
+passant par ce point.
+La droite $\mathcal{L}$ d'équation $t = x \cos \varphi + y \sin \varphi$
+correspond à la droite distante de $t$ par rapport à l'origine, avec un angle
+$\varphi$ par rapport à l'axe $x$. On définit alors la transformée de Radon de
+la fonction $f$ sur $\mathbb{R}^2$ est définie ainsi :
+
+\begin{equation}
+    r_{\mathcal{L}}(f) =
+        \int_{\mathcal{L}}f(x,y)\,ds,
+    \label{eqn.integrale_curviligne}
+\end{equation}
+
+où $ds$ correspond au variations le long de la droite $\mathcal{L}$.
+\Cref{eqn.integrale_curviligne} permet de calculer l'intégrale sur l'ensemble
+des points $(x,y)$ de densité $f(x,y)$ appartenant à la droite $\mathcal{L}$
+d'équation $t = x \cos \varphi + y \sin \varphi$. En utilisant la fonction de
+Dirac, on peut définir la transformée de Radon ainsi :
+
+\begin{equation}
+    r_{\varphi}(f) =
+        \int_{-\infty}^{\infty}
+        \int_{-\infty}^{\infty}
+        f(x,y) \delta (x \cos(\varphi) + y \sin(\varphi) - t)\,dx\,dy
+    \label{eqn.radon}
+\end{equation}
+
+où $\delta(x)$ correspond à l'impulsion de Dirac. \Cref{eqn.radon} représente
+la projection de la fonction $f(x,y)$ suivant la droite $\mathcal{L}$ sur une
+droite orthogonale à $\mathcal{L}$ pour un angle $\varphi$. La valeur obtenue
+correspond à l'intensité cumulée le long de la droite d'acquisition.
+
+Puisque l'équation de la transformée de \citeauthor{radon1917akad} correspond à
+une application linéaire, elle a la propriété d'être inversible. La transformée
+inverse est également énoncé dans l'œuvre de \citeauthor{radon1917akad}
+\cite{radon1917akad}. Cette opération inverse consiste à reconstruire $f$ à
+partir d'un ensemble suffisant de projections $r_{\varphi}$ déterminées à partir de
+différents angles de projection.
+
+La transformation d'une image correspond à la superposition des sinusoïdes
+générées par chaque point $(x,y)$ de l'image. Chaque point de l'image
+correspond à une sinusoïde d'amplitude $\sqrt{x^2 + y^2}$ dans le domaine de
+Radon.
+
+En pratique, la reconstruction par transformée de Radon est un *problème mal
+posé*, au sens défini par \citeauthor{hadamard1902pub}, pour trois raisons
+\cite{hadamard1902pub}. Premièrement, il n'existe pas de solution puisque
+le processus d'acquisition intègre du *bruit* dans les données. De plus, il
+n'est pas possible de garantir l'*unicité* de la solution puisque l'acquisition
+mesure un nombre fini de projections. Enfin, le processus de reconstruction est
+*instable* dans le sens où une petite erreur d'acquisition a des répercutions
+significatives sur les résultats. Il existe plusieurs techniques d'inversion de
+la transformée de Radon. Parmi elles, nous citerons deux méthodes : la
+reconstruction par Fourier basée sur le théorème de la tranche centrale, et la
+rétroprojection filtrée. Dans la suite, nous verrons deux versions discrètes et
+exactes de la transformée de Radon. En particulier nous verrons précisément
+les méthodes de reconstruction pour ces techniques.
+
+## Quelques bases de la géométrie discrète
+
+Le procédé permettant de transformer un espace ou un objet continu en un
+pavage ou en un objet discret, est appelé *discrétisation* (ou
+*numérisation*). Il est ainsi possible de transformer une fonction continue
+$f:\mathbb{R}^2 \rightarrow I$ en un ensemble de cellules.
+
+
+### Ensemble, topologie et connexité dans le domaine discret
+
+\begin{figure}[t]
+    \centering
+    \def\svgwidth{\textwidth}
+    \includesvg{img/pavages}
+    \caption{Représentation des trois pavages réguliers possibles sur
+    $\mathbb{Z}^2$ (carré, triangle, hexagone) et le maillage associé.}
+    \label{fig.pavage}
+\end{figure}
+
+Un *espace discret* $\mathbb{Z}^n$ est une décomposition du plan de dimension
+$n \geq 2$ en cellules qui forment un *pavage*. Une cellule peut être
+représentée par un son centre de gravité, appelé *point discret*.
+L'ensemble des points discrets d'un pavage forme un *maillage*.
+Par la suite, on travaillera sur des pavages qui vérifient les trois propriétés
+suivantes :
+
+1. réguliers : les cellules correspondent à des formes régulières
+(i.e.\ des polygones dont tous les côtés et tous les angles sont égaux) dont
+les sommets sont en contact avec un nombre fini de sommets appartenant à
+d'autres cellules afin de remplir entièrement l'espace sans recouvrement;
+
+2. de dimension $2$, c'est à dire que l'image correspond à une partie
+de $\mathbb{Z}^2$ (on utilisera les termes *pixel* ou *éléments
+structurant* pour désigner les cellules);
+
+3. dont les cellules sont facilement adressables, pour cela on utilisera un
+pavage carré afin d'adresser directement les éléments par un couple de
+coordonnées $(x,y)$ (le maillage d'un pavage carré est carré contrairement au
+maillage d'un pavage triangulaire ou hexagonal).
+
+Les notions topologiques dans le domaine discret sont définies à partir de la
+notion de *voisinage* et de *connexité*
+\cite{rosenfeld1970acm,rosenfeld1979tamm}. Considérons deux points $P$ et $Q$
+définis par leurs coordonnées $(x,y)$ dans un pavage carré. Dans ce cas, $P$ et
+$Q$ sont deux points voisins si une et une seule de leurs coordonnées
+diffère d'une unité. En particulier, le point $P$ possède quatre voisins qui
+correspondent aux points de coordonnées $(x-1,y),(x+1,y),(x,y-1),(x,y+1)$. Dans
+ce cas, on parle de *$4$-connexité*.
+Un *chemin* est alors défini comme une suite de points de telle manière que
+deux points consécutifs soient voisins.
+
+Pour finir, on définit une *composante connexe* comme étant un ensemble $S$ de
+points discrets tel que pour tout couple de points $(P,Q)$ appartenant à $S$,
+il existe un chemin reliant $P$ à $Q$ dont tous les points appartiennent à $S$.
+
+
+### Angle et droite discrète
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{.19\textwidth}
+		\centering
+		\includesvg{img/angles1}
+        \caption{$\frac{q}{p}=\frac{0}{1}$}
+        \label{fig.farey1}
+    \end{subfigure}
+    \begin{subfigure}{.19\textwidth}
+		\centering
+		\includesvg{img/angles2}
+        \caption{$\frac{q}{p}=\frac{1}{3}$}
+        \label{fig.farey2}
+    \end{subfigure}
+	\begin{subfigure}{.19\textwidth}
+		\centering
+		\includesvg{img/angles3}
+        \caption{$\frac{q}{p}=\frac{1}{2}$}
+        \label{fig.farey3}
+    \end{subfigure}
+    \begin{subfigure}{.19\textwidth}
+		\centering
+		\includesvg{img/angles4}
+        \caption{$\frac{q}{p}=\frac{2}{3}$}
+        \label{fig.farey4}
+    \end{subfigure}
+    \begin{subfigure}{.19\textwidth}
+		\centering
+		\includesvg{img/angles5}
+        \caption{$\frac{q}{p}=\frac{1}{1}$}
+        \label{fig.faray5}
+    \end{subfigure}
+    \caption{Représentation des différents angles discrets $(p,q)$ obtenus par
+    la suite de Farey $F_3$.}
+    \label{fig:farey}
+\end{figure}
+
+On s'intéresse dans cette partie à déterminer les points d'intersection entre
+le maillage définit par les points d'un ensemble discret de taille $(N \times
+N)$, et une droite d'équation $y = ax + b$.
+Pour que cette intersection ne soit pas vide, il est nécessaire que la pente de
+la droite soit de la forme :
+
+\begin{equation}
+    0 \leq \frac{q}{p} \leq 1,
+    \label{eqn.pente_droite}
+\end{equation}
+
+où $p$ et $q$ sont des entiers premiers entre eux, et vérifiant
+$q \leq p \leq N$. L'ensemble des pentes des droites possibles défini par
+\cref{eqn.pente_droite} forment alors une suite de Farey d'ordre $N$, notée
+$F_N$ \cite{franel1924gdwg} (les autres droites sont obtenues par symétrie).
+Une suite de Farey $F_N$ d'ordre $N$ est l'ensemble des fractions irréductibles
+comprises entre $0$ et $1$, ordonnées de manière croissante et dont le
+dénominateur n'est pas plus grand que $N$.
+Chaque fraction d'une série de Farey correspond à un point $(x,y)$ de
+$\mathbb{Z}^2$. Par exemple, la suite de Farey d'ordre $3$ correspond à
+l'ensemble :
+
+\begin{equation}
+    F_3 = \left\{
+        \frac{0}{1},
+        \frac{1}{3},
+        \frac{1}{2},
+        \frac{2}{3},
+        \frac{1}{1}
+    \right\}.
+    \label{eqn.farey}
+\end{equation}
+
+Par la suite, nous utiliserons le terme *direction discrète* pour désigner le
+couple d'entier $(p,q) \in \mathbb{Z}^2$, premiers entre eux, et qui correspond
+à une direction suivant la pente $\frac{q}{p}$.
+
+
+## Méthode algébrique de reconstruction d'une image discrète
+
+\begin{figure}[t]
+    \centering
+    \begin{subfigure}{.48\textwidth}
+		\centering
+        \def\svgwidth{\textwidth}
+        \includesvg{img/inverse_discret_nok2}
+        \caption{Exemple non inversible}
+        \label{fig.inverse_discret_nok}
+    \end{subfigure}
+    \begin{subfigure}{.48\textwidth}
+		\centering
+        \def\svgwidth{\textwidth}
+        \includesvg{img/inverse_discret_ok2}
+        \caption{Exemple inversible}
+        \label{fig.inverse_discret_ok}
+    \end{subfigure}
+
+    \caption{Exemple de projections discrètes suivant quatre directions $(p,q) =
+    \{(0,1),(1,1),(0,1),(-1,1)\}$.}
+    \label{fig.inverse_discret}
+\end{figure}
+
+Par la suite, on considère une distribution d'intensité $f(x,y)$ où le couple
+d'entier $(x,y)$ représente la position d'une cellule sur pavage régulier
+carré. En pratique, les *images numériques* correspondent à la distribution d'une
+intensité lumineuse. Le système de codage RVB indique l'intensité de chacune
+des trois couleurs primaires (rouge, vert et bleu) sur un canal différent codé
+sur un octet (l'intensité de chaque couleur est alors comprise entre les
+valeurs $0$ et $255$).
+
+Le problème soulevé par la tomographie discrète correspond à reconstruire
+les valeurs de l'image (c'est à dire, la valeur des pixels a, b, c et d) de
+manière unique, à partir des valeurs de projections calculées. Dans notre
+exemple, les valeurs de projections correspondent à la somme des valeurs des
+pixels traversés par les droites de projections.
+
+Le problème peut être vu comme un problème d'algèbre linéaire. Dans cette
+représentation, les pixels de l'image forment les inconnus à reconstruire
+tandis que les projections correspondent aux équations linéaires.
+Dans l'exemple proposé, si nous disposions uniquement des projections
+verticales et horizontales nous posons le problème sous la forme d'un système
+d'équations linéaires à $4$ équations et $4$ inconnues :
+
+\begin{equation}
+    \left\{
+    \begin{array}{cc}
+            a + b &= 7\\
+            c + d &= 7\\
+            a + c &= 6\\
+            b + d &= 8
+    \end{array}
+    \right .
+    \label{eqn.reconstruction_multiple}
+\end{equation}
+
+On peut écrire ce système d'équations linéaires sous la forme matricielle :
+$\textbf{A}x=b$, où $\textbf{A}$ est la matrice de projection $(6 \times 4)$,
+$x$ est un vecteur colonne à quatre inconnus et $b$ contient les valeurs des
+projections. Cela correspond à la multiplication matricielle suivante :
+
+\begin{equation}
+    \begin{pmatrix}
+        1 & 1 & 0 & 0\\
+        0 & 0 & 1 & 1\\
+        1 & 0 & 1 & 0\\
+        0 & 1 & 0 & 1
+    \end{pmatrix}
+    %
+    \begin{pmatrix}
+        a \\ b \\ c \\ d
+    \end{pmatrix} =
+    %
+    \begin{pmatrix}
+        7 \\ 7 \\ 6 \\ 8
+    \end{pmatrix}
+    \label{eqn.ensemble_nok}
+\end{equation}
+
+Dans cet exemple, la matrice $\textbf{A}$ n'est pas inversible (son déterminant
+est différent de zéro). En conséquence, la reconstruction fournit un ensemble
+fini de solutions (pas se solution unique).
+L'ensemble des projections mesurées n'est pas suffisant pour déterminer de
+manière unique une solution. Si l'on rajoute deux nouvelles mesures suivant les
+diagonales, on obtient le système d'équations surdéterminé suivant :
+
+\begin{equation}
+    \begin{pmatrix}
+        1 & 1 & 0 & 0\\
+        0 & 0 & 1 & 1\\
+        1 & 0 & 1 & 0\\
+        0 & 1 & 0 & 1\\
+        1 & 0 & 0 & 1\\
+        0 & 1 & 1 & 0
+    \end{pmatrix}
+    %
+    \begin{pmatrix}
+        a \\ b \\ c \\ d
+    \end{pmatrix} =
+    %
+    \begin{pmatrix}
+        7 \\ 7 \\ 6 \\ 8 \\ 5 \\ 9
+    \end{pmatrix}
+    \label{eqn.ensemble_ok}
+\end{equation}
+
+Le déterminant de cette matrice est à présent nul, il est alors possible de
+déterminer de manière unique une solution de reconstruction à travers la
+méthode suivante :
+
+\begin{align}
+    \textbf{A} x &= b\\
+    \textbf{A}^{\intercal} \textbf{A} x &= \textbf{A}^{\intercal} b\\
+    x &= [\textbf{A}^{\intercal}]^{-1} \textbf{A}^{\intercal} b
+    \label{eqn.art}
+\end{align}
+
+En pratique, les méthodes algébriques ne sont pas performantes.
+On préfèrera une méthode itérative ou analytique sur de grandes images.
 
 # Code MDS par transformée de Radon finie (FRT)
 
-## Introduction à la transformée de Radon
-
 ## Transformée de Radon finie
 
-### FRT directe
+Nous avons vu dans la partie précédente que la transformée de Radon continue
+constitue un outil mathématique capable de résoudre le problème inverse.
+Cependant, ce théorème ne peut être appliqué en pratique. Nous verrons dans
+cette partie une version discrète de cet outil, appelé transformée de Radon
+finie.
 
-### FRT inverse
+### Transformée de Radon finie directe
+
+\begin{figure}
+	\centering
+	\input{tikz/frt.tex}
+	\caption{Représentation de la FRT et de son inverse. (a) on applique la
+	FRT sur une image $3\times3$ (i.e. $p=3$). Les valeurs des pixels sont
+	symboliques : 9 pixels prennent des valeurs ${a, b,\dots, i}$. (b)
+	correspond au résultat de la transformée, c'est à dire les $p+1=4$
+	projections. Un exemple de calcul est ici représenté en pointillé rouge.
+	Il s'agit du calcul de FRT pour $t=0$ et $m=2$ (i.e. la pente vaut deux).
+	On désigne $afh$ comme étant la somme $a+f+h$. (c) représente la
+	reconstruction de l'image par la FRT$^{-1}$. Chaque élément reconstruit
+	est la somme de $p$ fois la valeur initial du pixel avec
+	$I_{sum}=a+b+\dots+i$.}
+	\label{fig.frt}
+\end{figure}
+
+La transformée de Radon finie (*Finite Radon Transform* ou FRT) est une version
+discrète et exacte de la transformée de Radon continue. Elle a été conçue par
+\citeauthor{matus1993pami} en \citeyear{matus1993pami} \cite{matus1993pami}.
+Elle consiste à reconstruire une image $f(k,l)$ à deux dimensions à partir d'un
+ensemble de projections 1D. Cette image peut être représentée par une grille
+discrète dont chaque élément peut contenir différents types d'informations.
+Pour appliquer la transformée de Radon sur cette grille, il est nécessaire
+qu'elle soit carrée, de taille $p \times p$, avec $p$ un nombre premier. Dans
+ce cas, il est alors possible de définir exactement $(p+1)$ directions
+discrètes. La FRT consiste alors à calculer la somme des éléments de la grille
+discrète suivant ces $(p+1)$ directions. Elle transforme ainsi une image
+$(p \times p)$ en une représentation contenant $(p+1) \times p$ éléments.
+
+La transformée de Radon finie est définie ainsi :
+
+\begin{align}
+    R(m,t)  &= \sum_{x=0}^{p-1} \sum_{y=0}^{p-1} f(x,(mx + t) \pmod{p}),
+    \label{eqn.frt}\\
+    R(p,t)  &= \sum_{x=0}^{p-1} \sum_{y=0}^{p-1} f(t, y).
+    \label{eqn.frt_p}
+\end{align}
+
+\Cref{eqn.frt} signifie que les éléments des $p$ premières projections sont
+issus de la somme des éléments de la grille suivant la droite $t \equiv x - m y
+\pmod p$. Tandis que la ligne $(p+1)$ du domaine transformée, définie dans
+\cref{eqn.frt_p}, correspond à la somme horizontale des éléments de l'image.
+
+En conséquence, chaque ligne du domaine FRT correspond à la somme verticale des
+lignes de l'image après un décalage de $m \times y$.
+La particularité de la FRT est que l'image est représentée sous une forme
+torique, de telle sorte que l'élément $(x,y) = (p,p) = (0,0)$.
+La droite de projection se retrouve du côté opposé de l'image quand
+elle dépasse du bord. En conséquence, puisque $p$ est premier, il n'existe
+qu'une seule droite passant par deux éléments distants. Il est alors possible
+de constituer $(p+1)$ projections de longueur $p$. Chaque projection traverse
+une et une seule fois chaque éléments de la grille discrète. En conséquence, la
+somme de tous les éléments d'une projection correspond à la somme de tous les
+éléments de l'image, et l'on appelle cette somme $I_{sum}$.
+ 
+\begin{algorithm}[t]
+    \caption{Application directe de la transformée de Radon finie}
+    \label{alg.frt}
+    \begin{algorithmic}[1]
+
+    \Require L'image $f(x,y)$ et sa taille $p \times p$
+
+    \For{$m=0 \text{ à } p-1$}
+        \State $n \leftarrow i$
+        \For{$y=0 \text{ à } p-1$}
+            \State $n \leftarrow n - i$
+            \If {$n < 0$} \State $n \leftarrow n + p$
+            \EndIf
+            \State $t \leftarrow n - 1$
+            \For{$x=0 \text{ à } p-1$}
+                \State $t \leftarrow t + 1$
+                \If {$t \geq p$} \State $t \leftarrow t - p$
+                \EndIf
+                \State $R(m,t) \leftarrow f(x,y)$
+            \EndFor
+        \EndFor
+    \EndFor
+
+    \For{$y=0 \text{ à } p-1$}
+        \For{$x=0 \text{ à } p-1$}
+            \State $R(p,y) \leftarrow f(x,y)$
+        \EndFor
+    \EndFor
+
+    \end{algorithmic}
+\end{algorithm}
+
+
+### FRT inverse par reconstruction algébrique
+
+La méthode de FRT inverse permet de retrouver l'image initiale à partir des
+données de projections. Pour cela, on applique la même méthode que lors de la
+transformée directe, à l'exception de la direction de projection qui vaudra
+$m\prime = n-m$.
+%
+On obtient alors une image reconstruite dont les éléments correspondent à
+$(f(x,y) \times n) + I_{sum}$, où $f(x,y)$ correspond à la valeur d'origine de
+l'élément $(x,y)$. Pour retrouver l'image initiale, il faut alors
+filtrer ces éléments en soustrayant leur valeur par $I_{sum}$, puis en divisant
+par $n$. L'équation correspond à cette opération inverse est :
+
+\begin{equation}
+    f(x,y) =
+        \frac{1}{p}\left(
+            \sum\limits_{m=0}^{p-1} R(m,x- y \times m \pmod p) - I_{sum}
+            \right)
+    \label{eqn.frt_inverse}
+\end{equation}
 
 ## Code à effacement par FRT
+
+### Encodage par FRT
+
+Par définition, la transformée est redondante puisque le domaine de transformée
+comporte une ligne supplémentaire $R(n,t)$, qui correspond à la somme des
+éléments de l'image suivant l'horizontale (voir \cref{eqn.frt_p}).
+
+De précédents travaux ont permis de concevoir un code à effacement à partir de
+la FRT en ajoutant certaines contraintes à la disposition des données
+\cite{normand2010wcnc}. Cette étude présente une mise en œuvre à partir de la
+représentation suivante. On définit une grille discrète $n \times (n)$, dans
+laquelle on considère $k$ lignes de données utilisateurs. On considèrera les
+$r=n-k$ lignes restantes nulles. Dans la version non-systématique de ce code,
+les blocs encodés correspondent aux projections de Radon calculées.
+
+Dans l'objectif d'obtenir un domaine de projection de même taille que le
+domaine image, on définit la dernière colonne $f(x=(n-1),y)$ comme une colonne
+de parité. Cela a deux conséquences : la première est que la dernière
+projection est nulle de part la parité horizontale, la seconde est que la
+dernière colonne du domaine de transformée correspond à un colonne de parité.
+Il n'est alors pas nécessaire de garder ces informations. Cette mise en oeuvre
+permet alors de transformer une image $f(x,y)$ de taille $(n-1) \times n$ en
+$n$ projections de taille $(n-1)$.
+
+Dans la version systématique, on considère les lignes de l'image comme blocs
+encodés. Pour cela, il est nécessaire de calculer $r$ lignes de redondance.
+Cette redondance est calculée de sorte que $r$ lignes consécutifs dans le
+domaine de Radon sont nulles. Pour calculer ces $r$ lignes de redondance, on
+peut utiliser l'algorithme de *row solving*. Cet algorithme est détaillé dans
+la suite.
+Notons que ces $r$ lignes sont alors composés de
+fantômes puisque la valeur des projections suivant $r$ directions est nulles.
+
+### Réparation d'erreurs
+
+\begin{figure}
+	\centering \input{tikz/espace_fantome.tex}
+	\caption{Représentation circulante des fantômes ${a, b, c}$ correspondant
+	respectivement à $m={1,3,4}$ dans le cas où $p=5$. Les grilles de gauche
+	correspondent à la superposition des fantômes dans notre image lorsque que
+	l'on reconstruit les projections issues des grilles de droite. Chaque
+	étape correspond à un nouvel effacement, représentée par une ligne
+	colorée.}
+	\label{fig.ghosted_space}
+\end{figure}
+
+\begin{figure}
+\hspace{2cm}
+\makebox[\textwidth][c]{\input{tikz/frt_design.tex}}
+	\caption{Conception d'un code FRT sous forme systématique (a) et
+	non-systématique (b).}
+	\label{fig:frt_design}
+\end{figure}
+
+En fonction de la mise en œuvre, le décodage ne s'effectue pas de la même
+manière. Si le code est non-systématique, l'opération permettant de
+reconstruire l'image correspond à l'opération inverse de la FRT décrite dans
+\cref{eqn.frt_inverse}.
+
+En revanche, lorsque le code est systématique, les données sont accessible en
+clair lorsqu'aucun effacement n'affecte les données.
+
+Nous décrivons à présent la mise en œuvre de la reconstruction des données en
+cas d'effacements. Un effacement correspond à la perte complète d'une ligne
+de donnée (les données effacée sont alors mises à zéro). La perte d'information
+entraîne donc un domaine de projeté incomplet. Si l'on reconstruit cet espace,
+on obtient une image composée de deux sous-images. La première image correspond
+à l'image initiale des données utilisateurs. La seconde correspond à une image
+contenant uniquement l'information des fantômes générés par la perte de cette
+information.
+En particulier, les $r$ lignes de données précédemment mises à zéro comporte
+uniquement l'information des fantômes. Si le nombre de fantômes, correspondant
+au nombre de lignes effacées, est inférieur ou égal à $r$, alors il est
+possible de retrouver l'information initiale. Ainsi, l'algorithme de
+reconstruction correspond à extraire les fantômes de l'image dégradée.
+
+\begin{equation}
+    F_x = R^{-1}m + G_x
+    \label{eqn.frt_dégradé}
+\end{equation}
+
+De précédents travaux ont montré qu'il était possible de résoudre ce problème
+en utilisant des techniques d'algèbre linéaire. La manière dont les fantômes se
+distribuent sur l'image peut être représentée par une matrice de Vandermonde.
+En conséquence, s'il est possible d'inverser cette matrice, alors il est
+possible d'extraire ces fantômes.
+
 
 ## Relation avec d'autres codes à effacement
 
@@ -36,8 +663,9 @@ mise en œuvre d'un code à effacement basé sur cette transformée.
 ## Transformée Dirac-Mojette directe
 
 \begin{figure}
+    \centering
     \def\svgwidth{.7\textwidth}
-%\includesvg{figures/mojette_forward}
+    \includesvg{img/mojette_forward_xor}
     \caption{La transformée de Dirac-Mojette. On considère une grille d'image 
     $P \times Q = 3 \times 3$ sur laquelle nous calculons $4$ projections
     dont les directions $(p_i,q_i)$ sont compris dans l'ensemble 
@@ -66,7 +694,7 @@ définie ainsi :
         \sum_{k=0}^{Q-1} \sum_{l=0}^{P-1}
         f \left(k,l\right)
         \Delta\left(b+kq_{i}-lp_{i}\right),
-    \label{eq:Mojette}
+    \label{eqn.mojette}
 \end{equation}
 \noindent où $\Delta(n)$ correspond à la fonction de Kronecker Cette fonction
 vaut $1$ quand $n=0$, et zéro dans les autres cas. Le paramètre $b$ est l'index
@@ -107,7 +735,7 @@ de bin d'une projection, varie en fonction des paramètres $P$ et $Q$ de la
 grille, ainsi que de la direction de projection $(p,q)$. Elle est définie ainsi :
 
 \begin{equation}
-    B(P,Q,p_i,q_i)=(Q-1)|p_{i}|+(P-1)|q_{i}|+1.
+    B(P,Q,p_i,q_i) = (Q-1)|p_{i}|+(P-1)|q_{i}|+1.
     \label{eqn.nombre_bins}
 \end{equation}
 
@@ -161,8 +789,8 @@ initiale.
 
 \begin{figure}
     \centering
-    \def\svgwidth{.3\columnwidth}
-%\input{figures/dep_graph.pdf_tex}
+    \def\svgwidth{.3\textwidth}
+    \input{img/graphe_dependance.pdf_tex}
     \caption{Graphe de dépendance des pixels. On considère une image $3 \times
     3$ ainsi qu'un ensemble de directions de projection $(p_i,q_i)$ à valeur
     dans $\left\{(-1,1),(0,1),(1,1)\right\}$. Les nœuds correspondent aux
@@ -253,20 +881,92 @@ $q_i = 1$, le critère de \citeauthor{katz1978springer} est réduit au principe
 suivant : étant donné une grille de taille $P \times Q$, et un ensemble de
 projections $I$, alors $Q$ projections suffisent pour reconstruire la donnée
 initiale de la grille.
-
+%
 Dans cette configuration, la transformée Mojette correspond à un code à
-effacement puisqu'elle tolère la perte de $(I-Q)$ projections. Notons que
-puisque la taille des projections varie au delà de la taille d'un bloc de
-données, le code à effacement Mojette n'est pas MDS. En particulier, la taille
-des projections augmente avec la valeur de $|p_i|$. Dans la mesure où n'importe
-quel ensemble de $Q$ projections suffit à reconstruire la grille de manière
-unique, mais que la taille des blocs encodés n'est pas optimale, on considère
-alors le code Mojette comme étant *quasi-MDS* \cite{parrein2001dcc}. On
-évaluera l'impact de ce surcout de stockage dans une partie future.
+effacement puisqu'elle tolère la perte de $(I-Q)$ projections.
+
+### Caractéristique du code (1+$\epsilon$)-MDS
+
+Par définition, la taille des blocs encodés d'un code MDS correspond à la
+taille d'un bloc de donnée qui vaut $\frac{\mathcal{M}}{k}$.
+Pour l'encodage Mojette; seule la projection suivant la direction $(p=0,q=1)$
+possède la même taille qu'un bloc de donnée (qui correspond à une ligne de la
+grille discrète). Puisque dans les autres cas, la taille des projections
+augmente au delà de la taille d'un bloc de donnée à mesure que $|p_i|$
+augmente, le code à effacement Mojette n'est pas MDS.
+
+Du point de vue des projections, dans la mesure où n'importe quel ensemble de
+$Q$ projections suffit à reconstruire la grille de manière unique, le code
+Mojette est MDS. En revanche, si l'on regarde au niveau de éléments de
+projections, la taille des blocs encodés n'est pas optimale.
+On considère alors le code Mojette comme étant *quasi-MDS*
+\cite{parrein2001dcc}.
+
+On détermine le surcout de redondance comme étant le rapport du nombre de bins
+sur le nombre de pixels :
+
+\begin{align}
+    \epsilon    &= \frac{\#_{bins}}{\#_{pixels}},\\
+                &= \frac{\sum\limits_{i=0}^{n-1}B(P,Q,p_i,q_i)}{P \times Q}.
+    \label{eqn.epsilon}
+\end{align}
+
+On évaluera précisément l'impact de ce surcout de redondance dans une
+l'analyse et comparaison en \cref{sec.surcout_stockage}.
+
+### Réduction du surcout de redondance
+
+Lorsque l'on génère un ensemble redondant de $n$ projections à partir d'une
+image de hauteur $k$, on sait que l'on est capable de reconstruire cette image
+à partir d'un ensemble de $k$ projections si l'on considère $q_i=1$.
+Nous verrons à présent qu'il est possible de réduire la taille de ces
+projections.
+
+Lors du processus de reconstruction de la grille discrète, chaque ligne est
+reconstruite à partir d'une projection dédiée. Puisque chaque ligne contient
+$k$ pixels, cela signifie que la reconstruction va nécessiter la lecture de $k$
+bins dans chaque projection.
+%
+Plus précisément, lors d'une reconstruction, les projections qui vont
+participer à la première et la dernière ligne, vont devoir lire sur les $k$
+premiers bins. Pour les projections intermédiaires, la lecture se fera sur $k$
+bins à partir d'un certain offset.
+%
+À présent, si l'on considère l'ensemble des combinaisons possibles entre les
+lignes et les projections lors de la reconstruction, il est possible de
+déterminer des bins qui ne seront jamais utilisés quelque soit le sous-ensemble
+de projection utilisé. En particulier, puisque nous reconstruisons la grille
+discrète de gauche à droite, ces bins sont placés à l'extrémité droite des
+projections.
+Puisque ces bins ne sont pas utilisés lors de la reconstruction, il est alors
+envisageable de ne pas les calculer lors de la génération des projections. Cela
+entraîne deux avantages en conséquence : l'opération d'encodage est plus
+performante puisque moins de calcul est nécessaire, et de plus, cela réduit la
+taille des projections et donc de la redondance nécessaire.
+En revanche, bien qu'il soit possible d'obtenir certaines configurations MDS,
+cela ne suffit pas à définir un code MDS.
+
+Prenons l'exemple d'une grille discrète $(P=6,Q=2)$ sur laquelle on calcule
+trois projections suivant les directions $\left\{(1,1),(0,1),(-1,1)\right\}$.
+Dans ce cas, puisqu'il est nécessaire d'avoir deux projections pour
+reconstruire la grille, il n'existe que 3 combinaisons possibles d'affection
+des projections aux lignes : $\left\{(1,0),(0,-1),(1,-1)\right\}$. La première
+ligne ne peut alors être reconstruite que par les projections suivant $(p=1)$
+ou $(p=0)$. De même, la seconde ligne ne peut être reconstruire que par les
+projections suivant $(p=0)$ ou $(p=-1)$. En conséquence, quelque soit la
+l'ensemble de projection utilisé lors de la reconstruction, le processus ne va
+utiliser que les $k=6$ premiers bins de chaque projection. Ce qui signifie que
+le septième et dernier bin des deux projections $(p={1,-1})$ n'est pas
+nécessaire. Dans ce cas particulier, on obtient une configuration MDS.
+
+Une analyse a été proposée par \citeauthor{verbert2004wiamis} sur ce sujet
+\cite{verbert2004wiamis}. En revanche, aucun algorithme efficace n'existe
+aujourd'hui pour déterminer le nombre de bins inutilisé, ainsi que leur
+position.
 
 ## Relations avec d'autres codes à effacement
 
-
+### Matrice d'encodage
 
 ### Connexions avec les codes LDPC
 
@@ -428,23 +1128,28 @@ dans le calcul des offsets des lignes à reconstruire.
 
 Ainsi, on calcule l'offset de la dernière ligne à reconstruire :
 
-\begin{align}
-    \text{Offset}(\text{failures}(e-1)) & \\
-        & = max(max(0,-p_r) + S_{minus}, max(0,p_r) + S_{plus}).
+\begin{multline}
+    \text{Offset}(\text{failures}(e-1)) =\\
+        max(max(0,-p_r) + S_{minus}, max(0,p_r) + S_{plus}).
     \label{eqn.offset_last_sys}
-\end{align}
+\end{multline}
 
 Puis les offsets des lignes à reconstruire.
 
-\begin{align}
-    \text{Offset}(\text{failures}(i) & \\
-        & & = \text{Offset}(\text{failures}(i+1) + p_{i+1} \\
-    \text{Offset}(\text{failures}(j) & \\
-        & - & = (\text{failures}(i+1) - \text{failures}(i) - 1) * p_{i+1}
-    \label{eqn.offset_sys}
-\end{align}
+\begin{equation}
+    \text{Offset}(\text{failures}(i) =\\
+        \text{Offset}(\text{failures}(i+1) + p_{i+1} \\
+    \label{eqn.offset_sys_i}
+\end{equation}
+\begin{multline}
+    \text{Offset}(\text{failures}(j) =\\
+        \text{Offset}(\text{failures}(j)
+        - (\text{failures}(i+1) - \text{failures}(i) - 1) * p_{i+1}
+    \label{eqn.offset_sys_j}
+\end{multline}
 
 ## Calcul de la valeur du pixel à reconstruire
+\label{sec.valeur_pxl}
 
 L'algorithme BMI repose sur deux choses. La première est la détermination des
 offsets afin de toujours traiter des pixels qui ne possèdent aucune dépendance. 
@@ -522,10 +1227,11 @@ En conséquence, la valeur du pixel à reconstruire est donné par :
 # Évaluations du code Mojette
 
 ## Évaluation du surcout de stockage
+\label{sec.surcout_stockage}
 
 \begin{figure}
 \centering
-%\input{./figures/ec_vs_rep.tikz}
+\input{./tikz/ec_vs_rep.tikz}
 \caption{Comparaison du facteur de coût de stockage $f$ généré par différentes
     techniques de codes à effacement, en fonction de la tolérance aux pannes.
     Les paramètres des codes correspondent à $(n,k)$ égal $(3,2)$, $(6,4)$ et
@@ -620,9 +1326,118 @@ Observons que dans le premier cas, la taille de la projection calculée selon la
 verticale est optimale. En conséquence, dans cette configuration particulière,
 le code est MDS. Ce n'est pas le cas en général.
 
-## Évaluation des performances
+## Analyse du nombre d'opérations
 
-### Analyse du nombre d'opérations
+Les performances d'un code dépendent intrinsèquement de la nature et du nombre
+des opérations réalisées par le code. Nous verrons dans un premier temps le
+nombre d'opérations nécessaires pour les opérations d'encodage. Les
+performances en encodage sont similaires que la version du code soit
+systématique ou pas. Dans la suite nous distinguerons les deux cas pour l'étude
+en décodage.
+
+### Encodage
+
+L'opération d'encodage génère $n$ projections à partir d'une grille discrète de
+hauteur $k$. Bien que la génération d'une projection met en jeu l'ensemble des
+éléments de la grille discrète une et une seule fois (voir \cref{eqn.mojette}),
+le nombre $c$ d'opérations nécessaires pour l'encodage varie en fonction de
+deux paramètres : la taille de la grille, et la direction de projection.
+Le nombre d'additions nécessaires pour générer une projection
+$\text{Proj}_{f}(p,q,b)$ est correspond à :
+
+\begin{align}
+    c(P,Q,p,q)  &= P \times Q - B(P,Q,p,q), \\
+                &= P \times Q - \left((Q-1)|p_{i}|+(P-1)|q_{i}|+1\right).
+    \label{eqn.enc_mojette}
+\end{align}
+
+et représente le nombre d'éléments de la grille discrète ($P \times Q$) auquel
+on soustrait le nombre de bins de la projection, tel que défini dans
+\cref{eqn.nombre_bins}. 
+Considérons à présent que l'on fixe la taille de la grille, ainsi qu'un
+paramètre de projection. Nous reprendrons notre exemple avec $q_i=1$. Dans ce
+cas, si $p=0$, alors $c(P,Q,0,1) = (P-1)w - P$. De plus, si la valeur de $|p|$
+augmente, alors le nombre d'opérations nécessaire pour générer une projection
+$c(P,Q,p,q)$ diminue. Cela signifie que plus une projection est grande, moins
+elle nécessite d'opérations d'addition pour être générée.
+En conséquence, si seules les performances sont essentielles pour une
+application, on choisira des projections avec de grandes valeurs de $p$.
+
+### Décodage pour la version non-systématique
+
+Nous comparerons ici deux algorithmes. Le premier correspond à l'algorithme de
+reconstruction MBI défini par \citeauthor{normand2006dgci}
+\cite{normand2006dgci}. Le second correspond à un cas particulier de
+l'algorithme de reconstruction systématique, dans le cas où toutes les lignes
+de la grille ont été effacées.
+
+Dans le premier algorithme, il s'agit de reconstruire un pixel avant de mettre
+à jour l'ensemble des bins correspondant dans les $k$ projections utilisées
+lors de la reconstruction. Puisqu'en non systématique, il est par définition
+nécessaire de reconstruire tous les pixels de la grille, le décodage nécessaire
+$P \times Q \times Q$ additions correspondant à ces mises à jour. La
+reconstruction du pixel en lui même correspond toujours à la lecture simple du
+bin correspondant.
+
+### Coût pour la version systématique
+
+\begin{figure}
+    \def\svgwidth{.7\textwidth}
+%\includesvg{figures/dec_sys_mojette}
+    \caption{Représentation de la méthode de détermination du nombre
+    d'opérations nécessaire pour reconstruire une ligne $l$ à partir d'une
+    projection. Cet exemple représente une grille $(P=12,Q=6)$. On cherche à
+    reconstruire la ligne $l=3$ à partir de la projection suivant la direction
+    $(p=1,q=1)$. Les éléments en rouge représentent les éléments impliqués dans
+    la reconstruction de la ligne.}
+    \label{fig.dec_sys_mojette}
+\end{figure}
+
+Lors du décodage en systématique, en cas d'effacement de la donnée, on affecte
+la reconstruction d'une projection à une ligne effacée de la grille. Comme l'on
+l'avons vu précédemment dans \cref{sec.valeur_pxl}, la valeur du pixel à
+reconstruire dépend non seulement d'un bin $b$ dans la projection
+affectée, mais également de la somme des valeurs d'un ensemble d'éléments de la
+grille. Notons qu'en fonction du pixel à reconstruire, le nombre d'opérations
+nécessaire à sa reconstruction peut varier en fonction de sa position dans la
+grille. Comme nous l'avons vu précédemment, un pixel situé dans un coin de la
+grille nécessitera en général moins d'opérations qu'un pixel situé au milieu de
+la grille. De plus, ce nombre va dépendre de la projection utilisée pour la
+reconstruction. Si l'on reprend l'exemple d'un pixel situé dans un coin de la
+grille, aucune opération n'est nécessaire si $(p,q) \ne (0,0)$, mais si
+$(p,q)=(0,1)$ par exemple, alors $(Q-1)$ opérations seront nécessaires..
+
+Le nombre d'opérations $c$ nécessaires par projection dépend ainsi non
+seulement de la direction de cette projection, mais également de la ligne de la
+grille discrète à reconstruire. Nous considérons $l$ l'index de cette ligne.
+\Cref{fig.dec_sys_mojette} représente la situation où l'on souhaite
+reconstruire la ligne $l=3$ d'une grille $(P=12,Q=8)$ en utilisant la
+projection suivant la direction $(p=1,q=1)$. Les éléments de la grille en rouge
+représente les pixels utilisés dans la reconstruction de la ligne $l$.
+
+Le nombre d'opérations nécessaires à la reconstruction d'une ligne $l$ est
+défini par le nombre d'éléments de la grille discrète contenus entre les deux
+droites de projection qui passent par chaque extrémité de la ligne $l$.
+Ce nombre correspond donc à la surface de la grille à laquelle on soustrait le
+nombre d'éléments de la ligne à reconstruire $(Q-1)P$ auquel on soustrait les
+deux triangles discrets supérieur et inférieur :
+
+\begin{equation}
+    c(P,Q,p,q,l) = (Q-1)P 
+        - \frac{l(l+1)}{2}
+        - \frac{(Q-l-1)(Q-l)}{2}
+    \label{eqn.dec_sys_mojette}
+\end{equation}
+
+### Discussion
+
+Bien que les performances théoriques sont liées par le nombre d'opérations
+réalisées durant les opérations d'encodage et de décodage, d'autre critères
+entrent en jeu dans la pratique.
+
+% localité spatiale
+
+% localité temporelle
 
 \begin{table*}
 \centering

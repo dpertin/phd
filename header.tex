@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[10pt]{report}
 %\documentclass{article}
 
 \usepackage[french]{babel}
@@ -16,6 +16,7 @@
 \usepackage{url}
 \usepackage{longtable, booktabs}
 \usepackage{makeidx}
+\usepackage{transparent}
 % http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
 % Cleveref can’t cope with active characters being present in cross-reference
 % label names. For example, if French babel support is loaded, the commonly
@@ -26,6 +27,7 @@
 \usepackage{colortbl}
 
 \usepackage{tikz,pgfplots,pgfgantt}
+	\usetikzlibrary{arrows,positioning,matrix}
 \usepackage{lscape,afterpage}
 
 \usepackage{xcolor}
@@ -45,6 +47,21 @@
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
 \newcommand{\nom}{Pertin}
+
+% options et procédures pour inclure les images SVG
+\graphicspath{{img/}}
+
+\newcommand{\executeiffilenewer}[3]{%
+ \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+ {\pdffilemoddate{#2}}>0%
+ {\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {inkscape -z -D --file=#1.svg %
+  --export-pdf=#1.pdf --export-latex}%
+ \input {#1.pdf_tex}%
+}
 
 \def\proj{\mathrm{proj}}
 \def\M{\mathcal{M}}
@@ -112,6 +129,8 @@
 \algrenewcommand\algorithmicforall{\textbf{pour tout}}
 \algrenewcommand\algorithmicdo{\textbf{faire}}
 \algrenewcommand\algorithmicend{\textbf{fin}}
+\algrenewcommand\algorithmicif{\textbf{si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
