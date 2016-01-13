@@ -3,16 +3,21 @@
 effacement}
 
 
+
 # Redondance dans les systèmes de stockage distribués
+
 
 
 # Matrice de disques, RAID
 
 
+
 # Array Codes
+
 
 
 # Évaluation
 
-!
+
+% ça poutre !
 
