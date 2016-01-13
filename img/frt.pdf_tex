@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.91, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'radon3.pdf' (pdf, eps, ps)
+%% Accompanies image file 'frt.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{333.21342216bp}%
+    \setlength{\unitlength}{183.2532616bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,18 +48,7 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.92512702)%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{radon3.pdf}}%
-    \put(0.57921068,0.52249163){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$f(x,y)$}}}}%
-    \put(0.51286879,0.68234733){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$r[f](\varphi,t)$}}}}%
-    \put(0.73381419,0.35981151){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$x$}}}}%
-    \put(0.43701929,0.59029442){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$y$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{radon3.pdf}}%
-    \put(0.61572215,0.37234893){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\varphi$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{radon3.pdf}}%
-    \put(0.31526126,0.23359464){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$P$}}}}%
-    \put(0.36327853,0.08954282){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}$}}}}%
-    \put(0.65698656,0.45584605){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$u$}}}}%
-    \put(0.34282064,0.53112597){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$v$}}}}%
+  \begin{picture}(1,0.95836087)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{frt.pdf}}%
   \end{picture}%
 \endgroup%

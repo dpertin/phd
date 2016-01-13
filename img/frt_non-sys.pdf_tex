@@ -1,0 +1,124 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'frt_non-sys.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{496.068288bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.42264654)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{frt_non-sys.pdf}}%
+    \put(0.49850135,0.18667994){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{canal}}}%
+    \put(0.4991807,0.15865556){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{àefacement}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{frt_non-sys.pdf}}%
+    \put(0.38998984,0.32001017){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{données}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{frt_non-sys.pdf}}%
+    \put(0.46168431,0.286383){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{parité}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{frt_non-sys.pdf}}%
+    \put(0.26892486,0.283743){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{p}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{frt_non-sys.pdf}}%
+    \put(0.29801127,0.25117691){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{r}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{frt_non-sys.pdf}}%
+    \put(0.29969792,0.31995573){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{k}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{frt_non-sys.pdf}}%
+    \put(0.39986465,0.38282815){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{p-1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{frt_non-sys.pdf}}%
+    \put(0.40004695,0.41139881){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{p}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{frt_non-sys.pdf}}%
+    \put(0.39543805,0.10710455){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{data+spectres}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{frt_non-sys.pdf}}%
+    \put(0.39964491,0.03684957){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{spectres}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{frt_non-sys.pdf}}%
+    \put(0.56065541,0.12103352){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{x}}}%
+    \put(0.56947196,0.11802185){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.58565197,0.12103352){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{x}}}%
+    \put(0.5939777,0.11802185){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{1}}}%
+    \put(0.61064853,0.12103352){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{x}}}%
+    \put(0.61917677,0.11802185){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{2}}}%
+    \put(0.63564509,0.12103352){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{x}}}%
+    \put(0.64429342,0.11802185){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{3}}}%
+    \put(0.66064165,0.12103352){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{x}}}%
+    \put(0.6696524,0.11802185){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{4}}}%
+    \put(0.56517425,0.09198714){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.59017081,0.09198714){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.61516737,0.09198714){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.64016392,0.09198714){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.66516048,0.09198714){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.560675,0.06995393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{y}}}%
+    \put(0.56947196,0.06694019){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.58567156,0.06995393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{y}}}%
+    \put(0.5939777,0.06694019){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{1}}}%
+    \put(0.61066812,0.06995393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{y}}}%
+    \put(0.61917677,0.06694216){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{2}}}%
+    \put(0.63566468,0.06995393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{y}}}%
+    \put(0.64429342,0.06694216){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{3}}}%
+    \put(0.66066124,0.06995393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{y}}}%
+    \put(0.6696524,0.06694216){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{4}}}%
+    \put(0.56517425,0.0400145){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.59017081,0.0400145){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.61516737,0.0400145){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.64016392,0.0400145){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.66516048,0.0400145){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.56517425,0.0139797){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.59017081,0.0139797){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.61516737,0.0139797){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.64016392,0.0139797){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.66516048,0.0139797){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{frt_non-sys.pdf}}%
+    \put(0.60964279,0.28174329){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{projections}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{frt_non-sys.pdf}}%
+    \put(0.26892486,0.0653779){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{p}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{frt_non-sys.pdf}}%
+    \put(0.50056721,0.29320943){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{frt_non-sys.pdf}}%
+    \put(0.50587487,0.04838835){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT-1}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{frt_non-sys.pdf}}%
+    \put(0.29951024,0.03567028){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{r}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{frt_non-sys.pdf}}%
+    \put(0.29969792,0.10689844){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{k}}}%
+    \put(0.38527305,0.26122792){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0 par}}}%
+    \put(0.38527305,0.23865038){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{contrainte}}}%
+  \end{picture}%
+\endgroup%

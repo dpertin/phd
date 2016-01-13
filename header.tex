@@ -1,5 +1,4 @@
 \documentclass[10pt]{report}
-%\documentclass{article}
 
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
@@ -41,7 +40,9 @@
 \usepackage[
     backend=biber,
     style=alphabetic,
-    maxnames=99]{biblatex}
+	maxnames=2,
+    maxbibnames=99
+]{biblatex}
 \addbibresource{these.bib}
 
 \newcommand{\firstinit}{D.}
@@ -120,6 +121,10 @@
 \def\dirset#1{\left\{#1\right\}}
 \def\ghost#1{G_{\dirset{#1}}}
 
+\newcommand\radon{\citeauthor{radon1917akad} }
+\newcommand\matus{\citeauthor{matus1993pami} }
+\newcommand\katz{\citeauthor{katz1978springer} }
+
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
 \makeatother
@@ -144,4 +149,39 @@
     }
   }
 }
+
+
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}}
 

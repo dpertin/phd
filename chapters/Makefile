@@ -12,17 +12,24 @@ TEXS := $(patsubst %.md,%.tex,$(wildcard *.md))
 
 PANDOC = pandoc
 
-all: $(TEXS)
+all: $(TEXS) bidouille
 
+# convert .md files into .tex files using pandoc
 %.tex:%.md
 	$(PANDOC) 							\
+		-R								\
+		--smart							\
 		--biblatex						\
-		--bibliography=these.bib 	\
+		--bibliography=these.bib		\
 		-o $@ $<
 
-# remove all TEX outputs
+# bidouille is used to manage LaTeX comments...
+bidouille: $(TEXS)
+	sed -i -- 's/^\\%/%/g' *.tex
+
+# remove all pandoc outputs
 clean: 
 	rm $(TEXS)
 
-# remove all TEX outputs then build them again
+# remove all pandoc outputs then build them again
 rebuild: clean all

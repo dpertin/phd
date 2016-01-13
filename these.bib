@@ -252,6 +252,21 @@
  address = {Los Alamitos, CA, USA},
 }
 
+@ARTICLE{chandra2012tip,
+ author={Chandra, Shekhar S. and Svalbe, Imants D. and Guedon, JeanPierre and
+     Kingston, Andrew M. and Normand, Nicolas},
+ title={Recovering Missing Slices of the Discrete {F}ourier Transform Using
+     Ghosts},
+ journal={IEEE Transactions on Image Processing},
+ year={2012}, 
+ volume={21}, 
+ number={10}, 
+ pages={4431-4441}, 
+ doi={10.1109/TIP.2012.2206033}, 
+ ISSN={1057-7149}, 
+ month={10}
+}
+
 @ARTICLE{shah2012regenerating,
  author={Shah, N.B. and Rashmi, K. V. and Kumar, P.V. and Ramchandran, K.}, 
  journal={Information Theory, IEEE Transactions on}, 
@@ -320,17 +335,35 @@
  keywords = {Windows Azure, cloud storage, distributed storage systems},
 }
 
-@incollection{svalbe2011dgci,
+@incollection{svalbe2011dgcia,
+ author={Svalbe, Imants and Chandra, Shekhar},
+ title={Growth of Discrete Projection Ghosts Created by Iteration},
  year={2011},
  isbn={978-3-642-19866-3},
  booktitle={Discrete Geometry for Computer Imagery},
  volume={6607},
  series={Lecture Notes in Computer Science},
- editor={Debled-Rennesson, Isabelle and Domenjoud, Eric and Kerautret, Bertrand and Even, Philippe},
- doi={10.1007/978-3-642-19867-0_35},
- title={Properties of Minimal Ghosts},
+ editor={Debled-Rennesson, Isabelle and Domenjoud, Eric and Kerautret, Bertrand
+    and Even, Philippe},
+ doi={10.1007/978-3-642-19867-0_34},
+ url={http://dx.doi.org/10.1007/978-3-642-19867-0_34},
  publisher={Springer Berlin Heidelberg},
+ pages={406-416},
+ language={English}
+}
+
+@incollection{svalbe2011dgcib,
  author={Svalbe, Imants and Normand, Nicolas},
+ title={Properties of Minimal Ghosts},
+ year={2011},
+ isbn={978-3-642-19866-3},
+ booktitle={Discrete Geometry for Computer Imagery},
+ volume={6607},
+ series={Lecture Notes in Computer Science},
+ editor={Debled-Rennesson, Isabelle and Domenjoud, Eric and Kerautret, Bertrand
+    and Even, Philippe},
+ doi={10.1007/978-3-642-19867-0_35},
+ publisher={Springer Berlin Heidelberg},
  pages={417-428},
  language={English}
 }
@@ -369,19 +402,20 @@
  journal={Information Theory, IEEE Transactions on}, 
  title={Network Coding for Distributed Storage Systems}, 
  year={2010}, 
- month=sep,
+ month={9},
  volume={56}, 
  number={9}, 
  pages={4539-4551}, 
- keywords={error correction codes;network coding;storage area networks;data centers;distributed storage systems;encoded fragments;erasure coded system;network coding;peer-to-peer storage systems;regenerating codes;repair bandwidth;wireless networks;Bandwidth;Communication system control;Computer science;Distributed databases;Encoding;Helium;Maintenance engineering;Network coding;Peer to peer computing;Redundancy;Statistics;Telecommunication network reliability;Wireless networks;Distributed storage;network coding;peer-to-peer storage;regenerating codes}, 
  doi={10.1109/TIT.2010.2054295}, 
  ISSN={0018-9448},
 }
 
 @INPROCEEDINGS{suh2010isit,
  author={Changho Suh and Ramchandran, Kannan},
- booktitle={Information Theory Proceedings (ISIT), 2010 IEEE International Symposium on}, 
- title={Exact-repair {MDS} codes for distributed storage using interference alignment}, 
+ booktitle={IEEE International Symposium on Information Theory Proceedings
+ (ISIT)},
+ title={Exact-repair {MDS} codes for distributed storage using interference
+ alignment},
  year={2010}, 
  month={6},
  pages={161-165}, 
@@ -429,7 +463,7 @@
 @INPROCEEDINGS{normand2010wcnc,
  author={Normand, Nicolas and Svalbe, Imants and Parrein, Benoît and Kingston,
      Andrew}, 
- booktitle={Wireless Communications and Networking Conference (WCNC), 2010 IEEE}, 
+ booktitle={IEEE Wireless Communications and Networking Conference (WCNC)}, 
  title={Erasure Coding with the Finite {R}adon Transform}, 
  year={2010}, 
  month= {4},
@@ -453,35 +487,37 @@
 }
 
 @inproceedings{normand2010spie,
-    author = {Normand, Nicolas and
-                Guedon, Jeanpierre V. and 
-                Philippe, Olivier and 
-                Barba, Dominique},
-    title = {Controlled redundancy for image coding and high-speed transmission},
-    journal = {Proc. SPIE},
-    volume = {2727},
-    pages = {1070-1081},
-    abstract = {The goal of this paper is to describe a new fully reversible image transform specifically designed for image coding and transmission in a context of possible loss of information as encountered in ATM networks. The so-called Mojette transform, is based on a discrete exact radon transform which allows for a natural redundancy of the initial image information. The inverse Mojette transform is particularly flexible and efficient: any portion of the coded image can be replaced by another one if transmission problems occur. Furthermore, the transform is also well suited to the two-layers paradigm used for video transmission on ATM networks by using a multiscale and/or quadtree decomposition into the transform domain. Finally, we discuss the merits of the transform both for image storage and transmission in order to show its ability to operate as the core representation of digital images.},
-    year = {1996},
-    doi = {10.1117/12.233180},
+ author = {Normand, Nicolas and Guedon, JeanPierre V. and Philippe, Olivier
+ and Barba, Dominique},
+ title = {Controlled redundancy for image coding and high-speed transmission},
+ journal = {SPIE},
+ volume = {2727},
+ pages = {1070-1081},
+ year = {1996},
+ doi = {10.1117/12.233180},
 }
 
 @INPROCEEDINGS{svalbe2010dicta,
- author={Svalbe, Imants and Nazareth, N. and Normand, Nicolas and Chandra, S.},
- booktitle={Digital Image Computing: Techniques and Applications (DICTA), 2010 International Conference on}, 
+ author={Svalbe, Imants and Nazareth, Nikesh and Normand, Nicolas and Chandra,
+ Shekhar},
  title={On Constructing Minimal Ghosts}, 
+ booktitle={Digital Image Computing: Techniques and Applications (DICTA), 2010
+ International Conference on},
  year={2010}, 
  month= {12},
  pages={276-281}, 
- keywords={forward error correction;image reconstruction;anti-image pairs;digital images;forward error-correction;ghosts;highly constrained patterns;image reconstruction;noisy tomographic projection data;redundant data transmission schemes;signed pixel values;Couplings;Equations;Image reconstruction;Pixel;Silicon;Tomography;Transforms;discrete Radon;discrete projection;ghost images}, 
+ keywords={forward error correction;image reconstruction;anti-image
+ pairs;digital images;forward error-correction;ghosts;highly constrained
+ patterns;image reconstruction;noisy tomographic projection data;redundant data
+ transmission schemes;signed pixel values;Couplings;Equations;Image
+ reconstruction;Pixel;Silicon;Tomography;Transforms;discrete Radon;discrete
+ projection;ghost images},
  doi={10.1109/DICTA.2010.56},
 }
 
 @article{rashmi2009exact_rep,
-  author    = {K. V. Rashmi and
-               Nihar B. Shah and
-               P. Vijay Kumar and
-               Kannan Ramchandran},
+  author    = {K. Vinayak Rashmi and Nihar B. Shah and P. Vijay Kumar and
+  Kannan Ramchandran},
   title     = {Exact Regenerating Codes for Distributed Storage},
   journal   = {CoRR},
   volume    = {abs/0906.4913},
@@ -491,96 +527,141 @@
 }
 
 @inproceedings{plank2009fast,
-  author      = {Plank, James S. and
-                Luo, Jianqiang and
-                Schuman, Catherine D. and
-                Xu, Lihao and
-                Wilcox-O'Hearn, Zooko},
-  title       = {A Performance Evaluation and Examination of Open-source Erasure Coding Libraries for Storage},
-  booktitle   = {Proccedings of the 7th Conference on File and Storage Technologies},
+  author      = {Plank, James S. and Luo, Jianqiang and Schuman, Catherine D.
+  and Xu, Lihao and Wilcox-O'Hearn, Zooko},
+  title       = {A Performance Evaluation and Examination of Open-source
+  Erasure Coding Libraries for Storage},
+  booktitle   = {Proccedings of the 7th Conference on File and Storage
+  Technologies},
   series      = {FAST '09},
   year        = {2009},
-  location    = {San Francisco, California},
-  pages       = {253--265},
-  numpages    = {13},
-  url        = {http://dl.acm.org/citation.cfm?id = 1525908.1525927},
-  acmid       = {1525927},
   publisher   = {USENIX Association},
   address     = {Berkeley, CA, USA},
+  pages       = {253--265},
+  url        = {http://dl.acm.org/citation.cfm?id = 1525908.1525927},
+  location    = {San Francisco, California},
+  numpages    = {13},
+  acmid       = {1525927},
 } 
 
 @book{guedon2009mojettebook,
   author       = {Gu{\'e}don, JeanPierre},
-  hal_id       = {hal-00367681},
-  url          = {http://hal.archives-ouvertes.fr/hal-00367681},
   title        = {{The {M}ojette transform. Theory and applications}},
-  abstract     = {{The first part of the book gives the basics of the Mojette transform both mathematically and the corresponding optimal algorithms. The second part exemplifies its use through different fields: image representation, watermarking, medical imaging, distributed storage, information and cryptography.}},
-  keywords     = {Mojette transform; digital imaging; information theory},
-  language     = {Anglais},
-  affiliation  = {Institut de Recherche en Communications et en Cybern{\'e}tique de Nantes - IRCCyN},
   publisher    = {ISTE-WILEY},
   pages        = {274},
   year         = {2009},
   month        = {1},
-  ISBN         = {9781848210806}
+  url          = {http://hal.archives-ouvertes.fr/hal-00367681},
+  abstract     = {{The first part of the book gives the basics of the Mojette
+  transform both mathematically and the corresponding optimal algorithms. The
+  second part exemplifies its use through different fields: image
+  representation, watermarking, medical imaging, distributed storage,
+  information and cryptography.}},
+  keywords     = {Mojette transform; digital imaging; information theory},
+  ISBN         = {9781848210806},
+  language     = {Anglais},
+  affiliation  = {Institut de Recherche en Communications et en
+  Cybern{\'e}tique de Nantes - IRCCyN},
+  hal_id       = {hal-00367681},
 }
 
 @incollection{guedon2009mojettebookchap5,
   author       = {Gu{\'e}don, JeanPierre},
-  hal_id       = {hal-00367681},
-  url          = {http://hal.archives-ouvertes.fr/hal-00367681},
   title        = {{Inverse {M}ojette transform algorithms}},
   booktitle    = {{The {M}ojette transform. Theory and applications}},
   chapter      = {5},
-  abstract     = {{The first part of the book gives the basics of the Mojette transform both mathematically and the corresponding optimal algorithms. The second part exemplifies its use through different fields: image representation, watermarking, medical imaging, distributed storage, information and cryptography.}},
-  keywords     = {Mojette transform; digital imaging; information theory},
-  language     = {Anglais},
-  affiliation  = {Institut de Recherche en Communications et en Cybern{\'e}tique de Nantes - IRCCyN},
   publisher    = {ISTE-WILEY},
   year         = {2009},
   month        = {1},
-  ISBN         = {9781848210806}
+  abstract     = {{The first part of the book gives the basics of the Mojette
+  transform both mathematically and the corresponding optimal algorithms. The
+  second part exemplifies its use through different fields: image
+  representation, watermarking, medical imaging, distributed storage,
+  information and cryptography.}},
+  keywords     = {Mojette transform; digital imaging; information theory},
+  url          = {http://hal.archives-ouvertes.fr/hal-00367681},
+  ISBN         = {9781848210806},
+  language     = {Anglais},
+  affiliation  = {Institut de Recherche en Communications et en
+  Cybern{\'e}tique de Nantes - IRCCyN},
+  hal_id       = {hal-00367681},
 }
 
 @inproceedings{fan2009diskreduce,
-  author     = {Fan, Bin and Tantisiriroj, Wittawat and Xiao, Lin and Gibson, Garth},
-  title      = {DiskReduce: RAID for data-intensive scalable computing},
+  author     = {Fan, Bin and Tantisiriroj, Wittawat and Xiao, Lin and Gibson,
+  Garth},
+  title      = {DiskReduce: {RAID} for data-intensive scalable computing},
   booktitle  = proc # { } # pdsw # { 2009},
   year       = {2009},
-  isbn      = {978-1-60558-883-4},
-  location   = {Portland, Oregon},
   pages      = {6--10},
-  numpages   = {5},
-  url       = {http://doi.acm.org/10.1145/1713072.1713075},
-  doi        = {10.1145/1713072.1713075},
-  acmid     = {1713075},
   publisher  = {ACM},
   address    = {New York, NY, USA},
+  isbn      = {978-1-60558-883-4},
+  url       = {http://doi.acm.org/10.1145/1713072.1713075},
+  location   = {Portland, Oregon},
+  numpages   = {5},
+  doi        = {10.1145/1713072.1713075},
+  acmid     = {1713075},
 }
 
 @INPROCEEDINGS{rashmi2009regenerating,
  author={Rashmi, K. Vinayak and Shah, Nihar B. and Kumar, P. Vijay and
-     Ramchandran, Kannan},
- booktitle={Communication, Control, and Computing, 2009. Allerton 2009. 47th Annual Allerton Conference on}, 
- title={Explicit construction of optimal exact regenerating codes for distributed storage}, 
+ Ramchandran, Kannan},
+ title={Explicit construction of optimal exact regenerating codes for
+ distributed storage},
+ booktitle={Communication, Control, and Computing, 2009. Allerton 2009. 47th
+ Annual Allerton Conference on},
  year={2009}, 
  month={9},
  pages={1243-1249}, 
- keywords={distributed processing;encoding;peer-to-peer computing;software reliability;storage management;distributed storage;erasure coding techniques;node failure;optimal exact regenerating codes;peer-to-peer systems;storage-repair bandwidth;Bandwidth;Computational complexity;Costs;Linear code;Peer to peer computing;Redundancy;Sufficient conditions}, 
+ keywords={distributed processing;encoding;peer-to-peer computing;software
+ reliability;storage management;distributed storage;erasure coding
+ techniques;node failure;optimal exact regenerating codes;peer-to-peer
+ systems;storage-repair bandwidth;Bandwidth;Computational
+ complexity;Costs;Linear code;Peer to peer computing;Redundancy;Sufficient
+ conditions},
  doi={10.1109/ALLERTON.2009.5394538}
+}
+
+@INPROCEEDINGS{chandra2008icpr, 
+ author={Chandra, Shekhar S. and Svalbe, Imants}, 
+ booktitle={19th International Conference on Pattern Recognition},
+ title={A method for removing cyclic artefacts in discrete tomography using
+ latin squares},
+ year={2008}, 
+ pages={1-4}, 
+ month={12},
+ ISSN={1051-4651}, 
+ doi={10.1109/ICPR.2008.4761615}, 
+}
+
+@incollection{chandra2008dgci,
+ author={Chandra, Shekhar and Svalbe, Imants and Guédon, JeanPierre},
+ title={An Exact, Non-iterative {M}ojette Inversion Technique Utilising Ghosts},
+ year={2008},
+ booktitle={Discrete Geometry for Computer Imagery},
+ volume={4992},
+ series={Lecture Notes in Computer Science},
+ editor={Coeurjolly, David and Sivignon, Isabelle and Tougne, Laure and Dupont,
+ Florent},
+ publisher={Springer Berlin Heidelberg},
+ pages={401-412},
+ url={http://dx.doi.org/10.1007/978-3-540-79126-3_36},
+ isbn={978-3-540-79125-6},
+ doi={10.1007/978-3-540-79126-3_36},
+ language={English}
 }
 
 @ARTICLE{huang2008star, 
  author={Huang, Huang and Xu, Lihao},
- journal={Computers, IEEE Transactions on}, 
+ journal={IEEE Transactions on Computers}, 
  title={{STAR} : An Efficient Coding Scheme for Correcting Triple Storage Node
-     Failures},
+ Failures},
  year={2008}, 
  month={7},
  volume={57}, 
  number={7}, 
  pages={889-901}, 
- keywords={computational complexity;decoding;failure analysis;storage management;STAR code;data placement scheme;data redundancy;data storage system;double-erasure-correcting EVENODD code;erasure correcting code;generalized triple-erasure-correcting EVENODD code;low decoding complexity;maximum distance separable code;triple storage node failure recovery;Availability;Data storage systems;Decoding;Error correction;File systems;Information retrieval;Information systems;Large-scale systems;Redundancy;Storage area networks;codes;error control;fault tolerance;high availability;storage systems.}, 
  doi={10.1109/TC.2007.70830}, 
  ISSN={0018-9340}
 }
@@ -588,7 +669,7 @@
 @TECHREPORT{plank2008jerasure,
   author  = "Plank, James S.",
   title  = "Jerasure: A library in {C/C++} facilitating erasure coding for
-      storage applications",
+  storage applications",
   institution  = "University of Tennessee",
   month  = {9},
   year  = "2007",
@@ -599,69 +680,86 @@
 @article{dean2008mapreduce,
   author  = {Dean, Jeffrey and Ghemawat, Sanjay},
   title  = {{MapReduce}: Simplified data processing on large clusters},
-  journal  = {Commun. ACM},
-  issue_date  = {January 2008},
+  journal  = {Communication of ACM},
   volume  = {51},
   number  = {1},
   month  = {1},
   year  = {2008},
-  issn  = {0001-0782},
   pages  = {107--113},
-  numpages  = {7},
-  url  = {http://doi.acm.org/10.1145/1327452.1327492},
-  doi  = {10.1145/1327452.1327492},
-  acmid  = {1327492},
   publisher  = {ACM},
   address  = {New York, NY, USA},
+  issn  = {0001-0782},
+  url  = {http://doi.acm.org/10.1145/1327452.1327492},
+  issue_date  = {January 2008},
+  numpages  = {7},
+  doi  = {10.1145/1327452.1327492},
+  acmid  = {1327492},
 }
 
 @inproceedings{bairavasundaram2007sigmetrics,
- author = {Bairavasundaram, Lakshmi N. and Goodson, Garth R. and Pasupathy, Shankar and Schindler, Jiri},
+ author = {Bairavasundaram, Lakshmi N. and Goodson, Garth R. and Pasupathy,
+ Shankar and Schindler, Jiri},
  title = {An Analysis of Latent Sector Errors in Disk Drives},
- booktitle = {Proceedings of the 2007 ACM SIGMETRICS International Conference on Measurement and Modeling of Computer Systems},
+ booktitle = {Proceedings of the 2007 ACM SIGMETRICS International Conference
+ on Measurement and Modeling of Computer Systems},
  series = {SIGMETRICS '07},
  year = {2007},
- isbn = {978-1-59593-639-4},
- location = {San Diego, California, USA},
  pages = {289--300},
- numpages = {12},
- url = {http://doi.acm.org/10.1145/1254882.1254917},
- doi = {10.1145/1254882.1254917},
- acmid = {1254917},
  publisher = {ACM},
  address = {New York, NY, USA},
+ acmid = {1254917},
+ isbn = {978-1-59593-639-4},
+ url = {http://doi.acm.org/10.1145/1254882.1254917},
  keywords = {MTTDL, disk drive reliability, latent sector errors},
+ location = {San Diego, California, USA},
+ numpages = {12},
+ doi = {10.1145/1254882.1254917},
 }
 
 @inproceedings{schroeder2007fast,
  author = {Schroeder, Bianca and Gibson, Garth A.},
- title = {Disk Failures in the Real World: What Does an {MTTF} of 1,000,000 Hours Mean to You?},
- booktitle = {Proceedings of the 5th USENIX Conference on File and Storage Technologies},
+ title = {Disk Failures in the Real World: What Does an {MTTF} of 1,000,000
+ Hours Mean to You?},
+ booktitle = {Proceedings of the 5th USENIX Conference on File and Storage
+ Technologies},
  series = {FAST '07},
  year = {2007},
- location = {San Jose, CA},
- articleno = {1},
- url = {http://dl.acm.org/citation.cfm?id=1267903.1267904},
- acmid = {1267904},
  publisher = {USENIX Association},
  address = {Berkeley, CA, USA},
+ url = {http://dl.acm.org/citation.cfm?id=1267903.1267904},
+ location = {San Jose, CA},
+ articleno = {1},
+ acmid = {1267904},
 } 
 
 @book{deans2007radon,
   author={Deans, Stanley Roderick},
-  title={The Radon transform and some of its applications},
+  title={The {R}adon transform and some of its applications},
   year={2007},
-  publisher={Courier Dover Publications}
+  publisher={Courier Dover Publications},
+  ISBN={9780486462417},
+  numpage={295},
+}
+
+@incollection{deans2007ltranslation,
+  author={Deans, Stanley Roderick},
+  title={Translation of {R}adon's 1917 Paper},
+  booktitle={The {R}adon transform and some of its applications},
+  year={2007},
+  publisher={Courier Dover Publications},
+  chapter={Appendix A},
+  pages={204--217},
+  ISBN={9780486462417},
 }
 
 @INPROCEEDINGS{plank2006nca,
   author  = "Plank, James S. and Xu, Lihao",
-  title  = "Optimizing {C}auchy {R}eed-Solomon {C}odes for
+  title  = "Optimizing {C}auchy {R}eed-Solomon Codes for
                 Fault-Tolerant Network Storage Applications",
   booktitle  = "NCA-06: 5th IEEE International Symposium on Network
                 Computing Applications",
   address  = "Cambridge, MA",
-  month  = jul,
+  month  = {7},
   year  = "2006",
   where  = "http://www.cs.utk.edu/~plank/plank/papers/NCA-2006.html"
 }
@@ -669,14 +767,14 @@
 @incollection{normand2006dgci,
   author = {Normand, Nicolas and Kingston, Andrew and {\'E}venou, Pierre},
   year = {2006},
-  isbn = {978-3-540-47651-1},
   booktitle = dgci,
   volume = {4245},
   series = lncs,
-  doi = {10.1007/11907350_11},
   title = {A geometry driven reconstruction algorithm for the {M}ojette transform},
   publisher = {Springer Berlin Heidelberg},
-  pages = {122-133}
+  pages = {122-133},
+  isbn = {978-3-540-47651-1},
+  doi = {10.1007/11907350_11},
 }
 
 @inproceedings{weil2006osdi,
@@ -685,25 +783,25 @@
   title  = {Ceph: A scalable, high-performance distributed file system},
   booktitle  = proc # { } # osdi # { 2006},
   year  = {2006},
-  isbn  = {1-931971-47-1},
-  location  = {Seattle, Washington},
   pages  = {307--320},
-  numpages  = {14},
-  url = {http://dl.acm.org/citation.cfm?id = 1298455.1298485},
-  acmid  = {1298485},
   publisher  = {USENIX Association},
   address  = {Berkeley, CA, USA},
+  isbn  = {1-931971-47-1},
+  url = {http://dl.acm.org/citation.cfm?id = 1298455.1298485},
+  numpages  = {14},
+  location  = {Seattle, Washington},
+  acmid  = {1298485},
 } 
 
 @inproceedings{autrusseau2006lossless,
   author = {Autrusseau, Florent and Parrein, Benoît and Servieres, Myriam},
   booktitle = proc # { } # icassp # { 2006},
   organization = ieee,
-  title = {Lossless Compression Based on A Discrete and Exact Radon Transform: A Preliminary Study}, 
+  title = {Lossless Compression Based on A Discrete and Exact {R}adon Transform:
+  A Preliminary Study},
   year = {2006}, 
   volume = {2}, 
   pages = {II-II}, 
-  keywords = {Radon transforms;data compression;image coding;Mojette transform;differential encoding techniques;discrete Radon transform;exact Radon transform;finite Radon transform;intra-projection encoding technique;lossless compression;Biomedical imaging;Channel coding;Compression algorithms;Cryptography;Discrete transforms;Fourier transforms;Image coding;Image reconstruction;Redundancy;Tomography}, 
   doi = {10.1109/ICASSP.2006.1660370}, 
   ISSN = {1520-6149}
 }
@@ -711,16 +809,17 @@
 @inproceedings{schroeder2006dsn,
  author = {Schroeder, Bianca and Gibson, Garth A.},
  title = {A Large-scale Study of Failures in High-performance Computing Systems},
- booktitle = {Proceedings of the International Conference on Dependable Systems and Networks},
+ booktitle = {Proceedings of the International Conference on Dependable Systems
+ and Networks},
  series = {DSN '06},
  year = {2006},
- isbn = {0-7695-2607-1},
  pages = {249--258},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ isbn = {0-7695-2607-1},
  numpages = {10},
  doi = {10.1109/DSN.2006.5},
  acmid = {1135705},
- publisher = {IEEE Computer Society},
- address = {Washington, DC, USA},
 } 
 
 @article{servieres2005mojette,
@@ -735,18 +834,17 @@
 }
 
 @ARTICLE{jaggi2005netcod,
-author={Jaggi, Sidharth and Sanders, Peter and Chou, Philip A. and Effros,
+ author={Jaggi, Sidharth and Sanders, Peter and Chou, Philip A. and Effros,
     Michelle and Egner, Sebastian and Jain, Kamal and Tolhuizen, Ludo M. G. M.}, 
-journal={Information Theory, IEEE Transactions on}, 
-title={Polynomial time algorithms for multicast network code construction}, 
-year={2005}, 
-month={6},
-volume={51}, 
-number={6}, 
-pages={1973-1982}, 
-keywords={deterministic algorithms;directed graphs;linear codes;minimax techniques;multicast communication;telecommunication networks;code construction;communication network;deterministic polynomial time algorithm;directed acyclic graph;information encoding;integer capacity;linear code;max-flow min-cut theorem;multicasting rate maximization;randomized algorithm;Algorithm design and analysis;Bandwidth;Communication networks;Galois fields;Information theory;Laboratories;Linear code;Multicast algorithms;Polynomials;Upper bound;Communication networks;efficient algorithms;linear coding;multicasting rate maximization}, 
-doi={10.1109/TIT.2005.847712}, 
-ISSN={0018-9448},
+ journal={Information Theory, IEEE Transactions on}, 
+ title={Polynomial time algorithms for multicast network code construction}, 
+ year={2005}, 
+ month={6},
+ volume={51}, 
+ number={6}, 
+ pages={1973-1982}, 
+ doi={10.1109/TIT.2005.847712}, 
+ ISSN={0018-9448},
 }
 
 @inproceedings{prabhakaran2005sosp,
@@ -755,16 +853,15 @@ ISSN={0018-9448},
  booktitle = {Proceedings of the Twentieth ACM Symposium on Operating Systems Principles},
  series = {SOSP '05},
  year = {2005},
- isbn = {1-59593-079-5},
- location = {Brighton, United Kingdom},
  pages = {206--220},
- numpages = {15},
- url = {http://doi.acm.org/10.1145/1095810.1095830},
- doi = {10.1145/1095810.1095830},
- acmid = {1095830},
  publisher = {ACM},
  address = {New York, NY, USA},
- keywords = {IRON file systems, block corruption, disks, fail-partial failure model, fault tolerance, internal, latent sector errors, redundancy, reliability, storage},
+ isbn = {1-59593-079-5},
+ url = {http://doi.acm.org/10.1145/1095810.1095830},
+ location = {Brighton, United Kingdom},
+ numpages = {15},
+ doi = {10.1145/1095810.1095830},
+ acmid = {1095830},
 }
 
 @incollection{guedon2005springer,
@@ -785,36 +882,48 @@ ISSN={0018-9448},
 @misc{anvin2004raid,
  author = {Anvin, Hans Peter},
  title = {The mathematics of {RAID-6}},
+ year = {2004},
  url = {https://www.kernel.org/pub/linux/kernel/people/hpa/raid6.pdf},
- year = {2004}
 }
 
 @inproceedings{corbett2004rdp,
   title={Row-diagonal parity for double disk failure correction},
-  author={Corbett, Peter and English, Bob and Goel, Atul and Grcanac, Tomislav and Kleiman, Steven and Leong, James and Sankar, Sunitha},
-  booktitle={Proceedings of the 3rd USENIX Conference on File and Storage Technologies},
+  author={Corbett, Peter and English, Bob and Goel, Atul and Grcanac, Tomislav
+  and Kleiman, Steven and Leong, James and Sankar, Sunitha},
+  booktitle={Proceedings of the 3rd USENIX Conference on File and Storage
+  Technologies},
   pages={1--14},
   year={2004},
   url = {http://static.usenix.org/event/fast04/tech/corbett/corbett_html/},
 }
 
+@article{svalbe2003endm,
+	author = {Svalbe, Imants D. and Kingston, Andrew},
+	title = {Farey Sequences and Discrete {R}adon Transform Projection Angles},
+	journal = {Electronic Notes in Discrete Mathematics},
+	year = {2003},
+	volume = {12},
+	pages = {154-165},
+	note = "9th International Workshop on Combinatorial Image Analysis",
+	doi = {10.1016/S1571-0653(04)00482-2},
+}
+
 @ARTICLE{li2003netcod,
-author={Li, Shuo-Yen Robert and Yeung, Raymond W. and Ning Cai}, 
-journal={Information Theory, IEEE Transactions on}, 
-title={Linear network coding}, 
-year={2003}, 
-month={2},
-volume={49}, 
-number={2}, 
-pages={371-381}, 
-keywords={directed graphs;linear codes;multicast communication;telecommunication network routing;acyclic network;communication network;directed multigraph;information rate;linear network coding;linear transformation;max-flow bound;multicast mechanisms optimization;network nodes;network routing;source nodes multicast information;vector;Channel capacity;Communication networks;Communication switching;Conferences;Information rates;Information theory;Network coding;Routing;Spread spectrum communication;Vectors}, 
-doi={10.1109/TIT.2002.807285}, 
-ISSN={0018-9448},
+ author={Li, Shuo-Yen Robert and Yeung, Raymond W. and Ning Cai}, 
+ title={Linear network coding}, 
+ journal={IEEE Transactions on Information Theory},
+ year={2003}, 
+ month={2},
+ volume={49}, 
+ number={2}, 
+ pages={371-381}, 
+ doi={10.1109/TIT.2002.807285}, 
+ ISSN={0018-9448},
 }
 
 @TECHREPORT{plank2003rs,
   author  = "Plank, James S. and Ding, Ying",
-  title  = "Note: Correction to the 1997 Tutorial on Reed-Solomon Coding",
+  title  = "Note: Correction to the 1997 Tutorial on {R}eed-{S}olomon Coding",
   institution  = "University of Tennessee",
   month  = {4},
   year  = "2003",
@@ -826,33 +935,33 @@ ISSN={0018-9448},
  author = {Ghemawat, Sanjay and Gobioff, Howard and Leung, Shun-Tak},
  title = {The {G}oogle File System},
  booktitle = {Proceedings of the Nineteenth ACM Symposium on Operating Systems
-    Principles},
+ Principles},
  series = {SOSP '03},
  year = {2003},
- isbn = {1-58113-757-5},
- location = {Bolton Landing, NY, USA},
  pages = {29--43},
- numpages = {15},
- url = {http://doi.acm.org/10.1145/945445.945450},
- doi = {10.1145/945445.945450},
- acmid = {945450},
  publisher = {ACM},
  address = {New York, NY, USA},
  keywords = {clustered storage, data storage, fault tolerance, scalability},
+ url = {http://doi.acm.org/10.1145/945445.945450},
+ isbn = {1-58113-757-5},
+ doi = {10.1145/945445.945450},
+ location = {Bolton Landing, NY, USA},
+ numpages = {15},
+ acmid = {945450},
 } 
 
 @inproceedings{parrein2001dcc,
   author  = {Parrein, Benoît and Normand, Nicolas and Gu{\'e}don, JeanPierre},
   title  = {Multiple description coding using exact discrete {R}adon transform},
   booktitle  = {Proceedings of the Data Compression Conference},
-  doi = {10.1.1.19.5708},
   series  = {DCC '01},
   year  = {2001},
   pages  = {508--},
+  publisher  = {IEEE Computer Society},
+  address  = {Washington, DC, USA},
   url = {http://dl.acm.org/citation.cfm?id = 882454.875071},
   acmid  = {875071},
-  publisher  = {IEEE Computer Society},
-  address  = {Washington, DC, USA}
+  doi = {10.1.1.19.5708},
 } 
 
 @article{guedon2001internet,
@@ -903,36 +1012,63 @@ ISSN={0018-9448},
   HAL_VERSION = {v1},
 }
 
+@article{svalbe2001laa,
+ author = "Svalbe, Imants and van der Spek, Dimitri",
+ title = "Reconstruction of tomographic images using analog projections and the
+    digital {R}adon transform ",
+ journal = "Linear Algebra and its Applications ",
+ volume = "339",
+ number = "1–3",
+ pages = "125 - 145",
+ year = "2001",
+ issn = "0024-3795",
+ doi = "http://dx.doi.org/10.1016/S0024-3795(01)00487-6",
+ url = "http://www.sciencedirect.com/science/article/pii/S0024379501004876",
+}
+
 @ARTICLE{ahlswede2000network, 
 author={Ahlswede, Rudolf and Ning Cai and Li, Shuo-Yen Robert and Yeung,
-    Raymond W.}, 
-journal={Information Theory, IEEE Transactions on}, 
+Raymond W.}, 
+journal={IEEE Transactions on Information Theory}, 
 title={Network information flow}, 
 year={2000}, 
 month={7},
 volume={46}, 
 number={4}, 
 pages={1204-1216}, 
-keywords={computer networks;directed graphs;encoding;minimax techniques;multicast communication;telecommunication network routing;telecommunication switching;admissible coding rate region;bandwidth;computer network applications;directed graph;information source;information sources;max-flow min-cut theorem;multicasting;networ routing;network coding;network information flow;node coding;point-to-point communication network;switching systems design;Application software;Bandwidth;Communication networks;Computer networks;IP networks;Network coding;Source coding;Spine;Switches;Switching systems}, 
+keywords={computer networks;directed graphs;encoding;minimax
+techniques;multicast communication;telecommunication network
+routing;telecommunication switching;admissible coding rate
+region;bandwidth;computer network applications;directed graph;information
+source;information sources;max-flow min-cut theorem;multicasting;networ
+routing;network coding;network information flow;node coding;point-to-point
+communication network;switching systems design;Application
+software;Bandwidth;Communication networks;Computer networks;IP networks;Network
+coding;Source coding;Spine;Switches;Switching systems},
 doi={10.1109/18.850663}, 
 ISSN={0018-9448},
 }
 
 @INPROCEEDINGS{elerath2000mtbf, 
 author={Elerath, Jon G.}, 
-booktitle={Reliability and Maintainability Symposium, 2000. Proceedings. Annual}, 
-title={Specifying reliability in the disk drive industry: No more {MTBF}'s}, 
+title={Specifying reliability in the disk drive industry: No more {MTBF}'s},
+booktitle={Annual Reliability and Maintainability Symposium},
 year={2000}, 
 month={1},
 pages={194-199}, 
-keywords={disc drives;failure analysis;reliability;standards;disk drive industry;drive hazard rate;failure distribution;field experience;product returns;product spares;reliability specification;stair-step approximation;Disk drives;Environmental factors;Failure analysis;Hazards;Life estimation;Life testing;Manufacturing industries;Materials reliability;Materials testing;Weibull distribution}, 
+keywords={disc drives;failure analysis;reliability;standards;disk drive
+industry;drive hazard rate;failure distribution;field experience;product
+returns;product spares;reliability specification;stair-step approximation;Disk
+drives;Environmental factors;Failure analysis;Hazards;Life estimation;Life
+testing;Manufacturing industries;Materials reliability;Materials
+testing;Weibull distribution},
 doi={10.1109/RAMS.2000.816306}, 
 ISSN={0149-144X},
 }
 
 @ARTICLE{blaum1999ieee, 
     author={Blaum, Mario and Roth, Ron M.}, 
-    journal={Information Theory, IEEE Transactions on}, 
+    journal={IEEE Transactions on Information Theory}, 
     title={On lowest density {MDS} codes}, 
     year={1999}, 
     month={1}, 
@@ -940,19 +1076,18 @@ ISSN={0149-144X},
     number={1}, 
     pages={46-59}, 
     keywords={Galois fields;linear codes;redundancy;sparse matrices;finite
-        field;generator matrices;length;linear MDS code;lower bounds;lowest
-            density MDS codes;maximum distance separable codes;nonzero
-            elements;pairwise differences;parity-check matrix;redundancy;sparse
-            nonsingular matrices;symbol alphabet;upper
-            bounds;Conferences;Galois fields;Hamming distance;Information
-            theory;Length measurement;Linear code;Parity check codes;Sparse
-            matrices;Upper bound;Vectors}, 
+    field;generator matrices;length;linear MDS code;lower bounds;lowest density
+    MDS codes;maximum distance separable codes;nonzero elements;pairwise
+    differences;parity-check matrix;redundancy;sparse nonsingular
+    matrices;symbol alphabet;upper bounds;Conferences;Galois fields;Hamming
+    distance;Information theory;Length measurement;Linear code;Parity check
+    codes;Sparse matrices;Upper bound;Vectors}, 
     doi={10.1109/18.746771}, 
     ISSN={0018-9448},}
 
 @ARTICLE{xu1999xcode, 
  author={Lihao Xu and Bruck, Jehoshua},
- journal={Information Theory, IEEE Transactions on}, 
+ journal={IEEE Transactions on Information Theory}, 
  title={{X}-code: {MDS} array codes with optimal encoding}, 
  year={1999}, 
  month={1},
@@ -965,6 +1100,7 @@ ISSN={0149-144X},
 }
 
 @article{normand1998sciences,
+ author = "Normand, Nicolas and Gu\'edon, JeanPierre",
  title = "La transformée {M}ojette: une représentation redondante pour l'image ",
  journal = "Comptes Rendus de l'Académie des Sciences - Series I - Mathematics ",
  volume = "326",
@@ -973,14 +1109,13 @@ ISSN={0149-144X},
  year = "1998",
  issn = "0764-4442",
  doi = "10.1016/S0764-4442(97)82724-3",
- author = "Nicolas Normand and Jean-Pierre Gu\'edon",
  language = "French"
 }
 
 @ARTICLE{plank1997rs,
  author = "James S. Plank",
- title = "A Tutorial on {R}eed-{S}olomon Coding for
-                Fault-Tolerance in {RAID}-like Systems",
+ title = "A Tutorial on {R}eed-{S}olomon Coding for Fault-Tolerance in
+ {RAID}-like Systems",
  journal = "Software -- Practice \& Experience",
  volume = "27",
  number = "9",
@@ -993,90 +1128,88 @@ ISSN={0149-144X},
 @article{rizzo1997sigcomm,
  author = {Rizzo, Luigi},
  title = {Effective Erasure Codes for Reliable Computer Communication Protocols},
- journal = {SIGCOMM Comput. Commun. Rev.},
- issue_date = {Apr. 1997},
+ journal = {SIGCOMM Computer Communication Review},
  volume = {27},
  number = {2},
  month = {4},
  year = {1997},
- issn = {0146-4833},
  pages = {24--36},
- numpages = {13},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ issn = {0146-4833},
  url = {http://doi.acm.org/10.1145/263876.263881},
  doi = {10.1145/263876.263881},
  acmid = {263881},
- publisher = {ACM},
- address = {New York, NY, USA},
+ numpages = {13},
+ issue_date = {Apr. 1997},
  keywords = {FEC, erasure codes, reliable multicast},
 }
 
 @inproceedings{normand1996vcip,
+  author = {Normand, Nicolas and Gu{\'e}don, JeanPierre and Philipp{\'e},
+  Olivier and Barba, Dominique},
   title = {Controlled redundancy for image coding and high-speed transmission},
   address = {Orlando, FL},
-  author = {Normand, Nicolas and Gu{\'e}don, Jeanpierre and Philipp{\'e}, Olivier and Barba, Dominique},
   booktitle = proc # { } # vcip # { 1996},
-  date = {1996-03},
-  doi = {10.1117/12.233180},
   organization = spie,
   pages = {1070-1081},
   volume = {2727},
+  date = {1996-03},
+  doi = {10.1117/12.233180},
 }
 
 @ARTICLE{blaum1995evenodd,
   author = {Blaum, Mario and Brady, Jim and Bruck, Jehoshua and Jai Menon}, 
   journal = {Computers, IEEE Transactions on}, 
-  title = {EVENODD: an efficient scheme for tolerating double disk failures in RAID architectures}, 
+  title = {{EVENODD}: an efficient scheme for tolerating double disk failures
+  in {RAID} architectures}, 
   year = {1995}, 
   month = {2},
   volume = {44}, 
   number = {2}, 
   pages = {192-202}, 
-  keywords = {Reed-Solomon codes;computational complexity;error correction codes;magnetic disc storage;EVENODD;RAID architectures;Reed-Solomon error-correcting codes;complexity;decoding algorithm;double disk failures toleration;exclusive-OR computations;multitrack magnetic recording;optimal redundant storage;parity hardware;redundant disks;Acceleration;Computer architecture;Decoding;Error correction codes;Galois fields;Hardware;Magnetic recording;Maintenance;Reed-Solomon codes;Writing}, 
+  keywords = {Reed-Solomon codes;computational complexity;error correction
+  codes;magnetic disc storage;EVENODD;RAID architectures;Reed-Solomon
+  error-correcting codes;complexity;decoding algorithm;double disk failures
+  toleration;exclusive-OR computations;multitrack magnetic recording;optimal
+  redundant storage;parity hardware;redundant disks;Acceleration;Computer
+  architecture;Decoding;Error correction codes;Galois fields;Hardware;Magnetic
+  recording;Maintenance;Reed-Solomon codes;Writing},
   url = {http://dl.acm.org/citation.cfm?id=203282},
-  doi = {10.1109/12.364531}, 
   ISSN = {0018-9340},
+  doi = {10.1109/12.364531}, 
 }
 
 @techreport{blomer1995icsi,
-  author  = {Bl\"{o}mer, Johannes and Kalfane, Malik and Karpinski, Marek and Karp, Richard and Luby, Michael and Zuckerman, David},
+  author  = {Bl\"{o}mer, Johannes and Kalfane, Malik and Karpinski, Marek and
+  Karp, Richard and Luby, Michael and Zuckerman, David},
+  title  = {{An {XOR}-based erasure-resilient coding scheme}},
   institution  = {International Computer Science Institute},
-  keywords  = {finite-field},
   month  = {8},
   number  = {TR-95-048},
+  year  = {1995},
+  keywords  = {finite-field},
+  url = {http://www.icsi.berkeley.edu/cgi-bin/pubs/publication.pl?ID=000988},
   posted-at  = {2007-10-26 15:32:11},
   priority  = {2},
-  title  = {{An XOR-based erasure-resilient coding scheme}},
-  url = {http://www.icsi.berkeley.edu/cgi-bin/pubs/publication.pl?ID=000988},
-  year  = {1995}
 }
 
 @INPROCEEDINGS{guedon1995vcip,
-  author = {Guedon, Jeanpierre V. and Barba, Dominique and Burger, Nicole},
+  author = {Guedon, JeanPierre V. and Barba, Dominique and Burger, Nicole},
   title = {Psychovisual image coding via an exact discrete {R}adon transform},
   journal = {SPIE},
   volume = {2501},
   pages = {562-572},
-  abstract = {The goal of this paper is to describe a new fully-reversible image
-  transform specifically designed for an efficient (pseudo-critical) coding while
-  preserving a psychovisual Fourier domain description. There is now strong
-  evidence for the presence of directional and angular sensitivity in the cells
-  of the human visual cortex and the representation proposed here has for main
-  objective to respect this human like filter bank. The decomposition is
-  performed using a discrete Radon transform for the angular patches and by
-  splitting each projection with a 1D spline wavelet for the radial part.
-  Consequently, the whole algorithm is performed in the spatial domain. Finally,
-  we show that the transform is both well-suited for psychovisual quantization
-  and channel adapted coding.},
   year = {1995},
-  doi = {10.1117/12.206765},
   URL = { http://dx.doi.org/10.1117/12.206765},
+  doi = {10.1117/12.206765},
 }
 
 @ARTICLE{chen1994raid,
   author  = {Peter M. Chen and Edward K. Lee and Garth A. Gibson and Randy H.
   Katz and David A. Patterson},
-  title  = {RAID: High-Performance, Reliable Secondary Storage},
-  journal  = {ACM COMPUTING SURVEYS},
+  title  = {{RAID}: High-Performance, Reliable Secondary Storage},
+  journal  = {ACM Computing Surveys},
   year  = {1994},
   volume  = {26},
   pages  = {145--185}
@@ -1084,7 +1217,7 @@ ISSN={0149-144X},
 
 @ARTICLE{blaum1993rs,
  author={Blaum, Mario and Roth, Ron M.}, 
- journal={Information Theory, IEEE Transactions on}, 
+ journal={IEEE Transactions on Information Theory},
  title={New array codes for multiple phased burst correction}, 
  year={1993}, 
  month={1},
@@ -1098,7 +1231,7 @@ ISSN={0149-144X},
 
 @ARTICLE{matus1993pami, 
  author={Mat\'{u}\v{s}, Franti\v{s}ek and Flusser, Jan}, 
- journal={Pattern Analysis and Machine Intelligence, IEEE Transactions on}, 
+ journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
  title={Image representation via a finite {R}adon transform}, 
  year={1993}, 
  month={10},
@@ -1117,21 +1250,22 @@ ISSN={0149-144X},
 
 @article{rabin1989ida,
  author = {Rabin, Michael O.},
- title = {Efficient Dispersal of Information for Security, Load Balancing, and Fault Tolerance},
+ title = {Efficient Dispersal of Information for Security, Load Balancing, and
+ Fault Tolerance},
  journal = {J. ACM},
- issue_date = {April 1989},
  volume = {36},
  number = {2},
  month = apr,
  year = {1989},
- issn = {0004-5411},
  pages = {335--348},
- numpages = {14},
- url = {http://doi.acm.org/10.1145/62044.62050},
- doi = {10.1145/62044.62050},
- acmid = {62050},
  publisher = {ACM},
  address = {New York, NY, USA},
+ issn = {0004-5411},
+ url = {http://doi.acm.org/10.1145/62044.62050},
+ numpages = {14},
+ doi = {10.1145/62044.62050},
+ acmid = {62050},
+ issue_date = {April 1989},
 }
 
 @book{patterson1988raid,
@@ -1143,32 +1277,42 @@ ISSN={0149-144X},
   publisher = {ACM}
 }
 
+@inproceedings{cornwell1982sm,
+  title={Image restoration and the {CLEAN} technique},
+  author={Cornwell, Tim},
+  booktitle={Synthesis Mapping},
+  volume={1},
+  pages={9},
+  year={1982}
+}
+
 @article{rosenfeld1979tamm,
  author = {Rosenfeld, Azriel},
- ISSN = {00029890, 19300972},
- URL = {http://www.jstor.org/stable/2321290},
+ title = {Digital Topology},
  journal = {The American Mathematical Monthly},
  number = {8},
  pages = {621-630},
  publisher = {Mathematical Association of America},
- title = {Digital Topology},
  volume = {86},
- year = {1979}
+ year = {1979},
+ ISSN = {00029890, 19300972},
+ URL = {http://www.jstor.org/stable/2321290},
 }
 
 @book{katz1978springer,
-  author  = { Katz, Myron },
+  author  = { Katz, Myron B.},
   title  = { Questions of uniqueness and resolution in reconstruction from
-     projections},
-  isbn  = { 0387090878 },
-  publisher  = { Springer-Verlag Berlin ; New York },
+  projections},
+  publisher  = { Springer-Verlag Berlin Heidelberg },
+  series = { Lecture Notes in Biomathematics },
   pages  = { 175 p. },
   year  = { 1978 },
   type  = { Book },
+  volume = { 26 },
+  doit = { 10.1007/978-3-642-45507-0 },
+  isbn = { 978-3-642-45507-0 },
+  issn  = { 0387090878 },
   language  = { English },
-  subjects  = { Tomography - Mathematical models.; Resolution (Optics) - Mathematical models.; Function spaces.; Integral transforms.; Matrix inversion. },
-  life-dates  = { 1978 -  },
-  catalogue-url  = { http://nla.gov.au/nla.cat-vn2530176 },
 }
 
 @article{hounsfield1973bjr,
@@ -1180,8 +1324,8 @@ ISSN={0149-144X},
  number = {552},
  pages = {1016-1022},
  year = {1973},
- doi = {10.1259/0007-1285-46-552-1016},
  URL = {http://dx.doi.org/10.1259/0007-1285-46-552-1016},
+ doi = {10.1259/0007-1285-46-552-1016},
  eprint = {http://dx.doi.org/10.1259/0007-1285-46-552-1016}
 }
 
@@ -1193,29 +1337,38 @@ ISSN={0149-144X},
  number = {1},
  month = {1},
  year = {1970},
- issn = {0004-5411},
  pages = {146--160},
- numpages = {15},
- url = {http://doi.acm.org/10.1145/321556.321570},
- doi = {10.1145/321556.321570},
- acmid = {321570},
  publisher = {ACM},
  address = {New York, NY, USA},
+ issn = {0004-5411},
+ url = {http://doi.acm.org/10.1145/321556.321570},
+ numpages = {15},
+ doi = {10.1145/321556.321570},
+ acmid = {321570},
 } 
 
 @article{gordon1970jtb,
  author = {Gordon, Richard and Bender, Robert and Herman T., Gabor},
- title = {Algebraic Reconstruction Techniques (ART) for three-dimensional
- electron microscopy and X-ray photography},
+ title = {{A}lgebraic {R}econstruction {T}echniques ({ART}) for three-dimensional
+ electron microscopy and {X}-ray photography},
  journal = {Journal of Theoretical Biology},
  volume = {29},
  number = {3},
  pages = {471 - 481},
  year = {1970},
- note = {},
  issn = {0022-5193},
- doi = {http://dx.doi.org/10.1016/0022-5193(70)90109-8},
  url = {http://www.sciencedirect.com/science/article/pii/0022519370901098},
+ doi = {http://dx.doi.org/10.1016/0022-5193(70)90109-8},
+}
+
+@article{cooley1969tae,
+  title={The finite {F}ourier transform},
+  author={Cooley, J and Lewis, P and Welch, P},
+  journal={IEEE Transactions on audio and electroacoustics},
+  volume={17},
+  number={2},
+  pages={77--85},
+  year={1969}
 }
 
 @article{cormack1963jap,
@@ -1230,7 +1383,6 @@ ISSN={0149-144X},
  url = {http://scitation.aip.org/content/aip/journal/jap/34/9/10.1063/1.1729798},
  doi = {http://dx.doi.org/10.1063/1.1729798} 
 }
-
 
 @ARTICLE{gallager1962ldpc,
  author={Gallager, Robert G.}, 
@@ -1257,6 +1409,19 @@ ISSN={0149-144X},
  doi = {10.1137/0108018},
 }
 
+@article{macon1958maa,
+ title = {Inverses of {V}andermonde Matrices},
+ author = {Macon, Nathaniel and Spitzbart, Abraham},
+ journal = {The American Mathematical Monthly},
+ number = {2},
+ pages = {95-100},
+ publisher = {Mathematical Association of America},
+ volume = {65},
+ year = {1958},
+ doi = {10.2307/2308881},
+ ISSN = {00029890, 19300972},
+}
+
 @article{bracewell1956ajp,
   title={Strip integration in radio astronomy},
   author={Bracewell, Ronald N.},
@@ -1269,7 +1434,7 @@ ISSN={0149-144X},
 }
 
 @article{franel1924gdwg,
-author = {Franel, J.},
+author = {Franel, Jérôme},
 journal = {Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-Physikalische Klasse},
 language = {fre},
 pages = {198-201},
@@ -1280,7 +1445,7 @@ year = {1924},
 }
 
 @article{radon1917akad,
- author = {Radon, Jonhann},
+ author = {Radon, Johann},
  journal = {Verhandlungen der Königlich-Sächsischen Akademie der Wissenschaften
  zu Leipzig, Mathematisch-Physische Klasse},
  pages = {262--277},
@@ -1298,6 +1463,14 @@ year = {1924},
  number={49-52},
  pages={28},
  year={1902}
+}
+
+@book{minkowski1968geometrie,
+  title={Geometrie der zahlen},
+  author={Minkowski, Hermann},
+  volume={40},
+  year={1968},
+  publisher={Leipzig:Teubner}
 }
 
 @MISC{glacier,
