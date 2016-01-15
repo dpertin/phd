@@ -1,10 +1,9 @@
 \begin{tikzpicture}[y=-1cm,
  every matrix/.style={row sep={-\pgflinewidth,between borders}, column
  sep={-\pgflinewidth,between borders}},
- every node/.style={scale=0.65}] {
+ every node/.style={scale=0.75}] {
 
-\def\lineWidth{1.7}
-\edef\shift{3}
+\edef\shift{6cm}
 
  \matrix(circulant)
  [matrix of math nodes, nodes={draw}] at (0,0)
@@ -15,7 +14,7 @@
      a_2 & a_3 & a_4 & \node[] {\textcolor{red}{a_0}}; & a_1 \\
      a_1 & a_2 & a_3 & a_4 & \node[] {\textcolor{red}{a_0}}; \\
  };
- \begin{scope}[xshift=8cm]
+ \begin{scope}[xshift=\shift]
 	\matrix[nodes={draw, minimum size=.5cm}] (first) at (0,0){
 		\node{}; & \node{}; & \node{}; & \node{}; & \node(m0){}; \\
 		\node[fill=red]{}; & \node[fill=red]{}; & \node[fill=red]{};
@@ -39,7 +38,7 @@
      a_2 & a_3 & a_4 & \node[] {\textcolor{red}{a_0}}; & a_1 \\
      a_1 & a_2 & a_3 & a_4 & \node[] {\textcolor{red}{a_0}}; \\
  };
- \begin{scope}[yshift=-4cm]
+ \begin{scope}[yshift=-3cm]
  \matrix(circulant)
  [matrix of math nodes,nodes={draw} ]
  {
@@ -55,7 +54,7 @@
      a_1 + b_3 & a_2 + b_4 & a_3 + \textcolor{blue}{b_0} &
      a_4 + b_1 & \node[] {\textcolor{red}{a_0} + b_2}; \\
  };
- \begin{scope}[xshift=8cm]
+ \begin{scope}[xshift=\shift]
 	\matrix[nodes={draw, minimum size=.5cm}] (second) at (0,0){
 		\node{}; & \node{}; & \node{}; & \node{}; & \node(m0){}; \\
 		\node[fill=red]{}; & \node[fill=red]{}; & \node[fill=red]{};
@@ -72,7 +71,7 @@
 	\draw (m4.east) node[right]{m=4};
  \end{scope}
  \end{scope}
- \begin{scope}[yshift=-8cm]
+ \begin{scope}[yshift=-\shift]
  \matrix(circulant)
  [matrix of math nodes,nodes={draw}]
  {
@@ -90,8 +89,8 @@
      a_1 + b_3 + c_4 & a_2 + b_4 + \textcolor{green}{c_0} & a_3 + \textcolor{blue}{b_0} + c_1 &
      a_4 + b_1 + c_2 & \node[] {\textcolor{red}{a_0} + b_2 + c_3}; \\
  };
- \begin{scope}[xshift=8cm]
-	\matrix[nodes={draw, minimum size=.5cm}] (third) at (0,0){
+ \begin{scope}[xshift=\shift]
+ \matrix[nodes={draw, minimum size=.5cm}] (third) at (0,0){
 		\node{}; & \node{}; & \node{}; & \node{}; & \node(m0){}; \\
 		\node[fill=red]{}; & \node[fill=red]{}; & \node[fill=red]{};
 		& \node[fill=red]{}; & \node[fill=red](m1){}; \\
@@ -108,11 +107,11 @@
 	\draw (m4.east) node[right]{m=4};
 
 
-	\draw (first.west) node[left=1cm](tt1){\huge$\Leftarrow$};
+	\draw (first.west) node[left=.16cm](tt1){\huge$\Leftarrow$};
 	\draw (tt1.north) node[above]{FRT$^{-1}$};
-	\draw (second.west) node[left=1cm](tt2){\huge$\Leftarrow$};
+	\draw (second.west) node[left=.16cm](tt2){\huge$\Leftarrow$};
 	\draw (tt2.north) node[above]{FRT$^{-1}$};
-	\draw (third.west) node[left=1cm](tt3){\huge$\Leftarrow$};
+	\draw (third.west) node[left=.16cm](tt3){\huge$\Leftarrow$};
 	\draw (tt3.north) node[above]{FRT$^{-1}$};
  \end{scope}
  \end{scope}

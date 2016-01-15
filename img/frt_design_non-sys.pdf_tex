@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{356.21009231bp}%
+    \setlength{\unitlength}{250.57870031bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,67 +48,67 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.59417504)%
+  \begin{picture}(1,0.84464939)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{frt_design_non-sys.pdf}}%
-    \put(0.35091965,0.25997573){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{canal}}}%
-    \put(0.35186574,0.2209482){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{à effacement}}}%
+    \put(0.49884976,0.36956844){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{canal}}}%
+    \put(0.50019469,0.31408886){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{à effacement}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{frt_design_non-sys.pdf}}%
-    \put(0.19980343,0.44565524){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{données}}}%
+    \put(0.28403052,0.63352109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{données}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{frt_design_non-sys.pdf}}%
-    \put(0.2996472,0.39882509){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{parité}}}}%
+    \put(0.4259634,0.5669497){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[b]{\smash{parité}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{frt_design_non-sys.pdf}}%
-    \put(0.03120491,0.39514856){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
+    \put(0.04435934,0.56172333){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{frt_design_non-sys.pdf}}%
-    \put(0.07171147,0.34979609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$r$}}}%
+    \put(0.10194142,0.49725254){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$r$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{frt_design_non-sys.pdf}}%
-    \put(0.07406035,0.44557944){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{k$$}}}%
+    \put(0.10528047,0.63341334){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{k$$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{frt_design_non-sys.pdf}}%
-    \put(0.21355538,0.53313736){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p-1$}}}%
+    \put(0.3035796,0.75788128){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p-1$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{frt_design_non-sys.pdf}}%
-    \put(0.21380925,0.57292567){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
+    \put(0.30394049,0.81444235){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{frt_design_non-sys.pdf}}%
-    \put(0.20739077,0.14915684){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{data+spectres}}}%
+    \put(0.2948163,0.21203389){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{data+spectres}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{frt_design_non-sys.pdf}}%
-    \put(0.21324936,0.05131776){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{spectres}}}%
+    \put(0.30314458,0.07295071){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{spectres}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{frt_design_non-sys.pdf}}%
-    \put(0.44377025,0.12810391){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.47858117,0.12810391){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.51339208,0.12810391){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.548203,0.12810391){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.58301392,0.12810391){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.44377025,0.05572532){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.47858117,0.05572532){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.51339208,0.05572532){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.548203,0.05572532){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.58301392,0.05572532){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.44377025,0.01946852){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.47858117,0.01946852){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.51339208,0.01946852){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.548203,0.01946852){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
-    \put(0.58301392,0.01946852){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.63084149,0.18210609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.68032694,0.18210609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.72981239,0.18210609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.77929784,0.18210609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.8287833,0.18210609){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.63084149,0.07921633){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.68032694,0.07921633){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.72981239,0.07921633){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.77929784,0.07921633){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.8287833,0.07921633){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.63084149,0.02767543){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.68032694,0.02767543){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.72981239,0.02767543){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.77929784,0.02767543){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
+    \put(0.8287833,0.02767543){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{0}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{frt_design_non-sys.pdf}}%
-    \put(0.50569838,0.39236371){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{projections}}}%
+    \put(0.71887541,0.55776452){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{projections}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{frt_design_non-sys.pdf}}%
-    \put(0.03120491,0.09104713){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
+    \put(0.04435934,0.12942803){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{frt_design_non-sys.pdf}}%
-    \put(0.36305657,0.40833178){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT}}}%
+    \put(0.51610299,0.58046393){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{frt_design_non-sys.pdf}}%
-    \put(0.36118822,0.06738699){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT$^{-1}$}}}%
+    \put(0.51344703,0.09579397){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{FRT$^{-1}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{frt_design_non-sys.pdf}}%
-    \put(0.07379898,0.04967544){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$r$}}}%
+    \put(0.10490892,0.07061607){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$r$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{frt_design_non-sys.pdf}}%
-    \put(0.07406035,0.1488698){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$k$}}}%
-    \put(0.1932347,0.36379341){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$ par}}}%
-    \put(0.1932347,0.3323513){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{contrainte}}}%
-    \put(0.44364189,0.16657066){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_0$}}}%
-    \put(0.47819949,0.16670924){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_1$}}}%
-    \put(0.51293391,0.16670924){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_2$}}}%
-    \put(0.54794085,0.16657066){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_3$}}}%
-    \put(0.58298733,0.16670924){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_4$}}}%
-    \put(0.44334146,0.09483194){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_y$}}}%
-    \put(0.47789906,0.09483194){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_1$}}}%
-    \put(0.51263348,0.09483194){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_2$}}}%
-    \put(0.54764042,0.09483194){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_3$}}}%
-    \put(0.58268691,0.09483194){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_4$}}}%
+    \put(0.10528047,0.21162585){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$k$}}}%
+    \put(0.27469276,0.51715043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$ par}}}%
+    \put(0.27469276,0.47245392){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{contrainte}}}%
+    \put(0.630659,0.2367885){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_0$}}}%
+    \put(0.67978435,0.2369855){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_1$}}}%
+    \put(0.72916107,0.2369855){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_2$}}}%
+    \put(0.77892517,0.2367885){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_3$}}}%
+    \put(0.82874549,0.2369855){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_4$}}}%
+    \put(0.63023197,0.1348083){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_y$}}}%
+    \put(0.67935731,0.1348083){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$x_1$}}}%
+    \put(0.72873403,0.1348083){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_2$}}}%
+    \put(0.77849813,0.1348083){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_3$}}}%
+    \put(0.82831845,0.1348083){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$y_4$}}}%
   \end{picture}%
 \endgroup%
