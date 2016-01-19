@@ -9,11 +9,13 @@
 \usepackage{amsmath,amssymb}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+% http://tex.stackexchange.com/questions/74880/algorithmicx-package-comments-on-a-single-line
+    \algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{subcaption}
 \usepackage{url}
-\usepackage{longtable, booktabs}
+\usepackage{longtable, booktabs, multirow}
 \usepackage{makeidx}
 \usepackage{transparent}
 % http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
@@ -24,6 +26,7 @@
 \usepackage{array,booktabs}
 \newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
 \usepackage{colortbl}
+\usepackage{textcomp}
 
 \usepackage{tikz,pgfplots,pgfgantt}
 	\usetikzlibrary{arrows,positioning,matrix}
@@ -124,6 +127,12 @@
 \newcommand\radon{\citeauthor{radon1917akad} }
 \newcommand\matus{\citeauthor{matus1993pami} }
 \newcommand\katz{\citeauthor{katz1978springer} }
+\newcommand\fourier{\textsc{Fourier} }
+\newcommand\RS{\textsc{Reed-Solomon} }
+\newcommand\rs{\citeauthor{radon1960jsiam} }
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\RR{\mathbb{R}}
 
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
