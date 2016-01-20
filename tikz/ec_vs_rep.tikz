@@ -2,8 +2,8 @@
 \tikzstyle{every node}=[font=\huge]
 \begin{axis}[
     compat=newest, %Better label placement
-    xlabel = {Fault-tolerance},
-    ylabel = {Storage cost factor $f$},
+    xlabel = {Tolérance aux pannes},
+    ylabel = {Facteur de coût des données encodées $f$},
     width=1.5\textwidth,
     height=\textwidth,
     xticklabels={ 1, 2, 3, 4 },
@@ -67,7 +67,7 @@
         (4, 5.0)
     } node[pos=1] (endofplotrep) {};
     \node[right=1em]
-            at (endofplotrep) {Replication};
+            at (endofplotrep) {Réplication};
 
     %\legend{no overhead, MDS erasure code, Mojette erasure code, Replication}
 

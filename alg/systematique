@@ -1,0 +1,59 @@
+
+\begin{algorithm}
+    \caption{Algorithme d'inversion systématique, modification de \cite{normand2006dgci}}
+    \label{alg.systematique}
+    \begin{algorithmic}[1]
+
+    \Require $\text{Proj}(P_i,1,b)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
+    \Require $\text{Eff}(i)$ trié par ordre décroissant, avec $i \in \ZZ_e$
+
+    \LineComment Calcule $S-$, $S+$ et $S$
+    \LineComment \cref{eqn.sp,eqn.sm}
+    \State $S_{\text{minus}} \leftarrow S_{\text{plus}} \leftarrow 0$ 
+    \For{$i=0 \text{ à } Q-2$}
+        \State $S_{\text{minus}} \leftarrow S_{\text{minus}} + \text{max}(0, -p_i)$
+        \State $S_{\text{plus}} \leftarrow S_{\text{plus}} + \text{max}(0, p_i)$
+    \EndFor
+    \State $S \leftarrow S_{\text{minus}} - S_{\text{plus}}$
+
+
+    \LineComment Calcule la valeur de l'offset de la dernière ligne à reconstruire \label{alg.offsets}
+    \LineComment \cref{eqn.offr}
+    \State offset$(e-1) \leftarrow \text{max}(\text{max}(0,-p_r)
+        + S_{\text{minus}}, \text{max}(0, p_r) + S_{\text{plus}})$
+
+    \LineComment Calcule la valeur de l'offset les autres
+    \For{$i \leftarrow (e - 2) \text{ à } 0$}
+        \State $\text{offset}(i) \leftarrow \text{offset}(i+1) + p_{i+1}$
+        \LineComment Mise à jour des offsets des lignes inférieures
+
+        \For{$j \leftarrow (i + 1) \text{ à } e-1$}
+            \State $\text{offset}(j) \leftarrow \text{offset}(j) -
+            \left((\text{Eff}(i+1)-\text{Eff}(i)-1) \times p_{i+1}\right)$
+
+        \EndFor
+
+    \EndFor
+
+    \LineComment Détermination du plus petit offset
+    \State $\text{offset}_{\text{min}} = \text{offset}(0)$
+    \For{$i \leftarrow 1 \text{ à } e-1$}
+        \If{$\text{offset}_{\text{min}} > \text{offset}(i)$}
+            \State $\text{offset}_{\text{min}} = \text{offset}(i)$
+        \EndIf
+    \EndFor
+
+    \For{$k \leftarrow -\text{max}(\text{offset}(0),\text{offset}(e)) \text{ à } (P - \text{offset}_{\text{min}}-1)$}
+        \For{$l \leftarrow 0 \text{ à } \text{offset}(e - 1)$}
+            \State $y=\text{Eff}(l)$
+            \LineComment Détermination de la valeur du pixel \label{alg.pxl}
+            \LineComment \cref{eqn.sys_pxl}
+            \State $f(k,l) \leftarrow \text{Proj}_f(p_i, q_i, k - (p_i \times
+            y)) - \text{Proj}_{\tilde{f}}(p_i, q_i, k - (p_i \times y))$
+        \EndFor
+    \EndFor
+    
+    \end{algorithmic}
+\end{algorithm}
+
+

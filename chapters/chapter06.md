@@ -3,7 +3,6 @@
 
 \label{sec.reprojection}
 
-
 # Problème de génération de mots encodés {#gen_redondance}
 
 

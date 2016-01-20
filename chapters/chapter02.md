@@ -595,6 +595,7 @@ algorithmes de reconstruction efficaces qui n'ont jamais été définis en théo
 des codes.
 
 
+
 # Code optimal par transformée de \radon finie {#sec.frt}
 
 Nous avons vu dans la partie précédente que la transformée de \radon
@@ -625,7 +626,6 @@ fournir un code à effacement MDS. Nous verrons par ailleurs que
 
 
 ## Transformée de \radon finie {#sec.frt-intro}
-
 
 ### Transformée de \radon finie directe
 
