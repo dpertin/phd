@@ -4,7 +4,11 @@ effacement}
 
 
 
+
+
 # Introduction 
+
+# Redondance dans les systèmes de stockage
 
 Dans les systèmes de stockage, les codes à effacement sont connus pour fournir
 une alternative efficace aux techniques de réplication. Ils permettent
@@ -67,7 +71,7 @@ Cette méthode est alors intéressante quand le besoin de performances est plus
 important que la capacité de stockage des disques.
 
 
-### Terminologie en RAID-6 
+## Terminologie en RAID-6 
 
 \begin{figure}[t]
     \centering
@@ -96,7 +100,7 @@ bits). Les codes RAID-6 correspondent à une famille de codes généralement MDS
 de paramètres $(n=k+2,k)$.
 
 
-### Métriques
+## Métriques
 
 Le contenu du premier disque de parité $P$ est toujours calculé de la même
 manière. Les $w$ blocs qu'il contient correspondent à des informations de
@@ -126,7 +130,7 @@ performances en reconstruisant l'information depuis le disque $Q$ plutôt que
 $P$.
 
 
-# Comparaison des codes RAID-6
+# RAID-6 Codes
 
 Bien que les codes populaires de \rs fournissent un taux de codage voulu, les
 *Array* codes fournissent de meilleures performances. Ces derniers ne sont
@@ -326,19 +330,7 @@ disques sont en panne.
 
 
 
-# Redondance dans les systèmes de stockage distribués
-
-
-
-# Matrice de disques, RAID
-
-
-
-# Array Codes
-
-
-
-# Évaluation
+% # Évaluation
 
 
 % ça poutre !
