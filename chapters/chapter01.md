@@ -1,5 +1,6 @@
 
 \chapter{Principe et évaluation des codes à effacement}
+\label{sec.chap1}
 
 # Notion de théorie des codes
 
