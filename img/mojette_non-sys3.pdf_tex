@@ -1,0 +1,117 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'mojette_non-sys3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{585.53696406bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.57462648)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{mojette_non-sys3.pdf}}%
+    \put(0.23102235,0.05076094){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(0,1)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{mojette_non-sys3.pdf}}%
+    \put(0.05378653,0.20161523){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(-2,1)$}}}%
+    \put(0.08418964,0.40308895){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$0$}}}%
+    \put(0.11224983,0.45941921){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.07022927,0.37516887){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.0421133,0.31931435){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.12633779,0.4874954){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.05683795,0.34763171){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0.09841754,0.43118699){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$8$}}}%
+    \put(0.42271906,0.00180347){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.494314,0.00180347){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$10$}}}%
+    \put(0.35174704,0.00180347){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$9$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{mojette_non-sys3.pdf}}%
+    \put(0.14109087,0.23615817){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(-1,1)$}}}%
+    \put(0.31634701,0.48937327){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.24008104,0.41814032){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.20741304,0.38534991){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.17201251,0.34981312){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.27841475,0.45382263){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$6$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{mojette_non-sys3.pdf}}%
+    \put(0.68191457,0.23615817){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(1,1)$}}}%
+    \put(0.56784993,0.45383647){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.5324489,0.48935942){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.6005658,0.41831352){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$8$}}}%
+    \put(0.63865717,0.38007188){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$7$}}}%
+    \put(0.6716232,0.34454893){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{mojette_non-sys3.pdf}}%
+    \put(0.80909701,0.20161523){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(2,1)$}}}%
+    \put(0.71751757,0.48702733){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.80161456,0.31915833){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.73160554,0.45941921){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.74543783,0.43118699){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$6$}}}%
+    \put(0.75966589,0.40308895){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$0$}}}%
+    \put(0.7736261,0.37516887){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$9$}}}%
+    \put(0.78701742,0.34763171){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{mojette_non-sys3.pdf}}%
+    \put(0.9101214,0.17428988){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$(3,1)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{mojette_non-sys3.pdf}}%
+    \put(0.84964206,0.47672245){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.85698491,0.45569733){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.87901314,0.39262171){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$0$}}}%
+    \put(0.87167045,0.41364692){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0.90838438,0.30852097){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.90104153,0.32954618){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0.89369868,0.3505713){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.88635599,0.37159651){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$5$}}}%
+    \put(0.8643276,0.43467212){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{mojette_non-sys3.pdf}}%
+    \put(0.35179557,0.30610832){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$3$}}}%
+    \put(0.42302376,0.30612233){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.42302376,0.41542372){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$P$}}}%
+    \put(0.24216864,0.2376647){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$Q$}}}%
+    \put(0.49394691,0.16427537){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$1$}}}%
+    \put(0.49359367,0.30612233){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0.4223935,0.16446233){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0.35147002,0.23538581){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$2$}}}%
+    \put(0.42276742,0.23518501){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$0$}}}%
+    \put(0.49355214,0.23499805){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$5$}}}%
+    \put(0.35174704,0.16427537){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$4$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{mojette_non-sys3.pdf}}%
+    \put(0.92895444,0.00855442){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\vec{u}$}}}%
+    \put(0.83992508,0.09962301){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\vec{v}$}}}%
+  \end{picture}%
+\endgroup%
