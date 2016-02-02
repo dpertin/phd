@@ -3,7 +3,7 @@
 
 % distribués par codage à effacement}
 
-\chapter{Les codes à effacement dans le stockage distribué}
+\chapter{Les codes à effacement dans le stockage distribué} {#sec.chap4}
 
 \minitoc
 
@@ -504,7 +504,7 @@ de la grille, et dont le nombre de dépendances est réduit.
 
 
 
-## Bilan et discussion
+\subsection*{Bilan et discussion}
 
 \begin{table}
     \centering
@@ -777,6 +777,18 @@ implémentations de notre code à effacement Mojette : une première version
 non-systématique, que l'on appellera *NS-Mojette* dans la suite de la
 rédaction, puis une implémentation systématique que l'on désignera simplement
 par *Mojette*.
+
+### Implémentation des codes \rs
+
+ISA-L est une bibliothèques *open-source* développée par
+\textcite{intel2015isal} fournissant une implémentation des codes de \rs. Dans
+la limite des paramètres utilisés dans notre expérimentation, cette
+implémentation fournit de meilleurs résultats que d'autres bibliothèques
+testées comme \citetitle{openfec} et \textsc{Jerasure}
+\cite{openfec,plank2014jerasure}. En particulier, cette implémentation utilise
+le polynôme irréductible $x^8+x^4+x^3+x^2+1$.
+des instructions spécifiques aux architectures *x86* afin de réaliser
+efficacement les nécessaires dans les codes de \rs \cite{gueron2014intel}.
 
 ## Configuration de l'expérimentation {#sec.expe}
 
@@ -1061,12 +1073,31 @@ l'implémentation systématique des codes de Reed-Solomon.
 
 \section*{Conclusion}
 
+Nous avons vu dans ce chapitre une évaluation théorique des performances du
+code à effacement Mojette sous sa forme systématique, dans le contexte du
+stockage distribué. Pour cela, nous avons défini trois métriques : (i)
+le coût d'encodage; (ii) le coût de mise à jour; (iii) le coût de décodage. En
+particulier, nous avons montré que le code à effacement Mojette nécessite moins
+d'opérations dans ces trois métriques, comparé aux Array codes et codes de \rs,
+dans un contexte RAID-6 où la tolérance aux pannes est limitée à deux (i.e.\
+paramètres de code $(k+2,k)$). Par la suite, nous avons étendu le même constat
+pour des paramètres de code $(n,k)$ arbitraires, en comparant les codes Mojette
+et \rs. Dans une dernière section, nous avons évalué par la pratique les
+performances de notre implémentation. En particulier, notre expérimentation a
+permis de montrer le gain significatif de notre nouvelle mise en œuvre du code
+systématique par rapport à la version non-systématique. De plus, dans les
+cadres de notre expérimentation, notre implémentation obtient de meilleurs
+résultats que l'implémentation des codes de \rs contenu dans la bibliothèque
+développée par \textcite{intel2015isal}.
 
+Rappelons cependant que les excellentes performances obtenues par le code à
+effacement Mojette nécessite davantage d'information encodée que ce qui est
+produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
+\cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale en fonction
+de la taille des blocs étudiés.
 
-
-
-% # Évaluation
-
-
-% ça poutre !
-
+Ce chapitre a permis de mettre en avant le fait que le code a effacement
+Mojette est suffisamment efficace pour ne pas former un goulot d'étranglement
+dans la chaîne de transmission des données. Dans le chapitre suivant, nous
+allons nous intéresser à l'intégration de ce code au sein d'un système de
+stockage distribué.
