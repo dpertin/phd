@@ -158,9 +158,9 @@ performances des codes de \rs. Nous verrons dans la suite ces deux versions.
 #### Vandermonde-RS
 
 Les codes de \rs sont basés sur une approche algrébrique. Ainsi le processus
-d'encodage est déterminé par une matrice d'encodage. Les matrices de \vand $(n
+d'encodage est déterminé par une matrice d'encodage. Les matrices de \vander $(n
 \times k)$ sont adaptées pour l'application des codes à effacement puisque
-n'importe quelle sous-matrice carrée d'une matrice de \vand est inversible.
+n'importe quelle sous-matrice carrée d'une matrice de \vander est inversible.
 C'est en particulier cette caractéristique des matrices que nous utiliserons
 pour reconstruire l'information. Plus précisément, quand de l'information est
 impactée, les lignes endommagées sont supprimés et l'inverse de la matrice dont

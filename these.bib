@@ -9,6 +9,15 @@
 @string{proc  = {Proc.}}
 @string{vcip  = {VCIP}}
 
+
+@phdthesis{dersarkissian2015tomographie,
+  title={Tomographie et g{\'e}om{\'e}trie discr{\`e}tes avec la transform{\'e}e
+  Mojette},
+  author={Der Sarkissian, Henri},
+  year={2015},
+  school={Universit{\'e} de Nantes}
+}
+
 @article{pertin2015corr,
   author    = {Pertin, Dimitri and F{\'{e}}ron, Didier and Van Kempen,
   Alexandre and Parrein, Beno{\^{\i}}t},
@@ -152,6 +161,8 @@
   Author = {Sathiamoorthy, Maheswaran and Asteris, Megasthenis and
   Papailiopoulos, Dimitris and Dimakis, Alexandros G. and Vadali, Ramkumar and
   Chen, Scott and Borthakur, Dhruba},
+  Booktitle = {Proceedings of the 39th international conference on Very Large
+  Data Bases},
   Year = {2013},
   Month = {3},
   Number = {5},
@@ -163,7 +174,7 @@
   Url = {http://dl.acm.org/citation.cfm?id=2535573.2488339},
   Acmid = {2488339},
   Issue_date = {March 2013},
-  Numpages = {12},
+  pagetotal = {12},
 }
 
 @book{gregg2013performance,
@@ -173,37 +184,8 @@
  edition = {1st},
  publisher = {Prentice Hall Press},
  address = {Upper Saddle River, NJ, USA},
- isbn = {0133390098, 9780133390094},
+ isbn = {978-0133390094},
 }
-
-@InProceedings{sathiamoorthy2013vldb,
-  Title = {{XOR}ing Elephants: Novel Erasure Codes for {B}ig {D}ata},
-  Author = {Sathiamoorthy, Maheswaran and Asteris, Megasthenis and
-  Papailiopoulos, Dimitris and Dimakis, Alexandros G. and Vadali, Ramkumar and
-  Chen, Scott and Borthakur, Dhruba},
-  Year = {2013},
-  Month = {3},
-  Number = {5},
-  Pages = {325--336},
-  Publisher = {VLDB Endowment},
-  Volume = {6},
-  Journal = {Proceedings of the VLDB Endowment},
-  ISSN = {2150-8097},
-  Url = {http://dl.acm.org/citation.cfm?id=2535573.2488339},
-  Acmid = {2488339},
-  Issue_date = {March 2013},
-  Numpages = {12},
-}
-
-@book{gregg2013performance,
- author = {Gregg, Brendan},
- title = {Systems Performance: Enterprise and the {C}loud},
- year = {2013},
- edition = {1st},
- publisher = {Prentice Hall Press},
- address = {Upper Saddle River, NJ, USA},
- isbn = {0133390098, 9780133390094},
-} 
 
 @book{oggier2013survey,
  author = {Oggier, Frederique and Datta, Anwitaman},
@@ -229,7 +211,7 @@
   issn        = {1553-3077},
   url         = {http://doi.acm.org/10.1145/2501620.2501623},
   articleno   = {9},
-  numpages    = {32},
+  pagetotal    = {32},
   issue_date  = {August 2013},
   doi         = {10.1145/2501620.2501623},
   acmid       = {2501623},
@@ -237,27 +219,15 @@
 
 
 @MISC{pertin2013wos,
-  title      = {{RozoFS}: The scalable distributed file system based on the
+  title = {{RozoFS}: The scalable distributed file system based on the
   {M}ojette erasure coding},
-  author     = {Pertin, Dimitri and David, Sylvain and F\'eron, Didier and
+  author = {Pertin, Dimitri and David, Sylvain and F\'eron, Didier and
   \'Evenou, Pierre and Normand Nicolas and Parrein, Beno\^it},
-  howpublished       = {Poster présenté lors du troisième Workshop on Storage
-  \& Cloud Computing, WOS 3},
-  year       = {2013},
-  month      = {11},
-  location   = {Technicolor Rennes, France},
-}
-
-@INPROCEEDINGS{sathiamoorthy2013xoring,
-  title      = {{XOR}ing elephants: Novel erasure codes for big data},
-  author     = {Sathiamoorthy, Maheswaran and Asteris, Megasthenis and
-  Papailiopoulos, Dimitris and Dimakis, Alexandros G and Vadali, Ramkumar and
-  Chen, Scott and Borthakur, Dhruba},
-  booktitle  = {Proceedings of the 39th international conference on Very Large Data
-    Bases},
-  pages      = {325--336},
-  year       = {2013},
-  organization  = {VLDB Endowment},
+  howpublished = {Poster présenté lors du troisième Workshop on Storage \&
+  Cloud Computing, WOS 3},
+  year = {2013},
+  month = {11},
+  location = {Technicolor Rennes, France},
 }
 
 @inproceedings{rashmi2013hotstorage,
@@ -270,12 +240,11 @@
  and File Systems},
  series = {HotStorage'13},
  year = {2013},
- pages = {8--8},
  publisher = {USENIX Association},
  address = {Berkeley, CA, USA},
  url = {http://dl.acm.org/citation.cfm?id=2534861.2534869},
  location = {San Jose, CA},
- numpages = {1},
+ pagetotal = {8},
  acmid = {2534869},
 }
 
@@ -286,11 +255,35 @@
  volume = {63},
  number = {9},
  year = {2014},
- pages = {2259-2272},
+ pages = {2259--2272},
  publisher = {IEEE Computer Society},
  address = {Los Alamitos, CA, USA},
  issn = {0018-9340},
  doi = {10.1109/TC.2013.23},
+}
+
+@misc{david2013patent,
+  title={Proc{\'e}d{\'e} et appareil permettant de reconstruire un bloc de
+  donn{\'e}es},
+  author={David, Sylvain and Evenou, Pierre and Guedon, JeanPierre and Normand,
+  Nicolas and Parrein, Benoît},
+  year={2015},
+  month=apr # "~23",
+  publisher={Google Patents},
+  note={WO Patent App. PCT/EP2014/071,310},
+  url={http://www.google.com/patents/WO2015055450A1?cl=fr},
+}
+
+@INPROCEEDINGS{parrein2012isccsp,
+  author={Parrein, Benoît and Normand, Nicolas and Ghareeb, Majd and
+  D'Ippolito, Giulio and Battisti, Federica},
+  title={Finite {R}adon coding for content delivery over hybrid client-server
+  and {P2P} architecture},
+  booktitle={5th International Symposium on Communications Control and Signal
+  Processing (ISCCSP)},
+  year={2012},
+  month={May},
+  doi={10.1109/ISCCSP.2012.6217794},
 }
 
 @INPROCEEDINGS{zhang2012nas,
@@ -306,14 +299,14 @@
 }
 
 @inproceedings{papailiopoulos2012locally,
-  author       = {Papailiopoulos, D.S. and Dimakis, Alexandros G.},
-  booktitle    = {IEEE International Symposium on Information Theory
-  Proceedings (ISIT)},
-  title        = {Locally repairable codes},
-  year         = {2012},
-  pages        = {2771--2775},
-  ISSN         = {2157-8095},
-  doi          = {10.1109/ISIT.2012.6284027},
+  author = {Papailiopoulos, D.S. and Dimakis, Alexandros G.},
+  booktitle = {IEEE International Symposium on Information Theory Proceedings
+  (ISIT)},
+  title = {Locally repairable codes},
+  year = {2012},
+  pages = {2771--2775},
+  ISSN = {2157-8095},
+  doi = {10.1109/ISIT.2012.6284027},
 }
 
 @ARTICLE{chandra2012tip,
@@ -367,7 +360,7 @@
  month={8},
  volume={57},
  number={8},
- pages={5227-5239},
+ pages={5227--5239},
  ISSN={0018-9448},
  doi={10.1109/TIT.2011.2159049},
 }
@@ -407,7 +400,7 @@
  doi = {10.1145/2043556.2043571},
  acmid = {2043571},
  location = {Cascais, Portugal},
- numpages = {15},
+ pagetotal = {15},
 }
 
 @incollection{svalbe2011dgcia,
@@ -462,10 +455,8 @@
   year        = {2010},
   publisher   = {USENIX Association},
   address     = {Berkeley, CA, USA},
-  pages       = {3--3},
   url         = {http://dl.acm.org/citation.cfm?id = 1855511.1855514},
   location    = {San Jose, California},
-  numpages    = {1},
   acmid       = {1855514},
 }
 
@@ -510,7 +501,7 @@
  url = {http://dl.acm.org/citation.cfm?id=1924943.1924948},
  acmid = {1924948},
  location = {Vancouver, BC, Canada},
- numpages = {7},
+ pagetotal = {7},
 }
 
 @INPROCEEDINGS{lacan2010ccnc,
@@ -520,7 +511,7 @@
  title={{FNT}-Based {R}eed-{S}olomon Erasure Codes},
  year={2010},
  month={1},
- pages={1--5},
+ pagetotal={1--5},
  doi={10.1109/CCNC.2010.5421749}
 }
 
@@ -531,7 +522,7 @@
  Technologies (MSST)},
  year={2010},
  month={5},
- pages={1--10},
+ pagetotal={10},
  doi={10.1109/MSST.2010.5496972}
 }
 
@@ -543,7 +534,7 @@
  Conference (WCNC)},
  year={2010},
  month= {4},
- pages={1--6},
+ pagetotal={6},
  doi={10.1109/WCNC.2010.5506385},
  ISSN={1525-3511}
 }
@@ -585,7 +576,7 @@
   pages       = {253--265},
   url        = {http://dl.acm.org/citation.cfm?id = 1525908.1525927},
   location    = {San Francisco, California},
-  numpages    = {13},
+  pagetotal    = {13},
   acmid       = {1525927},
 }
 
@@ -593,11 +584,11 @@
   author       = {Gu{\'e}don, JeanPierre},
   title        = {{The {M}ojette transform. Theory and applications}},
   publisher    = {ISTE-WILEY},
-  pages        = {274},
   year         = {2009},
   month        = {1},
   url          = {http://hal.archives-ouvertes.fr/hal-00367681},
   ISBN         = {9781848210806},
+  pagetotal    = {274},
   language     = {Anglais},
   affiliation  = {Institut de Recherche en Communications et en
   Cybern{\'e}tique de Nantes - IRCCyN},
@@ -614,7 +605,6 @@
   month        = {1},
   url          = {http://hal.archives-ouvertes.fr/hal-00367681},
   ISBN         = {9781848210806},
-  language     = {Anglais},
   affiliation  = {Institut de Recherche en Communications et en
   Cybern{\'e}tique de Nantes - IRCCyN},
   hal_id       = {hal-00367681},
@@ -632,7 +622,7 @@
   isbn      = {978-1-60558-883-4},
   url       = {http://doi.acm.org/10.1145/1713072.1713075},
   location   = {Portland, Oregon},
-  numpages   = {5},
+  pagetotal  = {5},
   doi        = {10.1145/1713072.1713075},
   acmid     = {1713075},
 }
@@ -656,10 +646,10 @@
  latin squares},
  booktitle={19th International Conference on Pattern Recognition},
  year={2008},
- pages={1--4},
  month={12},
  ISSN={1051-4651},
  doi={10.1109/ICPR.2008.4761615},
+ totalpage={4},
 }
 
 @incollection{chandra2008dgci,
@@ -688,7 +678,7 @@
  month={7},
  volume={57},
  number={7},
- pages={889-901},
+ pages={889--901},
  doi={10.1109/TC.2007.70830},
  ISSN={0018-9340}
 }
@@ -718,7 +708,7 @@
   issn  = {0001-0782},
   url  = {http://doi.acm.org/10.1145/1327452.1327492},
   issue_date  = {January 2008},
-  numpages  = {7},
+  pagetotal  = {7},
   doi  = {10.1145/1327452.1327492},
   acmid  = {1327492},
 }
@@ -729,11 +719,11 @@
   NOTE = {Trait{\'e} IC2, s{\'e}rie signal et image. ISBN 13 : 978-2-7462-1643-3},
   EDITOR = {David Coeurjolly, Annick Montanvert, Jean-Marc Chassery},
   PUBLISHER = {{Herm{\`e}s}},
-  PAGES = {416},
   YEAR = {2007},
   MONTH = {9},
   URL = {https://hal.archives-ouvertes.fr/hal-00175341},
   KEYWORDS = {Topologie ; Arithm{\'e}tique ; G{\'e}om{\'e}trie},
+  pagetotal = {416},
   HAL_ID = {hal-00175341},
   HAL_VERSION = {v1},
   HAL_LOCAL_REFERENCE = {D{\'e}partement Images et Signal},
@@ -746,7 +736,6 @@
   NOTE = {Trait{\'e} IC2, s{\'e}rie signal et image. ISBN 13 : 978-2-7462-1643-3},
   EDITOR = {David Coeurjolly, Annick Montanvert, Jean-Marc Chassery},
   PUBLISHER = {{Herm{\`e}s}},
-  PAGES = {416},
   YEAR = {2007},
   MONTH = {9},
   chapter={1},
@@ -773,7 +762,7 @@
  keywords = {MTTDL, disk drive reliability, latent sector errors},
  acmid = {1254917},
  location = {San Diego, California, USA},
- numpages = {12},
+ pagetotal = {12},
  doi = {10.1145/1254882.1254917},
 }
 
@@ -799,7 +788,7 @@
   year={2007},
   publisher={Courier Dover Publications},
   ISBN={9780486462417},
-  numpage={295},
+  pagetotal={295},
 }
 
 @incollection{deans2007ltranslation,
@@ -819,7 +808,7 @@
   journal = {Advances in Imaging and Electron Physics},
   year = {2006},
   volume = {139},
-  pages = {75-177},
+  pages = {75--177},
   doi = {10.1016/S1076-5670(05)39002-1}
 }
 
@@ -860,7 +849,7 @@
   address  = {Berkeley, CA, USA},
   isbn  = {1-931971-47-1},
   url = {http://dl.acm.org/citation.cfm?id = 1298455.1298485},
-  numpages  = {14},
+  pagetotal  = {14},
   location  = {Seattle, Washington},
   acmid  = {1298485},
 }
@@ -888,32 +877,22 @@
  publisher = {IEEE Computer Society},
  address = {Washington, DC, USA},
  isbn = {0-7695-2607-1},
- numpages = {10},
+ pagetotal = {10},
  doi = {10.1109/DSN.2006.5},
  acmid = {1135705},
 }
 
-@proceedings{serviere2005spie,
+@inproceedings{servieres2005spie,
  author = {Servieres, Myriam and Idier, Jérôme and Normand, Nicolas and Guedon,
  JeanPierre},
  title = {Conjugate gradient {M}ojette reconstruction},
- journal = {Proceedings of SPIE},
+ booktitle={Proceedings of SPIE},
+ organization={Medical Imaging 2005: Image Processing, 2067},
  volume = {5747},
  pages = {2067--2074},
  year = {2005},
- URL = { http://dx.doi.org/10.1117/12.593399},
- doi = {10.1117/12.593399},
-}
-
-@proceedings{serviere2005spie,
- author = {Servieres, Myriam and Idier, Jérôme and Normand, Nicolas and Guedon,
- JeanPierre},
- title = {Conjugate gradient {M}ojette reconstruction},
- journal = {Proc. SPIE},
- volume = {5747},
- pages = {2067-2074},
- year = {2005},
- URL = { http://dx.doi.org/10.1117/12.593399},
+ month = {5},
+ URL = {http://dx.doi.org/10.1117/12.593399},
  doi = {10.1117/12.593399},
 }
 
@@ -957,7 +936,7 @@
  isbn = {1-59593-079-5},
  url = {http://doi.acm.org/10.1145/1095810.1095830},
  location = {Brighton, United Kingdom},
- numpages = {15},
+ pagetotal = {15},
  doi = {10.1145/1095810.1095830},
  acmid = {1095830},
 }
@@ -1003,9 +982,9 @@
   title={Row-diagonal parity for double disk failure correction},
   booktitle={Proceedings of the 3rd USENIX Conference on File and Storage
   Technologies},
-  pages={1--14},
   year={2004},
   url = {http://static.usenix.org/event/fast04/tech/corbett/corbett_html/},
+  totalpage={14},
 }
 
 @article{svalbe2003endm,
@@ -1057,7 +1036,7 @@
  isbn = {1-58113-757-5},
  doi = {10.1145/945445.945450},
  location = {Bolton Landing, NY, USA},
- numpages = {15},
+ pagetotal = {15},
  acmid = {945450},
 }
 
@@ -1088,7 +1067,7 @@
   url = {http://dl.acm.org/citation.cfm?id = 1275708.1275710},
   issn  = {1069-2509},
   issue_date  = {August 2001},
-  numpages  = {10},
+  pagetotal  = {10},
   acmid  = {1275710},
 }
 
@@ -1104,7 +1083,7 @@
  address = {London, UK},
  url = {http://dl.acm.org/citation.cfm?id=646334.687814},
  isbn = {3-540-44179-4},
- numpages = {11},
+ pagetotal = {11},
  acmid = {687814},
 }
 
@@ -1157,14 +1136,14 @@ ISSN={0018-9448},
 }
 
 @INPROCEEDINGS{elerath2000mtbf,
-author={Elerath, Jon G.},
-title={Specifying reliability in the disk drive industry: No more {MTBF}'s},
-booktitle={Annual Reliability and Maintainability Symposium},
-year={2000},
-month={1},
-pages={194--199},
-doi={10.1109/RAMS.2000.816306},
-ISSN={0149-144X},
+  author={Elerath, Jon G.},
+  title={Specifying reliability in the disk drive industry: No more {MTBF}'s},
+  booktitle={Annual Reliability and Maintainability Symposium},
+  year={2000},
+  month={1},
+  pages={194--199},
+  ISSN={0149-144X},
+  doi={10.1109/RAMS.2000.816306},
 }
 
 @inproceedings{normand1999gretsi,
@@ -1246,8 +1225,19 @@ ISSN={0149-144X},
  keywords = {FEC, erasure codes, reliable multicast},
  doi = {10.1145/263876.263881},
  acmid = {263881},
- numpages = {13},
+ pagetotal = {13},
  issue_date = {Apr. 1997},
+}
+
+@techreport{rizzo1997tech,
+  title={On the feasibility of software {FEC}},
+  author={Rizzo, Luigi},
+  number={LR-970131},
+  year={1997},
+  month={1},
+  institution={Dipartimento di Ingegneria dell'Informazione},
+  address={Università di Pisa, Italy},
+  url = {http://www.iet.unipi.it/~luigi/softfec.ps},
 }
 
 @article{sloane1996siam,
@@ -1267,11 +1257,12 @@ ISSN={0149-144X},
   Olivier and Barba, Dominique},
   title = {Controlled redundancy for image coding and high-speed transmission},
   address = {Orlando, FL},
-  booktitle = proc # { } # vcip # { 1996},
-  organization = spie,
+  booktitle={Proceedings of SPIE},
+  organization = {Visual Communications and Image Processing'96},
   pages = {1070--1081},
   volume = {2727},
-  date = {1996-03},
+  year = {1996},
+  month = {3},
   doi = {10.1117/12.233180},
 }
 
@@ -1288,7 +1279,7 @@ ISSN={0149-144X},
  isbn = {0-89791-790-1},
  url = {http://doi.acm.org/10.1145/248156.248169},
  location = {Palo Alto, California, USA},
- numpages = {11},
+ pagetotal = {11},
  doi = {10.1145/248156.248169},
  acmid = {248169},
 }
@@ -1322,14 +1313,15 @@ ISSN={0149-144X},
   priority  = {2},
 }
 
-@INPROCEEDINGS{guedon1995vcip,
+@inproceedings{guedon1995vcip,
   author = {Guedon, JeanPierre V. and Barba, Dominique and Burger, Nicole},
   title = {Psychovisual image coding via an exact discrete {R}adon transform},
-  journal = {SPIE},
+  booktitle={Proceedings of SPIE},
+  organization = {Visual Communications and Image Processing '95},
   volume = {2501},
   pages = {562--572},
   year = {1995},
-  URL = { http://dx.doi.org/10.1117/12.206765},
+  month = {4},
   doi = {10.1117/12.206765},
 }
 
@@ -1383,7 +1375,7 @@ ISSN={0149-144X},
  address = {New York, NY, USA},
  issn = {0004-5411},
  url = {http://doi.acm.org/10.1145/62044.62050},
- numpages = {14},
+ pagetotal = {14},
  doi = {10.1145/62044.62050},
  acmid = {62050},
  issue_date = {April 1989},
@@ -1405,7 +1397,7 @@ ISSN={0149-144X},
  doi = {10.1145/971701.50214},
  acmid = {50214},
  issue_date = {June 1988},
- numpages = {8},
+ pagetotal = {8},
 }
 
 @incollection{krajewski1985byte,
@@ -1435,7 +1427,7 @@ ISSN={0149-144X},
  issn = {0018-9162},
  url = {http://dx.doi.org/10.1109/MC.1984.1658955},
  issue_date = {October 1984},
- numpages = {17},
+ pagetotal = {17},
  doi = {10.1109/MC.1984.1658955},
  acmid = {1998},
 }
@@ -1475,7 +1467,6 @@ ISSN={0149-144X},
   isbn = { 978-3-642-45507-0 },
   issn  = { 0387090878 },
   doi = { 10.1007/978-3-642-45507-0 },
-  language  = { English },
 }
 
 @article{logan1975dmj,
@@ -1491,6 +1482,19 @@ ISSN={0149-144X},
  year = "1975",
  url = "http://dx.doi.org/10.1215/S0012-7094-75-04257-X",
  doi = "10.1215/S0012-7094-75-04257-X",
+}
+
+@ARTICLE{gordon1974ns,
+author={Gordon, Richard},
+title={A tutorial on {ART} ({A}lgebraic {R}econstruction {T}echniques)},
+journal={IEEE Transactions on Nuclear Science},
+year={1974},
+volume={21},
+number={3},
+pages={78--93},
+month={6},
+ISSN={0018-9499},
+doi={10.1109/TNS.1974.6499238},
 }
 
 @article{hounsfield1973bjr,
@@ -1519,7 +1523,7 @@ ISSN={0149-144X},
  address = {New York, NY, USA},
  issn = {0004-5411},
  url = {http://doi.acm.org/10.1145/321556.321570},
- numpages = {15},
+ pagetotal = {15},
  doi = {10.1145/321556.321570},
  acmid = {321570},
 }
@@ -1549,6 +1553,16 @@ ISSN={0149-144X},
   month={6},
   ISSN={0018-9278},
   doi={10.1109/TAU.1969.1162036},
+}
+
+@techreport{turner1966inverse,
+  title={Inverse of the {V}andermonde matrix with applications},
+  author={Turner, Richard L.},
+  number={TN D-3547},
+  year={1966},
+  institution={NASA Glenn Research Center at Lewis Field},
+  address={Cleveland, Ohio, United States of America},
+  month={8},
 }
 
 @article{cormack1963jap,
@@ -1613,16 +1627,27 @@ ISSN={0149-144X},
   doi={10.1071/PH560198},
 }
 
+@article{bracewell1954ajp,
+  author = {Bracewell, Ronald N. and Roberts, James A.},
+  title = {Aerial Smoothing in Radio Astronomy},
+  journal = {Australian Journal of Physics},
+  year = {1954},
+  month = {1},
+  volume = {7},
+  number = {4},
+  pages = {615--640},
+  publisher = {CSIRO},
+  doi = {10.1071/PH540615},
+}
+
 @article{franel1924gdwg,
  author = {Franel, Jérôme},
  title = {Les suites de {F}arey et le problème des nombres premiers},
  journal = {Nachrichten von der {G}esellschaft der {W}issenschaften zu
  {G}öttingen, {M}athematisch-{P}hysikalische {K}lasse},
  pages = {198--201},
- volume = {1924},
  year = {1924},
  url = {http://eudml.org/doc/59156},
- language = {fre},
 }
 
 @article{radon1917akad,
@@ -1643,7 +1668,6 @@ ISSN={0149-144X},
  journal={Princeton University Bulletin},
  volume={13},
  number={49--52},
- pages={28},
  year={1902},
 }
 
@@ -1652,8 +1676,8 @@ ISSN={0149-144X},
   author={Minkowski, Hermann},
   volume={40},
   year={1968},
-  publisher={Leipzig:Teubner},
-  pages={282},
+  publisher={Leipzig Teubner},
+  pagetotal={282},
 }
 
 @MISC{glacier,
@@ -1661,9 +1685,14 @@ ISSN={0149-144X},
  howpublished={http://aws.amazon.com/glacier/}
 }
 
-@MISC{isa-l,
- author = {ISA-L},
- howpublished={https://01.org/intel\%C2\%AE-storage-acceleration-library-open-source-version}
+@MISC{intel2015isal,
+ author = {Intel\textregistered~Corporation,},
+ title = {Intel~\textregistered Intelligent Storage Acceleration Library
+ (Intel~\textregistered ISA-L) Open Source Version API Reference Manual -
+ Version 2.14},
+ year = {2015},
+ month = {7},
+ url={https://01.org/sites/default/files/documentation/isa-l_open_src_2.14.pdf}
 }
 
 @MISC{openfec,
@@ -1681,6 +1710,6 @@ ISSN={0149-144X},
  institution = {Intel Corporation},
  title = {Using the {RDTSC} Instruction for Performance Monitoring},
  year = {1997},
- howpublished={https://www.ccsl.carleton.ca/~jamuir/rdtscpm1.pdf}
+ howpublished={https://www.ccsl.carleton.ca/~jamuir/rdtscpm1.pdf},
 }
 
