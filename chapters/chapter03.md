@@ -5,6 +5,11 @@
 
 \chapter{Code à effacement Mojette systématique}
 
+\label{sec.chap3}
+
+\minitoc
+
+\newpage
 
 % Dans le chapitre précédent, nous avons vu la transformée
 
@@ -25,6 +30,8 @@
 % la transformée Mojette offre des complexités d'encodage et
 
 % de décodage plus efficaces.
+
+\section*{Introduction}
 
 Nous avons vu dans le chapitre précédent que la transformée Mojette est capable
 de produire efficacement de la redondance de l'information, nécessaire pour
@@ -54,7 +61,7 @@ La \cref{sec.algo-sys} présente la mise en œuvre et l'algorithme conçu pour
 décoder l'information sous cette forme. En particulier, nous verrons que
 l'algorithme utilisé est une extension de l'algorithme de
 \textcite{normand2006dgci}.
-La \cref{sec.comparaison} analyse le gain de redondance de cette version sur la
+La \cref{sec.eval.red} analyse le gain de redondance de cette version sur la
 version non-systématique, et compare ce coût face aux codes MDS.
 
 % Pour finir, nos verrons une évaluation du code à effacement
@@ -145,18 +152,18 @@ Dans le contexte des télécommunications, les applications sont
 intrinsèquement liées au matériel qui traite et transporte la donnée, ainsi
 qu'aux techniques de codage qui permettent aux informations de transiter à
 travers un canal à effacement.
-\Cref{fig.data_path} représente une vue générale de la chaîne de transmission
-entre deux terminaux interconnectés. La donnée issue de la RAM du nœud $1$ est
-traitée par le CPU afin de la transmettre sur le média de communication à
-partir de l'interface réseau. Sur le réseau, l'information passe au travers de
-composants gérant l'acheminement des données. Ce média représente un canal à
-effacement dans lequel les paquets peuvent être perdus. Une fois parvenue au
-destinataire, une opération inverse à la première étape est réalisée afin de
-stocker cette donnée dans la RAM du nœud $2$. L'objectif du code à effacement
-est de traiter les données avant leur transmission ou leur stockage. En
-conséquence, il agit entre l'ensemble des composants de traitement (processeur,
-mémoire centrale), et l'ensemble des composants de communication (stockage de
-masse, réseau).
+La \cref{fig.data_path} représente une vue générale de la chaîne de
+transmission entre deux terminaux interconnectés. La donnée issue de la RAM du
+nœud $1$ est traitée par le CPU afin de la transmettre sur le média de
+communication à partir de l'interface réseau. Sur le réseau, l'information
+passe au travers de composants gérant l'acheminement des données. Ce média
+représente un canal à effacement dans lequel les paquets peuvent être perdus.
+Une fois parvenue au destinataire, une opération inverse à la première étape
+est réalisée afin de stocker cette donnée dans la RAM du nœud $2$. L'objectif
+du code à effacement est de traiter les données avant leur transmission ou leur
+stockage. En conséquence, il agit entre l'ensemble des composants de traitement
+(processeur, mémoire centrale), et l'ensemble des composants de communication
+(stockage de masse, réseau).
 
 Dans notre cas, il est nécessaire de concevoir un code à effacement qui ne
 forme pas un goulot d'étranglement dans cette chaîne afin que ce soit le
@@ -465,16 +472,18 @@ En conséquence, la valeur du pixel à reconstruire est donnée par :
     \label{eqn.sys_pxl}
 \end{equation}
 
-où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des valeurs des
-pixels de l'image en reconstruction selon la droite passant par le pixel de
-coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où 
+\noindent où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des
+valeurs des pixels de l'image en reconstruction selon la droite passant par le
+pixel de coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où
 $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
 
 
 
 
-# Évaluation du coût de la redondance par rapport aux codes MDS {#sec.eval.red}
+# Évaluation du coût de la redondance du code Mojette {#sec.eval.red}
 \label{sec.surcout_stockage}
+
+## Réduction de la redondance par la conception systématique
 
 % gain mojette systématique
 
@@ -504,13 +513,15 @@ $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
     encodés.}
 \end{figure}
 
+## Comparaison du coût avec les codes MDS
+
 Un code MDS génère la quantité minimale de redondance pour une tolérance aux
 pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
 effacement Mojette n'est pas optimal et est considéré $(1+\epsilon)$ MDS.
 En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
 $k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
 En conséquence, pour une protection donnée, notre code génère plus de données
-que la quantité minimale. La \cref{}
+que la quantité minimale.
 Dans cette section, nous allons définir et évaluer le surcout de redondance
 généré par le code à effacement Mojette. Nous définissons pour cela $f$ comme
 étant le coût de la donnée encodée. Plus particulièrement, $f$ correspond
@@ -542,7 +553,7 @@ trois.
     $(12,8)$, fournissant une protection face à une, deux et quatre pannes
     respectivement. Dans le cas particulier du code à effacement Mojette, deux
     tailles de bloc de données sont données : $\mathcal{M} = 4$~Ko et $8$~Ko.}
-\label{fig:ec_vs_rep}
+\label{fig.ec_vs_rep}
 \end{figure}
 
 Pour les codes MDS, la valeur du facteur de redondance $f$ correspond au taux

@@ -2,23 +2,23 @@
 
 \chapter{Conception de codes à effacement en géométrie discrète}
 
-Nous avons vu dans le chapitre précédent que les codes à effacement
-correspondent à des applications capables de fournir des informations
-redondantes à partir d'un ensemble de données. Cette information redondante est
-utilisée en cas de perte d'une partie des données afin de reconstruire
-l'information perdue (réparation des données). Pour cela nous avons détaillé
-une approche algébrique à travers l'étude des codes de
-\textcite{reed1960jsiam}. Bien que ces codes soient optimaux au sens MDS, la
-complexité des opérations d'encodage et décodage est importante. En pratique,
-le coût calculatoire d'une implémentation logicielle de ces codes peut
-représenter un goulot d'étranglement dans le flux de donnée. C'est le cas par
-exemple si les performances obtenues sont inférieures à la bande passante des
-disques sur lesquels des données encodées sont stockées \cite{rizzo1997tech}.
-Dans ce chapitre, une approche par géométrie discrète du problème de
-reconstruction est utilisée afin de définir de nouvelles techniques de
-décodage. Nous verrons que ces techniques de reconstruction peuvent avoir des
-complexités plus avantageuses par rapport à la méthode algébrique vue
-précédemment.
+\label{sec.chap2}
+
+\minitoc
+
+\newpage
+
+\section*{Introduction}
+
+Les codes à effacement de \textcite{reed1960jsiam} permettent de contrebalancer
+la perte d'une partie de l'information, par des données de redondance. Nous
+avons vu dans le chapitre précédent que bien que ces codes sont optimaux au
+sens MDS, la complexité des opérations d'encodage et de décodage est
+importante. Dans ce chapitre, une approche par géométrie discrète du problème
+de reconstruction est utilisée. En particulier, nous verrons que cette approche
+permet de définir de nouvelles méthodes de codage aux complexités plus
+avantageuses par rapport à la complexité $\mathcal{O}(n^3)$ de la méthode
+algébrique vue précédemment.
 
 En géométrie, la transformée de \textcite{radon1917akad} correspond à une
 application qui permet de représenter une fonction par ses projections suivant
@@ -57,9 +57,9 @@ itératifs efficaces. Nous verrons en particulier l'algorithme de
 complexité linéaire.
 Après avoir défini le critère qui permet de garantir l'unicité de la
 solution de reconstruction, nous verrons que cette méthode d'inversion forme la
-base de notre conception de code à effacement. Au travers de ces deux version,
-nous porterons une attention particulière la définition des *fantômes* qui sont
-des éléments de l'image invisible dans l'espace de transformée
+base de notre conception de code à effacement. Au travers de ces deux versions,
+nous porterons une attention particulière à la définition des *fantômes* qui
+sont des éléments de l'image invisible dans l'espace de transformée
 \cite{katz1978springer}. Ces fantômes nous permettront non seulement de
 comprendre les processus d'inversion dans ce chapitre, mais seront également
 utilisés au \cref{sec.reprojection} afin de concevoir une méthode pour générer
@@ -90,10 +90,10 @@ en astronomie par \textcite{bracewell1956ajp}, en géophysique ou encore en
 mécanique des matériaux. Une étude plus approfondie de la tomographie et de ses
 application est présentée dans les travaux de thèse de
 \textcite{dersarkissian2015tomographie}.
-L'originalité de nos travaux de thèse correspond à utiliser cette technique,
-non pas pour la reconstruction en imagerie, mais pour concevoir des codes à
-effacement qui seront à terme utilisés dans la transmission et le stockage
-d'information. Ce chapitre a pour but d'expliquer cette conception.
+L'originalité de nos travaux dans cette thèse correspond à utiliser cette
+technique, non pas pour la reconstruction en imagerie, mais pour concevoir des
+codes à effacement qui seront à terme utilisés dans la transmission et le
+stockage d'information. Ce chapitre a pour but d'expliquer cette conception.
 
 Nous débuterons cette partie en introduisant en \cref{sec.radon} la transformée
 de \radon continue telle que définie par \textcite{radon1917akad}.
@@ -109,7 +109,7 @@ algébrique.
 La transformée de \radon est une application qui répond au problème de la
 tomographie. Nous introduirons dans un premier temps ce problème dans un
 contexte pratique : l'imagerie médicale. Nous verrons ensuite la définition de
-la transformée de \radon dans le domaine continu, telle que définie dans les
+la transformée de \radon continu telle que définie dans les
 travaux fondamentaux de \textcite{radon1917akad}.
 
 ### Problème de la tomographie
@@ -157,7 +157,7 @@ En imagerie médicale, le problème de la tomographie correspond à un problème
 inverse qui consiste à reconstituer une image à partir d'un ensemble de
 projections mesurées sur l'image. On distingue alors deux processus dans la
 résolution de ce problème : *l'acquisition* des données et la *reconstruction*
-de l'image. Ces deux processus sont représentés en \cref{fig.inverse} sur
+de l'image. Ces deux processus sont représentés dans la \cref{fig.inverse} sur
 laquelle sont présentées les différentes étapes d'une tomographie, appliquée
 sur une image composée de deux disques.
 
@@ -182,13 +182,13 @@ pas de suffisamment de projections, alors l'ensemble des solutions possibles
 peut être significativement grand (voire infini) et il est impossible de
 déterminer une solution unique.
 Plusieurs itérations de l'opération de rétroprojection sont représentées de
-\cref{fig.inverse1,fig.inverse2,fig.inverse3}. Plus particulièrement,
+\cref{fig.inverse1,fig.inverse2,fig.inverse3}. Plus particulièrement, la
 \cref{fig.inverse2} montre que l'ensemble des solutions est infini lorsque l'on
 utilise qu'une projection. Plus on utilise de projections, plus l'ensemble de
-solutions se réduit, comme le montre \cref{fig.inverse3} qui met en jeu une
+solutions se réduit, comme le montre la \cref{fig.inverse3} qui met en jeu une
 seconde projection. Pour finir, si suffisamment de projections sont utilisées,
 on parvient à déterminer une unique solution qui correspond à l'image initiale.
-C'est le cas représenté par \cref{fig.inverse4} en utilisant trois
+C'est le cas représenté par la \cref{fig.inverse4} en utilisant trois
 projections. Lorsque nous étudierons la conception de codes à effacement, nous
 serons amenés à fournir des critères déterministes sur le nombre de projections
 nécessaires afin de garantir un processus de reconstruction qui puisse aboutir
@@ -199,77 +199,88 @@ nécessaires afin de garantir un processus de reconstruction qui puisse aboutir
 
 \begin{figure}
     \centering
-    \def\svgwidth{.7\textwidth}
-    \includesvg{img/radon3}
-    \caption{Représentation de la transformée de \radon $r[f](\varphi)$ de
-    l'objet $f(x,y)$ suivant l'angle de projection $\varphi$.}
+    \def\svgwidth{\textwidth}
+    \includesvg{img/radon_xxx_simple2}
+    \caption{Représentation du calcul d'une projection $r[f](\varphi,t)$ de
+    l'objet $f(x,y)$ suivant l'angle de projection $\varphi$, et illustration
+    de la reconstruction par le théorème de la tranche centrale.}
     \label{fig.radon}
 \end{figure}
 
 \radon définit les bases mathématiques de sa transformée dans ses travaux
-fondamentaux de \citeyear{radon1917akad} comme une application mathématique
-linéaire $r : f \mapsto t$ qui consiste à calculer une fonction $r(\varphi,t)$
-de $\mathbb{R}$ (appelée projection) à partir d'une fonction $f(x,y)$ de
-$\mathbb{R}^2$ dans $\mathbb{R}$, où $\varphi$
-correspond à l'angle de projection, et $|t|$ correspond à la distance de la
-droite de projection avec l'origine \cite{radon1917akad}.
-Soit $P$ un point du plan, de coordonnées $(x,y)$, et $\mathcal{L}$
-la droite de projection passant par ce point, d'équation $t = x \cos \varphi +
-y \sin \varphi$. La transformée de \radon $r_{f}(\mathcal{L})$ de la fonction
-$f(x,y)$ de $\mathbb{R}^2$ sur $\mathbb{R}$ par rapport à la droite de
-projection $\mathcal{L}$, est définie ainsi :
+fondamentaux de \citeyear{radon1917akad}. La transformée \radon $R \colon f
+\mapsto r$ d'une fonction $f \colon \RR^2 \to \CC$ est un ensemble de
+projections $1$D calculées à partir de la fonction $2$D $f$. Une projection
+$r \colon \RR \to \CC$ est définie par un ensemble de droites $\{\mathcal{L}\}$
+de projection $\{t = x \cos \varphi + y \sin \varphi \mid t \in \RR\}$. La
+\cref{fig.radon} représente le calcul d'une projection $r[f](\varphi,t)$ suivant
+la direction $\varphi$. En particulier, l'exemple d'une valeur de projection
+est illustrée pour le cas $r[f](\varphi,\tau)$. En général, une projection
+$r[f](\varphi,t)$ est définie ainsi :
 
-\begin{equation}
-    r_{f}(\mathcal{L}) =
+\begin{align}
+    r[f](\varphi,t)    &=
         \int_{\mathcal{L}}f(x,y)\,d\ell,
-    \label{eqn.integrale_curviligne}
-\end{equation}
-
-\noindent où $d\ell$ correspond aux variations le long de la droite
-$\mathcal{L}$.  \Cref{eqn.integrale_curviligne} permet de calculer l'intégrale
-sur l'ensemble des points $(x,y)$ de densité $f(x,y)$ appartenant à la droite
-$\mathcal{L}$ d'équation $t = x \cos \varphi + y \sin \varphi$ (i.e.\
-l'intégrale curviligne le long de $\mathcal{L}$). En utilisant la distribution
-de Dirac $\delta(\cdot)$, on peut définir la transformée de Radon ainsi :
-
-\begin{equation}
-    r_{f}(\varphi,t) =
+        \label{eqn.integrale_curviligne}\\
+                        &=
         \int_{-\infty}^{\infty}
         \int_{-\infty}^{\infty}
         f(x,y) \delta (t - x \cos(\varphi) - y \sin(\varphi))\,dx\,dy,
+        \label{eqn.projection}
+\end{align}
+
+\noindent où $d\ell$ correspond aux variations le long de la droite
+$\mathcal{L}$, $\varphi$ représente à l'angle de projection, et $t$ correspond
+la distance de la droite de projection par rapport à l'axe des ordonnées
+\cite{radon1917akad}.
+L'\cref{eqn.integrale_curviligne} permet de calculer l'intégrale
+curviligne sur l'ensemble des points $(x,y)$ de densité $f(x,y)$ le long de la
+droite $\mathcal{L}$ d'équation $t = x \cos \varphi + y \sin \varphi$.
+L'\cref{eqn.projection} définie une projection $r[f](\varphi,t)$ en utilisant la
+distribution de \textsc{Dirac} $\delta(\cdot)$. En utilisant ce formalisme de
+projection, on définit la transformée de \radon d'une image $f$ :
+
+\begin{equation}
+    R[f] = \mathbf{r}[f] = \{r[f](\varphi,t) \mid \varphi \in [0,\pi[\},
     \label{eqn.radon}
 \end{equation}
 
-\Cref{eqn.radon} représente la projection de la fonction $f(x,y)$ suivant la
-droite $\mathcal{L}$ sur une droite orthogonale à $\mathcal{L}$. La valeur
-obtenue correspond à l'intensité cumulée le long de la droite d'acquisition. Le
-principe de cette transformée est représenté dans la \cref{fig.radon}.
+\noindent où $\mathbf{r}[f]$ correspond à l'ensemble des projections de $f$
+suivant la direction $\varphi$. Notons que la projection $r[f](\varphi,t) =
+r[f](\varphi + \pi, t)$.
 
 La seconde étape en tomographie consiste à inverser l'opération précédente.
 Cette opération inverse consiste à reconstruire $f$ à partir de l'ensemble des
-projections mesurées à partir de l'\cref{eqn.radon}. \textcite{radon1917akad} a
-prouvé dans ses travaux qu'il était possible d'inverse l'opération décrite dans
-l'\cref{eqn.radon}. En particulier, il est possible de reconstruire $f$ en
-utilisant le théorème de la tranche centrale. Plus précisément, ce théorème
-créer un lien entre la transformée de \fourier $1$D d'une projection, et la
-tranche orthogonale à la direction de projection de la transformée de \fourier
-$2$D de $f$.
+projections de l'image $f$. \textcite{radon1917akad} a montré qu'il est
+possible d'inverser l'opération décrite dans l'\cref{eqn.projection}.
+Pour cela, il est possible d'utiliser le théorème de la tranche centrale.
+Ce théorème créer un lien entre la transformée de \fourier $1$D d'une
+projection, et la tranche orthogonale à la direction de projection de la
+transformée de \fourier $2$D de $f$. La \cref{fig.radon} illustre la
+transformation d'une projection de \radon en une tranche du domaine de
+\fourier. En utilisant l'ensemble des projections, il est possible de
+construire entièrement le domaine de \fourier. Une transformation de \fourier
+$2$D inverse de ce domaine permet de reconstruire l'image $f$.
 
 \begin{figure}
     \centering
-    \def\svgwidth{.7\textwidth}
-    \includesvg{img/interpolation}
+    \def\svgwidth{.6\textwidth}
+    \includesvg{img/interpolation2}
     \caption{L'inversion de la transformée de \fourier rapide nécessite 
-    l'interpolation de la grille polaire obtenue par le théorème de la tranche
-    centrale, à la grille cartésienne.}
+    l'interpolation de la grille polaire (en rouge) obtenue par le théorème de
+    la tranche centrale, à la grille cartésienne (en bleu).}
     \label{fig.interpolation}
 \end{figure}
 
 Bien que la transformée de \radon inverse peut être définie en utilisant la
 transformée de \fourier, une des principales limitations de cette méthode dans
 le domaine continu correspond à l'interpolation de la grille polaire à la
-grille cartésienne dans le domaine de \fourier. Pour résumer, la reconstruction
-suit les étapes suivantes :
+grille cartésienne dans le domaine de \fourier. La \cref{fig.interpolation}
+illustre ce problème dans lequel il faut faire correspondre les éléments rouge
+du repère polaire aux éléments bleus du repère cartésien. Bien que des méthodes
+efficaces existent pour répondre à ce problème \cite{averbuch2006fast}, nous
+verrons dans la suite de nos travaux des méthodes qui ne nécessitent pas
+d'interpolation. Pour résumer, la reconstruction suit les étapes suivantes :
 
 1. Calculer les transformée de \fourier $1$D de chaque projection afin de
 remplir la grille polaire;
@@ -278,8 +289,6 @@ remplir la grille polaire;
 
 3. Calculer la transformée de \fourier $2$D inverse pour obtenir une version
 échantillonnée de $f$.
-
-% contenu sur le problème d'interpolation (p62 riton)
 
 Il existe trois raisons pour lesquelles la reconstruction par
 transformée de \radon est un *problème mal posé*, au sens défini par
@@ -291,17 +300,14 @@ nature physique des capteurs, les données correspondent à un échantillon de
 l'image, caractérisé par la distance des capteurs (dans le cas d'une étude
 géométrique parallèle). Enfin, une petite erreur d'acquisition entraîne de
 fortes variations des résultats.
+
 Dans ce chapitre, nous présenterons des versions exactes et discrètes de la
-transformée de \radon. Par versions "exactes", nous entendons que ces versions
-sont basées sur un échantillonnage optimal, ce qui permet de ne pas avoir à
-réaliser d'interpolation. On considère un échantillonnage optimal ou complet,
-lorsque les projections couvrent uniformément l'ensemble des éléments de
-l'image.
-Ces versions discrètes correspondent à des méthodes capables de représenter et
-de reconstruire la version numérique d'une fonction par ses projections
-discrètes. En particulier, nous verrons des mises en œuvre pratiques et
-efficaces capables de fournir une représentation redondante de l'image, afin de
-reconstruire la donnée quand elle est partiellement perdue.
+transformée de \radon. Ces versions "exactes" repose sur un échantillonnage
+optimal, ce qui permet de ne pas avoir à réaliser d'interpolation lors de la
+reconstruction. L'échantillonnage est optimal lorsque les projections couvrent
+uniformément l'ensemble des éléments de l'image.
+Pour définir ces versions discrètes, nous allons définir dans la prochaine
+section quelques bases de géométries discrètes.
 
 
 ## Quelques bases de la géométrie discrète {#sec.geometrie}
@@ -354,8 +360,8 @@ coordonnées $(x,y)$ (le maillage d'un pavage carré est carré contrairement au
 maillage d'un pavage triangulaire ou hexagonal).
 
 \noindent Par la suite, nous utiliserons un pavage carré semblable à celui
-représenté en \cref{fig.pavage}. Plus précisément, on considèrera une image
-numérique comme l'application $f \colon E \to F$, où $E \subset \RR^2$
+représenté dans la \cref{fig.pavage}. Plus précisément, on considèrera une
+image numérique comme l'application $f \colon E \to F$, où $E \subset \RR^2$
 correspond au domaine de définition de l'image, et $F$ correspond à l'ensemble
 des couleurs possibles. Nous considérerons en général que $E = \ZZ^2$, c'est à
 dire correspondant à un pavage carré. Le contenu des pixels dépend de la nature
@@ -459,7 +465,7 @@ permet d'obtenir l'ensemble des points pentes possibles pour un pavage de $(3
     \label{eqn.farey}
 \end{equation}
 
-\Cref{fig.farey} représente de manière géométrique les droites issues des
+La \cref{fig.farey} représente de manière géométrique les droites issues des
 pentes générées par $F_3$ dans un pavage carré de taille $(3 \times 3)$.
 Visuellement, une direction $(p,q)$ correspond à la droite reliant le point
 d'origine avec le point obtenu par un décalage horizontal de $p$, et par un
@@ -503,7 +509,7 @@ versions discrètes de la transformée de \radon (\cref{sec.frt,sec.mojette}).
 Nous allons dans cette section utiliser une approche algébrique afin
 d'introduire le processus de reconstruction d'une image discrète, à partir d'un
 ensemble de projections obtenues à différents angles discrets.
-\Cref{fig.inverse_discret} représente une image discrète composée de
+La \cref{fig.inverse_discret} représente une image discrète composée de
 quatre pixels identifiés par leurs valeurs $\{a,b,c,d\}$. Dans cet
 exemple, les valeurs des projections correspondent à la somme des valeurs des
 pixels traversés par les droites de projections. Deux questions se posent
@@ -514,10 +520,10 @@ efficacement ?
 Ce problème peut être vu comme un problème d'algèbre linéaire. Dans
 cette représentation, les pixels de l'image forment les inconnus à reconstruire
 tandis que les projections correspondent aux équations linéaires. Dans
-l'exemple proposé en \cref{fig.inverse_discret_nok}, on souhaite représenter
-l'image par ses projections verticales et horizontales. Posons le problème sous
-la forme d'un système d'équations linéaires à $4$ équations et $4$ inconnues
-auquel des valeurs ont été affectées aux projections :
+l'exemple proposé dans la \cref{fig.inverse_discret_nok}, on souhaite
+représenter l'image par ses projections verticales et horizontales. Posons le
+problème sous la forme d'un système d'équations linéaires à $4$ équations et
+$4$ inconnues auquel des valeurs ont été affectées aux projections :
 
 \begin{equation}
     \left\{
@@ -562,7 +568,7 @@ conséquence, la reconstruction depuis ces projections fournit une infinité de
 solutions, tant que la valeur d'un pixel n'est pas connu. Autrement dit,
 l'ensemble des projections mesurées n'est pas suffisant pour déterminer de
 manière unique une solution.
-En revanche, un ensemble de projections suffisant est représenté en
+En revanche, un ensemble de projections suffisant est représenté dans la
 \cref{fig.inverse_discret_ok}. Dans cet exemple, on rajoute deux nouvelles
 mesures suivant les directions des diagonales. En conséquence, on obtient un
 système surdéterminé que l'on peut représenter sous forme matricielle :
@@ -620,7 +626,7 @@ des codes.
 
 
 
-# Code optimal par transformée de \radon finie {#sec.frt}
+# Code MDS par transformée de \radon finie {#sec.frt}
 
 Nous avons vu dans la partie précédente que la transformée de \radon continue
 constitue une application mathématique qui possède une opération inverse.
@@ -697,9 +703,9 @@ $(p+1)$-ème projection qui correspond à la somme des éléments de la grille
 suivant l'horizontale.
 Dans le domaine de \radon, chacune des $(p+1)$ projections indexées par $m$
 contient $p$ valeurs correspondant à un décalage de $t$ suivant l'axe des $y$.
-\Cref{fig.frt_line} représente l'une de ces mesures pour la droite d'équation
-$y \equiv 2 x \pmod 5$ sur un pavage carré défini par $p=5$, avec $t=0$. Dans
-le cas général, ces droites de projection ont pour équation :
+La \cref{fig.frt_line} représente l'une de ces mesures pour la droite
+d'équation $y \equiv 2 x \pmod 5$ sur un pavage carré défini par $p=5$, avec
+$t=0$. Dans le cas général, ces droites de projection ont pour équation :
 
 \begin{equation}
     y \equiv m x + t \pmod p.
@@ -777,7 +783,7 @@ L'équation correspondante à cette opération inverse est :
     \label{eqn.frt_inverse}
 \end{align}
 
-\noindent Bien que simple à mettre en œuvre, cette méthode n'est pas efficace
+Bien que simple à mettre en œuvre, cette méthode n'est pas efficace
 puisque sa complexité algorithmique est $\mathcal{O}(p^3)$.
 \textcite{matus1993pami} ont cependant démontré que la FRT conserve toutes les
 propriétés de la transformée continue de \radon. En particulier, ils
@@ -805,7 +811,7 @@ l'opération FRT n'est plus inversible de façon unique. Le problème de
 reconstruction devient sous-déterminé et possède soit plusieurs solutions, soit
 aucune. Pour étudier cela, on s'intéresse à l'*espace nul* qui correspond au
 noyau de l'opérateur. En particulier, nous nous intéresserons aux *fantômes*
-qui correspondent aux éléments de l'espace nul.
+qui forment les éléments de cet espace nul.
 
 ### Introduction aux fantômes
 
@@ -905,7 +911,7 @@ méthode de reconstruction a été définie par \textcite{chandra2008dgci} et
 consiste à supprimer les fantômes dans l'image afin de retrouver la valeur
 initiale. Cette méthode repose sur deux choses :
 
-1. Il est nécessaire de connaître Une partie de l'information de l'image. Pour
+1. Il est nécessaire de connaître une partie de l'information de l'image. Pour
 cela, on y définit une zone de redondance, dont la valeur des pixels doit être
 prédéterminée;
 
@@ -997,7 +1003,8 @@ reconstruire la zone de $k \times (p-1)$ éléments de données.
     \label{fig.frt_sys}
 \end{figure}
 
-Le principe de la conception du code systématique est d'intégrer les $k$ lignes
+La mise en œuvre du code systématique est illustrée dans la \cref{fig.frt_sys}.
+Le principe de cette mise en œuvre est d'intégrer les $k$ lignes
 de données dans l'ensemble des $p$ lignes encodées.
 La construction de cette version du code est semblable à ce que l'on a vu
 précédemment. La différence réside dans la zone de redondance. Il est
@@ -1014,7 +1021,7 @@ fantômes parmi les projections. On utilise alors le même algorithmes que
 précédemment pour retrouver la valeur des données.
 
 
-## Contribution aux relations avec d'autres codes MDS
+## Relations avec d'autres codes MDS
 
 La FRT possède des liens avec certains codes MDS. \textcite{normand2010wcnc}
 ont montré que l'opérateur FRT peut être représenté sous la forme d'une matrice
@@ -1028,7 +1035,8 @@ FRT.
 Les travaux de \textcite{normand2010wcnc} définissent une représentation
 polynomiale de l'image $f$ et de l'opérateur FRT. Plus précisément, l'image est
 représentée un vecteur de $p$ polynômes, où chaque polynôme $P(x)$ de degré 
-$p$ représente une ligne. On note $\boldsymbol{f}$ l'image tel que : 
+$p$ représente une ligne. On note $\boldsymbol{f}$ le vecteur polynomial
+représentant l'image, défini tel que : 
 
 \begin{equation}
     \boldsymbol{f}^{\intercal} = \left(P_0, \dots, P_{p-1}\right),
@@ -1120,7 +1128,7 @@ performante des opérations d'encodage et de décodage.
 Dans cette section, nous allons nous intéresser à un code à effacement basé sur
 la transformée Mojette. Tout comme la FRT, cette transformée correspond à une
 version discrète et exacte de la transformée de \radon continue définie dans
-\textcite{radon1917akad} (voir \cref{eqn.radon}). Elle a été proposée pour la
+\textcite{radon1917akad} (voir \cref{eqn.projection}). Elle a été proposée pour la
 première fois par \textcite{guedon1995vcip} dans le contexte du traitement et
 du codage psychovisuel. Depuis, cette transformée a été utilisée dans de
 nombreuses applications liées à l'imagerie numérique (codage, transmission,
@@ -1181,11 +1189,11 @@ Le paramètre $b$ correspond à l'index du bin de la projection d'angle
 $(p_i,q_i)$. Plus précisément, \cref{eqn.mojette} signifie que la valeur des
 bins de la projection suivant la direction $(p_i, q_i)$ résulte de la somme des
 pixels situés sur la droite discrète d'équation $b = -kq_i + lp_{i}$.
-Comme on peut l'observer, l'opération modulaire que l'on a pu voir dans
-l'opérateur FRT \cref{eqn.frt}, n'est pas utilisé ici, représentant la
-propriété apériodique de la transformée Mojette.
+Comme on peut l'observer, l'opération modulaire que l'on avait utilisé dans
+l'\cref{eqn.frt} de la FRT, n'est pas utilisé ici. Cette propriété apériodique
+distingue la transformée Mojette de la FRT.
 
-\Cref{fig.mojette_directe} représente la transformée Mojette d'une
+La \cref{fig.mojette_directe} représente la transformée Mojette d'une
 grille discrète $(3 \times 3)$ composée de binaires. Le traitement transforme une
 image 2D en un ensemble de $I=4$ projections dont les valeurs des directions
 sont comprises dans l'ensemble suivant : $\left\{(-1,1), (0,1), (1,1),
@@ -1207,8 +1215,8 @@ de comprendre comment s'applique l'algorithme de reconstruction de
 \textcite{normand2006dgci} que l'on détaillera dans la prochaine section.
 Du point de vue de la complexité, puisqu'il faut $\mathcal{O(I}$ opération par
 pixel et que chaque pixel et parcouru, la complexité de la transformée Mojette
-vaut $\mathcal{O}(PQI)$. \textcite{normand1996vcip} précise que si le nombre de
-projections $I$ correspond à $log(PQ)$, alors la complexité de la Mojette
+vaut $\mathcal{O}(PQI)$. \textcite{normand1996vcip} précisent que si le nombre
+de projections $I$ correspond à $log(PQ)$, alors la complexité de la Mojette
 correspond à celle de la FFT de \textcite{cooley1969tae}.
 
 %4+5+1 \pmod 6 = 4$
@@ -1241,7 +1249,7 @@ solution contient les valeurs de la grille qui ont permis de calculer ces
 projections. Ce critère a été étendu par \textcite{normand1996vcip} pour
 n'importe quelle image convexe en utilisant la définition des fantômes.
 
-Dans l'exemple de \cref{fig.mojette_directe}, si l'on considère un
+Dans l'exemple de la \cref{fig.mojette_directe}, si l'on considère un
 sous-ensemble de $3$ projections $\left\{(p_{0},q_{0}), \dots,
 (p_{2},q_{2})\right\}$, la seconde condition du critère de
 \citeauthor{katz1978springer} donne $\sum_{i=0}^2~|q_{i}|=3$, puisque $q=1$
@@ -1251,30 +1259,30 @@ unique. Autrement dit, la perte d'une projection n'influence pas le résultat du
 processus de reconstruction. On considère alors que les $4$ projections
 calculées dans cette figure décrivent une représentation redondante de l'image.
 
+\begin{figure}
+    \centering
+    \def\svgwidth{.4\textwidth}
+    \includesvg{img/katz_normand}
+    \caption{Représentation du critère de \textcite{normand1996vcip}.
+    L'ensemble $\{(1,0),(2,1),(1,1)\}$ n'est pas suffisant contrairement à
+    l'ensemble $\{(1,1),(1,2),(1,2)\}$ dont la somme des vecteurs n'est pas
+    contenu dans l'image.}
+    \label{fig.katz.normand}
+\end{figure}
+
 Alors que le critère de \citeauthor{katz1978springer} ne s'applique que sur une
 image rectangulaire, \textcite{normand1996vcip} ont étendu ce critère à
 n'importe quelle forme convexe. Pour cela, on utilise une représentation
 géométrique de l'ensemble de projection. Plus particulièrement, un ensemble de
-projections $\{(p_i,q_i)\} \mid i \in \ZZ_I$ est suffisant pour reconstruire de
+projections $\{(p_i,q_i) \mid i \in \ZZ_I\}$ est suffisant pour reconstruire de
 manière unique l'image si la somme des vecteurs $\vec{a} = (|p_i| \vec{u} +
-|q_i| \vec{v})$ ne peut être contenue dans l'image.
+|q_i| \vec{v})$ ne peut être contenue dans l'image. La \cref{fig.katz.normand}
+illustre deux sommes de vecteurs construites à partir de deux ensembles
+distincts dont l'un est suffisant (puisque la somme sort de l'image), et
+l'autre non.
 
-% schéma
 
 ### Algorithme de reconstruction
-
-\begin{figure}
-    \centering
-    \def\svgwidth{.3\textwidth}
-    \input{img/graphe_dependance.pdf_tex}
-    \caption{Graphe de dépendance des pixels. On considère une image $3 \times
-    3$ ainsi qu'un ensemble de directions de projection $(p_i,q_i)$ à valeur
-    dans $\left\{(-1,1),(0,1),(1,1)\right\}$. Les nœuds correspondent aux
-    pixels tandis que les arêtes représentent les dépendances entre eux.
-    Un pixel peut être reconstruit par un bin lorsqu'aucune dépendance ne
-    s'applique sur lui.}
-    \label{fig.dep_graph}
-\end{figure}
 
 %, et sont énumérés dans \textcite{guedon2009mojettebookchap5}.
 
@@ -1300,6 +1308,19 @@ pixels qui n'ont pas encore été reconstruits. Il est possible de reconstruire
 la valeur d'un pixel lorsqu'il est le seul inconnu de l'équation définit par la
 droite de projection. En conséquence, il existe des dépendances entre les
 pixels.
+
+\begin{figure}
+    \centering
+    \def\svgwidth{.3\textwidth}
+    \input{img/graphe_dependance.pdf_tex}
+    \caption{Graphe de dépendance des pixels. On considère une image $3 \times
+    3$ ainsi qu'un ensemble de directions de projection $(p_i,q_i)$ à valeur
+    dans $\left\{(-1,1),(0,1),(1,1)\right\}$. Les nœuds correspondent aux
+    pixels tandis que les arêtes représentent les dépendances entre eux.
+    Un pixel peut être reconstruit par un bin lorsqu'aucune dépendance ne
+    s'applique sur lui.}
+    \label{fig.dep_graph}
+\end{figure}
 
 Il est possible de représenter ces dépendances en utilisant un graphe.
 La \cref{fig.dep_graph} est un graphe orienté qui représente les dépendances entre
@@ -1345,6 +1366,45 @@ En pratique, ces éléments correspondent à des zones mémoires contigües. En
 particulier, les bins des projections interviennent de manière séquentielle
 dans la reconstruction d'une ligne. Cette considération permet de favoriser la
 localité spatiale des données et donc les performances de l'implémentation.
+
+### Reconstruction à partir d'une représentation partielle
+
+Lorsque l'ensemble de projections ne satisfait pas le critère de \katz
+(\cref{eqn.katz}), le problème de reconstruction est sous-déterminé. En
+conséquence, la reconstruction par une représentation partielle conduit à
+plusieurs ou aucune solution.
+Comme nous l'avons vu précédemment avec la FRT, les fantômes correspondent aux
+éléments de l'espace nul. On définit un fantôme élémentaire ainsi :
+
+\begin{equation}
+    \ghost{(p,q)}:p\mapsto\begin{cases}
+        1 &\text{si }p=(0,0)\\
+        -1&\text{si }p=(p,q)\\
+        0 &\text{sinon}.
+    \end{cases}.
+\end{equation}
+
+\begin{figure}
+    \centering
+    \def\svgwidth{.2\textwidth}
+    \includesvg{img/fantome_elementaire}
+    \caption{Fantôme élémentaire selon la direction $(p,q) = (2,1)$.}
+    \label{fig.fantome_elementaire}
+\end{figure}
+
+\noindent La \cref{fig.fantome_elementaire} représente le fantôme élémentaire
+selon la direction $(p,q)=(2,1)$.
+
+Soit un ensemble de projections suivant les directions de l'ensemble
+$\{(p_i,q_i)\}$, \textcite{philippe1998phd} a montré qu'il existe une unique
+décomposition de $f$ telle que :
+
+\begin{equation}
+    f = f^{\{(p_i,q_i)\}} + \sum_{j=1}^{r}a_i\ghost{(p_i,q_i)},
+    \label{eqn.decomposition}
+\end{equation}
+
+\noindent où $a_i$ correspondent aux inconnus.
 
 
 ## Code à effacement Mojette {#sec.fecmojette}

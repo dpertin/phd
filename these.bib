@@ -18,11 +18,27 @@
   school={Universit{\'e} de Nantes}
 }
 
+@inproceedings{pertin2015sifwict,
+  TITLE = {{Comparison of {RAID}-6 Erasure Codes}},
+  AUTHOR = {Pertin, Dimitri and Van Kempen, Alexandre and Parrein, Beno{\^i}t
+  and Normand, Nicolas},
+  BOOKTITLE = {{The third Sino-French Workshop on Information and Communication
+  Technologies}},
+  SERIES = {{SIFWICT}},
+  ADDRESS = {Nantes, France},
+  YEAR = {2015},
+  MONTH = {6},
+  KEYWORDS = {Erasure Coding ; Storage ; Mojette Transform},
+  URL = {https://hal.archives-ouvertes.fr/hal-01162047},
+  HAL_ID = {hal-01162047},
+  HAL_VERSION = {v1},
+}
+
 @article{pertin2015corr,
-  author    = {Pertin, Dimitri and F{\'{e}}ron, Didier and Van Kempen,
-  Alexandre and Parrein, Beno{\^{\i}}t},
   title     = {Performance evaluation of the {M}ojette erasure code for
   fault-tolerant distributed hot data storage},
+  author    = {Pertin, Dimitri and F{\'{e}}ron, Didier and Van Kempen,
+  Alexandre and Parrein, Beno{\^{\i}}t},
   journal   = {CoRR},
   volume    = {abs/1504.07038},
   year      = {2015},
@@ -37,7 +53,9 @@
   year            = {2015},
   month           = {3},
   howpublished    = {Presentation during the doctoral workshop at {H}ot {T}opic
-  in {D}istributed {C}omputing, {HTDC} 2015},
+  in {D}istributed {C}omputing},
+  series = {HTDC},
+  location        = {Flaine, France},
   url             = {htdc2015.inria.fr/fr/},
   location        = {Flaine, France},
 }
@@ -67,7 +85,8 @@
   year    = {2014},
   month   = {11},
   booktitle = {9ème Journ\'ees du Groupe de Travail de G\'eometrie
-  Discr\`ete, GeoDis 2014, Reims Image 2014},
+  Discr\`ete},
+  series = {GeoDis},
   location = {Reims, France},
 }
 
@@ -78,7 +97,8 @@
   year    = {2014},
   month   = {4},
   howpublished    = {Vidéo de ma présentation de vulgarisation de mes travaux
-  de thèse à Pas Sage En Seine, PSES 2014},
+  de thèse à Pas Sage En Seine},
+  series = {PSES},
   url     = {http://numaparis.ubicast.tv/videos/rozofs/},
   location= {Paris, France},
 }
@@ -94,13 +114,26 @@
   location      = {Amsterdam, The Netherlands},
 }
 
+@report{gueron2014intel,
+  author={Gueron, Shay and Kounavis, Michael E.},
+  title={Intel {\textregistered} Carry-Less Multiplication Instruction and its
+  Usage for Computing the {GCM} Mode},
+  type={White paper},
+  institution={Intel\textregistered~Corporation},
+  month={4},
+  year={2014},
+  number={323640-002},
+  url={https://software.intel.com/sites/default/files/managed/72/cc/clmul-wp-rev-2.02-2014-04-20.pdf},
+}
+
 @inproceedings{pertin2014closer,
   author    = {Dimitri Pertin and Sylvain David and Pierre {\'{E}}venou and
   Beno{\^{\i}}t Parrein and Nicolas Normand},
   title     = {Distributed File System Based on Erasure Coding for
   {I/O}-Intensive Applications},
   booktitle = {Proceedings of the 4th International Conference on
-  Cloud Computing and Services Science, {CLOSER} 2014},
+  Cloud Computing and Services Science},
+  series = {CLOSER},
   pages     = {451--456},
   year      = {2014},
   month     = {4},
@@ -127,10 +160,11 @@
   RozoFS},
   author     = {Pertin, Dimitri},
   howpublished       = {Slides presented at the 14th edition of the Free and
-  Open Source Developers' European Meeting, FOSDEM 2014, Universit\'e Libre de
-  Bruxelles, Bruxelles, Belgium},
+  Open Source Developers' European Meeting},
+  series = {FOSDEM'14},
   year       = {2014},
   month      = {2},
+  institution = {Université Libre de Bruxelles},
   location   = {Bruxelles, Belgium},
 }
 
@@ -149,11 +183,12 @@
     title   = {Réduire considérablement le coût et la complexité du stockage
         en nuage grâce au codage Mojette},
     author  = {Pertin, Dimitri},
-    booktitle = {14ème Journée des Doctorants de l'ED STIM, JDOC 2014},
+    booktitle = {14ème Journée des Doctorants de l'ED STIM},
+    series = {JDOC},
     month = {3},
     year = {2014},
-    pages = {36},
-    location = {École des Mines de Nantes, Nantes, France},
+    institution = {École des Mines de Nantes},
+    location = {Nantes, France},
 }
 
 @InProceedings{sathiamoorthy2013vldb,
@@ -497,7 +532,6 @@
  year = {2010},
  publisher = {USENIX Association},
  address = {Berkeley, CA, USA},
- pages = {1--7},
  url = {http://dl.acm.org/citation.cfm?id=1924943.1924948},
  acmid = {1924948},
  location = {Vancouver, BC, Canada},
@@ -511,8 +545,8 @@
  Conference (CCNC)},
  year={2010},
  month={1},
+ doi={10.1109/CCNC.2010.5421749},
  pagetotal={5},
- doi={10.1109/CCNC.2010.5421749}
 }
 
 @INPROCEEDINGS{shvachko2010msst,
@@ -522,8 +556,8 @@
  Technologies (MSST)},
  year={2010},
  month={5},
+ doi={10.1109/MSST.2010.5496972},
  pagetotal={10},
- doi={10.1109/MSST.2010.5496972}
 }
 
 @INPROCEEDINGS{normand2010wcnc,
@@ -534,9 +568,9 @@
  Conference (WCNC)},
  year={2010},
  month= {4},
- pagetotal={6},
+ ISSN={1525-3511},
  doi={10.1109/WCNC.2010.5506385},
- ISSN={1525-3511}
+ pagetotal={6},
 }
 
 @INPROCEEDINGS{svalbe2010dicta,
@@ -593,6 +627,7 @@
   affiliation  = {Institut de Recherche en Communications et en
   Cybern{\'e}tique de Nantes - IRCCyN},
   hal_id       = {hal-00367681},
+  pagetotal    = {274},
 }
 
 @incollection{guedon2009mojettebookchap5,
@@ -649,7 +684,7 @@
  month={12},
  ISSN={1051-4651},
  doi={10.1109/ICPR.2008.4761615},
- totalpage={4},
+ pagetotal={4},
 }
 
 @incollection{chandra2008dgci,
@@ -679,8 +714,8 @@
  volume={57},
  number={7},
  pages={889--901},
+ ISSN={0018-9340},
  doi={10.1109/TC.2007.70830},
- ISSN={0018-9340}
 }
 
 @TECHREPORT{plank2008jerasure,
@@ -727,6 +762,7 @@
   HAL_ID = {hal-00175341},
   HAL_VERSION = {v1},
   HAL_LOCAL_REFERENCE = {D{\'e}partement Images et Signal},
+  pagetotal = {416},
 }
 
 @incollection{coeurjolly2007chap1,
@@ -744,6 +780,7 @@
   HAL_ID = {hal-00175341},
   HAL_VERSION = {v1},
   HAL_LOCAL_REFERENCE = {D{\'e}partement Images et Signal},
+  pagetotal = {416},
 }
 
 @inproceedings{bairavasundaram2007sigmetrics,
@@ -802,11 +839,25 @@
   ISBN={9780486462417},
 }
 
+@article{averbuch2006fast,
+  title={Fast and accurate polar {F}ourier transform},
+  author={Averbuch, Amir and Coifman, Ronald R. and Donoho, David L. and Elad,
+  Michael and Israeli, Moshe},
+  journal={Applied and Computational Harmonic Analysis},
+  volume={21},
+  number={2},
+  pages={145--167},
+  year={2006},
+  publisher={Elsevier},
+  doi = {10.1016/j.acha.2005.11.003},
+}
+
 @article{kingston2006aiep,
-  author = {Kingston, Andrew and Svalbe, Imants D},
+  author = {Kingston, Andrew and Svalbe, Imants D.},
   title = {Projective transforms on periodic discrete image arrays},
   journal = {Advances in Imaging and Electron Physics},
   year = {2006},
+  month = {12},
   volume = {139},
   pages = {75--177},
   doi = {10.1016/S1076-5670(05)39002-1}
@@ -816,11 +867,13 @@
   author  = "Plank, James S. and Xu, Lihao",
   title  = "Optimizing {C}auchy {R}eed-Solomon Codes for Fault-Tolerant Network
   Storage Applications",
-  booktitle  = "NCA-06: 5th IEEE International Symposium on Network Computing
-  Applications",
+  booktitle  = "Fifth IEEE International Symposium on Network Computing
+  Applications. NCA'06: ",
   address  = "Cambridge, MA",
   month  = {7},
   year  = "2006",
+  pages = {173--180},
+  doi={10.1109/NCA.2006.43},
   where  = "http://www.cs.utk.edu/~plank/plank/papers/NCA-2006.html"
 }
 
@@ -973,6 +1026,7 @@
  author = {Anvin, Hans Peter},
  title = {The mathematics of {RAID-6}},
  year = {2004},
+ month = {1},
  url = {https://www.kernel.org/pub/linux/kernel/people/hpa/raid6.pdf},
 }
 
@@ -982,9 +1036,29 @@
   title={Row-diagonal parity for double disk failure correction},
   booktitle={Proceedings of the 3rd USENIX Conference on File and Storage
   Technologies},
+  series = {FAST '04},
   year={2004},
+  publisher = {USENIX Association},
+  address = {Berkeley, CA, USA},
   url = {http://static.usenix.org/event/fast04/tech/corbett/corbett_html/},
-  totalpage={14},
+  location = {San Francisco, CA},
+  acmid = {1973375},
+  pagetotal={14},
+}
+
+@INPROCEEDINGS{averbuch2004acssc,
+  author={Averbuch, Amir and Coifman, Ronald R. and Donoho, David L. and Elad,
+  Michael. and Israeli, Mosche},
+  title={Accurate and fast discrete polar {F}ourier transform},
+  booktitle={Conference Record of the Thirty-Seventh Asilomar Conference on
+  Signals, Systems and Computers}, 
+  year={2004},
+  volume={2},
+  pages={1933--1937},
+  month={11},
+  publisher={IEEE},
+  ISNB = {0-7803-8104-1},
+  doi={10.1109/ACSSC.2003.1292319}, 
 }
 
 @article{svalbe2003endm,
@@ -1181,6 +1255,16 @@ ISSN={0018-9448},
  pages={272--276},
  ISSN={0018-9448},
  doi={10.1109/18.746809},
+}
+
+@phdthesis{philippe1998phd,
+  AUTHOR = {Philippe, Olivier},
+  TITLE = {Représentation d'images pour le codage conjoint source-canal sur
+  réseaux à qualité de service},
+  SCHOOL = {IRESTE, Université de Nantes},
+  YEAR = {1998},
+  MONTH = {11},
+  URL = {https://tel.archives-ouvertes.fr/tel-00300613},
 }
 
 @article{normand1998sciences,
@@ -1710,9 +1794,14 @@ doi={10.1109/TNS.1974.6499238},
  url={https://01.org/sites/default/files/documentation/isa-l_open_src_2.14.pdf}
 }
 
-@MISC{openfec,
- author = {OpenFEC.org},
- howpublished={http://openfec.org/}
+@online{openfec,
+  author = {OpenFEC},
+  title = {OpenFEC.org},
+  organization = {ISAE, INRIA},
+  year = 2010,
+  month=july,
+  url = {http://openfec.org/},
+  date = {2010-09-30},
 }
 
 @MISC{rozofs,
@@ -1721,10 +1810,10 @@ doi={10.1109/TNS.1974.6499238},
 }
 
 @techreport{intel1997rdtsc,
- author = {Intel},
- institution = {Intel Corporation},
+ author = {Intel\textregistered~Corporation,},
  title = {Using the {RDTSC} Instruction for Performance Monitoring},
- year = {1997},
- howpublished={https://www.ccsl.carleton.ca/~jamuir/rdtscpm1.pdf},
+ year = {1998},
+ month = {7},
+ url={https://www.ccsl.carleton.ca/~jamuir/rdtscpm1.pdf}
 }
 
