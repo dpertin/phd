@@ -290,7 +290,7 @@ remplir la grille polaire;
 3. Calculer la transformée de \fourier $2$D inverse pour obtenir une version
 échantillonnée de $f$.
 
-Il existe trois raisons pour lesquelles la reconstruction par
+\noindent Il existe trois raisons pour lesquelles la reconstruction par
 transformée de \radon est un *problème mal posé*, au sens défini par
 \textcite{hadamard1902pub} : (i) la solution ne peut être retrouvée puisque les
 mesures réalisées lors de l'acquisition intègre du *bruit* dans les données;
@@ -805,13 +805,13 @@ i.e.\ $\mathcal{O}(p^2 \log_2 p)$ \cite{kingston2006aiep}.
 
 Les travaux de \textcite{matus1993pami} ont montré que les $(p+1)$ projections
 sont nécessaires pour déterminer de manière unique la solution du problème de
-reconstruction. Une représentation partielle correspond au cas où un ensemble
-de projections manque. En particulier, lorsqu'une projection manque,
-l'opération FRT n'est plus inversible de façon unique. Le problème de
-reconstruction devient sous-déterminé et possède soit plusieurs solutions, soit
-aucune. Pour étudier cela, on s'intéresse à l'*espace nul* qui correspond au
-noyau de l'opérateur. En particulier, nous nous intéresserons aux *fantômes*
-qui forment les éléments de cet espace nul.
+reconstruction. Une représentation partielle correspond au cas l'ensemble de
+projections n'est pas suffisant pour reconstruire l'image de manière unique.
+Dans cette situation, le problème de reconstruction devient sous-déterminé et
+possède soit plusieurs solutions, soit aucune. Pour comprendre cette situation,
+nous nous intéresserons à l'*espace nul* qui correspond au noyau de
+l'opérateur. En particulier, nous nous intéresserons aux *fantômes* qui
+correspondent aux éléments de cet espace nul.
 
 ### Introduction aux fantômes
 
@@ -1016,8 +1016,8 @@ fantômes correspond à supprimer $r$ fantômes dans le domaine de \radon. On pe
 utiliser la technique de suppression proposée par \textcite{chandra2008dgci}
 par exemple.
 
-Quand des effacements suppriment des lignes de données, ce la génère des
-fantômes parmi les projections. On utilise alors le même algorithmes que
+Quand des effacements suppriment des lignes de données, des fantômes sont
+générés parmi les projections. On utilise alors le même algorithme que
 précédemment pour retrouver la valeur des données.
 
 
@@ -1344,8 +1344,7 @@ permettent de reconstruire entièrement l'image (plusieurs chemins peuvent
 exister). En particulier, chaque itération permet de déterminer la valeur d'un
 pixel, permettant en conséquence de réduire les dépendances appliquées sur les
 autres.
-
-Dans l'exemple de \cref{fig.dep_graph}, une itération possible consiste à :
+Dans l'exemple de la \cref{fig.dep_graph}, une itération possible consiste à :
 
 \begin{enumerate}
     \item débuter en reconstruisant le pixel supérieur gauche par la projection
@@ -1361,7 +1360,6 @@ Dans l'exemple de \cref{fig.dep_graph}, une itération possible consiste à :
 \noindent Une fois cette première colonne reconstruite, il est possible de répéter
 l'itération sur les colonnes suivantes (jusqu'à reconstruire entièrement la
 grille).
-
 En pratique, ces éléments correspondent à des zones mémoires contigües. En
 particulier, les bins des projections interviennent de manière séquentielle
 dans la reconstruction d'une ligne. Cette considération permet de favoriser la
@@ -1491,18 +1489,18 @@ que le code à effacement Mojette n'est pas MDS.
 comme étant le rapport du nombre de bins (défini dans \cref{eqn.nombre_bins})
 sur le nombre de pixels :
 
-\begin{align}
-    \epsilon    &= \frac{\#_{bins}}{\#_{pixels}},\\
-                &= \frac{\sum\limits_{i=0}^{n-1}B(P,Q,p_i,q_i)}{P \times Q}.
+\begin{equation}
+    %\epsilon    &= \frac{\#_{bins}}{\#_{pixels}},\\
+    \epsilon = \frac{\sum\limits_{i=0}^{n-1}B(P,Q,p_i,q_i)}{P \times Q}.
     \label{eqn.epsilon}
-\end{align}
+\end{equation}
 
-En particulier, il montre que cette valeur est significativement réduite à
-mesure que la largeur $P$ de l'image augmente. Le terme "quasi MDS" appliqué
-au code à effacement Mojette provient de désignation $(1+\epsilon)-MDS$ de
-\textcite{parrein2001phd}. Dans le prochain chapitre de cette thèse, l'impact
-de l'encodage sera précisément évalué et comparé avec d'autres techniques
-(\cref{sec.surcout_stockage}).
+\noindent En particulier, \citeauthor{parrein2001phd} montre que cette valeur
+est significativement réduite à mesure que la largeur $P$ de l'image augmente.
+Le terme "quasi MDS" appliqué au code à effacement Mojette correspond au terme
+$(1+\epsilon)-MDS$ utilisé dans \textcite{parrein2001phd}. Dans le prochain
+chapitre de cette thèse, l'impact de l'encodage sera précisément évalué et
+comparé avec d'autres techniques (\cref{sec.surcout_stockage}).
 
 #### Réduction du surcout de redondance
 

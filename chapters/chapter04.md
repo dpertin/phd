@@ -676,7 +676,7 @@ ce cas, les blocs $\PP_j$ et $\QQ_j$ sont calculés ainsi :
     \QQ_j &= \xor_{i=0}^{k-1}d_{i,j}\alpha^{i},    \label{eqn.rs_q}
 \end{align}
 
-Le '\cref{eqn.rs_p} indique que l'encodage du disque $\PP$ correspond à
+L'\cref{eqn.rs_p} indique que l'encodage du disque $\PP$ correspond à
 additionner $k$ blocs. En conséquence, $(k-1)$ opérations sont nécessaires.
 L'\cref{eqn.rs_q} montre que $(k-1)$ additions et $k$ multiplications sont
 nécessaires pour calculer les valeurs du disque $\QQ$. En conséquence, la
@@ -1192,13 +1192,13 @@ stockage distribué. Pour cela, nous avons défini trois métriques : (i)
 le coût d'encodage; (ii) le coût de mise à jour; (iii) le coût de décodage. En
 particulier, nous avons montré que le code à effacement Mojette nécessite moins
 d'opérations dans ces trois métriques, comparé aux Array codes et codes de \rs,
-dans un contexte RAID-6 où la tolérance aux pannes est limitée à deux (i.e.\
-paramètres de code $(k+2,k)$). Par la suite, nous avons étendu le même constat
-pour des paramètres de code $(n,k)$ arbitraires, en comparant les codes Mojette
-et \rs. Dans une dernière section, nous avons évalué par la pratique les
-performances de notre implémentation. En particulier, notre expérimentation a
-permis de montrer le gain significatif de notre nouvelle mise en œuvre du code
-systématique par rapport à la version non-systématique. De plus, dans les
+dans un contexte RAID-6 où la tolérance aux pannes est limitée à deux
+(i.e.\ paramètres de code $(k+2,k)$). Par la suite, nous avons étendu le même
+constat pour des paramètres de code $(n,k)$ arbitraires, en comparant les codes
+Mojette et \rs. Dans une dernière section, nous avons évalué par la pratique
+les performances de notre implémentation. En particulier, notre expérimentation
+a permis de montrer le gain significatif de notre nouvelle mise en œuvre du
+code systématique par rapport à la version non-systématique. De plus, dans les
 cadres de notre expérimentation, notre implémentation obtient de meilleurs
 résultats que l'implémentation des codes de \rs contenu dans la bibliothèque
 développée par \textcite{intel2015isal}.
