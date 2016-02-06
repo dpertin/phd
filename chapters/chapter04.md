@@ -20,8 +20,8 @@ une alternative efficace aux techniques de réplication. Ils permettent
 notamment de réduire significativement la quantité de redondance nécessaire
 pour fournir une certaine tolérance aux pannes.
 Une panne correspond à l'indisponibilité d'une donnée. En pratique, ces
-indisponibilités sont issues de problèmes de différentes natures (e.g.\
-logicielle, matérielle, réseau, \dots).
+indisponibilités sont issues de problèmes de différentes natures
+(e.g.\ logicielle, matérielle, réseau, \dots).
 Afin d'augmenter la disponibilité des données, il est nécessaire de distribuer
 ces informations de manière redondante sur plusieurs supports de stockage.
 Ainsi il est possible de supporter l'indisponibilité d'une partie de ces
@@ -60,11 +60,11 @@ parité en RAID-6 \cite{pertin2015sifwict}. Par exemple, les codes de
 \textcite{reed1960jsiam} peuvent être utilisés pour calculer ces disques de
 parité. Cependant, plusieurs méthodes optimisées pour cette configuration ont
 été conçues et permettent de calculer ce deuxième disque de façon plus
-performante. En particulier, les *Array Codes* codes rassemblent une famille de
+performante. En particulier, les *Arraycodes rassemblent une famille de
 codes qui ont été conçus dans cette optique. Les codes \eo de
 \textcite{blaum1995toc} et les codes *Row Diagnoal Parity* (RDP) de
 \textcite{corbett2004fast} font partis de cette famille de codes. Bien que plus
-performants par rapport aux code de \rs, ces méthodes sont limitées à deux
+performants par rapport aux codes de \rs, ces méthodes sont limitées à deux
 disques de parité, et sont donc limités si l'on souhaite fournir une meilleure
 disponibilité des données. En conséquence, il n'y a pas de solution parfaite,
 entre ces deux options et les concepteurs de systèmes de stockage doivent
@@ -79,7 +79,7 @@ La \cref{sec.raid6} fournit une comparaison des codes RAID-6 traditionnels avec
 le code Mojette dans sa version systématique, tel que défini précédemment dans
 \cref{sec.chap3}. La \cref{sec.rsmoj} compare le code à effacement et
 Mojette dans le cas général. Enfin, la \cref{sec.eval.perf} présente une
-évaluations des performances des implémentations du code Mojette face aux
+évaluation des performances des implémentations du code Mojette face aux
 meilleures implémentations des codes de \rs fournies par
 \textcite{intel2015isal}. Nous montrerons en particulier que le code Mojette
 bénéficie de meilleures performances théoriques dans l'ensemble des métriques,
@@ -91,7 +91,7 @@ validés dans l'expérimentation en dernière partie.
 # Cas des codes à effacement $(k+2,k)$ pour le stockage {#sec.raid6}
 
 
-## Terminologie en RAID-6 
+## Terminologie utilisée en RAID-6 
 
 \begin{figure}[t]
     \centering
@@ -154,67 +154,88 @@ possèdent de meilleures performances en reconstruisant l'information depuis le
 disque $\QQ$ plutôt que $\PP$.
 
 
-## Analyse des performance des codes RAID-6
+## Analyse des performances des codes RAID-6
 
-Bien que les codes populaires de \rs fournissent un taux de codage voulu, les
-*Array* codes fournissent de meilleures performances. Ces derniers ne sont
-définis que pour fournir deux disques de parité.
-Nous décrirons et analyserons les performances dans la suite de deux
-implémentations des codes de \rs (basés sur des matrices de
-\textsc{Vandermonde} et de \textsc{Cauchy}), ainsi que deux *Array* codes (\eo
+Par rapport aux codes de \rs qui peuvent fournir un taux de codage
+arbitraire, les *Array* codes sont conçus et optimisés pour gérer une quantité
+Dans la suite, nous décrirons et analyserons les performances de deux
+implémentations des codes de \rs (basées sur des matrices de
+\vander et de \cauchy, ainsi que deux *Array* codes (\eo
 et RDP). Enfin nous apporterons une comparaison des performances de ces codes
 avec le code Mojette. Nous verrons que ce dernier apporte de meilleures
 performances dans les différentes métriques définies précédemment. Les
-résultats de cette analyse seront regroupés en \cref{tab.comparaison} situé en
-\cpageref{tab.comparaison}.
+résultats de cette analyse seront regroupés dans le \cref{tab.comparaison}
+situé en \cpageref{tab.comparaison}.
 
 
 ### Codes de \rs
 
-Selon \textcite{plank2006nca}, les codes de \rs peuvent être définis de deux
-manières : (i) à travers une matrice de \textsc{Vandermonde}; (ii) à travers
-une matrice de \textsc{Cauchy}. Ces dernières matrices ont été proposées par
-\textcite{blomer1995icsi} afin d'améliorer les performances des codes de \rs.
-Nous verrons dans la suite ces deux versions.
+Les codes de \rs peuvent être utilisés pour définir la méthode de calcule des
+données de parité.  Dans le cas de RAID-6, la matrice d'encodage est simple et
+scindée en deux partie : $G = [I_k | R]$. La première partie correspond à la
+matrice carrée identité $I_k$ de taille $(k \times k$) et permet d'intégrer
+l'information à traiter dans les données encodées. La seconde partie correspond
+à la matrice de redondance $R$ de taille $(2 \times k)$ permettant de calculer
+les valeurs des disques de parité $\PP$ et $\QQ$. La matrice $R$ correspond à
+une matrice de \vander, de la forme :
 
+\begin{equation}
+    \begin{pmatrix}
+        1 & 1 & 1 & \cdots & 1 \\
+        \alpha^0 & \alpha^1 & \alpha^2 & \cdots & \alpha^{k-1},
+    \end{pmatrix}
+    \label{eqn.matrice.h}
+\end{equation}
 
-#### Vandermonde-RS
+\noindent avec $\alpha_i \in \text{GF}(q)$ un générateur du corps. Si l'on
+utilise par exemple le corps de \galois GF$(2^8)$ et un générateur de ce corps
+tel que $\alpha=2$, l'opération d'encodage d'une bande correspond alors à :
 
-Les codes de \rs sont basés sur une approche algrébrique. Ainsi le processus
-d'encodage est déterminé par une matrice d'encodage. Les matrices de \vander $(n
-\times k)$ sont adaptées pour l'application des codes à effacement puisque
-n'importe quelle sous-matrice carrée d'une matrice de \vander est inversible (en
-particulier une sous-matrice $k \times k$). Cette caractéristique des matrices
-de \vander permet d'inverse l'opération et reconstruire l'information perdue.
-Plus précisément, quand l'information subit des effacements, les lignes
-correspondant dans la matrice d'encodage sont supprimées on calcul l'inverse
-d'une sous matrice $(k \times k)$ afin de reconstruire les données perdues.
-Cette opération s'effectue sur des mots de $\beta$ bits
-avec $k + r \leq 2^{\beta}$. Naturellement, le paramètre $\beta$ doit faire la
-taille d'un mot (e.g.\ $\beta = 8$ ou $16$ ou $32$ bits). Considérons deux
-ensembles $i \in \ZZ_k$ et $j \in \ZZ_w$. Ainsi, $d_{i,j}$ correspond au
-bloc de donnée situé dans la colonne $i$ et à la ligne $j$. Dans ce cas, les
-blocs $\PP_j$ et $\QQ_j$ sont calculés ainsi :
+\begin{equation}
+    \begin{pmatrix}
+        1 & 0 & 0 & \cdots & 0 \\
+        0 & 1 & 0 & \cdots & 0 \\
+        0 & 0 & 1 & \cdots & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \ddots & 1 \\
+        1 & 1 & 1 & \cdots & 1 \\
+        1 & 2 & 4 & \cdots & 2^{k-1}
+        %\alpha_1^1 & \alpha_1^2 & \alpha_1^3 & \cdots & \alpha_1^{k},
+    \end{pmatrix} \times
+    \begin{pmatrix}
+    d_0 \\ d_1 \\ d_2 \\ \vdots \\ d_{k-1} \\ 
+    \end{pmatrix} =
+    \begin{pmatrix}
+    d_0 \\ d_1 \\ d_2 \\ \vdots \\ d_{k-1} \\ p \\ q \\
+    \end{pmatrix},
+    \label{eqn.matrice.raid6}
+\end{equation}
+
+\noindent où $p,q \in \text{GF}(2^8)$ correspondent aux valeurs des données de
+parité, respectivement stockées dans les disques $\PP$ et $\QQ$, et impliquées
+dans le calcule d'une bande. Dans la suite, nous allons uniquement considérer
+le calcul de $p$ et $q$. Puisque dans notre représentation, un disque est
+composé de $w$ bandes, l'encodage nécessite $w$ fois cette opération.
+L'\cref{eqn.matrice.raid6} montre ainsi que l'encodage du disque $\PP$ ne
+requiert que $(k-1)w$ additions, tandis que le calcule des valeurs du disque
+$\QQ$ nécessite $(k-1)w$ additions et $kw$ multiplications.
+Les implémentations des codes \rs souffrent particulièrement de
+l'implémentation des opérations dans les corps de \galois. En particulier, la
+multiplication est une opération coûteuse qui peut être implémentée de
+plusieurs manières. Par exemple, afin d'améliorer les performances de
+l'encodage des valeurs du disque $\QQ$, \textcite{anvin2004raid} propose de
+décomposer le calcul améliorer en utilisant la méthode de
+\textsc{Ruffini-Horner}, illustré dans l'\cref{eqn.anvin.raid6} :
 
 \begin{align}
-    \PP_j &= \xor_{i=0}^{k-1}d_{i,j},              \label{eqn.rs_p}\\
-    \QQ_j &= \xor_{i=0}^{k-1}d_{i,j}\alpha^{i},    \label{eqn.rs_q}
+    q   & = d_0 + (2 \times d_1) + (4 \times d_2) + (8 \times d_3) + (16
+    \times d_4) \\
+        & = d_o + ( 2 \times d_1 + ( 2 \times d_2 + ( 2 \times d_3 + (2 \times
+        d_4)))). \label{eqn.anvin.raid6}
 \end{align}
 
-\noindent où $\alpha^{i}$ correspond aux coefficients d'une matrice de \vander.
-Les implémentations classiques souffrent des multiplications de \cref{eqn.rs_q}
-réalisées dans un corps de \textsc{Galois}. Afin d'éviter ces opérations, de
-nouvelles alternatives ont été proposées par \textcite{blaum1993tit} pour
-remplacer ces multiplications par des opérations de soustractions et de
-rotations cycliques. Par la suite, \textcite{rizzo1997sigcomm} a proposé
-d'utiliser des tables de correspondance.
-
-Encoder le disque $\PP$ correspond à additionner $k$ blocs, comme le décrit
-l'\cref{eqn.rs_p}. En conséquence, $(k-1)$ opérations sont nécessaires.
-L'\cref{eqn.rs_q} montre que $(k-1)$ additions et $k$ multiplications sont
-nécessaires pour calculer les valeurs du disque $\QQ$. En conséquence, la
-construction de ces deux disques de parité nécessite $2 \times (k-1)w$
-additions et $(k \times w)$ multiplications.
+\noindent Dans cette représentation, il suffit alors de développer une
+implémentation efficace de la multiplication par deux.
 
 La modification d'un bloc de donnée entraîne la mise à jour de deux blocs de
 parité. Une addition est réalisée pour calculer la différence, deux
@@ -232,26 +253,9 @@ autant d'opérations qu'à l'encodage, c'est à dire : $2 \times (k-1)w$ additio
 et $k \times w$ multiplications.
 
 
-#### Cauchy-RS
-
-Cette version des codes de \rs est basée sur des matrices de \textsc{Cauchy}
-qui permettent une inversion matricielle plus efficace \cite{plank2006nca}. De
-plus, les travaux de \textcite{plank2006nca} ont permis de remplacer les
-opérations de multiplications par des additions. Pour cela, chaque élément de
-la matrice d'encodage et étendu par $\beta$ dans les deux directions. Ses
-performances sont ainsi liées au nombre de $1$ présents dans la matrice
-d'encodage ou de décodage, et des travaux ont été mené afin de rendre les
-matrices les plus creuses possible. En effet, étant donné les paramètres
-$(n,k)$ d'un code, il existe une quantité importante de matrices de Cauchy
-permettant d'encoder l'information. \textcite{plank2006nca} ont déterminé que
-chaque matrice n'est pas égale en matière de performance. En particulier, bien
-que si l'on souhaite trouver la meilleure matrice, il faut énumérer tous les
-cas possibles, \citeauthor{plank2006nca} donne un algorithme pour déterminer
-une "bonne" matrice de Cauchy. Cependant, aucune forme close n'existe
-aujourd'hui afin de définir ce nombre minimum de $1$ dans la matrice
-d'encodage.
-
 % peut être faux non ?
+
+% voir minimal density blabla
 
 
 
@@ -259,7 +263,7 @@ d'encodage.
 
 Les *Array* codes ont été conçus à l'origine comme une alternative aux codes de
 \rs afin d'éviter les opérations de multiplication dans les corps de
-\textsc{Galois}. Bien que ces codes soient limités en nombre de parité qu'ils
+\galois. Bien que ces codes soient limités en nombre de parité qu'ils
 peuvent fournir, ils ne réalisent que des additions, et sont en conséquence
 performants. Les disques $\PP$ et $\QQ$ sont respectivement calculés en utilisant
 des bandes horizontales et diagonales. Le calcul de $\PP$ est alors également
@@ -323,14 +327,14 @@ recalculer la valeur de $S$. Soit deux entiers $i,j \in \ZZ$ tel que $i \neq j$
 correspondant respectivement à l'index du premier et second disque en panne.
 Dans ce cas, on distingue les trois cas suivants :
 
-1. si $i=0$ et $j \geq k$, alors la méthode utilisée lors de l'encodage permet
+1. Si $i=0$ et $j \geq k$, alors la méthode utilisée lors de l'encodage permet
 de recalculer la valeur de $S$, puisqu'au disque en panne n'impacte la
 diagonale blanche. En conséquence, $c(S) = k-2$ opérations;
 
-2. si $i<k$ et $j=k$, alors il est nécessaire de calculer $S$ à partir de
+2. Si $i<k$ et $j=k$, alors il est nécessaire de calculer $S$ à partir de
 n'importe quelle autre diagonale, donc $c(S) = k-1$ opérations;
 
-3. si $i,j < k$, alors $S$ peut être calculée en additionnant l'ensemble des
+3. Si $i,j < k$, alors $S$ peut être calculée en additionnant l'ensemble des
 valeurs des disques de parité. Cela nécessite $c(S) = 2(k-2)$ opérations.
 
 Une fois que la valeur de $S$ est calculée, il est possible de reconstruire les
@@ -522,7 +526,7 @@ de la grille, et dont le nombre de dépendances est réduit.
     \label{tab.comparaison}
 \end{table}
 
-\Cref{tab.comparaison} résume les résultats obtenus précédemment. On y exprime
+Le \cref{tab.comparaison} résume les résultats obtenus précédemment. On y exprime
 le nombre d'opérations nécessaires pour chaque métriques détaillées en première
 section, en fonction des différents codes. En particulier, on distingue les
 métriques d'encodage et de décodage en fonction de l'utilisation du disque $\PP$
@@ -536,16 +540,16 @@ d'un bloc est également décisif et est optimal pour la Mojette.
 #### Les spécificités des codes de \rs
 
 Les performances théoriques des codes de \rs sont compliquées à définir. En
-effet, la multiplication dans les corps de \textsc{Galois} peut être
+effet, la multiplication dans les corps de \galois peut être
 implémentée de différentes manières.
 Les tables de correspondance permettent de remplacer le calcul d'une opération
 par la lecture d'un résultat, mais peuvent avoir des tailles significatives et
 ainsi impacter les performances de la mémoire. Bien qu'il existe une version
-des codes de \rs qui remplacent les opérations de multiplications par des XOR,
+des codes de \rs qui remplacent les opérations de multiplication par des XOR,
 il n'existe pas de forme close permettant de déterminer le nombre d'opérations
 nécessaires en fonction des paramètres de codes. C'est pourquoi dans le
-\cref{tab.comparaison}, nous distinguons les opérations de multiplications par
-$\otimes$.
+\cref{tab.comparaison}, nous distinguons les opérations de multiplication des
+opérations d'addition en utilisant le symbole $\otimes$.
 
 
 #### Analyse des performances
@@ -604,7 +608,112 @@ de favoriser la localité spatiale.
 
 ## Reed-Solomon
 
-## Array Codes
+Les codes à effacement de \reed correspondent à des codes $(n,k)$ MDS. En
+particulier, cette application calcule $n$ mots encodés à partir de $k$ mots de
+données tel que $k \geq n$. Pour cela, une matrice d'encodage de taille
+$n \times k$ est utilisée pour la transformation. Pour définir un code MDS,
+cette matrice doit nécessaire posséder la propriété suivante : toute
+sous-matrice de taille $k \times k$ doit être inversible. À l'origine, une
+matrice de \vander était utilisée puisque qu'elle possède une telle propriété.
+\textcite{blomer1995icsi} ont par la suite utilisé des matrices de
+\cauchy qui possèdent également cette propriété. En particulier, la complexité
+d'inversion d'une matrice de \cauchy est $\mathcal{O}(k^2)$. Dans leurs
+travaux, \textcite{blomer1995icsi} ont également proposé une représentation de
+la matrice qui permet d'implémenter les opérations de multiplication par des
+fonctions de OU-exclusifs.
+
+
+#### Vandermonde-RS
+
+Les matrices de \vander $V$ permettent de générer de l'information redondante.
+En particulier, cette matrice est définie par un vecteur de $n$ éléments
+$\left( \alpha_0, \alpha_1, \dots, \alpha_{n-1} \right)$. Cette matrice est de
+la forme :
+
+\begin{equation}
+    V = 
+    \begin{pmatrix}
+        1 & 1 & \cdots & 1 & 1 \\
+        \alpha_0^1 & \alpha_1^1 & \cdots & \alpha_{k-2}^1 & \alpha_{k-1}^1 \\
+        \alpha_0^2 & \alpha_1^2 & \cdots & \alpha_{k-2}^2 & \alpha_{k-1}^2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        \alpha_0^{n-1} & \alpha_1^{n-1} & \cdots & \alpha_{k-2}^{n-1} &
+            \alpha_{k-1}^{n-1} \\
+    \end{pmatrix} \in F_q^{k \times n}
+    \label{eqn.vander}
+\end{equation}
+
+\noindent où $\alpha^{i}$ correspond aux coefficients d'une matrice de \vander.
+Pour que l'ensemble des sous-matrices $k \times k$ soient inversibles, il est
+nécessaire que les éléments $\alpha_i$ du corps fini soient deux à deux
+distincts. Dans le cas d'un code de \rs non-sytématique, la matrice d'encodage
+correspond à une matrice de \vander tel que $G=V$. Pour obtenir un code de \rs
+systématique avec des paramètres $(n,k)$ arbitraire, il n'est pas possible de
+construire une matrice d'encodage de la forme $G=[I_k | V]$ (comme nous l'avons
+vu précédemment dans le cas particulier de RAID-6). Dans une telle matrice,
+toute sous-matrice carrée n'est pas inversible \textcite{lacan2004letters}.
+On peut cependant obtenir un code de \rs systématique à partir d'une matrice de
+\vander en appliquant un algorithme d'élimination de \textsc{Gauss} sur les
+colonnes de $V$ afin de faire apparaître une matrice identité. Cette méthode
+est décrite dans \textcite{plank2003rs}. Une autre méthode est proposée par
+\textcite{lacan2004letters}.
+
+N'importe quelle sous-matrice carrée d'une matrice de \vander est
+inversible (en particulier une sous-matrice $k \times k$). Cette
+caractéristique des matrices de \vander permet d'inverse l'opération et
+reconstruire l'information perdue.  Plus précisément, quand l'information subit
+des effacements, les lignes correspondant dans la matrice d'encodage sont
+supprimées on calcul l'inverse d'une sous matrice $(k \times k)$ afin de
+reconstruire les données perdues. Cette opération s'effectue sur des mots de
+$\beta$ bits avec $k + r \leq 2^{\beta}$. Naturellement, le paramètre $\beta$
+doit faire la taille d'un mot (e.g.\ $\beta = 8$ ou $16$ ou $32$ bits).
+Considérons deux ensembles $i \in \ZZ_k$ et $j \in \ZZ_w$. Ainsi, $d_{i,j}$
+correspond au bloc de donnée situé dans la colonne $i$ et à la ligne $j$. Dans
+ce cas, les blocs $\PP_j$ et $\QQ_j$ sont calculés ainsi :
+
+\begin{align}
+    \PP_j &= \xor_{i=0}^{k-1}d_{i,j},              \label{eqn.rs_p}\\
+    \QQ_j &= \xor_{i=0}^{k-1}d_{i,j}\alpha^{i},    \label{eqn.rs_q}
+\end{align}
+
+Le '\cref{eqn.rs_p} indique que l'encodage du disque $\PP$ correspond à
+additionner $k$ blocs. En conséquence, $(k-1)$ opérations sont nécessaires.
+L'\cref{eqn.rs_q} montre que $(k-1)$ additions et $k$ multiplications sont
+nécessaires pour calculer les valeurs du disque $\QQ$. En conséquence, la
+construction de ces deux disques de parité nécessite $2 \times (k-1)w$
+additions et $(k \times w)$ multiplications.
+
+Les codes de \rs souffrent des multiplications de l'\cref{eqn.rs_q}
+réalisées dans un corps de \galois. De nombreux travaux ont été
+réalisés afin de produire des implémentations efficaces de l'opération de
+multiplication. Par exemple, \textcite{blaum1993tit} ont proposé une
+méthode pour remplacer ces multiplications par des opérations de soustractions
+et de rotations cycliques. Par la suite, \textcite{rizzo1997sigcomm} a proposé
+d'utiliser des tables de correspondance. \textcite{anvin2004raid} présente une
+optimisation de l'encodage des codes de \rs pour RAID-6 en exploitant le fait
+que la multiplication par deux peut être implémentée de manière efficace
+(i.e\ comme un registre à décalage à rétroaction linéaire) quand $w$ est une
+puissance de deux.
+
+#### \cauchy-RS
+
+Cette version des codes de \rs basée sur des matrices de \cauchy permet
+permettent une inversion matricielle plus efficace \cite{plank2006nca}. De
+plus, les travaux de \textcite{plank2006nca} ont permis de remplacer les
+opérations de multiplications par des additions. Pour cela, chaque élément de
+la matrice d'encodage et étendu par $\beta$ dans les deux directions. Ses
+performances sont ainsi liées au nombre de $1$ présents dans la matrice
+d'encodage ou de décodage, et des travaux ont été mené afin de rendre les
+matrices les plus creuses possible. En effet, étant donné les paramètres
+$(n,k)$ d'un code, il existe une quantité importante de matrices de \cauchy
+permettant d'encoder l'information. \textcite{plank2006nca} ont déterminé que
+chaque matrice n'est pas égale en matière de performance. En particulier, bien
+que si l'on souhaite trouver la meilleure matrice, il faut énumérer tous les
+cas possibles, \citeauthor{plank2006nca} donne un algorithme pour déterminer
+une "bonne" matrice de \cauchy. Cependant, le nombre de $1$ dépend des ensembles
+d'éléments du corps de \galois choisi pour construire la matrice de
+\cauchy. En conséquence, aucune forme close n'existe aujourd'hui afin de
+définir ce nombre minimum de $1$ dans la matrice d'encodage.
 
 ## Mojette
 
