@@ -1,8 +1,4 @@
 
-% \chapter{Conception et évaluation d'une nouvelle
-
-%mise en œuvre systématique du code à effacement Mojette}
-
 \chapter{Code à effacement Mojette systématique}
 
 \label{sec.chap3}
@@ -483,11 +479,24 @@ $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
 # Évaluation du coût de la redondance du code Mojette {#sec.eval.red}
 \label{sec.surcout_stockage}
 
+Un code MDS génère la quantité minimale de redondance pour une tolérance aux
+pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
+effacement Mojette n'est pas optimal et est considéré comme $(1+\epsilon)$ MDS.
+En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
+$k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
+En conséquence, pour une protection donnée, notre code génère plus de données
+que la quantité minimale.
+Dans cette section, nous allons définir et évaluer le surcout de redondance
+généré par le code à effacement Mojette. Pour cette évaluation, nous
+définissons $f$ comme étant le facteur correspondant au rapport de la quantité
+de données encodées sur la quantité de données initiale. Dans la suite nous
+évaluerons dans un premier temps le gain de redondance induit par la version
+systématique du code Mojette, par rapport à sa version non-systématique. Une
+seconde étude permettra de positionner le coût de la redondance du code Mojette
+par rapport aux techniques de réplication et aux codes MDS.
+
+
 ## Réduction de la redondance par la conception systématique
-
-% gain mojette systématique
-
-% comparaison avec les codes MDS
 
 \begin{figure}[t]
     \centering
@@ -511,64 +520,16 @@ $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
     systématique. Les lettres correspondent à la valeur des pixels de l'image
     $3 \times 3$ (i.e.\ de hauteur $k=3$) d'où sont calculées ces $n=6$ blocs
     encodés.}
+    \label{fig.nsys.sys}
 \end{figure}
 
-## Comparaison du coût avec les codes MDS
-
-Un code MDS génère la quantité minimale de redondance pour une tolérance aux
-pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
-effacement Mojette n'est pas optimal et est considéré $(1+\epsilon)$ MDS.
-En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
-$k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
-En conséquence, pour une protection donnée, notre code génère plus de données
-que la quantité minimale.
-Dans cette section, nous allons définir et évaluer le surcout de redondance
-généré par le code à effacement Mojette. Nous définissons pour cela $f$ comme
-étant le coût de la donnée encodée. Plus particulièrement, $f$ correspond
-au quotient du nombre d'éléments générés par le code, sur le nombre d'éléments
-du message à encoder.
-
-Dans notre évaluation, nous allons considérer trois techniques qui permettent
-de générer de la redondance : la réplication, le code à effacement MDS, et le
-code à effacement Mojette. Dans le cas des codes à effacement, nous allons
-considérer un taux de codage de $r = \frac{3}{2}$ afin de les comparer
-équitablement. Nous allons comparer ces techniques pour plusieurs paramètres de
-protection, correspondant à une, deux et quatre pannes. En conséquence, les
-paramètres $(n,k)$ des codes à effacement correspondant seront définis dans
-l'ensemble $\left\{(3,2),(6,4),(12,8)\right\}$.
-
-Dans le cas de la réplication, le facteur de redondance $f$ correspond au
-nombre de copies générées, c'est à dire, à la tolérance aux pannes plus un. Par
-exemple, dans le cas où l'on souhaite protéger la donnée face à deux pannes, il
-est nécessaire de générer trois copies de l'information. En conséquence, dans
-le cas de la réplication par trois copies, le facteur de redondance $f$ vaut
-trois.
-
-\begin{figure}
-\centering
-\input{./tikz/ec_vs_rep.tikz}
-\caption{Comparaison du coût de stockage $f$ généré par différentes
-    techniques de codes à effacement, en fonction de la tolérance aux pannes.
-    Les paramètres des codes correspondent à $(n,k)$ égal $(3,2)$, $(6,4)$ et
-    $(12,8)$, fournissant une protection face à une, deux et quatre pannes
-    respectivement. Dans le cas particulier du code à effacement Mojette, deux
-    tailles de bloc de données sont données : $\mathcal{M} = 4$~Ko et $8$~Ko.}
-\label{fig.ec_vs_rep}
-\end{figure}
-
-Pour les codes MDS, la valeur du facteur de redondance $f$ correspond au taux
-de codage. En effet $r$ correspond à la quantité de donnée en sortie $n$ sur la
-quantité de donnée en entrée $k$. C'est pourquoi, si l'on fixe un taux de
-codage $r$, quelque soit la tolérance au panne de notre code, la quantité de
-redondance produite reste la même. En conséquence dans \cref{fig.ec_vs_rep}, la
-valeur de $f$ correspond à $r=\frac{3}{2}=1,5$ quel que soit la tolérance aux
-pannes fixée.
-
-Pour le code à effacement Mojette, l'étude est moins triviale. Nous avons vu
-dans la partie précédente que la taille des projections varie en fonction des
-paramètres de la grille discrète $P$ et $Q$, ainsi que des paramètres des
-directions de projections $(p_i, q_i)$. Nous rappelons ici la formule
-permettant de déterminer la taille d'une projection :
+La \cref{fig.nsys.sys} illustre le gain de la version systématique d'un code
+Mojette $(6,3)$ sur sa version non systématique. L'objectif de cette section
+est d'analyser ce gain.
+Nous avons vu précédemment que la taille des projections varie en
+fonction des paramètres de la grille discrète $P$ et $Q$, ainsi que des
+paramètres de l'ensemble des directions de projection $\{(p_i, q_i)\}$. Nous
+rappelons ici la formule permettant de déterminer la taille d'une projection :
 
 \begin{equation}
     B(P,Q,p,q) = |p_i|(Q-1) + |q_i|(P-1) + 1.
@@ -601,8 +562,8 @@ pixels :
 \noindent Puisque la taille d'une projection ne peut être inférieure à la
 longueur d'une ligne de la grille (i.e.\ $Q \leq B(P,Q,p_i,q_i)$), le coût $f$
 des données encodées est inférieur en systématique qu'en non-systématique.
-Dans notre évaluation, nous considérons un ensemble de projections de telle
-sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, on peut alors écrire
+Dans la suite de notre évaluation, nous considérons un ensemble de projections
+de telle sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, on peut alors écrire
 \cref{eqn.nombre_bins2} ainsi :
 
 \begin{equation}
@@ -676,6 +637,45 @@ cette faible différence entraîne de grandes valeurs dans \cref{eqn.taille}.
 Plus la valeur de $P$ augmente, plus la valeur de $f$ diminue. C'est ce que
 l'on observe dans le tableau, où les valeurs de $f$ convergent vers la valeur
 optimale $f=1,50$ qui correspond à la valeur atteinte par un code MDS.
+
+
+## Coût de la redondance par rapport à d'autres codes
+
+\begin{figure}
+\centering
+\input{./tikz/ec_vs_rep.tikz}
+\caption{Comparaison du coût de stockage $f$ généré par différentes
+    techniques de codes à effacement, en fonction de la tolérance aux pannes.
+    Les paramètres des codes correspondent à $(n,k)$ égal $(3,2)$, $(6,4)$ et
+    $(12,8)$, fournissant une protection face à une, deux et quatre pannes
+    respectivement. Dans le cas particulier du code à effacement Mojette, deux
+    tailles de bloc de données sont données : $\mathcal{M} = 4$~Ko et $8$~Ko.}
+\label{fig.ec_vs_rep}
+\end{figure}
+
+Dans notre évaluation, nous allons considérer trois techniques qui permettent
+de générer de la redondance : la réplication, le code à effacement MDS, et le
+code à effacement Mojette, dans sa version systématique. Dans le cas des codes
+à effacement, nous allons considérer un taux de codage de $r = \frac{3}{2}$
+afin de les comparer équitablement. Nous allons comparer ces techniques pour
+plusieurs paramètres de protection, correspondant à une, deux et quatre pannes.
+En conséquence, les paramètres $(n,k)$ des codes à effacement correspondant
+seront définis dans l'ensemble $\left\{(3,2),(6,4),(12,8)\right\}$.
+
+Dans le cas de la réplication, le facteur de redondance $f$ correspond au
+nombre de copies générées, c'est à dire, à la tolérance aux pannes plus un. Par
+exemple, dans le cas où l'on souhaite protéger la donnée face à deux pannes, il
+est nécessaire de générer trois copies de l'information. En conséquence, dans
+le cas de la réplication par trois copies, le facteur de redondance $f$ vaut
+trois.
+
+Pour les codes MDS, la valeur du facteur de redondance $f$ correspond au taux
+de codage. En effet $r$ correspond à la quantité de donnée en sortie $n$ sur la
+quantité de donnée en entrée $k$. C'est pourquoi, si l'on fixe un taux de
+codage $r$, quelque soit la tolérance au panne de notre code, la quantité de
+redondance produite reste la même. En conséquence dans la \cref{fig.ec_vs_rep}, la
+valeur de $f$ correspond à $r=\frac{3}{2}=1,5$ quel que soit la tolérance aux
+pannes fixée.
 
 
 
