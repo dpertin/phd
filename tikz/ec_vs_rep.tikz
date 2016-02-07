@@ -2,21 +2,25 @@
 \tikzstyle{every node}=[font=\huge]
 \begin{axis}[
     compat=newest, %Better label placement
-    xlabel = {Tolérance aux pannes},
-    ylabel = {Facteur de coût des données encodées $f$},
+    %xlabel = {Tolérance aux pannes},
+    xlabel = {Nombre de parité},
+    %ylabel = {Facteur de coût des données encodées $\mu$},
+    ylabel = {$\mu$},
     width=1.5\textwidth,
     height=\textwidth,
     xticklabels={ 1, 2, 3, 4 },
     xtick={1, 2, 3, 4},
-    ytick={1,...,5},
+    %ytick={1,...,5},
     axis lines*=left,
-    cycle list={
-        {draw=black!100},
-        {draw=black!80},
-        {draw=black!60},
-        {draw=black!40},
-        {draw=black!70}
-    },
+%    cycle list={
+%        {draw=black!100},
+%        {draw=black!80},
+%        {draw=black!60},
+%        {draw=black!40},
+%        {draw=black!70}
+%    },
+    cycle list name=my black white,
+    mark size=4,
     smooth,
     ultra thick,
     xmin=1,
@@ -24,43 +28,36 @@
     clip=false,
     ymajorgrids
     ]
-    \addplot [dotted] plot coordinates {
-        (1, 1.0)
-        (2, 1.0)
-        (3, 1.0)
-        (4, 1.0)
-    } node[pos=1] (endofplotnocoding) {};
-    \node[right=1em]
-            at (endofplotnocoding) {No coding};
+    %\addplot [dotted] plot coordinates {
+%    \addplot coordinates {
+%        (1, 1.0)
+%        (2, 1.0)
+%        (3, 1.0)
+%        (4, 1.0)
+%    } node[pos=1] (endofplotnocoding) {};
+%    \node[right=1em]
+%            at (endofplotnocoding) {No coding};
 
-    \addplot plot coordinates {
+    \addplot coordinates {
         (1, 1.5)
-        (2, 1.547)
-        %(3, 4.0)
-        (4, 1.9375)
-    } node[pos=1] (endofplotmojette) {};
-    \node[above=0.5cm, right=1em]
-            at (endofplotmojette) {Mojette $4$~KB};
-
-    \addplot plot coordinates {
-        (1, 1.5)
-        (2, 1.523)
-        %(3, 4.0)
+        (2, 1.52)
+        (3, 1.58)
         (4, 1.72)
     } node[pos=1] (endofplotmojette) {};
     \node[above=0.2cm, right=1em]
-            at (endofplotmojette) {Mojette $8$~KB};
+            at (endofplotmojette) {Mojette $1$~Ko};
     
-    \addplot [dash pattern=on 10pt off 2pt on 5pt off 6pt] plot coordinates {
+    %\addplot [dash pattern=on 10pt off 2pt on 5pt off 6pt] coordinates {
+    \addplot coordinates {
         (1, 1.5)
         (2, 1.5)
-        %(3, 1.5)
+        (3, 1.5)
         (4, 1.5)
     } node[pos=1] (endofplotmds) {};
     \node[right=1em]
             at (endofplotmds) {MDS};
 
-    \addplot plot coordinates {
+    \addplot coordinates {
         (1, 2.0)
         (2, 3.0)
         (3, 4.0)
