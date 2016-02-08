@@ -11,7 +11,6 @@
 
 \newpage
 
-% # Redondance dans les systèmes de stockage
 
 \section*{Introduction}
 
@@ -20,65 +19,70 @@ une alternative efficace aux techniques de réplication. Ils permettent
 notamment de réduire significativement la quantité de redondance nécessaire
 pour fournir une certaine tolérance aux pannes.
 Une panne correspond à l'indisponibilité d'une donnée. En pratique, ces
-indisponibilités sont issues de problèmes de différentes natures
+indisponibilités sont les conséquences de problèmes de différentes natures
 (e.g.\ logicielle, matérielle, réseau, \dots).
 Afin d'augmenter la disponibilité des données, il est nécessaire de distribuer
 ces informations de manière redondante sur plusieurs supports de stockage.
-Ainsi il est possible de supporter l'indisponibilité d'une partie de ces
+Ainsi, il est possible de supporter l'indisponibilité d'une partie de ces
 données en utilisant l'information redondante.
 
 En \citeyear{patterson1988sigmod}, \textcite{patterson1988sigmod} publient
-leurs travaux qui présentent $5$ techniques d'agrégation de disques durs. Cette
-agrégation, nommée *Redundant Array of Independant Disks* (RAID), peut se
-traduire par "Matrice redondante de disques indépendants". Chaque niveau RAID,
-identifié par un numéro, permet d'exploiter un ensemble de disques afin
-d'améliorer les performances et/ou la disponibilité des données. En
-particulier, les performances sont améliorées par la répartition des données
-sur l'ensemble de ces disques (*stripping*), cette technique est notamment à la
-base du RAID-0. D'autres techniques améliorent la disponibilité des données. En
-particulier, ces technique répliquent l'information sur l'ensemble des disques
-disponibles, comme en RAID-1, ou calculent $r$ disques de parité à partir de
-$k$ disques de données, capable de supporter la panne de $r$ disques. C'est le
-cas en RAID-4 et RAID-5 pour $r=1$, et RAID-6 pour $r=2$. Ces techniques ont
-ainsi permis de démocratiser l'utilisation de code à effacement au sein de
-systèmes de stockage. Elles sont encore aujourd'hui largement utilisées.
+leurs travaux qui présentent cinq techniques d'agrégation de disques durs.
+Ces techniques d'agrégation sont regroupées sous la désignation *Redundant
+Array of Independant Disks* (RAID), qui peut se traduire par « Matrice
+redondante de disques indépendants ». Chaque niveau RAID, identifié par un
+numéro, permet d'exploiter un ensemble de disques afin d'améliorer les
+performances et/ou la disponibilité des données. D'un côté, les
+performances de lecture et d'écriture sont améliorées grâce à la distribution
+des données qui permet d'exploiter l'ensemble des disques simultanément
+(*stripping*). Cette technique est notamment à la base du RAID-0.
+De l'autre, des techniques permettent d'améliorer la disponibilité des données.
+En particulier, ces technique génèrent de la redondance au sein du système de
+stockage. Il est par exemple possible de répliquer l'information sur l'ensemble
+des disques disponibles, comme en RAID-1. D'autres méthodes permettent de
+calculer $r$ disques de parité à partir de $k$ disques de données, ce qui
+permet de supporter la panne de $r$ disques. C'est le cas en RAID-4
+et RAID-5 pour $r=1$, et RAID-6 pour $r=2$. Ces techniques ont ainsi permis de
+démocratiser l'utilisation des codes à effacement au sein de systèmes de
+stockage. Elles sont encore aujourd'hui largement utilisées.
 
-À l'origine, l'agrégation matériel est rendu possible dans les années $80$ avec
-la réduction significative de la taille et du prix des composants
-informatiques \cite{bell1984computer}. En parallèle des supports de stockage,
-les microprocesseurs apparaissent à la même époque, fournissant une puissance
-de calcul bon marché et compacte qui permet l'agrégation de ressources de
-calcul au sein d'un système multiprocesseur. \textcite{krajewski1985byte}
-utilise notamment l'expression *Array Processing* pour désigner une matrice de
-processeurs exécutant la même instruction sur un jeu de données.
+À l'origine, l'agrégation des ressources matérielles est rendue possible dans
+les années $80$ avec la réduction significative de la taille et du prix des
+composants informatiques \cite{bell1984computer}.
+En parallèle du monde du stockage, les microprocesseurs apparaissent à la même
+époque et permettent de fournir une puissance de calcul bon marché et compacte.
+Ces réductions permettent d'agréger les ressources de calcul au sein d'un
+système multiprocesseur. \textcite{krajewski1985byte} utilise notamment
+l'expression *Array Processing* pour désigner une matrice de processeurs
+exécutant la même instruction sur un jeu de données.
 
-Bien que dans les systèmes de stockage organisés en RAID-4 et RAID-5, le calcul
-du disque de parité est simplement calculé comme la somme des données stockées,
-il est plus compliqué de calculer des disques de parité supplémentaires. En
-particulier, il existe plusieurs méthodes pour calculer un deuxième disque de
-parité en RAID-6 \cite{pertin2015sifwict}. Par exemple, les codes de
-\textcite{reed1960jsiam} peuvent être utilisés pour calculer ces disques de
-parité. Cependant, plusieurs méthodes optimisées pour cette configuration ont
-été conçues et permettent de calculer ce deuxième disque de façon plus
-performante. En particulier, les *Arraycodes rassemblent une famille de
-codes qui ont été conçus dans cette optique. Les codes \eo de
+Dans les systèmes de stockage organisés en RAID-4 et RAID-5, les informations
+du disque de parité correspondent à la somme des informations des disques de
+données. En revanche, il devient plus compliqué de fournir des disques de
+parité supplémentaires. En particulier, il existe plusieurs méthodes pour
+calculer un deuxième disque de parité en RAID-6 \cite{pertin2015sifwict}. Par
+exemple, les codes de \textcite{reed1960jsiam} peuvent être utilisés pour
+calculer ces disques de parité. Cependant, plusieurs méthodes optimisées pour
+cette configuration ont été conçues et permettent de calculer ce deuxième
+disque de façon plus performante. En particulier, les *Array* codes rassemblent
+une famille de codes qui ont été conçus dans cette optique. Les codes \eo de
 \textcite{blaum1995toc} et les codes *Row Diagnoal Parity* (RDP) de
 \textcite{corbett2004fast} font partis de cette famille de codes. Bien que plus
 performants par rapport aux codes de \rs, ces méthodes sont limitées à deux
-disques de parité, et sont donc limités si l'on souhaite fournir une meilleure
-disponibilité des données. En conséquence, il n'y a pas de solution parfaite,
-entre ces deux options et les concepteurs de systèmes de stockage doivent
-privilégier soit les performances, soit la haute disponibilité des données.
+voir trois disques de parité, et se généralisent difficilement au delà
+\cite{blaum1996tit}. En conséquence, il n'existe pas de solution parfaite et
+les concepteurs de systèmes de stockage doivent privilégier soit les
+performances, soit la haute disponibilité des données.
 
-Dans ce chapitre, une de nos contributions sera de fournir une nouvelle étude
-théorique sur les performances théoriques des codes conçus pour RAID-6 (i.e.\
+Dans ce chapitre, une de nos contributions sera de fournir une étude
+sur les performances théoriques des codes conçus pour RAID-6 (i.e.\
 $r=2$). Plus particulièrement, les critères de comparaison porteront sur des
-métriques adaptées au contexte du stockage tel que les performances d'encodage,
-de décodage et de mise à jour des données.
+métriques adaptées au contexte du stockage telles que les performances
+d'encodage, de décodage et de mise à jour des données.
 La \cref{sec.raid6} fournit une comparaison des codes RAID-6 traditionnels avec
 le code Mojette dans sa version systématique, tel que défini précédemment dans
-\cref{sec.chap3}. La \cref{sec.rsmoj} compare le code à effacement et
-Mojette dans le cas général. Enfin, la \cref{sec.eval.perf} présente une
+\cref{sec.chap3}. La \cref{sec.rsmoj} compare de manière théorique les codes de
+\rs et Mojette dans le cas général. Enfin, la \cref{sec.eval.perf} présente une
 évaluation des performances des implémentations du code Mojette face aux
 meilleures implémentations des codes de \rs fournies par
 \textcite{intel2015isal}. Nous montrerons en particulier que le code Mojette
