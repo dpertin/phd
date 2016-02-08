@@ -1266,7 +1266,7 @@ calculées dans cette figure décrivent une représentation redondante de l'imag
     \caption{Représentation du critère de \textcite{normand1996vcip}.
     L'ensemble $\{(1,0),(2,1),(1,1)\}$ n'est pas suffisant contrairement à
     l'ensemble $\{(1,1),(1,2),(1,2)\}$ dont la somme des vecteurs n'est pas
-    contenu dans l'image.}
+    contenu dans l'image. Extrait de \cite{guedon2009mojettebookchap4}}.
     \label{fig.katz.normand}
 \end{figure}
 
@@ -1284,11 +1284,9 @@ l'autre non.
 
 ### Algorithme de reconstruction
 
-%, et sont énumérés dans \textcite{guedon2009mojettebookchap5}.
-
 Plusieurs algorithmes de reconstruction Mojette ont été proposés
-\cite{normand1996vcip, normand2006dgci, servieres2005spie,
-guedon2009mojettebookchap5}. Nous choisissons de
+\cite{normand1996vcip, normand2006dgci, servieres2005spie} et sont résumés dans
+\cite{guedon2009mojettebookchap5}. Nous choisissons de
 décrire dans la suite, l'algorithme itératif d'inversion Mojette par balayage
 (*Balayage Mojette Inversion*, BMI) de \textcite{normand2006dgci} pour son
 efficacité. Nous verrons en effet que la complexité de décodage d'un symbole se

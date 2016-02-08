@@ -381,8 +381,8 @@ les performances sont meilleures.
 L'algorithme d'inversion présenté dans cette section correspond à une extension
 de l'algorithme inverse de \textcite{normand2006dgci}, étudié dans le chapitre
 précédent. Une bonne compréhension de cet algorithme est nécessaire pour
-comprendre ce que l'on fait dans cette section.
-Dans la suite, nous décrirons deux modifications majeures à cet
+comprendre ce qui est réalisé dans cette section.
+Dans la suite, nous décrirons deux principales modifications à cet
 algorithme : (i) une nouvelle détermination des offsets de chaque projection
 est nécessaire pour prendre en compte les lignes déjà reconstruites de la
 grille, cette détermination sera présentée en \cref{sec.offsets}; (ii) un
@@ -400,15 +400,20 @@ systématique sont énumérées dans l'\cref{alg.systematique}.
 
 Une mise en œuvre de l'opération de décodage du code à effacement Mojette sous
 sa forme systématique est donnée par \textcite{david2013patent}. Dans ce
-brevet, le procédé pour reconstruire une image dégradée repose sur trois étapes
-: (i) la première étape consiste à calculer les valeurs des projections de la
-grille partielle. Les directions de projection sont définies par l'ensemble
-suffisant de $e$ projections obtenues pour reconstruire une grille dont $e$
+brevet, le procédé pour reconstruire l'information manquante d'une image
+dégradée $f'$ repose sur trois étapes : (i) la première étape consiste à
+calculer les valeurs des projections de la grille partielle
+$[Mf'](b, p_i, q_i)$. Les directions de projection sont définies par un
+ensemble suffisant de $e$ projections pour reconstruire une grille dont $e$
 lignes sont manquantes; (ii) la seconde étape consiste à calculer la différence
-entre les projections obtenues par l'image d'origine, et l'image partielle;
-(iii) la dernière étape consiste à appliquer l'algorithme de reconstruction de
-\textcite{normand2006dgci} en utilisant les valeurs des différences entre
-projections, et une grille construite à partir des lignes effacées.
+entre les projections obtenues $[Mf](b, p_i, q_i)$ par l'image d'origine, et
+l'image partielle $[Mf'](b, p_i, q_i)$; (iii) la dernière étape consiste à
+appliquer l'algorithme de reconstruction de \textcite{normand1996vcip} en
+utilisant les valeurs des différences entre projections, et une grille
+construite à partir des lignes effacées.
+Dans la suite, nous allons présenter une nouvelle mise en œuvre basée sur
+l'algorithme de \textcite{normand2006dgci}.
+
 
 
 ## Détermination des *offsets* pour la reconstruction {#sec.offsets}
