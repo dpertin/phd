@@ -43,17 +43,25 @@
     urlcolor={blue!80!black}
 }
 
+\usepackage[french=guillemets]{csquotes}
+
 \usepackage[
     backend=biber,
     style=alphabetic,
 	maxnames=2,
-    maxbibnames=99
+    maxbibnames=99,
+    language=french,
+    babel=other
 ]{biblatex}
 \addbibresource{these.bib}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
 \newcommand{\nom}{Pertin}
+
+% régle la profondeur de la table des matières
+% \setcounter{tocdepth}{3}
+% \setcounter{secnumdepth}{3}
 
 % options et procédures pour inclure les images SVG
 \graphicspath{{img/}}
@@ -132,13 +140,17 @@
 \newcommand\katz{\citeauthor{katz1978springer} }
 \newcommand\reed{\citeauthor{reed1960jsiam} }
 
-\newcommand\vand{\textsc{Vandermonde} }
+\newcommand\vander{\textsc{Vandermonde} }
+\newcommand\cauchy{\textsc{Cauchy} }
 \newcommand\rs{\textsc{Reed-Solomon} }
 \newcommand\eo{\textsc{EVENODD} }
 \newcommand\fourier{\textsc{Fourier} }
+\newcommand\galois{\textsc{Galois} }
+\newcommand\intel{\textsc{Intel} }
 
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
 \newcommand\PP{\mathcal{P}}
 \newcommand\QQ{\mathcal{Q}}
 
@@ -200,5 +212,19 @@
     {}%
   \printtext[textcitehyperref]{%
     \restorebibmacro{textcite}%
-    \usebibmacro{textcite}}}
+    \usebibmacro{textcite}}
+}
+
+\pgfplotscreateplotcyclelist{my black white}{%
+solid, every mark/.append style={solid, fill=gray}, mark=*\\%
+dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
+densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
+loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
+dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
+loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
+densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
+dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
+dasdotdotted, every mark/.append style={solid},mark=star\\%
+densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
+}
 
