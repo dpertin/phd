@@ -621,9 +621,11 @@ ensembles de projection $S_{\left(\frac{n}{k}\right)} = \{(p_i,q_i)\}$ suivants 
 
 2. $S_{\left(\frac{6}{4}\right)} = \left\{(0,1),(1,1)\right\}$,
 
-3. $S_{\left(\frac{12}{8}\right)} = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$.
+3. $S_{\left(\frac{9}{6}\right)} = \left\{(0,1),(1,1),(-1,1)\right\}$,
 
-\noindent Ces ensemble partagent le même taux de codage $r=\frac{3}{2}$ et
+4. $S_{\left(\frac{12}{8}\right)} = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$.
+
+\noindent Ces ensembles partagent le même taux de codage $r=\frac{3}{2}$ et
 fournissent respectivement une tolérance face à une, deux et quatre pannes.
 
 \begin{figure}

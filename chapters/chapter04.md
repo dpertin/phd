@@ -414,7 +414,7 @@ projection dépend de la taille de la grille et de la direction de projection.
 On le définit ainsi :
 
 \begin{equation}
-    \rho(k,w)^{\{(p,q)\}} = k \times w - B(k,w,p,q),
+    \rho(k,w)^{(p,q)} = k \times w - B(k,w,p,q),
     \label{eqn.xor_enc}
 \end{equation}
 
@@ -494,7 +494,7 @@ hauteur de $(Q-l)$. Le nombre d'opérations nécessaires pour reconstruire cette
 ligne correspond à :
 
 \begin{equation}
-    \rho(P,Q,l)^{\{(1,1)\}} = (Q-1)P 
+    \rho(P,Q,l)^{(1,1)} = (Q-1)P 
         - \frac{l(l+1)}{2}
         - \frac{(Q-l-1)(Q-l)}{2}.
     \label{eqn.dec_sys_mojette}
@@ -663,7 +663,7 @@ code de \rs systématique avec des paramètres $(n,k)$ arbitraire, il n'est pas
 possible de construire une matrice d'encodage de la forme $G=[I_k | V]$ (comme
 nous l'avons vu précédemment dans le cas particulier de RAID-6). Dans une telle
 matrice, toute sous-matrice carrée n'est pas
-inversible~\cite{lacan2004letters}. On peut cependant obtenir un code de \rs
+inversible \cite{lacan2004letters}. On peut cependant obtenir un code de \rs
 systématique à partir d'une matrice de \vander en appliquant un algorithme
 d'élimination de \textsc{Gauss} sur les colonnes de $V$ afin de faire
 apparaître une matrice identité. Cette méthode est décrite dans
@@ -682,10 +682,10 @@ $(k \times k)$. L'inverse de cette matrice est déterminée afin de retrouver le
 message initiale : $X = G'^{-1}Y'$. 
 Considérons deux ensembles $i \in \ZZ_k$ et $j \in \ZZ_w$. Ainsi, $d_{i,j}$
 correspond au bloc de donnée situé dans la colonne $i$ et à la ligne $j$. Dans
-ce cas, les données d'un disque de parité $\mathbb{R}_j$ sont calculées ainsi :
+ce cas, les données d'un disque de parité $\mathcal{R}_j$ sont calculées ainsi :
 
 \begin{equation}
-    \mathbb{R}_j = \xor_{i=0}^{k-1}d_{i,j}\alpha^{i}.
+    \mathcal{R}_j = \xor_{i=0}^{k-1}d_{i,j}\alpha^{i}.
     \label{eqn.rs_r}
 \end{equation}
 
@@ -711,34 +711,37 @@ la matrice d'encodage et étendu par $\beta$ dans les deux directions. Ses
 performances sont ainsi liées au nombre de $1$ présents dans la matrice
 d'encodage ou de décodage. Des travaux ont été menés afin de rendre les
 matrices les plus creuses possible. En effet, étant donné les paramètres
-$(n,k)$ d'un code, il existe une quantité importante de matrices de \cauchy
-permettant d'encoder l'information. \textcite{plank2006nca} ont déterminé que
+$(n,k)$ d'un code défini dans un corps de \galois, il existe une quantité
+importante de matrices de \cauchy permettant d'encoder l'information.
+\textcite{plank2006nca} ont déterminé que
 chaque matrice n'est pas égale en matière de performance. En particulier, 
 si l'on souhaite trouver la meilleure matrice, il faut énumérer tous les
-cas possibles, \citeauthor{plank2006nca} donne un algorithme pour déterminer
+cas possibles, dont le nombre croît de manière exponentielle avec $n$. En
+conséquence, cette méthode peut convenir pour des codes avec des paramètres
+$(n,k,w)$ de faibles valeurs (e.g. $w \leq 4$).
+\citeauthor{plank2006nca} donnent en revanche un algorithme pour déterminer
 une « bonne » matrice de \cauchy. Cependant, le nombre de $1$ dépend des
-ensembles d'éléments du corps de \galois choisi pour construire la matrice de
-\cauchy. En conséquence, aucune forme close n'existe aujourd'hui afin de
+ensembles d'éléments du corps de \galois choisis pour construire la matrice de
+\cauchy. En conséquence, aucune méthode efficace n'existe aujourd'hui afin de
 définir ce nombre minimum de $1$ dans la matrice d'encodage.
 
 ## Mojette
 
 ### Performances de l'encodeur Mojette
 
-L'opération d'encodage génère $n$ projections à partir d'une grille discrète de
-hauteur $k$. Dans la suite, nous analyserons le nombre d'opérations nécessaires
-pour le calcul d'une projection.
+Nous allons analyser le nombre d'opérations nécessaires pour le calcul d'une
+projection.
 Bien que la génération d'une projection met en jeu l'ensemble des
 éléments de la grille discrète une et une seule fois (voir \cref{eqn.mojette}),
-le nombre $c$ d'opérations nécessaires pour l'encodage varie en fonction de
+le nombre $\rho$ d'opérations nécessaires pour l'encodage varie en fonction de
 deux paramètres : la taille de la grille, et la direction de projection.
 Le nombre d'additions nécessaires pour générer une projection
 $\text{Proj}_{f}(p,q,b)$ correspond à :
 
 \begin{equation}
     \begin{aligned}
-        \rho(P,Q)^{\{(p,q)\}}  &= P \times Q - B(P,Q,p,q), \\
-                    &= P \times Q - \left((Q-1)|p_{i}|+(P-1)|q_{i}|+1\right),
+        \rho(P,Q)^{(p,q)}  &= P \times Q - B(P,Q,p,q), \\
+                    &= P \times Q - \left((Q-1)|p|+(P-1)|q|+1\right),
     \end{aligned}
     \label{eqn.enc_mojette}
 \end{equation}
@@ -746,23 +749,26 @@ $\text{Proj}_{f}(p,q,b)$ correspond à :
 \noindent et représente le nombre d'éléments de la grille discrète ($P \times
 Q$) auquel on soustrait le nombre de bins de la projection, tel que défini dans
 \cref{eqn.nombre_bins}. Considérons à présent que l'on fixe la taille de la
-grille, ainsi qu'un paramètre de projection. Nous reprendrons notre exemple
-avec $q_i=1$. Dans ce cas, si $p=0$, alors :
+grille, ainsi qu'un paramètre de projection. Si l'on considère comme
+précédemment que $q_i=1$ :
 
-\begin{equation}
-    \rho(P,Q)^{\{(0,1)\}} = (Q-1) \times (P - |p_i|).
+\begin{align}
+    \rho(P,Q)^{(p,1)} &= P \times Q - ((Q-1)|p| + P), \\
+                            &= (Q-1) (P - |p|).
     \label{eqn.enc_mojette_q}
-\end{equation}
+\end{align}
 
 \noindent En conséquence, quand les dimensions de la grille sont fixées, si la
-valeur de $|p|$ augmente, alors le nombre d'opérations nécessaire pour générer
-une projection $\rho(P,Q,p,q)$ diminue. Cela signifie que plus une projection est
-grande, moins elle nécessite d'opérations d'addition pour être calculée.  En
-conséquence, si seules les performances sont essentielles pour une application,
-on choisira des projections avec de grandes valeurs de $|p|$.
+valeur de $|p|$ augmente, le nombre d'opérations nécessaires pour générer
+une projection $\rho(P,Q)^{(p,q)}$ diminue. Cela signifie que plus une
+projection est grande, moins elle nécessite d'opérations d'addition pour être
+calculée. En conséquence, si seules les performances sont essentielles pour
+une application, on choisira des projections avec de grandes valeurs de $|p|$.
+Pour un ensemble de projections $\{(p_i,1)\}$ donné, l'ensemble des opérations
+nécessaire pour l'encodage correspond à $\sum\limits_i \rho(P,Q)^{\{(p_i,1)\}}$.
 
 
-### Performances du décodeur Mojette non-systématique
+% ### Performances du décodeur Mojette non-systématique
 
 
 % ajouter le cas de l'algorithme dim'dim
@@ -777,35 +783,32 @@ on choisira des projections avec de grandes valeurs de $|p|$.
 
 % toutes les lignes de la grille ont été effacées.
 
-Nous prendrons comme sujet d'étude, l'algorithme de reconstruction BMI défini
-par \textcite{normand2006dgci}. Dans cet algorithme, les opérations réalisées
-correspondent à : (i) la reconstruction de $(P \times Q)$ pixels; (ii) la mise
-à jour de l'ensemble des $k$ de chaque projection liés à chaque pixel
-reconstruit. En conséquence, il est nécessaire de réaliser
-$P \times Q \times Q$ additions pour reconstruire la grille entière.
+%Nous prendrons comme sujet d'étude, l'algorithme de
+
+%reconstruction BMI défini par \textcite{normand2006dgci}.
+
+% Dans cet algorithme, les opérations réalisées correspondent à
+
+%: (i) la reconstruction de $(P \times Q)$ pixels; (ii) la mise
+
+%à jour de l'ensemble des $k$
+
+%de chaque projection liés à chaque pixel
+
+%reconstruit. En conséquence, 
+
+%il est nécessaire de réaliser $P \times Q \times Q$
+
+%additions pour reconstruire la grille entière.
 
 
-### Performances du décodeur en systématique
+### Performances du décodeur systématique
 
-
-\begin{equation}
-    \#_{XOR_{decode}}(l,k,w) =
-    \sum_{i=l-w+1}^{i=l} \left(
-        \left[
-            \sum_{a=0}^{w-1}
-                \sum_{b=0}^{k-1}
-                    \Delta\left(i+a-b\right)
-            \right]-1
-        \right),\
-    \label{eqn.mojette_decoding3}
-\end{equation}
-
-\noindent Dans le cas général, le nombre d'opérations nécessaires $\rho(k,w,l)$
-pour reconstruire une ligne $l$ depuis une projection de direction $(p,1)$ est
-défini par :
+Le nombre d'opérations nécessaires $\rho(k,w,l)$ pour reconstruire un pixel
+d'index $i$ depuis une projection de direction $(p,1)$ est défini par :
 
 \begin{equation}
-    \rho(k,w)_l^{\{(p,1)\}} = \left [ 
+    \rho(k,w)_i^{(p,1)} = \left [ 
         \sum_{a=0}^{w-1}
             \sum_{b=0}^{k-1}
                 \Delta\left(i+a-(b \times |p| \right)
@@ -813,14 +816,27 @@ défini par :
     \label{eqn.mojette_decoding}
 \end{equation}
 
-\noindent Dans le cas où plusieurs lignes sont effacées, cette équation devient :
+\noindent En conséquence, le nombre d'opérations nécessaires pour reconstruire
+une ligne d'index $l$ correspond à la somme des valeurs calculées à partir de
+l'\cref{eqn.mojette_decoding} pour chaque pixel de la ligne :
 
 \begin{equation}
-    \rho(k,w)_{l_j}^{\{(p_j,1)\}} =
-        \sum_{i=l_j-w+1}^{i=l_j} \left( \rho(k,w)_{l_j}^{\{(p_j,1)\}}\right).
+    \rho(k,w)_{l}^{(p,1)} =
+        \sum_{i=l-w+1}^{i=l} \left( \rho(k,w)_{i}^{(p,1)}\right).
     \label{eqn.mojette_decoding2}
 \end{equation}
 
+Dans le cas où $e$ lignes sont effacées, le nombre total d'opérations
+nécessaires correspond à la somme des opérations nécessaires pour chaque ligne.
+Dans ce cas, une projection différente, issue d'un ensemble suffisant
+$\{(p_i,1)\} \mid i \in \ZZ_e$, est associé à la reconstruction d'une ligne.
+On détermine alors le nombre d'opération nécessaire ainsi :
+
+\begin{equation}
+    \rho(k,w)_e^{\{(p_e,1)\}} =
+        \sum_{e} \left( \rho(k,w)_{l_e}^{(p_e,1)}\right).
+    \label{eqn.mojette_decoding2}
+\end{equation}
 
 
 
