@@ -1,10 +1,11 @@
 
-% \chapter{Conception et évaluation d'une nouvelle
-
-%mise en œuvre systématique du code à effacement Mojette}
-
 \chapter{Code à effacement Mojette systématique}
 
+\label{sec.chap3}
+
+\minitoc
+
+\newpage
 
 % Dans le chapitre précédent, nous avons vu la transformée
 
@@ -25,6 +26,8 @@
 % la transformée Mojette offre des complexités d'encodage et
 
 % de décodage plus efficaces.
+
+\section*{Introduction}
 
 Nous avons vu dans le chapitre précédent que la transformée Mojette est capable
 de produire efficacement de la redondance de l'information, nécessaire pour
@@ -54,7 +57,7 @@ La \cref{sec.algo-sys} présente la mise en œuvre et l'algorithme conçu pour
 décoder l'information sous cette forme. En particulier, nous verrons que
 l'algorithme utilisé est une extension de l'algorithme de
 \textcite{normand2006dgci}.
-La \cref{sec.comparaison} analyse le gain de redondance de cette version sur la
+La \cref{sec.eval.red} analyse le gain de redondance de cette version sur la
 version non-systématique, et compare ce coût face aux codes MDS.
 
 % Pour finir, nos verrons une évaluation du code à effacement
@@ -145,18 +148,18 @@ Dans le contexte des télécommunications, les applications sont
 intrinsèquement liées au matériel qui traite et transporte la donnée, ainsi
 qu'aux techniques de codage qui permettent aux informations de transiter à
 travers un canal à effacement.
-\Cref{fig.data_path} représente une vue générale de la chaîne de transmission
-entre deux terminaux interconnectés. La donnée issue de la RAM du nœud $1$ est
-traitée par le CPU afin de la transmettre sur le média de communication à
-partir de l'interface réseau. Sur le réseau, l'information passe au travers de
-composants gérant l'acheminement des données. Ce média représente un canal à
-effacement dans lequel les paquets peuvent être perdus. Une fois parvenue au
-destinataire, une opération inverse à la première étape est réalisée afin de
-stocker cette donnée dans la RAM du nœud $2$. L'objectif du code à effacement
-est de traiter les données avant leur transmission ou leur stockage. En
-conséquence, il agit entre l'ensemble des composants de traitement (processeur,
-mémoire centrale), et l'ensemble des composants de communication (stockage de
-masse, réseau).
+La \cref{fig.data_path} représente une vue générale de la chaîne de
+transmission entre deux terminaux interconnectés. La donnée issue de la RAM du
+nœud $1$ est traitée par le CPU afin de la transmettre sur le média de
+communication à partir de l'interface réseau. Sur le réseau, l'information
+passe au travers de composants gérant l'acheminement des données. Ce média
+représente un canal à effacement dans lequel les paquets peuvent être perdus.
+Une fois parvenue au destinataire, une opération inverse à la première étape
+est réalisée afin de stocker cette donnée dans la RAM du nœud $2$. L'objectif
+du code à effacement est de traiter les données avant leur transmission ou leur
+stockage. En conséquence, il agit entre l'ensemble des composants de traitement
+(processeur, mémoire centrale), et l'ensemble des composants de communication
+(stockage de masse, réseau).
 
 Dans notre cas, il est nécessaire de concevoir un code à effacement qui ne
 forme pas un goulot d'étranglement dans cette chaîne afin que ce soit le
@@ -308,11 +311,9 @@ performances sont optimales.
 
 % du cas le plus courant. {CITER QUELQUE CHOSE}
 
-
-
-%En comparaison en version non-systématique, même si aucune information ne subit
-d'effacement, il est nécessaire de reconstruire la grille entière. Quel que
-soit le schéma de perte, le décodage met en jeu $k$ projections pour
+En comparaison avec la version non-systématique, même si aucune information ne
+subit d'effacement, il est nécessaire de reconstruire la grille entière. Quel
+que soit le schéma de perte, le décodage met en jeu $k$ projections pour
 reconstruire les $k$ lignes. En conséquence, le décodage nécessite toujours un
 travail calculatoire dont le coût est significatif.
 Dans la suite, nous analysons le cas où des effacements se produisent.
@@ -352,8 +353,8 @@ d'opérations sont nécessaires pour le décodage.
 
 Dans le cas où $(e=k)$, l'ensemble des lignes de la grille est effacé. Il est
 alors nécessaire de décoder l'information à partir de $k$ projections.
-L'opération de décodage correspond alors à la même opération que le code soit
-systématique ou non.
+L'opération de décodage est alors identique, que le code soit systématique ou
+non.
 
 ### Bilan de l'impact en décodage
 
@@ -380,8 +381,8 @@ les performances sont meilleures.
 L'algorithme d'inversion présenté dans cette section correspond à une extension
 de l'algorithme inverse de \textcite{normand2006dgci}, étudié dans le chapitre
 précédent. Une bonne compréhension de cet algorithme est nécessaire pour
-comprendre ce que l'on fait dans cette section.
-Dans la suite, nous décrirons deux modifications majeures à cet
+comprendre ce qui est réalisé dans cette section.
+Dans la suite, nous décrirons deux principales modifications à cet
 algorithme : (i) une nouvelle détermination des offsets de chaque projection
 est nécessaire pour prendre en compte les lignes déjà reconstruites de la
 grille, cette détermination sera présentée en \cref{sec.offsets}; (ii) un
@@ -399,15 +400,20 @@ systématique sont énumérées dans l'\cref{alg.systematique}.
 
 Une mise en œuvre de l'opération de décodage du code à effacement Mojette sous
 sa forme systématique est donnée par \textcite{david2013patent}. Dans ce
-brevet, le procédé pour reconstruire une image dégradée repose sur trois étapes
-: (i) la première étape consiste à calculer les valeurs des projections de la
-grille partielle. Les directions de projection sont définies par l'ensemble
-suffisant de $e$ projections obtenues pour reconstruire une grille dont $e$
+brevet, le procédé pour reconstruire l'information manquante d'une image
+dégradée $f'$ repose sur trois étapes : (i) la première étape consiste à
+calculer les valeurs des projections de la grille partielle
+$[Mf'](b, p_i, q_i)$. Les directions de projection sont définies par un
+ensemble suffisant de $e$ projections pour reconstruire une grille dont $e$
 lignes sont manquantes; (ii) la seconde étape consiste à calculer la différence
-entre les projections obtenues par l'image d'origine, et l'image partielle;
-(iii) la dernière étape consiste à appliquer l'algorithme de reconstruction de
-\textcite{normand2006dgci} en utilisant les valeurs des différences entre
-projections, et une grille construite à partir des lignes effacées.
+entre les projections obtenues $[Mf](b, p_i, q_i)$ par l'image d'origine, et
+l'image partielle $[Mf'](b, p_i, q_i)$; (iii) la dernière étape consiste à
+appliquer l'algorithme de reconstruction de \textcite{normand1996vcip} en
+utilisant les valeurs des différences entre projections, et une grille
+construite à partir des lignes effacées.
+Dans la suite, nous allons présenter une nouvelle mise en œuvre basée sur
+l'algorithme de \textcite{normand2006dgci}.
+
 
 
 ## Détermination des *offsets* pour la reconstruction {#sec.offsets}
@@ -439,8 +445,8 @@ dernière ligne à reconstruire $\text{Offset}(\text{Eff}(e-1))$ :
         + S_{\text{plus}}).\label{eqn.offr}
 \end{align}
 
-La méthode pour déterminer la valeur des offsets est ensuite décrite dans
-\cref{alg.systematique,alg.offsets}.
+\noindent La méthode pour déterminer la valeur des offsets est ensuite décrite
+à la \cref{alg.offsets} de l'\cref{alg.systematique}.
 
 
 ## Calcul de la valeur du pixel à reconstruire {#sec.pxl}
@@ -465,20 +471,35 @@ En conséquence, la valeur du pixel à reconstruire est donnée par :
     \label{eqn.sys_pxl}
 \end{equation}
 
-où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des valeurs des
-pixels de l'image en reconstruction selon la droite passant par le pixel de
-coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où 
+\noindent où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des
+valeurs des pixels de l'image en reconstruction selon la droite passant par le
+pixel de coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où
 $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
 
 
 
 
-# Évaluation du coût de la redondance par rapport aux codes MDS {#sec.eval.red}
+# Évaluation du coût de la redondance du code Mojette {#sec.eval.red}
 \label{sec.surcout_stockage}
 
-% gain mojette systématique
+Un code MDS génère la quantité minimale de redondance pour une tolérance aux
+pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
+effacement Mojette n'est pas optimal et est considéré comme $(1+\epsilon)$ MDS.
+En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
+$k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
+En conséquence, pour une protection donnée, notre code génère plus de données
+que la quantité minimale.
+Dans cette section, nous allons définir et évaluer le surcout de redondance
+généré par le code à effacement Mojette. Pour cette évaluation, nous
+définissons $\mu$ comme étant le facteur correspondant au rapport de la quantité
+de données encodées sur la quantité de données initiale. Dans la suite nous
+évaluerons dans un premier temps le gain de redondance induit par la version
+systématique du code Mojette, par rapport à sa version non-systématique. Une
+seconde étude permettra de positionner le coût de la redondance du code Mojette
+par rapport aux coûts induits par les techniques de réplication et les codes MDS.
 
-% comparaison avec les codes MDS
+
+## Réduction de la redondance en systématique
 
 \begin{figure}[t]
     \centering
@@ -502,119 +523,28 @@ $Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
     systématique. Les lettres correspondent à la valeur des pixels de l'image
     $3 \times 3$ (i.e.\ de hauteur $k=3$) d'où sont calculées ces $n=6$ blocs
     encodés.}
+    \label{fig.nsys.sys}
 \end{figure}
 
-Un code MDS génère la quantité minimale de redondance pour une tolérance aux
-pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
-effacement Mojette n'est pas optimal et est considéré $(1+\epsilon)$ MDS.
-En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
-$k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
-En conséquence, pour une protection donnée, notre code génère plus de données
-que la quantité minimale. La \cref{}
-Dans cette section, nous allons définir et évaluer le surcout de redondance
-généré par le code à effacement Mojette. Nous définissons pour cela $f$ comme
-étant le coût de la donnée encodée. Plus particulièrement, $f$ correspond
-au quotient du nombre d'éléments générés par le code, sur le nombre d'éléments
-du message à encoder.
-
-Dans notre évaluation, nous allons considérer trois techniques qui permettent
-de générer de la redondance : la réplication, le code à effacement MDS, et le
-code à effacement Mojette. Dans le cas des codes à effacement, nous allons
-considérer un taux de codage de $r = \frac{3}{2}$ afin de les comparer
-équitablement. Nous allons comparer ces techniques pour plusieurs paramètres de
-protection, correspondant à une, deux et quatre pannes. En conséquence, les
-paramètres $(n,k)$ des codes à effacement correspondant seront définis dans
-l'ensemble $\left\{(3,2),(6,4),(12,8)\right\}$.
-
-Dans le cas de la réplication, le facteur de redondance $f$ correspond au
-nombre de copies générées, c'est à dire, à la tolérance aux pannes plus un. Par
-exemple, dans le cas où l'on souhaite protéger la donnée face à deux pannes, il
-est nécessaire de générer trois copies de l'information. En conséquence, dans
-le cas de la réplication par trois copies, le facteur de redondance $f$ vaut
-trois.
-
-\begin{figure}
-\centering
-\input{./tikz/ec_vs_rep.tikz}
-\caption{Comparaison du coût de stockage $f$ généré par différentes
-    techniques de codes à effacement, en fonction de la tolérance aux pannes.
-    Les paramètres des codes correspondent à $(n,k)$ égal $(3,2)$, $(6,4)$ et
-    $(12,8)$, fournissant une protection face à une, deux et quatre pannes
-    respectivement. Dans le cas particulier du code à effacement Mojette, deux
-    tailles de bloc de données sont données : $\mathcal{M} = 4$~Ko et $8$~Ko.}
-\label{fig:ec_vs_rep}
-\end{figure}
-
-Pour les codes MDS, la valeur du facteur de redondance $f$ correspond au taux
-de codage. En effet $r$ correspond à la quantité de donnée en sortie $n$ sur la
-quantité de donnée en entrée $k$. C'est pourquoi, si l'on fixe un taux de
-codage $r$, quelque soit la tolérance au panne de notre code, la quantité de
-redondance produite reste la même. En conséquence dans \cref{fig.ec_vs_rep}, la
-valeur de $f$ correspond à $r=\frac{3}{2}=1,5$ quel que soit la tolérance aux
-pannes fixée.
-
-Pour le code à effacement Mojette, l'étude est moins triviale. Nous avons vu
-dans la partie précédente que la taille des projections varie en fonction des
-paramètres de la grille discrète $P$ et $Q$, ainsi que des paramètres des
-directions de projections $(p_i, q_i)$. Nous rappelons ici la formule
-permettant de déterminer la taille d'une projection :
+La \cref{fig.nsys.sys} illustre le gain de la version systématique d'un code
+Mojette $(6,3)$ par rapport à la version non-systématique. L'objectif de cette
+section est d'analyser ce gain. Nous avons vu précédemment que la taille des
+projections varie en fonction des paramètres de la grille discrète $P$ et $Q$,
+ainsi que des paramètres de l'ensemble des directions de projection $\{(p_i,
+q_i)\}$. Nous rappelons ici la formule permettant de déterminer la taille d'une
+projection :
 
 \begin{equation}
     B(P,Q,p,q) = |p_i|(Q-1) + |q_i|(P-1) + 1.
     \label{eqn.nombre_bins2}
 \end{equation}
 
-\noindent Dans le cas du code à effacement non-systématique, la valeur de $f$
-correspond au quotient de la somme du nombre de bin $B$ de chaque projection
-$(p_i,q_i)$ sur le nombre d'éléments de la grille :
-
-\begin{equation}
-    f = \frac
-        {\sum\limits_{i=0}^{n-1} B(P,Q,p_i,q_i)}
-        {P \times Q}.
-    \label{eqn.f_non_systematic}
-\end{equation}
-
-\noindent Dans le cas où le code est systématique, $k$ projections sont
-remplacées par les $k$ lignes de la grille discrète. En conséquence, la valeur
-de $f$ correspond au quotient du nombre de pixels et de bins, sur le nombre de
-pixels :
-
-\begin{equation}
-    f = \frac
-        {P \times Q + \sum\limits_{i=0}^{n-k-1} B(P,Q,p_i,q_i)}
-        {P \times Q}.
-    \label{eqn.f_non_systematic}
-\end{equation}
-
-\noindent Puisque la taille d'une projection ne peut être inférieure à la
-longueur d'une ligne de la grille (i.e.\ $Q \leq B(P,Q,p_i,q_i)$), le coût $f$
-des données encodées est inférieur en systématique qu'en non-systématique.
-Dans notre évaluation, nous considérons un ensemble de projections de telle
-sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, on peut alors écrire
-\cref{eqn.nombre_bins2} ainsi :
-
-\begin{equation}
-    B(P,Q,p_i,1) = (Q-1)|p_i| + P.
-    \label{eqn.taille}
-\end{equation}
-
-\noindent La valeur de $f$ dépend naturellement de l'ensemble de projections
-choisi. En particulier, pour une taille de grille fixée, la valeur du paramètre
-$p$ des directions de projections influence $f$. Afin de réduire cette valeur,
-nous choisirons alternativement des entiers positifs puis négatifs, dont la
-valeur croît à partir de zéro, comme valeurs de $p_i$. Par exemple en
-systématique, nous considérerons les ensembles de projection
-$S_{\left(\frac{n}{k}\right)} = \{(p_i,q_i)\}$ suivants :
-
-1. $S_{\left(\frac{3}{2}\right)} = \left\{(0,1)\right\}$,
-
-2. $S_{\left(\frac{6}{4}\right)} = \left\{(0,1),(1,1)\right\}$,
-
-3. $S_{\left(\frac{12}{8}\right)} = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$,
-
-\noindent afin de protéger la donnée face à une, deux et quatre pannes
-respectivement.
+\noindent Puisque dans le cas des codes à effacement Mojette, la taille des
+blocs encodés (i.e.\ les projections) varie, nous allons étudier le nombre
+d'éléments de projection par rapport au nombre de pixels. Dans le cas du code à
+effacement non-systématique, la valeur de $\mu$ correspond au quotient de la
+somme du nombre de bin $B$ de chaque projection de l'ensemble $\{(p_i,q_i)\}$,
+sur le nombre d'éléments de la grille :
 
 \begin{table}[t]
 	\centering
@@ -639,7 +569,7 @@ respectivement.
     		    & \emph{1,50}\\
 		\bottomrule
 	\end{tabular}
-	\caption{Résultats arrondis des coûts $f$ des données encodées pour les
+	\caption{Résultats arrondis des coûts $\mu$ des données encodées pour les
 	versions non-systématique (nsys) et systématique (sys) du code Mojette en
 	fonction de différents paramètres de code $(n,k)$ et de différentes tailles
 	de $\mathcal{M}$ en octets. Les résultats en italique représentent la
@@ -647,24 +577,116 @@ respectivement.
 	\label{tab.f}
 \end{table}
 
-\Cref{tab.f} compare les résultats arrondis des coûts $f$ pour les deux
-versions du code à effacement Mojette, avec un taux $r=\frac{3}{2}$. Pour
-obtenir ces résultats, on a utilisé une taille de pixel de $64$ bits. En
-conséquence, la largeur de la grille $P$ correspond à :
+\begin{equation}
+    \mu = \frac
+        {\sum\limits_{i=0}^{n-1} B(P,Q,p_i,q_i)}
+        {P \times Q}.
+    \label{eqn.f_non_systematic}
+\end{equation}
+
+\noindent Par rapport à la forme non-systématique, $k$ projections sont
+remplacées par les $k$ lignes de la grille discrète quand le code est
+systématique. En conséquence, la valeur de $\mu$ correspond au quotient de la
+somme du nombre de pixels et de bins produits, sur le nombre de pixels de
+l'image:
+
+\begin{equation}
+    \mu = \frac
+        {P \times Q + \sum\limits_{i=0}^{n-k-1} B(P,Q,p_i,q_i)}
+        {P \times Q}.
+    \label{eqn.f_non_systematic}
+\end{equation}
+
+\noindent Puisque la taille d'une projection ne peut être inférieure à la
+longueur d'une ligne de la grille (i.e.\ $Q \leq B(P,Q,p_i,q_i)$), le coût $\mu$
+des données encodées est inférieur en systématique qu'en non-systématique.
+Dans la suite de notre évaluation, nous considérons un ensemble de projections
+de telle sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, on peut alors écrire
+\cref{eqn.nombre_bins2} ainsi :
+
+\begin{equation}
+    B(P,Q,p_i,1) = (Q-1)|p_i| + P.
+    \label{eqn.taille}
+\end{equation}
+
+\noindent La valeur de $\mu$ dépend naturellement de l'ensemble de projections
+choisi. En particulier, pour une taille de grille fixée, la valeur du paramètre
+$p$ des directions de projections influence la valeur de $\mu$. Afin de réduire
+cette valeur, nous choisirons alternativement des entiers positifs puis
+négatifs, dont la valeur croît à partir de zéro, comme valeurs de $p_i$. Par
+exemple, pour le code sous sa forme systématique, nous considérerons les
+ensembles de projection $S_{\left(\frac{n}{k}\right)} = \{(p_i,q_i)\}$ suivants :
+
+1. $S_{\left(\frac{3}{2}\right)} = \left\{(0,1)\right\}$,
+
+2. $S_{\left(\frac{6}{4}\right)} = \left\{(0,1),(1,1)\right\}$,
+
+3. $S_{\left(\frac{9}{6}\right)} = \left\{(0,1),(1,1),(-1,1)\right\}$,
+
+4. $S_{\left(\frac{12}{8}\right)} = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$.
+
+\noindent Ces ensembles partagent le même taux de codage $r=\frac{3}{2}$ et
+fournissent respectivement une tolérance face à une, deux et quatre pannes.
+
+\begin{figure}
+\centering
+\input{./tikz/ec_vs_rep.tikz}
+\caption{Calcul de la valeur de $\mu$ pour différentes techniques de
+    redondance en fonction de différents paramètres de code $(n,k)$.
+    Le taux de codage est fixé à $\frac{3}{2}$ tel que ces paramètres valent
+    respectivement $(3,2)$, $(6,4)$, $(9, 6)$ et $(12,8)$. Les codes issus de
+    ces paramètres sont capables de supporter de une à quatre pannes
+    respectivement. La valeur illustrée pour le code à effacement Mojette
+    correspond à une taille de bloc de données de $\mathcal{M} = 1$~Ko.}
+\label{fig.ec_vs_rep}
+\end{figure}
+
+Le \cref{tab.f} compare les résultats des coûts $\mu$ (à l'arrondis près) pour
+les deux versions du code à effacement Mojette avec les ensembles de projection
+proposés précédemment. Pour obtenir ces résultats, on a utilisé une taille de
+pixel de $64$ bits. En conséquence, la valeur de $P$ qui correspond à la
+largeur de la grille est calculé peut être obtenu ainsi :
 
 \begin{equation}
     P = \frac{\mathcal{M} \times 8}{k \times 64},
 \end{equation}
 
-où $\mathcal{M}$ correspond à la taille des données traitées en octets.
-Ces résultats permettent d'observer que lorsque les paramètres $(n,k)$ du code
-augmentent, le coût $f$ augmente. Plus précisément, en $(12,8)$, la version
-non-systématique possède un coût élevé de $f=3,47$, contre $1,72$ en
-systématique. Dans ce cas, $P = 16$, ce qui correspond $(2 \times Q)$. Or,
+\noindent avec $\mathcal{M}$ qui correspond à la taille des données traitées en
+octets. Ces résultats permettent d'observer que lorsque les paramètres $(n,k)$
+du code augmentent, la valeur de $\mu$ augmente. Plus précisément, en $(12,8)$,
+la version non-systématique possède un coût élevé de $\mu=3,47$, contre $1,72$ en
+systématique. Dans ce cas, $P = 16$, ce qui correspond à $(2 \times Q)$. Or,
 cette faible différence entraîne de grandes valeurs dans \cref{eqn.taille}.
-Plus la valeur de $P$ augmente, plus la valeur de $f$ diminue. C'est ce que
-l'on observe dans le tableau, où les valeurs de $f$ convergent vers la valeur
-optimale $f=1,50$ qui correspond à la valeur atteinte par un code MDS.
+Plus la valeur de $P$ augmente, plus la valeur de $\mu$ diminue. C'est ce que
+l'on observe dans le tableau, où les valeurs de $\mu$ convergent vers la valeur
+optimale $\mu=1,50$ qui correspond à la valeur atteinte par un code MDS.
+
+
+## Coût de la redondance par rapport à d'autres codes
+
+Dans notre évaluation, nous allons considérer trois techniques qui permettent
+de générer de la redondance : la réplication, le code à effacement MDS, et le
+code à effacement Mojette dans sa version systématique. La \cref{fig.ec_vs_rep}
+présente notre évaluation.
+
+Dans le cas de la réplication, le facteur de redondance $\mu$ correspond au
+nombre de copies générées. Par exemple, dans le cas où l'on souhaite protéger
+la donnée face à deux pannes, il est nécessaire de générer deux copies en plus
+de l'information initiale. Dans cet exemple, le facteur de redondance $\mu$
+vaut $3$.
+
+Dans le cas des codes à effacement, nous fixons le taux de codage de $r =
+\frac{3}{2}$ afin comparer la valeur de $\mu$ équitablement. Nous allons
+comparer ces techniques pour plusieurs paramètres de code $(n,k)$ définis dans
+l'ensemble $\left\{(3,2),(6,4),(9,6),(12,8)\right\}$.
+Pour les codes MDS, la valeur du facteur de redondance $\mu$ correspond au taux
+de codage. En effet $r$ correspond à la quantité de donnée en sortie $n$ sur la
+quantité de donnée en entrée $k$. C'est pourquoi, si l'on fixe un taux de
+codage $r$, quelque soit la tolérance au panne de notre code, la quantité de
+redondance produite reste la même. En conséquence dans la \cref{fig.ec_vs_rep},
+la valeur de $\mu$ correspond à $r=\frac{3}{2}=1,5$ quel que soit la tolérance
+aux pannes fixée.
+
 
 
 
