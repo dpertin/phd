@@ -71,6 +71,23 @@
   location        = {Polytech Nantes, Nantes, France},
 }
 
+@inproceedings {muralidhar2014osdi,
+  author = {Muralidhar, Subramanian and Lloyd, Wyatt and Roy, Sabyasachi and
+  Hill, Cory and Lin, Ernest and Liu, Weiwen and Pan, Satadru and Shankar,
+  Shiva and Sivakumar, Viswanath and Tang, Linpeng and Kumar, Sanjeev},
+  title = {f4: {F}acebook{\textquoteright}s Warm {BLOB} Storage System},
+  booktitle = {11th USENIX Symposium on Operating Systems Design and
+  Implementation (OSDI 14)},
+  year = {2014},
+  month = {10},
+  address = {Broomfield, CO, USA},
+  pages = {383--398},
+  publisher = {USENIX Association},
+  isbn = {978-1-931971-16-4},
+  url =
+  {https://www.usenix.org/conference/osdi14/technical-sessions/presentation/muralidhar},
+}
+
 @techreport{plank2014jerasure,
   title={Jerasure: A library in {C} facilitating erasure coding for storage
   applications--version 2.0},
@@ -222,14 +239,13 @@
  isbn = {978-0133390094},
 }
 
-@book{oggier2013survey,
+@article{oggier2012survey,
  author = {Oggier, Frederique and Datta, Anwitaman},
  title = {Coding Techniques for Repairability in Networked Distributed Storage
  Systems},
- year = {2013},
- publisher = {Now Publishers Inc.},
- address = {Hanover, MA, USA},
- isbn = {1601986769, 9781601986764},
+ year = {2012},
+ url =
+ {http://pdcc.ntu.edu.sg/sands/CodingForNetworkedStorage/pdf/longsurvey.pdf},
 }
 
 @article{rodeh2013btrfs,
@@ -557,7 +573,8 @@
 }
 
 @INPROCEEDINGS{shvachko2010msst,
- author={Shvachko, K. and Hairong Kuang and Radia, S. and Chansler, R.},
+ author={Shvachko, Konstantin V. and Kuang, Hairong and Radia, Sanjay and
+ Chansler, Robert},
  title={The {H}adoop Distributed File System},
  booktitle={Proceedings of the 26th Symposium on Mass Storage Systems and
  Technologies (MSST)},
@@ -592,6 +609,15 @@
  month= {12},
  pages={276--281},
  doi={10.1109/DICTA.2010.56},
+}
+
+@online{omalley2009hadoop,
+  author = {O'Malley, Owen and Murthy, Arun C.},
+  title = {Hadoop Sorts a Petabyte in 16.25 Hours and a Terabyte in 62 Seconds},
+  organization = {Yahoo! Developer Network Blog},
+  url =
+  {https://developer.yahoo.com/blogs/hadoop/hadoop-sorts-petabyte-16-25-hours-terabyte-62-422.html},
+  date = {2009-05-11},
 }
 
 @article{rashmi2009exact_rep,
@@ -670,7 +696,7 @@
   hal_id       = {hal-00367681},
 }
 
-@inproceedings{fan2009diskreduce,
+@inproceedings{fan2009pdsw,
   author     = {Fan, Bin and Tantisiriroj, Wittawat and Xiao, Lin and Gibson,
   Garth},
   title      = {DiskReduce: {RAID} for data-intensive scalable computing},
@@ -698,6 +724,15 @@
  month={9},
  pages={1243--1249},
  doi={10.1109/ALLERTON.2009.5394538}
+}
+
+@online{shvachko2008hadoop,
+  author = {Shvachko, Konstantin V. and Murthy, Arun C.},
+  title = {Scaling Hadoop to 4000 nodes at Yahoo!},
+  organization = {Yahoo! Developer Network Blog},
+  url =
+  {https://developer.yahoo.com/blogs/hadoop/scaling-hadoop-4000-nodes-yahoo-410.html},
+  date = {2008-09-30},
 }
 
 @INPROCEEDINGS{chandra2008icpr,
@@ -755,7 +790,7 @@
   where  = "http://www.cs.utk.edu/~plank/plank/papers/CS-07-603.html"
 }
 
-@article{dean2008mapreduce,
+@article{dean2008acm,
   author  = {Dean, Jeffrey and Ghemawat, Sanjay},
   title  = {{MapReduce}: Simplified data processing on large clusters},
   journal  = {Communication of the ACM},
@@ -772,6 +807,16 @@
   pagetotal  = {7},
   doi  = {10.1145/1327452.1327492},
   acmid  = {1327492},
+}
+
+@inproceedings{mathur2007linux,
+  title={The new ext4 filesystem: current status and future plans},
+  author={Mathur, Avantika and Cao, Mingming and Bhattacharya, Suparna and
+  Dilger, Andreas and Tomas, Alex and Vivier, Laurent},
+  booktitle={Proceedings of the Linux symposium},
+  volume={2},
+  pages={21--33},
+  year={2007},
 }
 
 @book{coeurjolly2007book,
@@ -1526,6 +1571,16 @@
  doi = {10.1145/62044.62050},
  acmid = {62050},
  issue_date = {April 1989},
+}
+
+@book{gianpaolo1998fs,
+ author = {Giampaolo, Dominic},
+ title = {Practical File System Design with the Be File System},
+ year = {1998},
+ edition = {1st},
+ publisher = {Morgan Kaufmann Publishers Inc.},
+ address = {San Francisco, CA, USA},
+ isbn = {1558604979},
 }
 
 @article{patterson1988sigmod,

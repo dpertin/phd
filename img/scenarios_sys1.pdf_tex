@@ -1,0 +1,65 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'figures/scenarios_sys1.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{573.35913086bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.66015868)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{img/scenarios_sys1.pdf}}%
+    \put(0.07082668,0.10016861){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$S_1$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{img/scenarios_sys1.pdf}}%
+    \put(0.13501257,0.10016861){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_1$}}}%
+    \put(0.38835509,0.10016861){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_2$}}}%
+    \put(0.63962921,0.10016861){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_3$}}}%
+    \put(0.89073165,0.10016861){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_4$}}}%
+    \put(0.08716087,0.28019653){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_1$}}}%
+    \put(0.33463015,0.33600798){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_2$}}}%
+    \put(0.58317408,0.39181942){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p_1$}}}%
+    \put(0.4989944,0.56089404){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Fault-Free Write}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{img/scenarios_sys1.pdf}}%
+  \end{picture}%
+\endgroup%
