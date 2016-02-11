@@ -14,13 +14,13 @@ afin de supporter l'indisponibilité des données. Dans de tels systèmes,
 l'apparition des pannes est devenue une norme plutôt qu'une exception
 \cite{weil2006osdi}. Pour leur simplicité de mise en œuvre, les techniques de
 réplication sont largement utilisées pour fournir cette redondance. Cependant,
-ces techniques implique de stocker une quantité significative de redondance par
+ces techniques impliquent de stocker une quantité significative de redondance par
 rapport à la donnée à protéger (e.g.\ $200$\% dans le cas de la réplication par
 trois). Les codes à effacement proposent une alternative permettant de fournir
 la même tolérance aux pannes, tout en diminuant significativement la quantité
 de redondance nécessaire (généralement par un facteur $2$)
 \cite{weatherspoon2001iptps, oggier2012survey}. Une des conséquences directes
-du passage d'un système de données répliquées à encodées correspond à la
+du passage d'un système de données répliquées à encoder correspond à la
 réduction énergétique du système de stockage.
 
 
@@ -29,7 +29,51 @@ réduction énergétique du système de stockage.
 
 ## Systèmes de fichiers distribués (SFD)
 
+### Évolution du stockage distribué
+
+% expliquer que RAID 5 n'est pas assez dans une matrice
+
+% de stockage importante
+
+% puis que RAID 6 ne va plus avec l'interconnection réseau
+
+% network RAID, RAIN, P2P, DFS
+
+Tous les systèmes de stockage contenant des informations ou des applications
+sensibles, protègent la donnée stockée face aux pannes en utilisant un schéma
+semblable à la représentation en matrice de disques RAID, telle que l'on a vue au
+chapitre précédent \cite{patterson1988sigmod}. En particulier, nous verrons que
+la mise en œuvre des codes à effacement évolue et s'adapte depuis les années
+$80$ avec la taille et l'organisation des systèmes de stockage.
+
+L'organisation des disques en RAID-5 est présentée à l'origine comme une
+méthode permettant de protéger la perte d'un disque pour un coût de stockage
+significativement réduit par rapport à la réplication utilisée en RAID-1. Côté
+performance, le calcul des données de parité est une opération relativement
+simple pour le contrôleur RAID, qui a peu d'impact sur les performances à
+condition que les données de parité soient distribuées sur l'ensemble des
+disques de la matrice (et non sur un disque comme représenté précédemment, ce
+qui formerait un goulot d'étranglement), afin de répartir la charge. 
+Cependant, cette technique s'est rapidement trouvée limitée dans des matrices
+de disques de taille importante. En effet, plus le nombre de disques
+augmente, plus le risque qu'une double panne survienne est important. La
+famille RAID s'est alors agrandie grâce à de nouvelles techniques permettant
+une protection face à la perte d'un second disque (RAID-6). Pour un ensemble de
+disque donné, cette technique améliore la tolérance aux pannes du système, au
+coût d'une diminution de la capacité de stockage. Une première construction
+repose sur les codes de « \rs $\PP+\QQ$ » \cite{chen1994acm}. Le principal
+problème de cette méthode correspond à la complexité des calculs des blocs de
+parité. En conséquence, plusieurs méthodes de codage ont été proposées pour
+améliorer cette complexité. En particulier, l'utilisation combinée de parités
+horizontales et verticales \cite{gibson1989sigarch}, les codes \eo
+\cite{blaum1995toc} d'\textsc{IBM} ou encore les codes RDP de \textsc{NetApp}
+\cite{corbett2004fast}, permettent de s'affranchir des codes de \rs.
+
+
+
 ## Redondance dans les SFD
+
+### Utilisation du code à effacement dans les SFD
 
 La réplication par trois est configurée par défaut dans la plupart des systèmes
 de stockage tel que *Hadoop Distributed File System* (HDFS)
@@ -559,3 +603,4 @@ disques durs (pour répartir la charge) soit des disques SSD.
 ## Discussion
 
 
+\section*{Conclusion}
