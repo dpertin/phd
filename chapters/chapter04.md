@@ -76,12 +76,12 @@ les concepteurs de systèmes de stockage doivent privilégier soit les
 performances, soit la haute disponibilité des données.
 
 Dans ce chapitre, une de nos contributions sera de fournir une étude
-sur les performances théoriques des codes conçus pour RAID-6 (i.e.\
-$r=2$). Plus particulièrement, les critères de comparaison porteront sur des
-métriques adaptées au contexte du stockage telles que les performances
-d'encodage, de décodage et de mise à jour des données.
-La \cref{sec.raid6} fournit une comparaison des codes RAID-6 traditionnels avec
-le code Mojette dans sa version systématique, tel que défini précédemment dans
+sur les performances théoriques des codes conçus pour RAID-6
+(i.e.\ $r=2$). Plus particulièrement, les critères de comparaison porteront sur
+des métriques adaptées au contexte du stockage telles que les performances
+d'encodage, de décodage et de mise à jour des données.  La \cref{sec.raid6}
+fournit une comparaison des codes RAID-6 traditionnels avec le code Mojette
+dans sa version systématique, tel que défini précédemment dans
 \cref{sec.chap3}. La \cref{sec.rsmoj} compare de manière théorique les codes de
 \rs et Mojette dans le cas général. Enfin, la \cref{sec.eval.perf} présente une
 évaluation des performances des implémentations du code Mojette face aux
