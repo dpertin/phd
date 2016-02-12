@@ -29,7 +29,6 @@
 \usepackage{array,booktabs}
 \newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
 \usepackage{colortbl}
-\usepackage{textcomp}
 
 \usepackage{tikz,pgfplots,pgfgantt}
 	\usetikzlibrary{arrows,positioning,matrix}
@@ -54,6 +53,8 @@
     babel=other
 ]{biblatex}
 \addbibresource{these.bib}
+
+\usepackage{textcomp}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
@@ -228,3 +229,8 @@ dasdotdotted, every mark/.append style={solid},mark=star\\%
 densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 }
 
+% same reference for footnotes in table
+% http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
