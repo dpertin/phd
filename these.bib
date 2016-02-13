@@ -10,6 +10,19 @@
 @string{vcip  = {VCIP}}
 
 
+@misc{haynes2015rfc7530,
+  author="Haynes, Tom and Noveck, Dave",
+  title="{{N}etwork {F}ile {S}ystem ({NFS}) Version 4 Protocol}",
+  series="Request for Comments",
+  number="7530",
+  howpublished="RFC 7530 (Proposed Standard)",
+  publisher="IETF",
+  organization="Internet Engineering Task Force",
+  year={2015},
+  month={3},
+  url="http://www.ietf.org/rfc/rfc7530.txt",
+}
+
 @inproceedings{parrein2015ressi,
   TITLE = {{FEC4Cloud}: a research project promoting erasure coding for {C}loud
   storage architectures},
@@ -94,6 +107,16 @@
   20 ans de la transformée {M}ojette},
   url             = {http://www.mojette.org/event/mojette-day/},
   location        = {Polytech Nantes, Nantes, France},
+}
+
+@article{cook2014hitachi,
+  title={Compare cost and performance of replication and erasure coding},
+  author={Cook, John D. and Primmer, Robert and de Kwant, Ab},
+  journal={Hitachi Review},
+  volume={63},
+  pages={304},
+  year={2014},
+  url={http://www.hitachi.com/rev/pdf/2014/r2014_july.pdf},
 }
 
 @inproceedings {muralidhar2014osdi,
@@ -760,6 +783,24 @@
  doi={10.1109/ALLERTON.2009.5394538}
 }
 
+@inproceedings{wilcox2008sss,
+ author = {Wilcox-O'Hearn, Zooko and Warner, Brian},
+ title = {Tahoe: The Least-authority Filesystem},
+ booktitle = {Proceedings of the 4th ACM International Workshop on Storage
+ Security and Survivability},
+ series = {StorageSS '08},
+ year = {2008},
+ pages = {21--26},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ location = {Alexandria, Virginia, USA},
+ numpages = {6},
+ doi = {10.1145/1456469.1456474},
+ acmid = {1456474},
+ isbn = {978-1-60558-299-3},
+ url = {http://doi.acm.org/10.1145/1456469.1456474},
+}
+
 @online{shvachko2008hadoop,
   author = {Shvachko, Konstantin V. and Murthy, Arun C.},
   title = {Scaling Hadoop to 4000 nodes at Yahoo!},
@@ -1236,6 +1277,67 @@
  acmid = {945450},
 }
 
+@article{muthitacharoen2002sigops,
+ author = {Muthitacharoen, Athicha and Morris, Robert and Gil, Thomer M. and
+ Chen, Benjie},
+ title = {Ivy: A Read/Write Peer-to-peer File System},
+ journal = {SIGOPS Operating Systems Review},
+ volume = {36},
+ number = {SI},
+ month = {12},
+ year = {2002},
+ pages = {31--44},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ issn = {0163-5980},
+ url = {http://doi.acm.org/10.1145/844128.844132},
+ doi = {10.1145/844128.844132},
+ issue_date = {Winter 2002},
+ numpages = {14},
+ acmid = {844132},
+} 
+
+@article{stoica2001sigcomm,
+ author = {Stoica, Ion and Morris, Robert and Karger, David and Kaashoek, M.
+ Frans and Balakrishnan, Hari},
+ title = {Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications},
+ journal = {SIGCOMM Computer Communication Review - Proceedings of the 2001
+ Conference on Applications, Technologies, Architectures, and Protocols for
+ Computer Communications},
+ volume = {31},
+ number = {4},
+ month = {6},
+ year = {2001},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ pages = {149--160},
+ issn = {0146-4833},
+ url = {http://doi.acm.org/10.1145/964723.383071},
+ doi = {10.1145/964723.383071},
+ acmid = {383071},
+ numpages = {12},
+ issue_date = {October 2001},
+} 
+
+@inproceedings{rowstron2001sosp,
+ author = {Rowstron, Antony and Druschel, Peter},
+ title = {Storage Management and Caching in PAST, a Large-scale, Persistent
+ Peer-to-peer Storage Utility},
+ booktitle = {Proceedings of the Eighteenth ACM Symposium on Operating Systems
+ Principles},
+ series = {SOSP '01},
+ year = {2001},
+ pages = {188--201},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ isbn = {1-58113-389-8},
+ url = {http://doi.acm.org/10.1145/502034.502053},
+ doi = {10.1145/502034.502053},
+ location = {Banff, Alberta, Canada},
+ numpages = {14},
+ acmid = {502053},
+}
+
 @inproceedings{parrein2001dcc,
   author  = {Parrein, Benoît and Normand, Nicolas and Gu{\'e}don, JeanPierre},
   title  = {Multiple description coding using exact discrete {R}adon transform},
@@ -1343,6 +1445,25 @@
   doi={10.1109/RAMS.2000.816306},
 }
 
+@article{bohossian1999pds,
+ author = {Bohossian, Vasken and Fan, Chenggong C. and LeMahieu, Paul S. and
+ Riedel, Marc D. and Bruck, Jehoshua and Xu, Lihao},
+ title = {Computing in the {RAIN}: A Reliable Array of Independent Nodes},
+ journal = {IEEE Transactions on Parallel and Distributed Systems},
+ volume = {12},
+ number = {2},
+ month = {2},
+ year = {2001},
+ pages = {99--114},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ issn = {1045-9219},
+ url = {http://dx.doi.org/10.1109/71.910866},
+ numpages = {16},
+ doi = {10.1109/71.910866},
+ acmid = {371521},
+}
+
 @inproceedings{normand1999gretsi,
   author={Normand, Nicolas and Parrein, Beno{\^\i}t},
   title={Description multiple et codage source-canal sur un canal {\`a}
@@ -1356,9 +1477,9 @@
 
 @ARTICLE{blaum1999tit,
     author={Blaum, Mario and Roth, Ron M.},
+    title={On lowest density {MDS} codes},
     journal={Transactions on Information Theory},
     publisher = {IEEE},
-    title={On lowest density {MDS} codes},
     year={1999},
     month={1},
     volume={45},
@@ -1549,6 +1670,24 @@
   doi = {10.1117/12.206765},
 }
 
+@article{long1994cs,
+ author = {Long, Darrell D. E. and Montague, Bruce R. and Cabrera, Luis-Felipe},
+ title = {{Swift/RAID}: A Distributed {RAID} System},
+ journal = {Computing Systems},
+ volume = {7},
+ number = {3},
+ month = {6},
+ year = {1994},
+ pages = {333--359},
+ publisher = {MIT Press},
+ address = {Cambridge, MA, USA},
+ issn = {0895-6340},
+ url = {http://dl.acm.org/citation.cfm?id=198008.198011},
+ acmid = {198011},
+ issue_date = {Summer 1994},
+ numpages = {27},
+}
+
 @article{chen1994acm,
  author = {Chen, Peter M. and Lee, Edward K. and Gibson, Garth A. and Katz,
  Randy H. and Patterson, David A.},
@@ -1666,6 +1805,17 @@
  acmid = {50214},
  issue_date = {June 1988},
  pagetotal = {8},
+}
+
+@inproceedings{kleiman1986usenix,
+  title={Vnodes: An Architecture for Multiple File System Types in Sun {UNIX}},
+  author={Kleiman, Steve R.},
+  booktitle={USENIX Summer},
+  institution={Sun Microsystems},
+  volume={86},
+  pages={238--247},
+  year={1986},
+  url={http://www.solarisinternals.com/si/reading/vnode.pdf},
 }
 
 @incollection{krajewski1985byte,

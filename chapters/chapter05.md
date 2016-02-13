@@ -9,6 +9,11 @@
 
 \section*{Introduction}
 
+Les systèmes de fichiers distribués permettent d'agréger des supports de
+stockage disponible sur plusieurs nœuds d'un réseau, en un volume unique. Ce
+volume devient alors accessible à plusieurs processus situés sur
+différentes machines de ce réseau, qui peuvent ainsi partager et interagir avec
+les données qui y sont stockées.
 Les systèmes de stockage distribués reposent sur la redondance d'information
 afin de supporter l'indisponibilité des données. Dans de tels systèmes,
 l'apparition des pannes est devenue une norme plutôt qu'une exception
@@ -23,57 +28,310 @@ de redondance nécessaire (généralement par un facteur $2$)
 du passage d'un système de données répliquées à encoder correspond à la
 réduction énergétique du système de stockage.
 
+Nous verrons dans la \cref{sec.dfs} une introduction sur les systèmes de
+fichiers distribués. La \cref{sec.rozofs} présentera en détail RozoFS : le DFS
+qui intègre le code à effacement Mojette. Puis nous mesurerons les performances
+en matière de lecture et d'écriture de RozoFS dans une évaluation réalisée dans
+la \cref{sec.rozofs.perf}
 
 
-# Notions sur les systèmes de fichiers distribués
+# Notions sur les systèmes de fichiers distribués tolérants aux pannes {#sec.dfs}
 
-## Systèmes de fichiers distribués (SFD)
+Dans cette section, nous allons étudier les systèmes de fichiers distribués qui
+proposent des mécanismes permettant de supporter l'inaccessibilité d'une partie
+de la donnée. En particulier, nous verrons tout d'abord l'évolution des
+systèmes de stockage tolérant aux pannes depuis la proposition des techniques
+RAID. Nous verrons ensuite quelles sont les caractéristiques des systèmes de
+fichiers proposant un volume de stockage distribué accessible simultanément
+par plusieurs clients. Enfin nous verrons comment sont mises en œuvre les
+techniques de redondance dans les systèmes de fichiers distribués actuels.
 
-### Évolution du stockage distribué
+## Évolution des systèmes de stockage
 
-% expliquer que RAID 5 n'est pas assez dans une matrice
+Les systèmes de stockage contenant des informations ou des applications
+sensibles protègent leur donnée face aux pannes. Pour cela ils utilisent un
+schéma semblable à la représentation en matrice de disques, telle que l'on a
+vue au chapitre précédent \cite{patterson1988sigmod}. En particulier, la mise
+en œuvre des codes à effacement a évolué afin de s'adapter depuis les années
+$80$ à la taille croissante des systèmes de stockage.
 
-% de stockage importante
-
-% puis que RAID 6 ne va plus avec l'interconnection réseau
-
-% network RAID, RAIN, P2P, DFS
-
-Tous les systèmes de stockage contenant des informations ou des applications
-sensibles, protègent la donnée stockée face aux pannes en utilisant un schéma
-semblable à la représentation en matrice de disques RAID, telle que l'on a vue au
-chapitre précédent \cite{patterson1988sigmod}. En particulier, nous verrons que
-la mise en œuvre des codes à effacement évolue et s'adapte depuis les années
-$80$ avec la taille et l'organisation des systèmes de stockage.
-
-L'organisation des disques en RAID-5 est présentée à l'origine comme une
-méthode permettant de protéger la perte d'un disque pour un coût de stockage
-significativement réduit par rapport à la réplication utilisée en RAID-1. Côté
+À l'origine, RAID-5 est une méthode permettant de protéger la perte d'un disque
+pour un coût de stockage significativement réduit par rapport à la quantité de
+redondance induit par la réplication utilisée en RAID-1. Côté
 performance, le calcul des données de parité est une opération relativement
-simple pour le contrôleur RAID, qui a peu d'impact sur les performances à
-condition que les données de parité soient distribuées sur l'ensemble des
-disques de la matrice (et non sur un disque comme représenté précédemment, ce
-qui formerait un goulot d'étranglement), afin de répartir la charge. 
-Cependant, cette technique s'est rapidement trouvée limitée dans des matrices
-de disques de taille importante. En effet, plus le nombre de disques
+simple pour le contrôleur RAID. Les additions utilisées ont un impact modéré
+sur les performances du système en écriture, à condition que les données de
+parité soient distribuées sur l'ensemble des disques de la matrice (et non sur
+un disque comme représenté précédemment, ce qui formerait un goulot
+d'étranglement), afin de répartir la charge.
+Cependant, cette technique se retrouve rapidement limitée à mesure que la
+taille des matrices de disques augmente. En effet, plus le nombre de disques
 augmente, plus le risque qu'une double panne survienne est important. La
 famille RAID s'est alors agrandie grâce à de nouvelles techniques permettant
 une protection face à la perte d'un second disque (RAID-6). Pour un ensemble de
-disque donné, cette technique améliore la tolérance aux pannes du système, au
-coût d'une diminution de la capacité de stockage. Une première construction
+disques donné, cette technique améliore la tolérance aux pannes du système, au
+prix d'une diminution de la capacité de stockage. Une première construction
 repose sur les codes de « \rs $\PP+\QQ$ » \cite{chen1994acm}. Le principal
 problème de cette méthode correspond à la complexité des calculs des blocs de
-parité. En conséquence, plusieurs méthodes de codage ont été proposées pour
-améliorer cette complexité. En particulier, l'utilisation combinée de parités
-horizontales et verticales \cite{gibson1989sigarch}, les codes \eo
-\cite{blaum1995toc} d'\textsc{IBM} ou encore les codes RDP de \textsc{NetApp}
-\cite{corbett2004fast}, permettent de s'affranchir des codes de \rs.
+parité, qui impacte significativement les performances en écriture et lors des
+opérations de reconstruction. En conséquence, plusieurs méthodes de codage ont
+été proposées pour améliorer cette complexité : une utilisation
+combinée de parités horizontales et verticales \cite{gibson1989sigarch}, les
+codes \eo \cite{blaum1995toc} d'\textsc{IBM}, les codes RDP de
+\textsc{NetApp} \cite{corbett2004fast}, ou encode des codes à densité minimale
+\cite{blaum1999tit}. En conséquence, le milieu scientifique s'est intéressé à
+l'efficacité des implémentations de ces codes \cite{plank2009fast}.
+
+Par la suite, les systèmes de stockage ont évolué en taille en bénéficiant d'un
+ensemble de machines interconnecté au sein d'un réseau local. Des techniques
+de distribution RAID sont alors apparu en exploitant la communication à travers
+un réseau, tout d'abord au niveau des blocs \cite{long1994cs}, puis au niveau
+logiciel sous le terme de *Reliable Array of Independant Nodes* (RAIN)
+\cite{bohossian1999pds}, puis apparait des mises en œuvre dans les
+infrastructures pair à pair \cite{rowstron2001sosp,weatherspoon2001iptps}.
+Aujourd'hui, grâce aux codes à effacement, ces techniques sont largement
+étendues dans les systèmes de fichiers distribués tels que HDFS
+\cite{fan2009pdsw}, Ceph \cite{weil2006osdi} ou Tahoe \cite{wilcox2008sss}.
 
 
 
-## Redondance dans les SFD
+## Systèmes de fichiers distribués (DFS)
 
-### Utilisation du code à effacement dans les SFD
+Il existe plusieurs façon de concevoir un système de fichiers distribués. En
+particulier, nous verrons qu'il existe plusieurs architectures pour partager
+des données, allant d'une conception centralisée à un schéma complètement
+décentralisé. Dans un second temps, nous verrons les principales fonctions qui
+rentrent en jeu dans la conception d'un DFS (e.g.\ la gestion de la cohérence
+des données).
+
+
+### Architectures
+
+Dans cette section, nous allons explorer les différentes architectures utilisées
+dans le partage des données entre plusieurs clients. Nous verrons tout d'abord
+le modèle client-serveur, utilisé notamment dans NFS. Par la suite nous verrons
+une solution dont la distribution des données sur une grappe de serveur est
+géré par un serveur de métadonnées. Enfin, nous verrons une architecture
+entièrement décentralisée.
+
+#### Architectures client-serveur
+
+\begin{figure}
+    \centering
+    \def\svgwidth{.8\textwidth}
+    \footnotesize
+    \includesvg{img/nfs}
+    \caption{Représentation d'une architecture client-serveur comme utilisé
+    dans NFS.}
+    \label{fig.nfs}
+\end{figure}
+
+Plusieurs DFS sont définis sur un modèle client-serveur. C'est notamment le cas
+de *Network File System* (NFS) qui est le plus répandu sur les systèmes basés
+sur UNIX \cite{haynes2015rfc7530}. Le principe de ces DFS est que
+le serveur offre une vision uniformisée d'une partie de son système de fichier
+local (quel que soit le type de ce système de fichier). NFS dispose d'un
+protocole de communication qui permet aux clients d'accéder aux fichiers du
+serveur. Plus précisément, le client ne sait pas comment sont implémentées les
+opérations pour interagir sur le système de fichier du serveur distant. En
+revanche, le serveur, lui, propose une interface accessible par des requêtes
+*Remote Procedure Calls* (RPC), pour réaliser ces opérations. Et le serveur,
+qui maîtrise la façon dont ces opérations sont implémentées, les applique.
+Ainsi, il est possible que des processus, installés sur différentes machines,
+fonctionnant sur différents systèmes d'exploitation, peuvent interagir avec un
+système de fichier virtuel partagé.
+
+Côté client, NFS permet de monter le système de fichier distant. Cette
+opération est possible grâce au *Virtual File System* (VFS) qui remplace
+l'interface du système de fichier local afin d'interfacer plusieurs systèmes de
+fichiers \cite{kleiman1986usenix}. En particulier, il intercepte les appels
+systèmes pour les transmettre au client NFS.
+
+#### Architectures en grappe centralisées
+
+\begin{figure}
+    \centering
+    \def\svgwidth{.8\textwidth}
+    \footnotesize
+    \includesvg{img/gfs}
+    \caption{Représentation d'une architecture en grappe centralisée comme
+    utilisée dans GFS. Un client contact le nœud *master* afin de déterminer la
+    position des blocs d'un fichier. Il contacte ensuite les serveurs de
+    stockage appropriés pour récupérer l'information voulue.}
+    \label{fig.dfs}
+\end{figure}
+
+Les architectures en grappe sont une extension du modèle client-serveur. Les
+grappes de serveurs sont généralement utilisées dans le cas d'applications
+parallèles. Dans ce modèle, les fichiers sont distribués sur un ensemble de
+nœuds de la grappe. Puisque plusieurs éléments disposent de la donnés, il est
+alors possible de distribuer également les applications.
+Dans cette approche, proposée par \textsc{Google} pour son *Google File System*
+(GFS) \cite{ghemawat2003sosp}, chaque grappe correspond à un nœud maître et
+plusieurs nœuds de stockage. Le nœud maître est contacté pour ce qui concerne
+les métadonnées. En particulier, un client fournit l'identifiant d'un fichier à
+ce nœud afin qu'il lui réponde avec les informations permettant d'atteindre les
+données désirées sur les serveurs de stockage.
+
+#### Architectures en grappe complètement distribuées
+
+Le modèle précédent n'est pas adapté pour certains types d'infrastructures tels
+qu'en pair à pair. Il existe des moyens pour ne pas avoir à garder un index
+contenu dans un nœud master. Pour cela, on combine un mécanisme clé-valeur avec
+un système permettant de calculer de façon unique la position des données dans
+une grappe. Il est par exemple possible d'utiliser le protocole Chord pour
+déterminer de manière décentralisée la position des données dans un anneau
+\cite{stoica2001sigcomm}. Cette technique est par exemple utilisée dans le
+système de fichiers pair à pair Ivy \cite{muthitacharoen2002sigops}. D'autres
+méthodes existent telles que, la distribution des données issue de l'algorithme
+Crush utilisé dans Ceph \cite{weil2006osdi}.
+
+
+### Principes de conception
+
+Cette section permet de comprendre les enjeux d'un système de fichiers
+distribué. En particulier, nous étudierons une liste non exhaustive d'éléments
+à prendre en compte lors de la conception d'un DFS tels que la gestion de la
+distribution des données ou de la cohérence des données. Bien que les
+mécanismes de tolérance aux pannes peuvent correspondre à cette étude, ils
+seront plus précisément décrit dans la section suivante.
+
+#### Transparence des opérations
+
+L'utilité d'un système de fichiers distribué est de pouvoir interagir avec un
+volume de stockage distribué sur un ensemble de supports de stockage.
+La mise en œuvre doit permettre à l'utilisateur d'avoir l'impression
+d'interagir avec un système de fichier UNIX local. C'est le rôle du VFS que
+d'intercepter les appels systèmes depuis les applications et les fournir à la
+couche du DFS afin que celui ci applique les opérations nécessaires sur
+l'ensemble des supports de stockage en jeu.
+
+% #### Scaling!
+
+#### Espace de nommage
+
+La capacité à résoudre la correspondance entre les éléments de l'organisation
+hiérarchique proposée aux client, et les données distribuées au sein du système
+est relatif à l'espace de nommage. Lorsqu'un client monte un système de
+fichier, il dispose d'une arborescence de fichiers et de répertoire dans
+laquelle il peut naviguer. Dans un système de fichiers UNIX classique,
+un fichier est visible par un utilisateur comme un élément inclus au sein
+d'un répertoire, et identifié par un nom. Quand le VFS recherche ce nom, celui
+ci inclut le chemin depuis la racine pour y accéder, sauf si le chemin est
+relatif. Cette recherche de nom permet de déterminer le numéro d'inode qui est
+un identifiant unique utilisé par le système de fichier. Une fois que ce numéro
+est déterminé, il est possible d'accéder à la structure de l'inode, et donc aux
+données du fichier.
+
+Dans le cas des systèmes de fichiers distribués, le montage d'un système de
+fichier localement, il dispose d'une arborescence correspondant à un volume de
+stockage *exporté*. Par exemple dans NFS, le serveur peut définir d'exporter un
+répertoire de son système de fichiers local. Un espace de nommage
+supplémentaire est alors nécessaire afin de réaliser la correspondance du nom
+d'un fichier proposé à l'utilisateur dans le volume exporté, avec la position
+des données sur l'ensemble des nœuds de stockage de la grappe. Dans le cas de
+GFS, c'est le serveur maître qui réalise cette correspondance.
+
+
+#### Cohérence
+
+Dans un système UNIX classique, lorsqu'une demande de lecture survient après
+deux écritures successives sur une même partie de la donnée, il est garanti que
+le système retourne la donnée qui résulte des opérations d'écriture
+successives.
+
+Dans un système distribué, plusieurs problèmes survient. Tout d'abord le délai
+nécessaire pour que la donnée transite d'un serveur vers un client peut être
+suffisant pour délivrer une version dépassée. De plus, pour des raisons de
+performance, les clients tendent à utiliser des techniques de cache afin de
+garder une version des données localement, mais qui implique une complexité de
+gestion des ressources partagées.
+Il est possible de contourner ce deuxième problème de deux manières. La
+première solution consiste à mettre à jour le serveur à chaque modification du
+cache, ce qui n'est pas performant. La seconde consiste à relaxer la contrainte
+de cohérence en affirmant que dans un premier temps, les modifications ne
+seront visibles qu'à partir du client, mais qu'à terme (par exemple lors de la
+fermeture du fichier) ces modifications seront accessibles à tous. Bien que
+cela ne résout pas le problème de partage des ressources, on considère dans ce
+cas que la lecture d'une version dépassée est valide.
+
+% http://blog.cloudera.com/blog/2009/07/file-appends-in-hdfs/
+
+Une autre solution pour résoudre ce problème est de rendre les fichiers
+immuables. C'est le cas des premières version de HDFS puisque ce fonctionnement
+est valide avec les traitements *Map-Reduce* qui lisent des fichiers en entrée
+et écrit les résultats dans de nouveaux fichiers.
+
+Une dernière façon de gérer le partage de données est d'utiliser des
+transactions atomiques.
+
+% #### Sécurité
+
+% chiffrement
+
+% gestion accès
+
+% quota
+
+% intégrité ?
+
+
+
+## Redondance dans les DFS
+
+Cette section, nous nous intéresserons à la gestion de la redondance dans les
+DFS afin de supporter l'inaccessibilité d'une partie de la données.
+Pour cela nous chercherons à quantifier la disponibilité d'une donnée dans un
+système de stockage en fonction de l'utilisation de technique de réplication et
+de codage à effacement. Par la suite, nous donnerons un état de l'art de
+l'utilisation de ces techniques dans les DFS.
+
+
+### Disponibilité de la donnée
+
+L'utilisation des techniques de réplication permet de garantir la
+disponibilité des données d'un système de stockage en conservant plusieurs
+copies distribuées sur différents supports de stockage. Il faut toutefois
+relativiser la disponibilité de cette donnée puisque les probabilités qu'une
+panne survienne dans un système composé d'une grappe importante de serveur sont
+significatives.
+
+Soit $\rho_F$ la probabilité qu'un disque devienne inaccessible. Une estimation
+de la valeur de $\rho_F$ dépend du *Mean Time Between Failures* (MTBF), c'est à
+dire le temps moyen qui s'écoule entre deux pannes, ainsi que le *Mean Time To
+Repair* (MTTR) qui correspond au temps nécessaire pour remplacer le disque. Par
+exemple, pour un disque qui fonctionne pendant $1000$ jours, et qui peut être
+remplacé, formaté et fonctionnel en un jour, $\rho_F=0.001$
+\cite{cook2014hitachi}.
+
+Considérons un système de stockage qui réplique chaque objet à stocker d'un
+facteur $n$. Ce système peut perdre de la donnée lorsque l'ensemble de ces $n$
+disques tombent en panne. En supposant que les pannes correspondent à des
+phénomènes *indépendants*, la probabilité de perdre de la donnée $\rho_P$
+vaut $\rho_F^n$. En comparaison, dans un système utilisant un code à effacement
+$(n,k)$, on perd de la donnée lorsque plus de $k$ disques tombent en panne. En
+conséquence, la probabilité de perdre de la donnée vaut :
+
+\begin{equation}
+    \rho_P = \sum_{i=n-k+1}^{n} \binom{n}{i} \rho_F^i (1 - \rho_F)^{n-i}.
+\end{equation}
+
+\noindent En conséquence, pour une une même disponibilité, un code à effacement
+permet à un système de stockage de disposer d'une capacité de stockage plus
+important qu'en utilisant de la réplication.
+
+% papier cook : # efficiency considerations
+
+% ec plus lent parce que le délai dépend du dernier bloc
+
+% sauf qu'il en reste n-k autres
+
+% de plus la taille des blocs est inférieure au bloc rép
+
+% et que l'envoie peut être réalisée en parallèle
+
+
+### Gestion de la redondance dans les DFS
 
 La réplication par trois est configurée par défaut dans la plupart des systèmes
 de stockage tel que *Hadoop Distributed File System* (HDFS)
@@ -92,31 +350,31 @@ importants volumes de données immuables (i.e\ approche *write-once-read-many*).
 Par exemple, les plus grosses grappes de nœuds expérimentées reposent sur
 $4000$ serveurs qui agrègent une capacité totale de $14,25$ pétaoctets
 exploitée par $14000$ clients simultanément \cite{shvachko2008hadoop}. Côté
-performances, l'exploitation du parallélisme par Map-Reduce permet de trier un
-téraoctet de données en une minute \cite{omalley2009hadoop}. HDFS est adapté
+performances, l'exploitation du parallélisme par *Map-Reduce* permet de trier
+un téraoctet de données en une minute \cite{omalley2009hadoop}. HDFS est adapté
 pour ce genre d'applications. En particulier, ce système de fichier travaille
 de manière séquentiel sur d'importants blocs de données de $128$Mo par défaut.
 Un bloc correspond à la plus petite quantité de données sur laquelle un système
 de fichiers peut lire ou écrire. L'ensemble des opérations qu'il réalise est
-effectué sur une quantité de données multiple de la taille d'un bloc.
-La taille des blocs a une influence sur le système de stockage. L'utilisation
-de grands blocs entraîne trois conséquences : (i) la réduction des interactions
+effectué sur une quantité de données multiple de la taille d'un bloc.  La
+taille des blocs a une influence sur le système de stockage. L'utilisation de
+grands blocs entraîne trois conséquences : (i) la réduction des interactions
 entre les clients et le serveur de métadonnées; (ii) la réduction de la
 quantité de métadonnée stockée; (iii) la réduction du trafic réseau en gardant
 des connexions TCP persistantes \cite{ghemawat2003sosp}. Globalement, des blocs
 de tailles importantes permettent d'augmenter les performances de lecture et
 d'écriture dans le cas où de larges fichiers sont parcourus de manière
-séquentielle (e.g.\ lecture d'une vidéo de haute
-qualité). En effet, le support de stockage peut lire ou écrire la donnée de
-manière continue, sans avoir à localiser le bloc suivant.  Cependant, une part
-significative du bloc peut être perdue dans le cas où le fichier est plus petit
-que la taille d'un bloc. En comparaison, les systèmes de fichiers POSIX
-reposent sur de petites tailles de blocs (e.g.\ $4$Ko dans le cas de *ext4*
-\cite{mathur2007linux}). Dans la suite, nous nous intéresserons à la conception
-d'un système de fichiers distribué POSIX qui travaillera sur des blocs de
-l'ordre de $4\text{-}8$Ko comme compromis entre la capacité d'accéder de
-manière séquentielle les données, et le gaspillage d'espace au sein des blocs
-\cite[p. 34]{gianpaolo1998fs}.
+séquentielle (e.g.\ lecture d'une vidéo de haute qualité). En effet, le support
+de stockage peut lire ou écrire la donnée de manière continue, sans avoir à
+localiser le bloc suivant.  Cependant, une part significative du bloc peut être
+perdue dans le cas où le fichier est plus petit que la taille d'un bloc. En
+comparaison, les systèmes de fichiers POSIX reposent sur de petites tailles de
+blocs (e.g.\ $4$Ko dans le cas de *ext4* \cite{mathur2007linux}). Dans la
+suite, nous nous intéresserons à la conception d'un système de fichiers
+distribué POSIX qui travaillera sur des blocs de l'ordre de $4\text{-}8$Ko
+comme compromis entre la capacité d'accéder de manière séquentielle les
+données, et le gaspillage d'espace au sein des blocs \cite[p.
+34]{gianpaolo1998fs}.
 
 Alors que la réplication par trois est le paramètre de haute disponibilité par
 défaut dans HDFS, \textcite{fan2009pdsw} ont développé une version modifiée
@@ -137,7 +395,8 @@ le cas d'applications liées aux données froides, telles que l'archivage.
 
 
 
-# Principe de RozoFS
+
+# Le DFS à la Mojette : RozoFS {#sec.rozofs}
 
 \begin{figure}
     \begin{subfigure}{.49\textwidth}
@@ -178,6 +437,7 @@ l'architecture de RozoFS en \cref{fig.rozo_archi}, et de CephFS en
 \cref{fig.ceph_archi}, et met en avant la correspondance des noms entre les
 différents services. Dans la suite, nous décrirons les composants de RozoFS et
 leurs interactions, avant d'analyser les principales différences avec CephFS.
+
 
 ## L'architecture de RozoFS
 
@@ -317,7 +577,7 @@ l'opération d'écriture.
 \end{figure}
 
 
-## Les entrées/sorties dans RozoFS
+## Des entrées/sorties tolérantes aux pannes
 
 ### Les opérations d'écriture
 
@@ -399,7 +659,7 @@ trois, permettant de supporter deux pannes.
 
 
 
-# Évaluation
+# Évaluation {#sec.rozofs.perf}
 
 ## Mise en place de l'évaluation
 
