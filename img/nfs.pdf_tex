@@ -1,0 +1,68 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'nfs.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{499.02215272bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.65545309)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{nfs.pdf}}%
+    \put(0.21073117,0.63222015){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Client}}}%
+    \put(0.21126915,0.50540181){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Appels systèmes}}}%
+    \put(0.21126915,0.38013338){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{VFS}}}%
+    \put(0.11880903,0.24932289){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{UNIX FS}}}%
+    \put(0.31001891,0.24932286){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Client NFS}}}%
+    \put(0.31001891,0.12064933){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Client RPC}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{nfs.pdf}}%
+    \put(0.78785987,0.63222015){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur}}}%
+    \put(0.78839785,0.50540181){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Appels systèmes}}}%
+    \put(0.78839785,0.38013338){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{VFS}}}%
+    \put(0.88831396,0.24932289){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{UNIX FS}}}%
+    \put(0.69477138,0.24932286){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur NFS}}}%
+    \put(0.69477138,0.12064933){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur RPC}}}%
+    \put(0.5082282,0.02446122){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Réseau}}}%
+  \end{picture}%
+\endgroup%

@@ -1,5 +1,4 @@
-\documentclass[12pt]{report}
-%\documentclass{article}
+\documentclass[10pt]{report}
 
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
@@ -10,18 +9,30 @@
 \usepackage{amsmath,amssymb}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+% http://tex.stackexchange.com/questions/74880/algorithmicx-package-comments-on-a-single-line
+    \algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
+\usepackage{subcaption}
 \usepackage{url}
-\usepackage{longtable, booktabs}
+\usepackage{longtable, booktabs, multirow}
 \usepackage{makeidx}
+\usepackage{transparent}
+\usepackage{xspace}
+\usepackage{minitoc}
+    \mtcselectlanguage{french}
+
 % http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
 % Cleveref can’t cope with active characters being present in cross-reference
 % label names. For example, if French babel support is loaded, the commonly
 % used “:”
-\usepackage[french,capitalize]{cleveref}
+\usepackage[french,capitalize,nameinlink]{cleveref}
+\usepackage{array,booktabs}
+\newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
+\usepackage{colortbl}
 
 \usepackage{tikz,pgfplots,pgfgantt}
+	\usetikzlibrary{arrows,positioning,matrix}
 \usepackage{lscape,afterpage}
 
 \usepackage{xcolor}
@@ -31,15 +42,48 @@
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 }
+
+\usepackage[french=guillemets]{csquotes}
+
 \usepackage[
     backend=biber,
     style=alphabetic,
-    maxnames=99]{biblatex}
+	maxnames=2,
+    maxbibnames=99,
+    language=french,
+    babel=other
+]{biblatex}
 \addbibresource{these.bib}
+
+\usepackage{textcomp}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
 \newcommand{\nom}{Pertin}
+
+% régle la profondeur de la table des matières
+% \setcounter{tocdepth}{3}
+% \setcounter{secnumdepth}{3}
+
+% options et procédures pour inclure les images SVG
+\graphicspath{{img/}}
+
+\newcommand{\executeiffilenewer}[3]{%
+ \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+ {\pdffilemoddate{#2}}>0%
+ {\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {inkscape -z -D --file=#1.svg %
+  --export-pdf=#1.pdf --export-latex}%
+ \input {#1.pdf_tex}%
+}
+
+\def\proj{\mathrm{proj}}
+\def\M{\mathcal{M}}
+
+\DeclareMathOperator*{\xor}{\bigoplus}
 
 % déclaration de la catégorie mine pour biblatex
 \DeclareBibliographyCategory{mine}
@@ -93,6 +137,25 @@
 \def\dirset#1{\left\{#1\right\}}
 \def\ghost#1{G_{\dirset{#1}}}
 
+\newcommand\radon{\citeauthor{radon1917akad}\xspace}
+\newcommand\matus{\citeauthor{matus1993pami}\xspace}
+\newcommand\katz{\citeauthor{katz1978springer}\xspace}
+\newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
+
+\newcommand\vander{\textsc{Vandermonde}\xspace}
+\newcommand\cauchy{\textsc{Cauchy}\xspace}
+\newcommand\rs{\textsc{Reed-Solomon}\xspace}
+\newcommand\eo{\textsc{EVENODD}\xspace}
+\newcommand\fourier{\textsc{Fourier}\xspace}
+\newcommand\galois{\textsc{Galois}\xspace}
+\newcommand\intel{\textsc{Intel}\xspace}
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\PP{\mathcal{P}}
+\newcommand\QQ{\mathcal{Q}}
+
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
 \makeatother
@@ -102,6 +165,8 @@
 \algrenewcommand\algorithmicforall{\textbf{pour tout}}
 \algrenewcommand\algorithmicdo{\textbf{faire}}
 \algrenewcommand\algorithmicend{\textbf{fin}}
+\algrenewcommand\algorithmicif{\textbf{si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
@@ -116,3 +181,57 @@
   }
 }
 
+
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}
+}
+
+\pgfplotscreateplotcyclelist{my black white}{%
+solid, every mark/.append style={solid, fill=gray}, mark=*\\%
+dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
+densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
+loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
+dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
+loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
+densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
+dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
+dasdotdotted, every mark/.append style={solid},mark=star\\%
+densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
+}
+
+% same reference for footnotes in table
+% http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother

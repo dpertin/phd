@@ -1,0 +1,73 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'gfs.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{509.34363785bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.41133265)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{gfs.pdf}}%
+    \put(0.07935336,0.32858986){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Client}}}%
+    \put(0.64368261,0.32923694){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Master}}}%
+    \put(0.42508592,0.12440548){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur de}}}%
+    \put(0.42570712,0.0902042){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage}}}%
+    \put(0.4239643,0.02749114){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{UNIX FS}}}%
+    \put(0.64497679,0.12440548){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur de}}}%
+    \put(0.64559799,0.0902042){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{gfs.pdf}}%
+    \put(0.86486763,0.12440548){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Serveur de}}}%
+    \put(0.86548884,0.0902042){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage}}}%
+    \put(0.64385517,0.02749114){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{UNIX FS}}}%
+    \put(0.86374601,0.02749114){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{UNIX FS}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{gfs.pdf}}%
+    \put(0.36266188,0.39141578){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{nom du fichier}}}%
+    \put(0.3644603,0.2751878){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{localisation}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{gfs.pdf}}%
+    \put(0.23439268,0.16359851){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{identifiant blocs}}}%
+    \put(0.18230137,0.05365308){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{données des blocs}}}%
+    \put(0.92247989,0.2297093){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{maintenance}}}%
+  \end{picture}%
+\endgroup%

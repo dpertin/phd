@@ -5,9 +5,9 @@
 \begin{document}
 
 \title{
-    {Code à Effacement à base de Géométrie Discrète pour le Stockage
-    Distribué en mode Cloud}\\
-    {\large IRRCyN}\\
+    {Approche Géométrique pour la Conception de Codes à Effacement Appliqués
+    dans le Stockage Distribué}\\
+    {\large IRCCyN}\\
     {\includegraphics[width=0.5\textwidth]{img/logo_irccyn.pdf}}
 }
 \author{Dimitri Pertin}
@@ -17,29 +17,30 @@
 
 \newpage
 
+\dominitoc
 \tableofcontents
 
-\chapter{Principe et évaluation des codes à effacement}
+\part{Codes à effacement en géométrie discrète}
 
-\chapter{Conception et relation de codes définis par géométrie discrète}
+\input{chapters/chapter01.tex}
 
-La Mojette\index{mojette} ça poutre.
-
-\chapter{Calcul distribué de nouveaux mots encodés}
+\input{chapters/chapter02.tex}
 
 \input{chapters/chapter03.tex}
 
-\chapter{Rendondance des systèmes de stockage distribués par codage à
-effacement}
+\part{Application au stockage distribué}
 
-\chapter{Application au système de fichiers distribués RozoFS}
+\input{chapters/chapter04.tex}
 
-\newpage
+\input{chapters/chapter05.tex}
+
+\input{chapters/chapter06.tex}
 
 \printbibliography[
-%    segment=1
 ]
 
-\printindex
+% segment=1
+
+% \printindex
 
 \end{document}
