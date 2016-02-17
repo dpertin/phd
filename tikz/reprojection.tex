@@ -1,0 +1,49 @@
+
+\begin{tikzpicture}[scale=1]
+%\begin{tikzpicture}[scale=0.65]
+%\tikzstyle{every node}=[font=\huge]
+\begin{axis}[
+    compat=newest, %Better label placement
+    %title = {Erasure codes and Replication Storage Overhead},
+    %legend style={at={(0.5,-0.2)},
+    %    anchor=north,legend columns=0},
+    %legend style={draw=none,/tikz/every even column/.append
+    %    style={column sep=0.6cm}},
+    legend pos=north west,
+    xlabel = {Taille de bloc (Ko)},
+    ylabel = {Latence (s)},
+    width=\textwidth,
+    height=\textwidth,
+    %xtick={1,...,10},
+    axis lines*=left,
+    ymin=0,
+	xmode=log,
+    log basis x={2},
+    cycle list={
+        {draw=black!100},
+        {draw=black!80},
+        {draw=black!60},
+        {draw=black!40},
+        {draw=black!70}
+    },
+    smooth,
+    ultra thick,
+    xmin=0,
+    clip=false,
+    ymajorgrids
+    ]
+    \addplot [select coords between index={0}{5}, dashed, error bars/.cd,y
+    dir=both,y explicit]
+        table [x index=0, y index=1, y error index=4]
+		{tikz/reprojection_file.dat};
+
+    \addplot [select coords between index={0}{5}, error bars/.cd,y dir=both,y
+    explicit]
+        table [x index=0, y index=1, y error index=4]
+		{tikz/reprojection_file_parallel.dat};
+
+    \legend{classique, nouvelle}
+
+\end{axis}
+\end{tikzpicture}
+

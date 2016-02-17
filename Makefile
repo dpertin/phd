@@ -20,6 +20,7 @@ OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
 all: these.pdf clean
 
+# compute the .pdf file using latexmk
 $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
 	latexmk  				\
 		-pdf 				\
@@ -33,13 +34,17 @@ $(MAIN).fmt: header.tex
 	    -jobname="$(MAIN)"  \
 	    "&$(TEX) header.tex\dump"
 
+# compute .tex files from .md files related to chapters
 $(OBJS):
 		cd $(CHPTDIR); make
 
 # clean temporary files
 clean: 
 	latexmk -c
+	rm these.m???
 	cd $(CHPTDIR); make clean
+
+# pas très propre le rm these.m??? mais très chiant
 
 # clean temporary files + PDF output
 mrproper: 
