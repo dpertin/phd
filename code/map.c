@@ -1,0 +1,15 @@
+
+
+\begin{lstlisting}[
+	caption={Fonction \emph{map}},
+	label={lst.map},]
+/* map the reprojection process for every projection, produce partial reconstructions */
+void map(int w, int k, projection_t *projections, projection_t *p_reprojections, int nb_proj, int extra_dir)
+{
+	#pragma omp parallel for schedule(static)
+	for (int i = 0; i < nb_proj; i++)
+		reprojection(projections, i, w, k, nb_proj, p_reprojections + i,
+		extra_dir);
+}
+\end{lstlisting}
+
