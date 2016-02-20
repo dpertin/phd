@@ -27,12 +27,19 @@
 % label names. For example, if French babel support is loaded, the commonly
 % used “:”
 \usepackage[french,capitalize,nameinlink]{cleveref}
+    \crefname{lstlisting}{Listing}{listings}
+    \Crefname{lstlisting}{Listing}{Listings}
 \usepackage{array,booktabs}
 \newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
 \usepackage{colortbl}
 
 \usepackage{tikz,pgfplots,pgfgantt}
 	\usetikzlibrary{arrows,positioning,matrix}
+%http://tex.stackexchange.com/questions/102460/underbraces-in-matrix-divided-in-blocks
+	\usetikzlibrary{decorations.pathreplacing}
+	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
+	picture,baseline=(#1.base)]
+	  \node (#1) {\strut};}
 \usepackage{lscape,afterpage}
 
 \usepackage{xcolor}
@@ -56,6 +63,32 @@
 \addbibresource{these.bib}
 
 \usepackage{textcomp}
+\usepackage{pdflscape}
+\usepackage{sistyle}
+
+\definecolor{myred}{HTML}{810303}
+\definecolor{myblue}{HTML}{000080}
+
+\definecolor{mygrey}{HTML}{272822}
+\definecolor{mybgrey}{HTML}{75715E}
+\definecolor{mywhite}{HTML}{DDDDDD}
+\definecolor{mypink}{HTML}{F92672}
+\definecolor{mygreen}{HTML}{A6E22E}
+
+\usepackage{listings}
+	\lstset{language=C++,
+	backgroundcolor=\color{mygrey},
+	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
+	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
+	commentstyle=\itshape\color{mybgrey},
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numberstyle=\color{black},
+	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
+	basicstyle={\color{mywhite}},
+	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
+	frame=none}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
@@ -134,6 +167,7 @@
 % relatif au papier reprojection
 \DeclareMathOperator*{\bigast}{\ast}
 \DeclareMathOperator*{\bigastinv}{\ast^{-1}}
+\newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
 \def\dirset#1{\left\{#1\right\}}
 \def\ghost#1{G_{\dirset{#1}}}
 
@@ -142,8 +176,12 @@
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
 
+\newcommand\shannon{\textsc{Shannon}\xspace}
+\newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
+\newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\singleton{\textsc{Singleton}\xspace}
 \newcommand\rs{\textsc{Reed-Solomon}\xspace}
 \newcommand\eo{\textsc{EVENODD}\xspace}
 \newcommand\fourier{\textsc{Fourier}\xspace}
@@ -153,6 +191,7 @@
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\CC{\mathbb{C}}
+\newcommand\FF{\mathbb{F}}
 \newcommand\PP{\mathcal{P}}
 \newcommand\QQ{\mathcal{Q}}
 
@@ -230,8 +269,19 @@ dasdotdotted, every mark/.append style={solid},mark=star\\%
 densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 }
 
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+
 % same reference for footnotes in table
 % http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
 \makeatletter
 \newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
 \makeatother
+
+% ultime cheat pour avoir des méga matrices
+\setcounter{MaxMatrixCols}{20}
