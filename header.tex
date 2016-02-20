@@ -35,6 +35,11 @@
 
 \usepackage{tikz,pgfplots,pgfgantt}
 	\usetikzlibrary{arrows,positioning,matrix}
+%http://tex.stackexchange.com/questions/102460/underbraces-in-matrix-divided-in-blocks
+	\usetikzlibrary{decorations.pathreplacing}
+	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
+	picture,baseline=(#1.base)]
+	  \node (#1) {\strut};}
 \usepackage{lscape,afterpage}
 
 \usepackage{xcolor}
@@ -171,8 +176,12 @@
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
 
+\newcommand\shannon{\textsc{Shannon}\xspace}
+\newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
+\newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\singleton{\textsc{Singleton}\xspace}
 \newcommand\rs{\textsc{Reed-Solomon}\xspace}
 \newcommand\eo{\textsc{EVENODD}\xspace}
 \newcommand\fourier{\textsc{Fourier}\xspace}
@@ -182,6 +191,7 @@
 \newcommand\ZZ{\mathbb{Z}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\CC{\mathbb{C}}
+\newcommand\FF{\mathbb{F}}
 \newcommand\PP{\mathcal{P}}
 \newcommand\QQ{\mathcal{Q}}
 

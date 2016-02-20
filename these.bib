@@ -9,6 +9,21 @@
 @string{proc  = {Proc.}}
 @string{vcip  = {VCIP}}
 
+@misc{roca2015rfc,
+	author=		{Vincent Roca and Jani Peltotalo and Jerome Lacan and Sami
+	Peltotalo},
+	title=		{{Reed-Solomon Forward Error Correction (FEC) Schemes}},
+	series =	{Request for Comments},
+	number=		5510,
+	howpublished=	{IETF RFC 5510},
+	publisher =	{RFC Editor},
+	year =		2015,
+	month =		{10},
+	url =		{https://rfc-editor.org/rfc/rfc5510.txt},
+	day =		14,
+	doi =		{10.17487/rfc5510},
+	pagetotal =	28,
+}
 
 @misc{haynes2015rfc7530,
   author="Haynes, Tom and Noveck, Dave",
@@ -364,6 +379,21 @@
   url={http://www.google.com/patents/WO2015055450A1?cl=fr},
 }
 
+@inproceedings {huang2012atc,
+  author = {Huang, Cheng and Simitci, Huseyin and Xu, Yikang and Ogus, Aaron
+  and Calder, Brad and Gopalan, Parikshit and Li, Jin and Yekhanin, Sergey},
+  title = {Erasure Coding in {W}indows {A}zure Storage},
+  booktitle = {Presented as part of the 2012 USENIX Annual Technical Conference
+  (USENIX ATC 12)},
+  year = {2012},
+  address = {Boston, MA},
+  pages = {15--26},
+  publisher = {USENIX},
+  isbn = {978-931971-93-5},
+  url =
+  {https://www.usenix.org/conference/atc12/technical-sessions/presentation/huang},
+}
+
 @inproceedings{guedon2012spie,
   TITLE = {{CEDIMS}: {C}loud {E}thical {DICOM} {I}mage {M}ojette {S}torage},
   AUTHOR = {Guédon, JeanPierre and Evenou, Pierre and Tervé, Pierre and David,
@@ -404,7 +434,7 @@
 }
 
 @INPROCEEDINGS{zhang2012nas,
-  author={Fenghao Zhang and Jianzhong Huang and Changsheng Xie},
+  author={Zhang, Fenghao and Huang, Jianzhong and Xie, Changsheng},
   title={Two Efficient Partial-Updating Schemes for Erasure-Coded Storage
   Clusters},
   booktitle={7th International Conference on Networking, Architecture
@@ -525,7 +555,6 @@
  pages = {143--157},
  publisher = {ACM},
  address = {New York, NY, USA},
- keywords = {Windows Azure, cloud storage, distributed storage systems},
  url = {http://doi.acm.org/10.1145/2043556.2043571},
  isbn = {978-1-4503-0977-6},
  doi = {10.1145/2043556.2043571},
@@ -565,6 +594,20 @@
  isbn={978-3-642-19866-3},
  language={English},
  doi={10.1007/978-3-642-19867-0_35},
+}
+
+@ARTICLE{tournoux2010tom, 
+  author={Tournoux, Pierre Ugo and Lochin, Emmanuel and Lacan, Jérôme and
+  Bouabdallah, Amine and Roca, Vincent},
+  title={On-the-Fly Erasure Coding for Real-Time Video Applications}, 
+  journal={IEEE Transactions on Multimedia},
+  year={2011},
+  volume={13},
+  number={4},
+  pages={797--812},
+  month={8},
+  ISSN={1520-9210},
+  doi={10.1109/TMM.2011.2126564},
 }
 
 @inproceedings{wang2010rebuilding,
@@ -858,7 +901,7 @@
 }
 
 @ARTICLE{huang2008star,
- author={Huang, Huang and Xu, Lihao},
+ author={Huang, Cheng and Xu, Lihao},
  title={{STAR} : An Efficient Coding Scheme for Correcting Triple Storage Node
  Failures},
  journal={Transactions on Computers},
@@ -900,6 +943,21 @@
   pagetotal  = {7},
   doi  = {10.1145/1327452.1327492},
   acmid  = {1327492},
+}
+
+@book{dumas2007book,
+  TITLE = {{Th{\'e}orie des Codes : compression, cryptage, correction}},
+  AUTHOR = {Dumas, Jean-Guillaume and Roch, Jean-Louis and Tannier, Eric and
+  Varrette, S{\'e}bastien},
+  PUBLISHER = {{Dunod}},
+  SERIES = {Sciences Sup},
+  PAGES = {352},
+  YEAR = {2007},
+  MONTH = {1},
+  ISBN={2100506927},
+  URL = {https://hal.archives-ouvertes.fr/hal-00318546},
+  HAL_ID = {hal-00318546},
+  HAL_VERSION = {v1},
 }
 
 @inproceedings{mathur2007linux,
@@ -1001,6 +1059,48 @@
   chapter={Appendix A},
   pages={204--217},
   ISBN={9780486462417},
+}
+
+@techreport{cunche2006itml,
+  TITLE = {{Improving the Decoding of LDPC Codes for the Packet Erasure Channel
+  with a Hybrid Zyablov Iterative Decoding/Gaussian Elimination Scheme}},
+  AUTHOR = {Cunche, Mathieu and Roca, Vincent},
+  TYPE = {Research Report},
+  NUMBER = {RR-6473},
+  PAGES = {19},
+  INSTITUTION = {{INRIA}},
+  YEAR = {2008},
+  URL = {https://hal.inria.fr/inria-00263682},
+  PDF = {https://hal.inria.fr/inria-00263682/file/RR-6473.pdf},
+  HAL_ID = {inria-00263682},
+  HAL_VERSION = {v2},
+}
+
+@ARTICLE{shokrollahi2006toit,
+  author={Shokrollahi, Amin},
+  title={Raptor codes},
+  journal={IEEE Transactions on Information Theory},
+  year={2006},
+  volume={52},
+  number={6},
+  pages={2551-2567},
+  month={6},
+  ISSN={0018-9448},
+  doi={10.1109/TIT.2006.874390},
+}
+
+@ARTICLE{faria2006ieee,
+  author={Faria, Gerard and Henriksson, Jukka A. and Stare, Erik and Talmola,
+  Pekka},
+  title={{DVB-H}: Digital Broadcast Services to Handheld Devices}, 
+  journal={Proceedings of the IEEE},
+  year={2006},
+  volume={94},
+  number={1},
+  pages={194-209},
+  month={1},
+  ISSN={0018-9219},
+  doi={10.1109/JPROC.2005.861011},
 }
 
 @article{averbuch2006fast,
@@ -1293,6 +1393,17 @@
  location = {Bolton Landing, NY, USA},
  pagetotal = {15},
  acmid = {945450},
+}
+
+@INPROCEEDINGS{luby2002focs,
+  author={Luby, Michael},
+  title={LT codes}, 
+  booktitle={Proceedings of the 43rd Annual IEEE Symposium on Foundations of
+  Computer Science},
+  year={2002}, 
+  pages={271--280}, 
+  doi={10.1109/SFCS.2002.1181950}, 
+  ISSN={0272-5428}, 
 }
 
 @article{muthitacharoen2002sigops,
@@ -2031,6 +2142,24 @@
   month={8},
 }
 
+@article{singleton1964toit,
+ author = {Singleton, Richard C.},
+ title = {Maximum Distance $q$-nary Codes},
+ journal = {IEEE Transactions on Information Theory},
+ volume = {10},
+ number = {2},
+ month = {4},
+ year = {1964},
+ pages = {116--118},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ issn = {0018-9448},
+ url = {http://dx.doi.org/10.1109/TIT.1964.1053661},
+ numpages = {3},
+ doi = {10.1109/TIT.1964.1053661},
+ acmid = {2267153},
+}
+
 @article{cormack1963jap,
  author = {Cormack, Allan M.},
  title = {Representation of a Function by its Line Integrals, with Some
@@ -2044,7 +2173,7 @@
  doi = {10.1063/1.1729798}
 }
 
-@ARTICLE{gallager1962ldpc,
+@ARTICLE{gallager1962toit,
  author={Gallager, Robert G.},
  title={Low-density parity-check codes},
  journal={IRE Transactions on Information Theory},
@@ -2053,6 +2182,7 @@
  volume={8},
  number={1},
  pages={21--28},
+ publisher={IEEE},
  ISSN={0096-1000},
  doi={10.1109/TIT.1962.1057683},
 }
