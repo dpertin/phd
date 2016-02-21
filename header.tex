@@ -33,6 +33,22 @@
     ]{these-LUNAM-UBL}
     %]{report}
 
+% je retire les en-tête parce que c'est bof
+%\pagestyle{plain}
+
+% en fait je les laisse mais en plus petit
+% faut voir comment garder les chapitres et parties "fancy" <3 ...
+% http://tex.stackexchange.com/questions/78550/how-to-modify-the-headers-of-this-book-to-lower-case
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+
 %\usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}

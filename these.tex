@@ -22,7 +22,7 @@
 
 \thesisnumber{}
 
-\date{}
+\date{22 avril 2016}
 
 \reviewer{M.}
     {Pierre}
@@ -63,17 +63,18 @@
 \begin{document}
 
 \begin{resume}
-    %\lipsum[1-2]
+    % pas plus de 1700 caractères, espaces compris
+    \footnotesize
+    \input{chapters/resume.tex}
 \end{resume}
 
 \begin{motscles}
-    %Code à effacement, transformée Mojette, stockage distribué.
-    Robert
+    Code à effacement, transformée Mojette, stockage distribué.
 \end{motscles}
 
 \begin{abstract}
-    %\footnotesize
-    %\lipsum[1-1]
+    \footnotesize
+    \input{chapters/abstract.tex}
 \end{abstract}
 
 \begin{keywords}
@@ -90,6 +91,10 @@
 
 \dominitoc
 \tableofcontents
+
+\chapter{Introduction}
+
+\input{chapters/introduction.tex}
 
 \part{Codes à effacement en géométrie discrète}
 
