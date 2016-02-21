@@ -1,24 +1,100 @@
 %&these
 
-\makeindex
+\titre{Approche Géométrique pour la Conception de Codes à Effacement Appliqués
+    dans le Stockage Distribué}
+
+\title{Geometrical Approach to Design Erasure Codes for Distributed Storage}
+
+\author{M.}{Dimitri}{Pertin}
+
+\discipline{Informatique et applications}
+
+\sectionCNU{27}
+
+\institution{UN}
+
+\doctoralschool{Sciences et technologies de l'information, et mathématiques}
+
+\laboratory{Institut de Recherche en Communications et Cybernétique de Nantes
+    (IRCCyN)}%\\
+    %École polytechnique de l'université de Nantes (Polytech Nantes, membre du
+    %réseau Polytech des écoles d'ingénieurs polytechniques universitaires)}
+
+\thesisnumber{}
+
+\date{22 avril 2016}
+
+\reviewer{M.}
+    {Pierre}
+    {Duhamel}
+    {Directeur de recherches CNRS}
+    {L2S Centrale Supelec, Paris}
+
+\reviewer{M.}
+    {Martin}
+    {Quinson}
+    {Professeur des universités}
+    {ENS, Rennes}
+
+\examiner{M.}
+    {Imants}
+    {Svalbe}
+    {Maître de conférences}
+    {Monash University, Melbourne, Australie}
+
+\president{M.}
+    {Jérôme}
+    {Lacan}
+    {Professeur des universités}
+    {ISAE, Toulouse}
+
+\supervisor{M.}
+    {Nicolas}
+    {Normand}
+    {Maitre de conférences titulaire de l'HDR}
+    {Université de Nantes}
+ 
+\cosupervisor{M.}
+    {Benoît}
+    {Parrein}
+    {Maitre de conférences titulaire de l'HDR}
+    {Université de Nantes}   
 
 \begin{document}
 
-\title{
-    {Approche Géométrique pour la Conception de Codes à Effacement Appliqués
-    dans le Stockage Distribué}\\
-    {\large IRCCyN}\\
-    {\includegraphics[width=0.5\textwidth]{img/logo_irccyn.pdf}}
-}
-\author{Dimitri Pertin}
-\date {}
+\begin{resume}
+    % pas plus de 1700 caractères, espaces compris
+    \footnotesize
+    \input{chapters/resume.tex}
+\end{resume}
+
+\begin{motscles}
+    Code à effacement, transformée Mojette, stockage distribué.
+\end{motscles}
+
+\begin{abstract}
+    \footnotesize
+    \input{chapters/abstract.tex}
+\end{abstract}
+
+\begin{keywords}
+    Erasure code, Mojette transform, distributed storage.
+\end{keywords}
 
 \maketitle
+
+\chapter*{Remerciements}
+
+\lipsum[1-2]
 
 \newpage
 
 \dominitoc
 \tableofcontents
+
+\chapter*{Introduction Générale}
+
+\input{chapters/introduction.tex}
 
 \part{Codes à effacement en géométrie discrète}
 
@@ -36,11 +112,20 @@
 
 \input{chapters/chapter06.tex}
 
+\chapter*{Conclusion Générale}
+
+\input{chapters/conclusion.tex}
+
 \printbibliography[
 ]
 
 % segment=1
 
 % \printindex
+
+\section*{Nombre de ref}
+Attention : \total{citenum}\ !!! \textbackslash{}o/
+
+\backmatter
 
 \end{document}

@@ -1,59 +1,123 @@
-\documentclass[10pt]{report}
 
-\usepackage[french]{babel}
-\usepackage[T1]{fontenc}
+% raccourcis de feignasse \o/ 
+\newcommand\radon{\citeauthor{radon1917akad}\xspace}
+\newcommand\matus{\citeauthor{matus1993pami}\xspace}
+\newcommand\katz{\citeauthor{katz1978springer}\xspace}
+\newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
+
+\newcommand\shannon{\textsc{Shannon}\xspace}
+\newcommand\hamming{\textsc{Hamming}\xspace}
+\newcommand\vander{\textsc{Vandermonde}\xspace}
+\newcommand\cauchy{\textsc{Cauchy}\xspace}
+\newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\singleton{\textsc{Singleton}\xspace}
+\newcommand\rs{\textsc{Reed-Solomon}\xspace}
+\newcommand\eo{\textsc{EVENODD}\xspace}
+\newcommand\fourier{\textsc{Fourier}\xspace}
+\newcommand\galois{\textsc{Galois}\xspace}
+\newcommand\intel{\textsc{Intel}\xspace}
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\FF{\mathbb{F}}
+\newcommand\PP{\mathcal{P}}
+\newcommand\QQ{\mathcal{Q}}
+
+
+\documentclass[12pt,
+    french,
+    fancyChapter,
+    fancyPart,
+    %squeezeComittee,
+    ]{these-LUNAM-UBL}
+    %]{report}
+
+% je retire les en-tête parce que c'est bof
+%\pagestyle{plain}
+
+% en fait je les laisse mais en plus petit
+% faut voir comment garder les chapitres et parties "fancy" <3 ...
+% http://tex.stackexchange.com/questions/78550/how-to-modify-the-headers-of-this-book-to-lower-case
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+
+%\usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
+\usepackage{times}
 
-\usepackage{amsmath,amssymb}
+%\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+
 % http://tex.stackexchange.com/questions/74880/algorithmicx-package-comments-on-a-single-line
     \algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
-\usepackage[pdftex]{graphicx}
-\usepackage{hyperref}
-\usepackage{subcaption}
+%\usepackage[pdftex]{graphicx}
 \usepackage{url}
 \usepackage{longtable, booktabs, multirow}
 \usepackage{makeidx}
 \usepackage{transparent}
+\usepackage{xspace}
 \usepackage{minitoc}
     \mtcselectlanguage{french}
 
-% http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
-% Cleveref can’t cope with active characters being present in cross-reference
-% label names. For example, if French babel support is loaded, the commonly
-% used “:”
-\usepackage[french,capitalize,nameinlink]{cleveref}
 \usepackage{array,booktabs}
 \newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
 \usepackage{colortbl}
-\usepackage{textcomp}
 
 \usepackage{tikz,pgfplots,pgfgantt}
 	\usetikzlibrary{arrows,positioning,matrix}
+%http://tex.stackexchange.com/questions/102460/underbraces-in-matrix-divided-in-blocks
+	\usetikzlibrary{decorations.pathreplacing}
+	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
+	picture,baseline=(#1.base)]
+	  \node (#1) {\strut};}
 \usepackage{lscape,afterpage}
+%\usepackage{xcolor} %déjà intégré dans le .cls
 
-\usepackage{xcolor}
-\hypersetup{
-    colorlinks,
-    linkcolor={red!50!black},
-    citecolor={blue!50!black},
-    urlcolor={blue!80!black}
-}
+%\geometry{inner=2.5cm, outer=2.5cm, top=2.5cm, bottom=2cm}
+%\geometry{inner=1.5cm, outer=1.5cm, top=2cm, bottom=2cm}
 
 \usepackage[french=guillemets]{csquotes}
 
-\usepackage[
-    backend=biber,
-    style=alphabetic,
-	maxnames=2,
-    maxbibnames=99,
-    language=french,
-    babel=other
-]{biblatex}
-\addbibresource{these.bib}
+\usepackage{textcomp}
+\usepackage{pdflscape}
+\usepackage{sistyle}
+
+\definecolor{myred}{HTML}{810303}
+\definecolor{myblue}{HTML}{000080}
+
+\definecolor{mygrey}{HTML}{272822}
+\definecolor{mybgrey}{HTML}{75715E}
+\definecolor{mywhite}{HTML}{DDDDDD}
+\definecolor{mypink}{HTML}{F92672}
+\definecolor{mygreen}{HTML}{A6E22E}
+
+\usepackage{listings}
+	\lstset{language=C++,
+	backgroundcolor=\color{mygrey},
+	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
+	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
+	commentstyle=\itshape\color{mybgrey},
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numberstyle=\color{black},
+	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
+	basicstyle={\color{mywhite}},
+	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
+	frame=none}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
@@ -82,6 +146,130 @@
 \def\M{\mathcal{M}}
 
 \DeclareMathOperator*{\xor}{\bigoplus}
+             
+
+% relatif au papier reprojection
+\DeclareMathOperator*{\bigast}{\ast}
+\DeclareMathOperator*{\bigastinv}{\ast^{-1}}
+\newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
+\def\dirset#1{\left\{#1\right\}}
+\def\ghost#1{G_{\dirset{#1}}}
+
+\makeatletter
+\renewcommand{\ALG@name}{Algoritme}
+\makeatother
+
+\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
+\algrenewcommand\algorithmicfor{\textbf{pour}}
+\algrenewcommand\algorithmicforall{\textbf{pour tout}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicend{\textbf{fin}}
+\algrenewcommand\algorithmicif{\textbf{si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
+
+\pgfplotscreateplotcyclelist{my black white}{%
+solid, every mark/.append style={solid, fill=gray}, mark=*\\%
+dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
+densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
+loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
+dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
+loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
+densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
+dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
+dasdotdotted, every mark/.append style={solid},mark=star\\%
+densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
+}
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+
+% same reference for footnotes in table
+% http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+
+% ultime cheat pour avoir des méga matrices
+\setcounter{MaxMatrixCols}{20}
+
+% curious (et flemmard ...)
+\usepackage{totcount}
+\usepackage{lipsum}
+
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+	maxnames=2,
+    maxbibnames=99,
+    language=french,
+    babel=other,
+    backref=true
+]{biblatex}
+\addbibresource{these.bib}
+
+\usepackage[bookmarks,%
+                colorlinks,%
+                urlcolor=blue,%
+                citecolor=blue,%
+                linkcolor=blue,%
+                hyperfigures,%
+                %pagebackref,%
+                pdfcreator=LaTeX,%
+                breaklinks=true,%
+                pdfpagelayout=SinglePage,%
+                bookmarksopen=true,%
+                bookmarksopenlevel=2]{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+%%% RELATIF À HYPERREF %%%
+
+\DeclareFieldFormat{citehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{#1}}
+
+\DeclareFieldFormat{textcitehyperref}{%
+  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+  \bibhyperref{%
+    #1%
+    \ifbool{cbx:parens}
+      {\bibcloseparen\global\boolfalse{cbx:parens}}
+      {}}}
+
+\savebibmacro{cite}
+\savebibmacro{textcite}
+
+\renewbibmacro*{cite}{%
+  \printtext[citehyperref]{%
+    \restorebibmacro{cite}%
+    \usebibmacro{cite}}}
+
+\renewbibmacro*{textcite}{%
+  \ifboolexpr{
+    ( not test {\iffieldundef{prenote}} and
+      test {\ifnumequal{\value{citecount}}{1}} )
+    or
+    ( not test {\iffieldundef{postnote}} and
+      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+  }
+    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+    {}%
+  \printtext[textcitehyperref]{%
+    \restorebibmacro{textcite}%
+    \usebibmacro{textcite}}
+}
+
+
+%%% RELATIF À BIBLATEX %%%
 
 % déclaration de la catégorie mine pour biblatex
 \DeclareBibliographyCategory{mine}
@@ -126,45 +314,8 @@
      #1}%
   \ifthenelse{\value{listcount}<\value{liststop}}
     {\addcomma\space}
-    {}}
-%              
-
-% relatif au papier reprojection
-\DeclareMathOperator*{\bigast}{\ast}
-\DeclareMathOperator*{\bigastinv}{\ast^{-1}}
-\def\dirset#1{\left\{#1\right\}}
-\def\ghost#1{G_{\dirset{#1}}}
-
-\newcommand\radon{\citeauthor{radon1917akad} }
-\newcommand\matus{\citeauthor{matus1993pami} }
-\newcommand\katz{\citeauthor{katz1978springer} }
-\newcommand\reed{\citeauthor{reed1960jsiam} }
-
-\newcommand\vander{\textsc{Vandermonde} }
-\newcommand\cauchy{\textsc{Cauchy} }
-\newcommand\rs{\textsc{Reed-Solomon} }
-\newcommand\eo{\textsc{EVENODD} }
-\newcommand\fourier{\textsc{Fourier} }
-\newcommand\galois{\textsc{Galois} }
-\newcommand\intel{\textsc{Intel} }
-
-\newcommand\ZZ{\mathbb{Z}}
-\newcommand\RR{\mathbb{R}}
-\newcommand\CC{\mathbb{C}}
-\newcommand\PP{\mathcal{P}}
-\newcommand\QQ{\mathcal{Q}}
-
-\makeatletter
-\renewcommand{\ALG@name}{Algoritme}
-\makeatother
-
-\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
-\algrenewcommand\algorithmicfor{\textbf{pour}}
-\algrenewcommand\algorithmicforall{\textbf{pour tout}}
-\algrenewcommand\algorithmicdo{\textbf{faire}}
-\algrenewcommand\algorithmicend{\textbf{fin}}
-\algrenewcommand\algorithmicif{\textbf{si}}
-\algrenewcommand\algorithmicthen{\textbf{alors}}
+    {}
+}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
@@ -179,52 +330,16 @@
   }
 }
 
+\newtotcounter{citenum}
+\AtEveryBibitem{\stepcounter{citenum}}
 
-\DeclareFieldFormat{citehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{#1}}
+% http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
+% Cleveref can’t cope with active characters being present in cross-reference
+% label names. For example, if French babel support is loaded, the commonly
+% used “:”
+\usepackage[french,capitalize,nameinlink]{cleveref}
+    \crefname{lstlisting}{Listing}{listings}
+    \Crefname{lstlisting}{Listing}{Listings}
 
-\DeclareFieldFormat{textcitehyperref}{%
-  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
-  \bibhyperref{%
-    #1%
-    \ifbool{cbx:parens}
-      {\bibcloseparen\global\boolfalse{cbx:parens}}
-      {}}}
-
-\savebibmacro{cite}
-\savebibmacro{textcite}
-
-\renewbibmacro*{cite}{%
-  \printtext[citehyperref]{%
-    \restorebibmacro{cite}%
-    \usebibmacro{cite}}}
-
-\renewbibmacro*{textcite}{%
-  \ifboolexpr{
-    ( not test {\iffieldundef{prenote}} and
-      test {\ifnumequal{\value{citecount}}{1}} )
-    or
-    ( not test {\iffieldundef{postnote}} and
-      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
-  }
-    {\DeclareFieldAlias{textcitehyperref}{noformat}}
-    {}%
-  \printtext[textcitehyperref]{%
-    \restorebibmacro{textcite}%
-    \usebibmacro{textcite}}
-}
-
-\pgfplotscreateplotcyclelist{my black white}{%
-solid, every mark/.append style={solid, fill=gray}, mark=*\\%
-dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
-densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
-loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
-dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
-loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
-densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
-dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
-dasdotdotted, every mark/.append style={solid},mark=star\\%
-densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
-}
+\usepackage{subcaption}
 
