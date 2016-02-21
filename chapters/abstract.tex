@@ -1,0 +1,25 @@
+
+Erasure code is a technique of information theory that computes data redundancy
+in distributed storage systems. This redundancy can be used to recover data
+when a part of it is unavailable (referred as erased data). This method
+significantly reduces the amount of redundancy compared to plain data
+replication, at the cost of extra complexity which slow down encoding and
+decoding operations.
+%
+The Mojette transform is a discrete and exact version of the \radon transform.
+This technique is able to compute a redundant representation of an information,
+and to rebuild it efficiently with a linear complexity.
+%
+The first contribution of this research work deals with the design of a
+systematic version of the Mojette erasure code. This design provides an
+almost-optimal code rate, with a low complexity.
+%
+Realized in a collaboration between IRCCyN and the company Rozo Systems, this
+research work are embedded in the distributed file system RozoFS developed by
+the company. A particular attention has been paid to the implementation
+performances.
+%
+The second contribution is about the design of a novel distributed method to
+generate extra codeword symbols. This technique enables the recovery and ease
+the flexibility of the system fault-tolerance.
+
