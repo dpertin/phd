@@ -860,7 +860,29 @@ probablement à la limite des performances des disques. Il serait intéressant d
 vérifier si cette limite est repoussée dans le cas où on utilise soit plus de
 disques durs (pour répartir la charge) soit des disques SSD.
 
-## Discussion
-
+% ## Discussion
 
 \section*{Conclusion}
+
+Ce chapitre a permis de détailler la mise en œuvre du code à effacement au sein
+du système de fichier distribué RozoFS. La \cref{sec.dfs} a présenté quelques
+notions sur les systèmes de stockage. En particulier on a expliqué l'évolution
+de la distribution des données sur des supports de stockage depuis l'invention
+du RAID dans les années 80. On a par la suite expliqué comment fonctionne un
+système de fichiers distribués et comment est gérée la redondance dans les
+systèmes de fichiers distribués actuelles.
+
+La \cref{sec.rozofs} a décrit RozoFS. En particulier, nous avons étudié son
+fonctionnement basé sur trois éléments : (i) le serveur de métadonnée, (ii) les
+serveur de stockage, (iii) les clients. Nous avons détaillé les interactions
+entre ces éléments, et en particulier, le cas des entrées/sorties tolérantes
+aux pannes grâce au code à effacement Mojette.
+
+Dans une dernière partie, nous avons évalué les performances de RozoFS dans des
+tests de charges intensives menés sur la plate-forme de test Grid 5000. La
+\cref{sec.rozofs.perf} donne une comparaison des performances de RozoFS avec
+celles fournies par CephFS. Les résultats obtenus ont montré que dans les
+conditions de nos tests, RozoFS est capable de fournir de meilleures
+performances qu'un système de fichiers distribué basé sur de la réplication,
+tout en divisant par deux le volume de stockage grâce au code à effacement
+Mojette.
