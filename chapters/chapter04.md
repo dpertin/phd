@@ -281,10 +281,11 @@ Les *Array* codes ont été conçus à l'origine comme une alternative aux codes
 \galois. Bien que ces codes fournissent une quantité de redondance limitée, ils
 ne réalisent que des opérations d'addition, et sont en conséquence performants.
 Les disques $\PP$ et $\QQ$ sont respectivement calculés en utilisant des bandes
-horizontales et diagonales. Le calcul de $\PP$ est alors également décrit par
-l'\cref{eqn.rs_p}. On s'intéressera en particulier à la conception du disque
+horizontales et diagonales. Le calcul de $\PP$ correspond également à un mot de
+code de parité. On s'intéressera en particulier à la conception du disque
 $\QQ$ pour les codes \eo \cite{blaum1995toc} et RDP \cite{corbett2004fast}.
 
+%est alors également décrit par l'\cref{eqn.rs_p}
 
 #### Les codes \eo
 
