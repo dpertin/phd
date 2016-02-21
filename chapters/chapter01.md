@@ -82,7 +82,7 @@ arbitrairement fixée.
 
 
 
-# Notion de théorie des codes
+# Notion de théorie des codes {#sec.theorie.codes}
 
 ## Caractérisation d'un canal de communication
 
@@ -535,7 +535,7 @@ t$, où $t$ correspond au nombre d'erreur que peut corriger le code.
 
 
 
-# Codage à effacement
+# Codage à effacement {#sec.codage.effacement}
 
 Dans les travaux de cette thèse, nous nous intéressons en particulier au cas
 des codes appliqués au canal à effacement.
@@ -613,7 +613,7 @@ suite quelques exemples de codes à effacement.
 
 %#### Application dans le stockage
 
-# Exemples de codes à effacement
+# Exemples de codes à effacement {#sec.exemples.codes.effacement}
 
 Les codes à effacement ont été un sujet de recherche très prolifique en
 publications scientifiques. Aussi le nombre de codes qui ont été conçus est
@@ -731,8 +731,8 @@ d'encodage et de décodage. Les codes LDPC sont à l'inverse des codes aux
 complexités linéaires, mais non MDS. Pour répondre au problème du canal binaire
 symétrique, \textcite{gallager1962toit} a proposé des codes basés sur une
 matrice de parité à faible densité (LDPC). Ils ont ensuite été proposé dans le
-cas du canal à effacement \cite{luby1997}. Ces codes utilisent l'algorithme de
-propagation de croyance (*Belief Propagation*) : un algorithme itératif qui
+cas du canal à effacement \cite{luby1997stoc}. Ces codes utilisent l'algorithme
+de propagation de croyance (*Belief Propagation*) : un algorithme itératif qui
 permet au décodage d'atteindre une complexité linéaire.
 
 Les codes LDPC peuvent être représentés de manière équivalente de deux
@@ -808,3 +808,34 @@ si l'algorithme s'arrête.
 
 
 \section*{Conclusion du chapitre}
+
+Ce chapitre nous a permis de présenter un état de l'art des codes correcteurs
+pour le canal à effacement. La \cref{sec.theorie.codes} a introduit les notions
+nécessaires pour comprendre la théorie des codes. En particulier nous avons
+étudié le cas du canal à effacement dans lequel certains symboles ont une
+probabilité d'être effacé. Ce cas est plus simple à résoudre que le cas du
+canal binaire symétrique puisque l'on connait précisément l'emplacement du
+symbole effacé dans le mot reçu.
+
+Afin de résoudre le problème du canal à effacement, il est nécessaire de
+proposer des codes à effacement capables de générer de la redondance
+d'information au niveau du récepteur, afin que le destinataire puisse
+reconstituer l'information même lorsqu'une partie a été effacée. La
+\cref{sec.codage.effacement} présente le principe de ces codes à effacement
+linéaires et leurs distinctions.
+
+Nous avons vu dans la dernière section, quelques exemples de représentatif des
+familles de codes à effacement.  En particulier, les codes de parité sont
+simples à mettre en œuvre, mais particulièrement coûteux puisque leur rendement
+est mauvais. Les codes de parité offrent un meilleur rendement mais ne peuvent
+corriger qu'un effacement. Les codes de \rs sont les plus populaires puisque
+leur capacité de correction n'a théoriquement pas de limite, et que leur
+rendement est optimal (ce sont des codes MDS). En revanche, ils induisent une
+complexité quadratique au décodage qui les pénalise. Les codes LDPC possèdent
+une complexité de décodage linéaire mais n'ont pas un rendement optimal (MDS
+dans le cas asymptotique).
+
+En conséquence, les codes que nous avons proposé ne sont pas parfait. Dans le
+meilleur des mondes, on disposerait d'un code MDS, de faible complexité, et
+dont la capacité de protection est arbitraire. Nous verrons dans les prochains
+chapitre que le codes à effacement Mojette s'en rapproche.
