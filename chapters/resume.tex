@@ -1,29 +1,30 @@
 
-Le codage à effacement est une technique de transmission de l'information
-capable de générer de la redondance dans les informations contenues d'un
-système de stockage distribué, afin de pouvoir reconstituer l'information
-lorsqu'une partie de celle ci est inacessible (on parle d'effacement de la
-donnée). Cette technique permet de réduire considérablement la quantité de
-redondance par rapport aux techniques de réplication, au prix d'une complexité
-calculatoire significative qui pénalise les opérations d'encodage et de
-décodage.
+Les systèmes de stockage distribués sont sujets à des défaillances inévitables
+qui entraînent l'inaccessibilité temporaire, voire la perte définitive de blocs
+de données. La solution classique consiste à distribuer des copies de ces
+données sur différents supports de stockage, mais cela engendre un coût de
+stockage important.
 %
-La transformée Mojette est une transformée discrète et exacte de la transformée
-de \radon. Cette technique est capable de générer une représentation redondante
-de l'information et de reconstruire efficacement cette information avec une
-complexité linéaire.
-%
-La première contribution de ces travaux correspond à la conception d'une
-version systématique du code à effacement Mojette. Cette conception permet de
-fournir un code au rendement quasi-optimal, et de faible complexité.
-%
+Le codage à effacement est une alternative qui permet de réduire
+considérablement la quantité de redondance au prix d'une complexité
+calculatoire engendrée par les opérations d'encodage et de décodage.
+
+La transformée Mojette (une version discrète et exacte de la transformée
+de \radon) est capable de représenter de manière redondante l'information,
+et de reconstruire efficacement cette information. % /!\
+
+La conception d'une version systématique du code à effacement Mojette est la
+première contribution de nos travaux de recherche. Ce code a un rendement
+quasi-optimal, et les algorithmes pour le mettre en œuvre sont de faible
+complexité.
+
+La seconde contribution est une nouvelle méthode distribuée pour ré-encoder de
+nouveaux symboles de mots de code, sans avoir à reconstruire explicitement
+l'information initiale. Cette technique permet de rétablir un niveau de
+redondance voulu.
+
 Réalisés en collaboration entre l'IRCCyN et la société Rozo Systems, ces
-travaux de recherche s'intègrent particulièrement dans le système de fichiers
-distribué RozoFS, développé par l'entreprise. Une attention particulière a
-alors été portée aux performances des implémentations réalisées.
-%
-La seconde contribution correspond à la conception d'une nouvelle méthode
-distribuée pour générer de nouveaux symboles de mots de code. Cette technique
-participe à la restauration et à la flexibilité de la tolérance aux pannes du
-système.
+travaux de recherche s'intègrent dans le système de fichiers
+distribué RozoFS développé par l'entreprise. En conséquence, une attention
+particulière a été portée aux performances des mises en œuvres réalisées.
 
