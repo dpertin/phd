@@ -1101,24 +1101,24 @@
       \ifx#3\@empty
       \else
          \ifnum #4 = 0\relax
-            \@onecommitteemember{Co-directeur de th\`ese}{#3}
+            \@onecommitteemember{Co-encadrant de th\`ese}{#3}
          \else
-            \@onecommitteemember{Co-directrice de th\`ese}{#3}
+            \@onecommitteemember{Co-encadrante de th\`ese}{#3}
          \fi
       \fi
    \else\ifx#3\@empty
       \ifnum #2 = 0\relax
-         \@onecommitteemember{Co-directeur de th\`ese}{#1}
+         \@onecommitteemember{Co-encadrant de th\`ese}{#1}
       \else
-         \@onecommitteemember{Co-directrice de th\`ese}{#1}
+         \@onecommitteemember{Co-encadrant de th\`ese}{#1}
       \fi
    \else
       \ifnum #2 = 0\relax
-         \@twocommitteemembers{Co-directeurs de th\`ese}{#1}{#3}
+         \@twocommitteemembers{Co-encadrants de th\`ese}{#1}{#3}
       \else\ifnum #4 = 0\relax
-         \@twocommitteemembers{Co-directeurs de th\`ese}{#1}{#3}
+         \@twocommitteemembers{Co-encadrants de th\`ese}{#1}{#3}
       \else
-         \@twocommitteemembers{Co-directrices de th\`ese}{#1}{#3}
+         \@twocommitteemembers{Co-encadrantes de th\`ese}{#1}{#3}
       \fi\fi
    \fi\fi}
 
