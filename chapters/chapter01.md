@@ -144,8 +144,8 @@ est plus importante que pour les autres lettres de l'alphabet. La source est
 $i \neq j$, et que leur probabilité n'évolue pas pendant la transmission.
 
 Le degré d'originalité $I(s_i)$ (parfois appelé « auto-information ») est
-défini% par \cite{shannon1948}
-comme l'information transmise par le symbole $s_i$ et vaut :
+défini comme l'information transmise par le symbole $s_i$ et vaut
+\cite{shannon1948bstj}:
 
 \begin{equation}
     I(s_i) = -\log_2(p_i).
