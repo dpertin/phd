@@ -62,8 +62,8 @@ nous porterons une attention particulière à la définition des *fantômes* qui
 sont des éléments de l'image invisible dans l'espace de transformée
 \cite{katz1978springer}. Ces fantômes nous permettront non seulement de
 comprendre les processus d'inversion dans ce chapitre, mais seront également
-utilisés au \cref{sec.reprojection} afin de concevoir une méthode pour générer
-de nouvelles projections..
+utilisés au \cref{sec.chap6} afin de concevoir une méthode pour générer
+de nouvelles projections.
 
 
 # Discrétisation de la transformée de \radon continue
@@ -646,7 +646,7 @@ géométriques sont des éléments de l'image générés lorsqu'une projection e
 manquante \cite{katz1978springer}. Les fantômes ne sont pas spécifiques à la
 FRT, aussi nous les réutiliserons pour la transformée Mojette
 (\cref{sec.mojette}), et pour le calcul de nouvelles projections
-(\cref{sec.reprojection}). En particulier, nous verrons un algorithme de
+(\cref{sec.chap6}). En particulier, nous verrons un algorithme de
 reconstruction proposé par \citeauthor{chandra2012tip} afin de supprimer ces
 fantômes et reconstruire la donnée \cite{chandra2008icpr, chandra2012tip}. 
 Cet algorithme permettra de concevoir un code à effacement. En particulier,
@@ -1094,7 +1094,7 @@ utilisant la décomposition LU \cite{turner1966inverse}.
 
 % représentation algébrique par normand
 
-### Relation géométrique avec les Array codes
+% ### Relation géométrique avec les Array codes
 
 % cas particulier de la FRT
 
@@ -1292,7 +1292,7 @@ décrire dans la suite, l'algorithme itératif d'inversion Mojette par balayage
 efficacité. Nous verrons en effet que la complexité de décodage d'un symbole se
 fait en temps polynomial. Il sera en effet utilisé pour décoder l'information
 dans le code à effacement, et servira également dans la compréhension de
-génération de nouvelles projections en \cref{sec.reprojection}.
+génération de nouvelles projections en \cref{sec.chap6}.
 
 Chaque droite de projection correspond à une équation faisant intervenir un bin
 et un ensemble de pixel. Dans la section précédente, nous avions observé que

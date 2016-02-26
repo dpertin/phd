@@ -1,0 +1,27 @@
+
+Distributed storage systems face inevitable failures which entail temporary
+unavailability, or even permanent losses of data blocks. The classical solution
+is to distribute copies of this data among different storage supports, but a
+significant storage cost is involved.
+%
+Erasure coding is an alternative that greatly reduces this amount of redundancy
+at the cost of computational complexity induced by encoding and decoding
+operations.
+
+The Mojette transform (a discrete and exact version of the \radon transform) is
+able to depict a redundant representation of data, and to efficiently
+reconstruct it.
+
+The design of a systematic version of the Mojette erasure code is the first
+contribution of our research work. This code has an almost optimal rate, and
+the devised algorithms used to implement it have a low complexity.
+
+The second contribution is a new distributed method to re-encode new codeword
+symbols, without having to explicitly reconstruct the initial information. This
+technique can be used to restore a desired level of fault-tolerance.
+
+Conducted in collaboration with IRCCyN lab and Rozo Systems Inc, our research
+work is part of the distributed storage system RozoFS developed by the
+company. As a consequence, particular attention has been paid to the
+implementation performance.
+
