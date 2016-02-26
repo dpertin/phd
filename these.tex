@@ -108,6 +108,8 @@
 \dominitoc
 \tableofcontents
 
+\newrefsegment
+
 \chapter*{Introduction Générale}
 
 \addstarredchapter{Introduction Générale}
@@ -163,8 +165,19 @@
 \input{chapters/perspectives.tex}
 %\input{chapters/perspectives.md}
 
+\endrefsegment
+
+\chapter*{Communications}
+
+\addstarredchapter{Communications}
+
+\input{chapters/communications.tex}
+%\input{chapters/communications.md}
+
 \printbibliography[
-    heading=bibintoc]
+    heading=bibintoc,
+    segment=1
+]
 
 % segment=1
 
