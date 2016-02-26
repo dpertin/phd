@@ -9,6 +9,16 @@
 @string{proc  = {Proc.}}
 @string{vcip  = {VCIP}}
 
+
+@unpublished{pertin2016tos,
+	Author = {Pertin, Dimitri and Van Kempen, Alexandre and Confais, Bastien
+	and F{\'e}ron, Didier and Normand, Nicolas and Parrein, Beno\^{i}t},
+	Title = {{RozoFS}: an erasure-coded distributed file system
+	for {I/O} intensive workloads},
+	Year = {2016},
+	Note = {en soumission à la revue ACM Transactions on Storage},
+}
+
 @patent{storer2015patent,
   author={Storer, Mark W. and Bisson, Timothy and Pasupathy, Shankar},
   title={Data storage cluster with distributed zones},
@@ -63,17 +73,6 @@
   HAL_VERSION = {v1},
 }
 
-@article{pertin2015hotstorage,
-  author    = {Pertin, Dimitri and Féron, Didier and Van Kempen,
-  Alexandre and Parrein, Benoît},
-  title     = {Performance evaluation of the {M}ojette erasure code for
-  fault-tolerant distributed hot data storage},
-  journal   = {CoRR},
-  volume    = {abs/1504.07038},
-  year      = {2015},
-  url       = {http://arxiv.org/abs/1504.07038},
-}
-
 @phdthesis{dersarkissian2015tomographie,
   title={Tomographie et géométrie discrètes avec la transformée Mojette},
   author={Der Sarkissian, Henri},
@@ -115,9 +114,8 @@
   author          = {Pertin, Dimitri},
   year            = {2015},
   month           = {3},
-  howpublished    = {Presentation during the doctoral workshop at {H}ot {T}opic
-  in {D}istributed {C}omputing},
-  series = {HTDC},
+  howpublished    = {Presentation à la session des doctorants de l'école
+  d'hiver {H}ot {T}opic in {D}istributed {C}omputing, HTDC 2015},
   location        = {Flaine, France},
   url             = {htdc2015.inria.fr/fr/},
   location        = {Flaine, France},
@@ -134,13 +132,23 @@
   location        = {Polytech Nantes, Nantes, France},
 }
 
+@misc{pertin2014wos,
+  title = {RozoFS: A Distributed File System based on Erasure Coding for I/O
+  Intensive Workloads},
+  author = {Pertin, Dimitri},
+  howpublished = {Workshop on Storage and Processing of Big Data, WOS 4},
+  url={http://www.bretagne-networking.org/wos4},
+  date = {2014-12-04},
+  location = {Technicolor, Cesson-Sévigné, France},
+}
+
 @inproceedings{andre2014eurosys,
  author = {Andr{\'e}, Fabien and Kermarrec, Anne-Marie and Le Merrer, Erwan and
  Le Scouarnec, Nicolas and Straub, Gilles and van Kempen, Alexandre},
  title = {Archiving Cold Data in Warehouses with Clustered Network Coding},
  booktitle = {Proceedings of the Ninth European Conference on Computer
  Systems},
- series = {EuroSys '14},
+ series = {EuroSys'14},
  year = {2014},
  publisher = {ACM},
  address = {New York, NY, USA},
@@ -185,6 +193,18 @@
   URL = {https://hal.archives-ouvertes.fr/hal-01150750},
   HAL_ID = {hal-01150750},
   HAL_VERSION = {v1},
+}
+
+@inproceedings{parrein:hal-01150741,
+	Author = {Parrein, Beno{\^\i}t and Pertin, Dimitri and Normand, Nicolas and
+	Didier, F{\'e}ron},
+	Title = {{RozoFS}: a fault tolerant {I/O} intensive distributed file system
+	based on {M}ojette erasure code},
+	Address = {Toulouse, France},
+	Booktitle = {{Workshop Autonomic}},
+	Month = {10},
+	Year = {2014},
+	Url = {https://hal.archives-ouvertes.fr/hal-01150741},
 }
 
 @article{cook2014hitachi,
@@ -246,11 +266,11 @@
   location= {Paris, France},
 }
 
-@misc{pertin2014eurosys,
+@inproceedings{pertin2014eurosys,
   title         = {The {M}ojette erasure code for distributed file systems},
   author        = {Pertin, Dimitri and Parrein, Benoît and Normand Nicolas},
-  howpublished  = {Poster presented at the European Conference on Computer
-  Systems, Eurosys 2014},
+  howpublished  = {Publication présentée à la session poster.},
+  series = {EuroSys'14},
   year          = {2014},
   organization  = {ACM},
   month         = {4},
@@ -298,17 +318,16 @@
   location = {Montaigu, France},
 }
 
-@MISC{pertin2014fosdem,
+@misc{pertin2014fosdem,
   title      = {Reduce the storage consumption of your storage clusters with
   RozoFS},
   author     = {Pertin, Dimitri},
-  howpublished       = {Slides presented at the 14th edition of the Free and
-  Open Source Developers' European Meeting},
-  series = {FOSDEM'14},
+  howpublished = {Free and Open Source Software Developers' European Meeting
+  FOSDEM'14},
   year       = {2014},
   month      = {2},
-  institution = {Université Libre de Bruxelles},
-  location   = {Bruxelles, Belgium},
+  URL={https://archive.fosdem.org/2014/schedule/event/hpc_devroom_rozofs/},
+  location   = {Université Libre de Bruxelles, Belgium},
 }
 
 @misc{pertin2014rozobox,
@@ -386,16 +405,16 @@
 }
 
 
-@MISC{pertin2013wos,
-  title = {{RozoFS}: The scalable distributed file system based on the
-  {M}ojette erasure coding},
+@misc{pertin2013wos,
+  title = {RozoFS: a fault tolerant distributed file system based on the
+  Mojette transform},
   author = {Pertin, Dimitri and David, Sylvain and F\'eron, Didier and
   \'Evenou, Pierre and Normand Nicolas and Parrein, Beno\^it},
-  howpublished = {Poster présenté lors du troisième Workshop on Storage \&
-  Cloud Computing, WOS 3},
+  howpublished = {Third Workshop On Storage and Cloud Computing, WOS 3},
   year = {2013},
   month = {11},
-  location = {Technicolor Rennes, France},
+  url={http://www.bretagne-networking.org/wos3},
+  location = {Technicolor, Cesson-Sevigné, France},
 }
 
 @inproceedings{rashmi2013hotstorage,
