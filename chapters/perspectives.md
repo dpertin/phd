@@ -1,6 +1,4 @@
 
-\section*{Perspectives}
-
 #### Problème de la réparation
 
 Bien que l'algorithme de reprojection sans reconstruction traite le cas de la

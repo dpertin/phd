@@ -1,6 +1,4 @@
 
-\section*{Conclusion}
-
 Les travaux de recherche présentés dans cette thèse réunissent conjointement la
 théorie des codes, et la géométrie discrète afin de proposer un code à
 effacement efficace. Ce mariage des deux domaines s'affiche particulièrement
