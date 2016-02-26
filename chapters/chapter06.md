@@ -121,7 +121,7 @@ certains calculs.
     %        \thispagestyle{empty}% empty page style (?)
     \begin{landscape}
     \begin{figure}[t]
-    \vspace{-2.8cm}
+    \vspace{-1.5cm}
       \centering
       \includegraphics[width=.8\columnwidth]
         {img/mojette_reprojection2.pdf}
