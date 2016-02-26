@@ -1,46 +1,191 @@
 %&these
 
-\makeindex
+\titre{Code à Effacement Mojette}
+
+\soustitre{pour le Stockage Distribué}
+
+%\titre{Approche Géométrique pour la Conception de Codes à Effacement Appliqués
+%    dans le Stockage Distribué}
+
+\title{Mojette Erasure Code}
+
+\subtitle{for Distributed Storage}
+
+%\title{Geometrical Approach to Design Erasure Codes for Distributed Storage}
+
+\author{M.}{Dimitri}{Pertin}
+
+\discipline{Informatique et applications}
+
+\sectionCNU{27}
+
+\institution{UN}
+
+\doctoralschool{Sciences et technologies de l'information, et mathématiques}
+
+\laboratory{Institut de Recherche en Communications et Cybernétique de Nantes
+    (IRCCyN)}%\\
+    %École polytechnique de l'université de Nantes (Polytech Nantes, membre du
+    %réseau Polytech des écoles d'ingénieurs polytechniques universitaires)}
+
+\thesisnumber{}
+
+\date{22 avril 2016}
+
+\reviewer{M.}
+    {Pierre}
+    {Duhamel}
+    {Directeur de recherche CNRS}
+    {L2S Centrale Supélec, Paris}
+
+\reviewer{M.}
+    {Martin}
+    {Quinson}
+    {Professeur des universités}
+    {ENS, Rennes}
+
+\examiner{M.}
+    {Imants}
+    {Svalbe}
+    {Professeur étranger}
+    {Monash University, Melbourne, Australie}
+
+\examiner{M.}
+    {Jérôme}
+    {Lacan}
+    {Professeur}
+    {ISAE-SUPAERO, Toulouse}
+
+\supervisor{M.}
+    {Nicolas}
+    {Normand}
+    {Maitre de conférences titulaire de l'HDR}
+    {Université de Nantes}
+ 
+\cosupervisor{M.}
+    {Benoît}
+    {Parrein}
+    {Maitre de conférences titulaire de l'HDR}
+    {Université de Nantes}   
+
+\guest{M.}
+    {Évenou}
+    {Pierre}
+    {Ingénieur}
+    {Rozo Systems}
+
 
 \begin{document}
 
-\title{
-    {Approche Géométrique pour la Conception de Codes à Effacement Appliqués
-    dans le Stockage Distribué}\\
-    {\large IRCCyN}\\
-    {\includegraphics[width=0.5\textwidth]{img/logo_irccyn.pdf}}
-}
-\author{Dimitri Pertin}
-\date {}
+\begin{resume}
+    % pas plus de 1700 caractères, espaces compris
+    \footnotesize
+    \input{chapters/resume.tex}
+\end{resume}
+
+\begin{motscles}
+    Code à effacement, transformée Mojette, stockage distribué,
+    tolérance aux pannes.
+\end{motscles}
+
+\begin{abstract}
+    \footnotesize
+    \input{chapters/abstract.tex}
+\end{abstract}
+
+\begin{keywords}
+    Erasure code, Mojette transform, distributed storage, fault tolerance.
+\end{keywords}
 
 \maketitle
 
-\newpage
+%\chapter*{Remerciements}
+
+%\lipsum[1-2]
+
+%\newpage
 
 \dominitoc
 \tableofcontents
 
+\newrefsegment
+
+%\chapter*{Introduction Générale}
+
+%\addstarredchapter{Introduction Générale}
+
+%\input{chapters/introduction.tex}
+%\input{chapters/introduction.md}
+
 \part{Codes à effacement en géométrie discrète}
 
+%\input{chapters/introduction_part_1.tex}
+%\input{chapters/conclusion_part_1.md}
+
 \input{chapters/chapter01.tex}
+%\input{chapters/chapter01.md}
 
 \input{chapters/chapter02.tex}
+%\input{chapters/chapter02.md}
 
 \input{chapters/chapter03.tex}
+%\input{chapters/chapter03.md}
+
+%\input{chapters/conclusion_part_1.tex}
+%\input{chapters/conclusion_part_1.md}
 
 \part{Application au stockage distribué}
 
+%\input{chapters/introduction_part_2.tex}
+%\input{chapters/introduction_part_2.md}
+
 \input{chapters/chapter04.tex}
+%\input{chapters/chapter04.md}
 
 \input{chapters/chapter05.tex}
+%\input{chapters/chapter05.md}
 
 \input{chapters/chapter06.tex}
+%\input{chapters/chapter06.md}
+
+%\input{chapters/conclusion_part_2.tex}
+%\input{chapters/conclusion_part_2.md}
+
+\chapter*{Conclusion Générale}
+
+\addstarredchapter{Conclusion Générale}
+
+%\input{chapters/conclusion.tex}
+%\input{chapters/conclusion.md}
+
+\chapter*{Perspectives}
+
+\addstarredchapter{Perspectives}
+
+%\input{chapters/perspectives.tex}
+%\input{chapters/perspectives.md}
+
+\endrefsegment
+
+%\chapter*{Communications}
+
+%\addstarredchapter{Communications}
+
+%\input{chapters/communications.tex}
+%\input{chapters/communications.md}
 
 \printbibliography[
+    heading=bibintoc,
+    segment=1
 ]
 
 % segment=1
 
 % \printindex
+
+%\section*{Nombre de ref}
+%Attention : \total{citenum}\ !!! \textbackslash{}o/
+
+\backmatter
 
 \end{document}
