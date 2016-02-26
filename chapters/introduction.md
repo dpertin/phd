@@ -110,7 +110,7 @@ doivent être conçus.
 
 Pour répondre à ces objectifs, nous proposons la conception de codes à
 effacement basés sur des versions discrète de la transformée de \radon. En
-particulier, ces versions correspondent à la *Finite \radon Transform* (FRT),
+particulier, ces versions correspondent à la *Finite Radon Transform* (FRT),
 ou « transformée de \radon finie », et à la transformée Mojette.
 Notre choix est motivé par les raisons suivantes. Tout d'abord, ces
 transformées permettent une représentation redondante de l'information
