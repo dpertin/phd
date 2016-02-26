@@ -1,0 +1,69 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'radon_xxx.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{634.52255875bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.477145)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{radon_xxx.pdf}}%
+    \put(0.29783877,0.2105657){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$f$}}}}%
+    \put(0.28095023,0.33449888){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$r[f](\varphi,t)$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{radon_xxx.pdf}}%
+    \put(0.39939235,0.17032361){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$x$}}}}%
+    \put(0.26874917,0.29388108){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$y$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{radon_xxx.pdf}}%
+    \put(0.19277161,0.0126219){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,\tau}$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{radon_xxx.pdf}}%
+    \put(0.23259225,0.20580037){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\varphi$}}}}%
+    \put(0.35558073,0.04792399){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,0}$}}}}%
+    \put(0.2185501,0.11438025){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\tau$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{radon_xxx.pdf}}%
+    \put(0.64321548,0.43601077){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{1D-DFT}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{radon_xxx.pdf}}%
+    \put(0.48889662,0.25164539){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{2D-DFT$^{-1}$}}}}%
+  \end{picture}%
+\endgroup%

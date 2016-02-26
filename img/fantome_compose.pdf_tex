@@ -1,0 +1,91 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'fantome_compose.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{916.18735552bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.30576092)%
+    \put(0.9010238,0.09691473){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0.99167845,0.09691473){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{fantome_compose.pdf}}%
+    \put(0.54422076,0.0972603){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.54477396,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.58969326,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.58914005,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.49930146,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.49930146,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.54422076,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.54477396,0.23174964){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{fantome_compose.pdf}}%
+    \put(0.03777413,0.0972603){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.03832733,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{fantome_compose.pdf}}%
+    \put(0.24733825,0.0972603){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.24789145,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.29281075,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.29225755,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{fantome_compose.pdf}}%
+    \put(0.84110327,0.0972603){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.84165647,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.88657576,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.88602256,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.79618397,0.14209017){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.79618397,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.84110327,0.18691988){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.84165647,0.23174964){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{fantome_compose.pdf}}%
+    \put(0.93094513,0.14207896){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.93149833,0.18690883){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.97641762,0.18690883){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.97586442,0.23173854){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.88602583,0.18690883){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{2}}}}%
+    \put(0.88602583,0.23173854){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.93094513,0.23173854){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{-1}}}}%
+    \put(0.93149833,0.2765683){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{fantome_compose.pdf}}%
+  \end{picture}%
+\endgroup%
