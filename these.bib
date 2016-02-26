@@ -10,9 +10,71 @@
 @string{vcip  = {VCIP}}
 
 
+@unpublished{pertin2016tos,
+	Author = {Pertin, Dimitri and Van Kempen, Alexandre and Confais, Bastien
+	and F{\'e}ron, Didier and Normand, Nicolas and Parrein, Beno\^{i}t},
+	Title = {{RozoFS}: an erasure-coded distributed file system
+	for {I/O} intensive workloads},
+	Year = {2016},
+	Note = {en soumission à la revue ACM Transactions on Storage},
+}
+
+@patent{storer2015patent,
+  author={Storer, Mark W. and Bisson, Timothy and Pasupathy, Shankar},
+  title={Data storage cluster with distributed zones},
+  publisher={Google Patents},
+  note={US Patent App. 14/636,055},
+  url={https://www.google.fr/patents/US20150324123},
+  holder={NetApp Inc},
+  date={2015-11-12},
+}
+
+@misc{roca2015rfc,
+	author=		{Vincent Roca and Jani Peltotalo and Jerome Lacan and Sami
+	Peltotalo},
+	title=		{{Reed-Solomon Forward Error Correction (FEC) Schemes}},
+	series =	{Request for Comments},
+	number=		5510,
+	howpublished=	{IETF RFC 5510},
+	publisher =	{RFC Editor},
+	year =		2015,
+	month =		{10},
+	url =		{https://rfc-editor.org/rfc/rfc5510.txt},
+	day =		14,
+	doi =		{10.17487/rfc5510},
+	pagetotal =	28,
+}
+
+@misc{haynes2015rfc7530,
+  author="Haynes, Tom and Noveck, Dave",
+  title="{{N}etwork {F}ile {S}ystem ({NFS}) Version 4 Protocol}",
+  series="Request for Comments",
+  number="7530",
+  howpublished="RFC 7530 (Proposed Standard)",
+  publisher="IETF",
+  organization="Internet Engineering Task Force",
+  year={2015},
+  month={3},
+  url="http://www.ietf.org/rfc/rfc7530.txt",
+}
+
+@inproceedings{parrein2015ressi,
+  TITLE = {{FEC4Cloud}: a research project promoting erasure coding for {C}loud
+  storage architectures},
+  AUTHOR = {Parrein, Benoît and Lacan, Jérôme and Normand, Nicolas
+  and Pertin, Dimitri and Detchart, Jonathan and Van Kempen, Alexandre},
+  BOOKTITLE = {Rendez-vous de la Recherche et de l'Enseignement de la
+  Sécurité des Systèmes d'Information (RESSI)},
+  ADDRESS = {Troyes, France},
+  YEAR = {2015},
+  MONTH = {5},
+  URL = {https://hal.archives-ouvertes.fr/hal-01156462},
+  HAL_ID = {hal-01156462},
+  HAL_VERSION = {v1},
+}
+
 @phdthesis{dersarkissian2015tomographie,
-  title={Tomographie et g{\'e}om{\'e}trie discr{\`e}tes avec la transform{\'e}e
-  Mojette},
+  title={Tomographie et géométrie discrètes avec la transformée Mojette},
   author={Der Sarkissian, Henri},
   year={2015},
   school={Universit{\'e} de Nantes}
@@ -20,7 +82,7 @@
 
 @inproceedings{pertin2015sifwict,
   TITLE = {{Comparison of {RAID}-6 Erasure Codes}},
-  AUTHOR = {Pertin, Dimitri and Van Kempen, Alexandre and Parrein, Beno{\^i}t
+  AUTHOR = {Pertin, Dimitri and Van Kempen, Alexandre and Parrein, Benoît
   and Normand, Nicolas},
   BOOKTITLE = {{The third Sino-French Workshop on Information and Communication
   Technologies}},
@@ -37,8 +99,8 @@
 @article{pertin2015corr,
   title     = {Performance evaluation of the {M}ojette erasure code for
   fault-tolerant distributed hot data storage},
-  author    = {Pertin, Dimitri and F{\'{e}}ron, Didier and Van Kempen,
-  Alexandre and Parrein, Beno{\^{\i}}t},
+  author    = {Pertin, Dimitri and Féron, Didier and Van Kempen,
+  Alexandre and Parrein, Benoît},
   journal   = {CoRR},
   volume    = {abs/1504.07038},
   year      = {2015},
@@ -52,9 +114,8 @@
   author          = {Pertin, Dimitri},
   year            = {2015},
   month           = {3},
-  howpublished    = {Presentation during the doctoral workshop at {H}ot {T}opic
-  in {D}istributed {C}omputing},
-  series = {HTDC},
+  howpublished    = {Presentation à la session des doctorants de l'école
+  d'hiver {H}ot {T}opic in {D}istributed {C}omputing, HTDC 2015},
   location        = {Flaine, France},
   url             = {htdc2015.inria.fr/fr/},
   location        = {Flaine, France},
@@ -69,6 +130,108 @@
   20 ans de la transformée {M}ojette},
   url             = {http://www.mojette.org/event/mojette-day/},
   location        = {Polytech Nantes, Nantes, France},
+}
+
+@misc{pertin2014wos,
+  title = {RozoFS: A Distributed File System based on Erasure Coding for I/O
+  Intensive Workloads},
+  author = {Pertin, Dimitri},
+  howpublished = {Workshop on Storage and Processing of Big Data, WOS 4},
+  url={http://www.bretagne-networking.org/wos4},
+  date = {2014-12-04},
+  location = {Technicolor, Cesson-Sévigné, France},
+}
+
+@inproceedings{andre2014eurosys,
+ author = {Andr{\'e}, Fabien and Kermarrec, Anne-Marie and Le Merrer, Erwan and
+ Le Scouarnec, Nicolas and Straub, Gilles and van Kempen, Alexandre},
+ title = {Archiving Cold Data in Warehouses with Clustered Network Coding},
+ booktitle = {Proceedings of the Ninth European Conference on Computer
+ Systems},
+ series = {EuroSys'14},
+ year = {2014},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ url = {http://doi.acm.org/10.1145/2592798.2592816},
+ isbn = {978-1-4503-2704-6},
+ location = {Amsterdam, The Netherlands},
+ articleno = {21},
+ numpages = {14},
+ doi = {10.1145/2592798.2592816},
+ acmid = {2592816},
+}
+
+@patent{anderson2014patent,
+  title={Accelerated erasure coding system and method},
+  author={Anderson, Michael H. and Mann, Sarah},
+  publisher={Google Patents},
+  note={US Patent 8,683,296},
+  url={https://www.google.fr/patents/US8683296},
+  date={2014-03-25},
+  holder={Streamscale Inc},
+}
+
+@misc{luse2014snia,
+  author={Luse, Paul and Greenan, Kevin},
+  title={Swift Object Storage: Adding Erasure Code},
+  journal={Storage Networking Industry Association (SNIA) Education},
+  year={2014},
+  month={9},
+  howpublished={Tutoriel présenté sous forme de diapositives},
+  url={http://www.snia.org/sites/default/files/Luse_Kevin_SNIATutorialSwift_Object_Storage2014_final.pdf}
+}
+
+@inproceedings{parrein2014acn,
+  TITLE = {{FEC4Cloud}: a research project for promoting erasure codes in Cloud
+  storage architectures},
+  AUTHOR = {Parrein, Beno{\^i}t and Normand, Nicolas and Pertin, Dimitri and
+  Lacan, J{\'e}r{\^o}me and Detchart, Jonathan},
+  BOOKTITLE = {Algebra, Codes and Networks (ACN)},
+  ADDRESS = {Bordeaux, France},
+  YEAR = {2014},
+  MONTH = {6},
+  URL = {https://hal.archives-ouvertes.fr/hal-01150750},
+  HAL_ID = {hal-01150750},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{parrein:hal-01150741,
+	Author = {Parrein, Beno{\^\i}t and Pertin, Dimitri and Normand, Nicolas and
+	Didier, F{\'e}ron},
+	Title = {{RozoFS}: a fault tolerant {I/O} intensive distributed file system
+	based on {M}ojette erasure code},
+	Address = {Toulouse, France},
+	Booktitle = {{Workshop Autonomic}},
+	Month = {10},
+	Year = {2014},
+	Url = {https://hal.archives-ouvertes.fr/hal-01150741},
+}
+
+@article{cook2014hitachi,
+  title={Compare cost and performance of replication and erasure coding},
+  author={Cook, John D. and Primmer, Robert and de Kwant, Ab},
+  journal={Hitachi Review},
+  volume={63},
+  pages={304},
+  year={2014},
+  url={http://www.hitachi.com/rev/pdf/2014/r2014_july.pdf},
+}
+
+@inproceedings {muralidhar2014osdi,
+  author = {Muralidhar, Subramanian and Lloyd, Wyatt and Roy, Sabyasachi and
+  Hill, Cory and Lin, Ernest and Liu, Weiwen and Pan, Satadru and Shankar,
+  Shiva and Sivakumar, Viswanath and Tang, Linpeng and Kumar, Sanjeev},
+  title = {f4: {F}acebook{\textquoteright}s Warm {BLOB} Storage System},
+  booktitle = {11th USENIX Symposium on Operating Systems Design and
+  Implementation (OSDI 14)},
+  year = {2014},
+  month = {10},
+  address = {Broomfield, CO, USA},
+  pages = {383--398},
+  publisher = {USENIX Association},
+  isbn = {978-1-931971-16-4},
+  url =
+  {https://www.usenix.org/conference/osdi14/technical-sessions/presentation/muralidhar},
 }
 
 @techreport{plank2014jerasure,
@@ -103,11 +266,11 @@
   location= {Paris, France},
 }
 
-@misc{pertin2014eurosys,
+@inproceedings{pertin2014eurosys,
   title         = {The {M}ojette erasure code for distributed file systems},
-  author        = {Pertin, Dimitri and Parrein, Beno\^it and Normand Nicolas},
-  howpublished  = {Poster presented at the European Conference on Computer
-  Systems, Eurosys 2014},
+  author        = {Pertin, Dimitri and Parrein, Benoît and Normand Nicolas},
+  howpublished  = {Publication présentée à la session poster.},
+  series = {EuroSys'14},
   year          = {2014},
   organization  = {ACM},
   month         = {4},
@@ -127,8 +290,8 @@
 }
 
 @inproceedings{pertin2014closer,
-  author    = {Dimitri Pertin and Sylvain David and Pierre {\'{E}}venou and
-  Beno{\^{\i}}t Parrein and Nicolas Normand},
+  author    = {Dimitri Pertin and Sylvain David and Pierre Évenou and
+  Benoît Parrein and Nicolas Normand},
   title     = {Distributed File System Based on Erasure Coding for
   {I/O}-Intensive Applications},
   booktitle = {Proceedings of the 4th International Conference on
@@ -155,17 +318,16 @@
   location = {Montaigu, France},
 }
 
-@MISC{pertin2014fosdem,
+@misc{pertin2014fosdem,
   title      = {Reduce the storage consumption of your storage clusters with
   RozoFS},
   author     = {Pertin, Dimitri},
-  howpublished       = {Slides presented at the 14th edition of the Free and
-  Open Source Developers' European Meeting},
-  series = {FOSDEM'14},
+  howpublished = {Free and Open Source Software Developers' European Meeting
+  FOSDEM'14},
   year       = {2014},
   month      = {2},
-  institution = {Université Libre de Bruxelles},
-  location   = {Bruxelles, Belgium},
+  URL={https://archive.fosdem.org/2014/schedule/event/hpc_devroom_rozofs/},
+  location   = {Université Libre de Bruxelles, Belgium},
 }
 
 @misc{pertin2014rozobox,
@@ -181,7 +343,7 @@
 
 @inproceedings{pertin2014jdoc,
     title   = {Réduire considérablement le coût et la complexité du stockage
-        en nuage grâce au codage Mojette},
+        en nuage grâce au codage {M}ojette},
     author  = {Pertin, Dimitri},
     booktitle = {14ème Journée des Doctorants de l'ED STIM},
     series = {JDOC},
@@ -222,16 +384,6 @@
  isbn = {978-0133390094},
 }
 
-@book{oggier2013survey,
- author = {Oggier, Frederique and Datta, Anwitaman},
- title = {Coding Techniques for Repairability in Networked Distributed Storage
- Systems},
- year = {2013},
- publisher = {Now Publishers Inc.},
- address = {Hanover, MA, USA},
- isbn = {1601986769, 9781601986764},
-}
-
 @article{rodeh2013btrfs,
   author      = {Rodeh, Ohad and Bacik, Josef and Mason, Chris},
   title       = {{BTRFS}: The {L}inux {B}-{T}ree Filesystem},
@@ -253,16 +405,16 @@
 }
 
 
-@MISC{pertin2013wos,
-  title = {{RozoFS}: The scalable distributed file system based on the
-  {M}ojette erasure coding},
+@misc{pertin2013wos,
+  title = {RozoFS: a fault tolerant distributed file system based on the
+  Mojette transform},
   author = {Pertin, Dimitri and David, Sylvain and F\'eron, Didier and
   \'Evenou, Pierre and Normand Nicolas and Parrein, Beno\^it},
-  howpublished = {Poster présenté lors du troisième Workshop on Storage \&
-  Cloud Computing, WOS 3},
+  howpublished = {Third Workshop On Storage and Cloud Computing, WOS 3},
   year = {2013},
   month = {11},
-  location = {Technicolor Rennes, France},
+  url={http://www.bretagne-networking.org/wos3},
+  location = {Technicolor, Cesson-Sevigné, France},
 }
 
 @inproceedings{rashmi2013hotstorage,
@@ -297,16 +449,72 @@
  doi = {10.1109/TC.2013.23},
 }
 
-@misc{david2013patent,
+@patent{david2013patent,
   title={Proc{\'e}d{\'e} et appareil permettant de reconstruire un bloc de
   donn{\'e}es},
   author={David, Sylvain and Evenou, Pierre and Guedon, JeanPierre and Normand,
   Nicolas and Parrein, Benoît},
-  year={2015},
-  month=apr # "~23",
   publisher={Google Patents},
   note={WO Patent App. PCT/EP2014/071,310},
   url={http://www.google.com/patents/WO2015055450A1?cl=fr},
+  date={2015-04-23},
+  holder={Université de Nantes, Centre Naational de la Recherche Scientifique
+  (CNRS)},
+}
+
+@inproceedings{huang2012atc,
+  author = {Huang, Cheng and Simitci, Huseyin and Xu, Yikang and Ogus, Aaron
+  and Calder, Brad and Gopalan, Parikshit and Li, Jin and Yekhanin, Sergey},
+  title = {Erasure Coding in {W}indows {A}zure Storage},
+  booktitle = {Presented as part of the 2012 USENIX Annual Technical Conference
+  (USENIX ATC 12)},
+  year = {2012},
+  address = {Boston, MA},
+  pages = {15--26},
+  publisher = {USENIX},
+  issn = {978-931971-93-5},
+  url =
+  {https://www.usenix.org/conference/atc12/technical-sessions/presentation/huang},
+}
+
+@inproceedings{guedon2012spie,
+  TITLE = {{CEDIMS}: {C}loud {E}thical {DICOM} {I}mage {M}ojette {S}torage},
+  AUTHOR = {Guédon, JeanPierre and Evenou, Pierre and Tervé, Pierre and David,
+  Sylvain and  Béranger, Jérôme},
+  BOOKTITLE = {{Advanced PACS-based Imaging Informatics and Therapeutic
+  Applications}},
+  ADDRESS = {San Diego, United States},
+  PUBLISHER = {{Society of Photo-Optical Instrumentation Engineers}},
+  SERIES = {SPIE proceedings},
+  VOLUME = {8319},
+  YEAR = {2012},
+  MONTH = {2},
+  URL = {https://hal.archives-ouvertes.fr/hal-01136079},
+  DOI = {10.1117/12.911396},
+  HAL_ID = {hal-01136079},
+  HAL_VERSION = {v1},
+}
+
+@article{oggier2012survey,
+ author = {Oggier, Frederique and Datta, Anwitaman},
+ title = {Coding Techniques for Repairability in Networked Distributed Storage
+ Systems},
+ year = {2012},
+ url =
+ {http://pdcc.ntu.edu.sg/sands/CodingForNetworkedStorage/pdf/longsurvey.pdf},
+}
+
+@article{gantz2012idc,
+  title={The Digital Universe in 2020: Big data, Bigger Digital Shadows, and
+  Biggest Growth in the Far East},
+  author={Gantz, John and Reinsel, David},
+  journal={IDC iView: IDC Analyze the future},
+  volume={2007},
+  year={2012},
+  month={12},
+  note={Sponsored by EMC Corporation},
+  URL={https://www.emc-technology.com/collateral/analyst-reports/idc-the-digital-universe-in-2020.pdf},
+  pagetotal={16},
 }
 
 @INPROCEEDINGS{parrein2012isccsp,
@@ -317,12 +525,12 @@
   booktitle={5th International Symposium on Communications Control and Signal
   Processing (ISCCSP)},
   year={2012},
-  month={May},
+  month={5},
   doi={10.1109/ISCCSP.2012.6217794},
 }
 
 @INPROCEEDINGS{zhang2012nas,
-  author={Fenghao Zhang and Jianzhong Huang and Changsheng Xie},
+  author={Zhang, Fenghao and Huang, Jianzhong and Xie, Changsheng},
   title={Two Efficient Partial-Updating Schemes for Erasure-Coded Storage
   Clusters},
   booktitle={7th International Conference on Networking, Architecture
@@ -390,6 +598,31 @@
   URL = {https://hal.archives-ouvertes.fr/hal-00716061},
 }
 
+@article{hilbert2011science,
+	author = {Hilbert, Martin and L{\'o}pez, Priscila},
+	title = {The World{\textquoteright}s Technological Capacity to Store,
+	Communicate, and Compute Information},
+	volume = {332},
+	number = {6025},
+	pages = {60--65},
+	year = {2011},
+	publisher = {American Association for the Advancement of Science},
+	journal = {Science},
+	issn = {0036-8075},
+	URL = {http://science.sciencemag.org/content/332/6025/60},
+	eprint = {http://science.sciencemag.org/content/332/6025/60.full.pdf},
+	doi = {10.1126/science.1200970},
+}
+
+@inproceedings{hundt2011sd,
+  author  = {Robert Hundt},
+  title = {Loop Recognition in {C}++/{J}ava/{G}o/{S}cala},
+  year  = {2011},
+  booktitle = {Proceedings of Scala Days 2011},
+  pages={38},
+  URL = {https://days2011.scala-lang.org/sites/days2011/files/ws3-1-Hundt.pdf},
+}
+
 @ARTICLE{rashmi2011isit,
  author={Rashmi, K. Vinayak and Shah, Nihar B. and Kumar, P. Vijay},
  journal={Transactions on Information Theory},
@@ -434,7 +667,6 @@
  pages = {143--157},
  publisher = {ACM},
  address = {New York, NY, USA},
- keywords = {Windows Azure, cloud storage, distributed storage systems},
  url = {http://doi.acm.org/10.1145/2043556.2043571},
  isbn = {978-1-4503-0977-6},
  doi = {10.1145/2043556.2043571},
@@ -476,13 +708,41 @@
  doi={10.1007/978-3-642-19867-0_35},
 }
 
-@inproceedings{wang2010rebuilding,
+@patent{dhuse2010patent,
+  author={Dhuse, Greg and Thornton, Vance and Gladwin, Christopher S. and
+  Motwani, Manish and Volvoski, Ilya and Leggette, Wesley and Bellanca, Jamie
+  and Toledano, Sarah and Foster, Lynn and Zachary, Mark},
+  title={Virtualized data storage vaults on a dispersed data storage network},
+  publisher={Google Patents},
+  note={EP Patent App. EP20,080,836,961},
+  url={https://www.google.fr/patents/EP2201469A1?cl=en},
+  date={2010-06-30},
+  holder={Cleversafe Inc},
+}
+
+@ARTICLE{tournoux2010tom, 
+  author={Tournoux, Pierre Ugo and Lochin, Emmanuel and Lacan, Jérôme and
+  Bouabdallah, Amine and Roca, Vincent},
+  title={On-the-Fly Erasure Coding for Real-Time Video Applications}, 
+  journal={IEEE Transactions on Multimedia},
+  year={2011},
+  volume={13},
+  number={4},
+  pages={797--812},
+  month={8},
+  ISSN={1520-9210},
+  doi={10.1109/TMM.2011.2126564},
+}
+
+@inproceedings{wang2010globecom,
   author     = {Wang, Zhiying and Dimakis, Alexandros G. and Bruck, Jehoshua},
   title      = {Rebuilding for array codes in distributed storage systems},
   booktitle  = {GLOBECOM Workshops},
-  publisher = {IEEE},
+  publisher  = {IEEE},
   pages      = {1905--1909},
   year       = {2010},
+  month      = {12},
+  doi        = {10.1109/GLOCOMW.2010.5700274},
 }
 
 @inproceedings{zhang2010fast_zfs,
@@ -500,7 +760,7 @@
   acmid       = {1855514},
 }
 
-@ARTICLE{dimakis2010network,
+@ARTICLE{dimakis2010toit,
  author={Dimakis, Alexandros G. and Godfrey, P.B. and Wu, Y. and Wainwright,
  M.J. and Ramchandran, Kannan},
  title={Network Coding for Distributed Storage Systems},
@@ -557,7 +817,8 @@
 }
 
 @INPROCEEDINGS{shvachko2010msst,
- author={Shvachko, K. and Hairong Kuang and Radia, S. and Chansler, R.},
+ author={Shvachko, Konstantin V. and Kuang, Hairong and Radia, Sanjay and
+ Chansler, Robert},
  title={The {H}adoop Distributed File System},
  booktitle={Proceedings of the 26th Symposium on Mass Storage Systems and
  Technologies (MSST)},
@@ -592,6 +853,15 @@
  month= {12},
  pages={276--281},
  doi={10.1109/DICTA.2010.56},
+}
+
+@online{omalley2009hadoop,
+  author = {O'Malley, Owen and Murthy, Arun C.},
+  title = {Hadoop Sorts a Petabyte in 16.25 Hours and a Terabyte in 62 Seconds},
+  organization = {Yahoo! Developer Network Blog},
+  url =
+  {https://developer.yahoo.com/blogs/hadoop/hadoop-sorts-petabyte-16-25-hours-terabyte-62-422.html},
+  date = {2009-05-11},
 }
 
 @article{rashmi2009exact_rep,
@@ -670,7 +940,7 @@
   hal_id       = {hal-00367681},
 }
 
-@inproceedings{fan2009diskreduce,
+@inproceedings{fan2009pdsw,
   author     = {Fan, Bin and Tantisiriroj, Wittawat and Xiao, Lin and Gibson,
   Garth},
   title      = {DiskReduce: {RAID} for data-intensive scalable computing},
@@ -698,6 +968,33 @@
  month={9},
  pages={1243--1249},
  doi={10.1109/ALLERTON.2009.5394538}
+}
+
+@inproceedings{wilcox2008sss,
+ author = {Wilcox-O'Hearn, Zooko and Warner, Brian},
+ title = {Tahoe: The Least-authority Filesystem},
+ booktitle = {Proceedings of the 4th ACM International Workshop on Storage
+ Security and Survivability},
+ series = {StorageSS '08},
+ year = {2008},
+ pages = {21--26},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ location = {Alexandria, Virginia, USA},
+ numpages = {6},
+ doi = {10.1145/1456469.1456474},
+ acmid = {1456474},
+ isbn = {978-1-60558-299-3},
+ url = {http://doi.acm.org/10.1145/1456469.1456474},
+}
+
+@online{shvachko2008hadoop,
+  author = {Shvachko, Konstantin V. and Murthy, Arun C.},
+  title = {Scaling Hadoop to 4000 nodes at Yahoo!},
+  organization = {Yahoo! Developer Network Blog},
+  url =
+  {https://developer.yahoo.com/blogs/hadoop/scaling-hadoop-4000-nodes-yahoo-410.html},
+  date = {2008-09-30},
 }
 
 @INPROCEEDINGS{chandra2008icpr,
@@ -730,7 +1027,7 @@
 }
 
 @ARTICLE{huang2008star,
- author={Huang, Huang and Xu, Lihao},
+ author={Huang, Cheng and Xu, Lihao},
  title={{STAR} : An Efficient Coding Scheme for Correcting Triple Storage Node
  Failures},
  journal={Transactions on Computers},
@@ -755,7 +1052,7 @@
   where  = "http://www.cs.utk.edu/~plank/plank/papers/CS-07-603.html"
 }
 
-@article{dean2008mapreduce,
+@article{dean2008acm,
   author  = {Dean, Jeffrey and Ghemawat, Sanjay},
   title  = {{MapReduce}: Simplified data processing on large clusters},
   journal  = {Communication of the ACM},
@@ -772,6 +1069,31 @@
   pagetotal  = {7},
   doi  = {10.1145/1327452.1327492},
   acmid  = {1327492},
+}
+
+@book{dumas2007book,
+  TITLE = {{Th{\'e}orie des Codes : compression, cryptage, correction}},
+  AUTHOR = {Dumas, Jean-Guillaume and Roch, Jean-Louis and Tannier, Eric and
+  Varrette, S{\'e}bastien},
+  PUBLISHER = {{Dunod}},
+  SERIES = {Sciences Sup},
+  PAGES = {352},
+  YEAR = {2007},
+  MONTH = {1},
+  ISBN={2100506927},
+  URL = {https://hal.archives-ouvertes.fr/hal-00318546},
+  HAL_ID = {hal-00318546},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{mathur2007linux,
+  title={The new ext4 filesystem: current status and future plans},
+  author={Mathur, Avantika and Cao, Mingming and Bhattacharya, Suparna and
+  Dilger, Andreas and Tomas, Alex and Vivier, Laurent},
+  booktitle={Proceedings of the Linux symposium},
+  volume={2},
+  pages={21--33},
+  year={2007},
 }
 
 @book{coeurjolly2007book,
@@ -863,6 +1185,48 @@
   chapter={Appendix A},
   pages={204--217},
   ISBN={9780486462417},
+}
+
+@techreport{cunche2006itml,
+  TITLE = {{Improving the Decoding of LDPC Codes for the Packet Erasure Channel
+  with a Hybrid Zyablov Iterative Decoding/Gaussian Elimination Scheme}},
+  AUTHOR = {Cunche, Mathieu and Roca, Vincent},
+  TYPE = {Research Report},
+  NUMBER = {RR-6473},
+  PAGES = {19},
+  INSTITUTION = {{INRIA}},
+  YEAR = {2008},
+  URL = {https://hal.inria.fr/inria-00263682},
+  PDF = {https://hal.inria.fr/inria-00263682/file/RR-6473.pdf},
+  HAL_ID = {inria-00263682},
+  HAL_VERSION = {v2},
+}
+
+@ARTICLE{shokrollahi2006toit,
+  author={Shokrollahi, Amin},
+  title={Raptor codes},
+  journal={IEEE Transactions on Information Theory},
+  year={2006},
+  volume={52},
+  number={6},
+  pages={2551-2567},
+  month={6},
+  ISSN={0018-9448},
+  doi={10.1109/TIT.2006.874390},
+}
+
+@ARTICLE{faria2006ieee,
+  author={Faria, Gerard and Henriksson, Jukka A. and Stare, Erik and Talmola,
+  Pekka},
+  title={{DVB-H}: Digital Broadcast Services to Handheld Devices}, 
+  journal={Proceedings of the IEEE},
+  year={2006},
+  volume={94},
+  number={1},
+  pages={194-209},
+  month={1},
+  ISSN={0018-9219},
+  doi={10.1109/JPROC.2005.861011},
 }
 
 @article{averbuch2006fast,
@@ -1157,6 +1521,78 @@
  acmid = {945450},
 }
 
+@INPROCEEDINGS{luby2002focs,
+  author={Luby, Michael},
+  title={LT codes}, 
+  booktitle={Proceedings of the 43rd Annual IEEE Symposium on Foundations of
+  Computer Science},
+  year={2002}, 
+  pages={271--280}, 
+  doi={10.1109/SFCS.2002.1181950}, 
+  ISSN={0272-5428}, 
+}
+
+@article{muthitacharoen2002sigops,
+ author = {Muthitacharoen, Athicha and Morris, Robert and Gil, Thomer M. and
+ Chen, Benjie},
+ title = {Ivy: A Read/Write Peer-to-peer File System},
+ journal = {SIGOPS Operating Systems Review},
+ volume = {36},
+ number = {SI},
+ month = {12},
+ year = {2002},
+ pages = {31--44},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ issn = {0163-5980},
+ url = {http://doi.acm.org/10.1145/844128.844132},
+ doi = {10.1145/844128.844132},
+ issue_date = {Winter 2002},
+ numpages = {14},
+ acmid = {844132},
+} 
+
+@article{stoica2001sigcomm,
+ author = {Stoica, Ion and Morris, Robert and Karger, David and Kaashoek, M.
+ Frans and Balakrishnan, Hari},
+ title = {Chord: A Scalable Peer-to-peer Lookup Service for Internet Applications},
+ journal = {SIGCOMM Computer Communication Review - Proceedings of the 2001
+ Conference on Applications, Technologies, Architectures, and Protocols for
+ Computer Communications},
+ volume = {31},
+ number = {4},
+ month = {6},
+ year = {2001},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ pages = {149--160},
+ issn = {0146-4833},
+ url = {http://doi.acm.org/10.1145/964723.383071},
+ doi = {10.1145/964723.383071},
+ acmid = {383071},
+ numpages = {12},
+ issue_date = {October 2001},
+} 
+
+@inproceedings{rowstron2001sosp,
+ author = {Rowstron, Antony and Druschel, Peter},
+ title = {Storage Management and Caching in PAST, a Large-scale, Persistent
+ Peer-to-peer Storage Utility},
+ booktitle = {Proceedings of the Eighteenth ACM Symposium on Operating Systems
+ Principles},
+ series = {SOSP '01},
+ year = {2001},
+ pages = {188--201},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ isbn = {1-58113-389-8},
+ url = {http://doi.acm.org/10.1145/502034.502053},
+ doi = {10.1145/502034.502053},
+ location = {Banff, Alberta, Canada},
+ numpages = {14},
+ acmid = {502053},
+}
+
 @inproceedings{parrein2001dcc,
   author  = {Parrein, Benoît and Normand, Nicolas and Gu{\'e}don, JeanPierre},
   title  = {Multiple description coding using exact discrete {R}adon transform},
@@ -1238,6 +1674,28 @@
  url = "http://www.sciencedirect.com/science/article/pii/S0024379501004876",
 }
 
+@article{kubiatowicz2000sigplan,
+ author = {Kubiatowicz, John and Bindel, David and Chen, Yan and Czerwinski,
+ Steven and Eaton, Patrick and Geels, Dennis and Gummadi, Ramakrishan and Rhea,
+ Sean and Weatherspoon, Hakim and Weimer, Westley and Wells, Chris and Zhao,
+ Ben},
+ title = {OceanStore: An Architecture for Global-scale Persistent Storage},
+ journal = {SIGPLAN Notices},
+ volume = {35},
+ number = {11},
+ month = {11},
+ year = {2000},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ pages = {190--201},
+ url = {http://doi.acm.org/10.1145/356989.357007},
+ issn = {0362-1340},
+ doi = {10.1145/356989.357007},
+ numpages = {12},
+ acmid = {357007},
+} 
+
+
 @ARTICLE{ahlswede2000network,
   author={Ahlswede, Rudolf and Ning Cai and Li, Shuo-Yen Robert and Yeung,
   Raymond W.},
@@ -1264,6 +1722,25 @@
   doi={10.1109/RAMS.2000.816306},
 }
 
+@article{bohossian1999pds,
+ author = {Bohossian, Vasken and Fan, Chenggong C. and LeMahieu, Paul S. and
+ Riedel, Marc D. and Bruck, Jehoshua and Xu, Lihao},
+ title = {Computing in the {RAIN}: A Reliable Array of Independent Nodes},
+ journal = {IEEE Transactions on Parallel and Distributed Systems},
+ volume = {12},
+ number = {2},
+ month = {2},
+ year = {2001},
+ pages = {99--114},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ issn = {1045-9219},
+ url = {http://dx.doi.org/10.1109/71.910866},
+ numpages = {16},
+ doi = {10.1109/71.910866},
+ acmid = {371521},
+}
+
 @inproceedings{normand1999gretsi,
   author={Normand, Nicolas and Parrein, Beno{\^\i}t},
   title={Description multiple et codage source-canal sur un canal {\`a}
@@ -1277,9 +1754,9 @@
 
 @ARTICLE{blaum1999tit,
     author={Blaum, Mario and Roth, Ron M.},
+    title={On lowest density {MDS} codes},
     journal={Transactions on Information Theory},
     publisher = {IEEE},
-    title={On lowest density {MDS} codes},
     year={1999},
     month={1},
     volume={45},
@@ -1303,6 +1780,30 @@
  doi={10.1109/18.746809},
 }
 
+@article{dagum1998cse,
+  title={Open{MP}: an industry standard {API} for shared-memory programming},
+  author={Dagum, Leonardo and Enon, Rameshm},
+  journal={Computational Science \& Engineering},
+  volume={5},
+  number={1},
+  pages={46--55},
+  year={1998},
+  publisher={IEEE},
+  month={1},
+  ISSN={1070-9924}, 
+  doi={10.1109/99.660313}, 
+}
+
+@book{gianpaolo1998fs,
+ author = {Giampaolo, Dominic},
+ title = {Practical File System Design with the Be File System},
+ year = {1998},
+ edition = {1st},
+ publisher = {Morgan Kaufmann Publishers Inc.},
+ address = {San Francisco, CA, USA},
+ isbn = {1558604979},
+}
+
 @phdthesis{philippe1998phd,
   AUTHOR = {Philippe, Olivier},
   TITLE = {Représentation d'images pour le codage conjoint source-canal sur
@@ -1324,6 +1825,26 @@
  issn = "0764-4442",
  doi = "10.1016/S0764-4442(97)82724-3",
  language = "French"
+}
+
+
+@inproceedings{luby1997stoc,
+ author = {Luby, Michael G. and Mitzenmacher, Michael and Shokrollahi, M. Amin
+ and Spielman, Daniel A. and Stemann, Volker},
+ title = {Practical Loss-resilient Codes},
+ booktitle = {Proceedings of the Twenty-ninth Annual ACM Symposium on Theory of
+ Computing},
+ series = {STOC '97},
+ year = {1997},
+ pages = {150--159},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ isbn = {0-89791-888-6},
+ url = {http://doi.acm.org/10.1145/258533.258573},
+ location = {El Paso, Texas, USA},
+ numpages = {10},
+ doi = {10.1145/258533.258573},
+ acmid = {258573},
 }
 
 @ARTICLE{plank1997rs,
@@ -1470,15 +1991,44 @@
   doi = {10.1117/12.206765},
 }
 
-@ARTICLE{chen1994raid,
-  author  = {Peter M. Chen and Edward K. Lee and Garth A. Gibson and Randy H.
-  Katz and David A. Patterson},
-  title  = {{RAID}: High-Performance, Reliable Secondary Storage},
-  journal  = {ACM Computing Surveys},
-  year  = {1994},
-  volume  = {26},
-  pages  = {145--185}
+@article{long1994cs,
+ author = {Long, Darrell D. E. and Montague, Bruce R. and Cabrera, Luis-Felipe},
+ title = {{Swift/RAID}: A Distributed {RAID} System},
+ journal = {Computing Systems},
+ volume = {7},
+ number = {3},
+ month = {6},
+ year = {1994},
+ pages = {333--359},
+ publisher = {MIT Press},
+ address = {Cambridge, MA, USA},
+ issn = {0895-6340},
+ url = {http://dl.acm.org/citation.cfm?id=198008.198011},
+ acmid = {198011},
+ issue_date = {Summer 1994},
+ numpages = {27},
 }
+
+@article{chen1994acm,
+ author = {Chen, Peter M. and Lee, Edward K. and Gibson, Garth A. and Katz,
+ Randy H. and Patterson, David A.},
+ title = {{RAID}: High-performance, Reliable Secondary Storage},
+ journal  = {ACM Computing Surveys},
+ volume = {26},
+ number = {2},
+ month = {6},
+ year = {1994},
+ pages = {145--185},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ issn = {0360-0300},
+ url = {http://doi.acm.org/10.1145/176979.176981},
+ keywords = {RAID, disk array, parallel I/O, redundancy, storage, striping},
+ doi = {10.1145/176979.176981},
+ acmid = {176981},
+ issue_date = {June 1994},
+ numpages = {41},
+} 
 
 @ARTICLE{blaum1993tit,
  author={Blaum, Mario and Roth, Ron M.},
@@ -1507,6 +2057,27 @@
  ISSN={0162-8828},
  doi={10.1109/34.254058},
 }
+
+@article{gibson1989sigarch,
+ author = {Gibson, G. A. and Hellerstein, L. and Karp, R. M. and Patterson, D. A.},
+ title = {Failure Correction Techniques for Large Disk Arrays},
+ journal = {SIGARCH Computer Architecture News - Special issue: Proceedings of
+ ASPLOS-III: the third international conference on architecture support for
+ programming languages and operating systems},
+ volume = {17},
+ number = {2},
+ month = {4},
+ year = {1989},
+ pages = {123--132},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ issn = {0163-5964},
+ url = {http://doi.acm.org.gate6.inist.fr/10.1145/68182.68194},
+ numpages = {10},
+ doi = {10.1145/68182.68194},
+ acmid = {68194},
+ issue_date = {April 1989},
+} 
 
 @article{rabin1989jacm,
  author = {Rabin, Michael O.},
@@ -1545,6 +2116,17 @@
  acmid = {50214},
  issue_date = {June 1988},
  pagetotal = {8},
+}
+
+@inproceedings{kleiman1986usenix,
+  title={Vnodes: An Architecture for Multiple File System Types in Sun {UNIX}},
+  author={Kleiman, Steve R.},
+  booktitle={USENIX Summer},
+  institution={Sun Microsystems},
+  volume={86},
+  pages={238--247},
+  year={1986},
+  url={http://www.solarisinternals.com/si/reading/vnode.pdf},
 }
 
 @incollection{krajewski1985byte,
@@ -1658,6 +2240,20 @@
  doi = {10.1259/0007-1285-46-552-1016},
 }
 
+@ARTICLE{flynn1972toc,
+  author={Flynn, Michael},
+  title={Some Computer Organizations and Their Effectiveness},
+  journal={Transactions on Computers},
+  publisher = {IEEE},
+  year={1972},
+  volume={C-21},
+  number={9},
+  pages={948--960},
+  month={9},
+  ISSN={0018-9340},
+  doi={10.1109/TC.1972.5009071},
+}
+
 @article{rosenfeld1970acm,
  author = {Rosenfeld, Azriel},
  title = {Connectivity in Digital Pictures},
@@ -1704,6 +2300,15 @@
   doi={10.1109/TAU.1969.1162036},
 }
 
+@book{minkowski1968geometrie,
+  title={Geometrie der zahlen},
+  author={Minkowski, Hermann},
+  volume={40},
+  year={1968},
+  publisher={Leipzig Teubner},
+  pagetotal={282},
+}
+
 @techreport{turner1966inverse,
   title={Inverse of the {V}andermonde matrix with applications},
   author={Turner, Richard L.},
@@ -1712,6 +2317,24 @@
   institution={NASA Glenn Research Center at Lewis Field},
   address={Cleveland, Ohio, United States of America},
   month={8},
+}
+
+@article{singleton1964toit,
+ author = {Singleton, Richard C.},
+ title = {Maximum Distance $q$-nary Codes},
+ journal = {IEEE Transactions on Information Theory},
+ volume = {10},
+ number = {2},
+ month = {4},
+ year = {1964},
+ pages = {116--118},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ issn = {0018-9448},
+ url = {http://dx.doi.org/10.1109/TIT.1964.1053661},
+ numpages = {3},
+ doi = {10.1109/TIT.1964.1053661},
+ acmid = {2267153},
 }
 
 @article{cormack1963jap,
@@ -1727,7 +2350,7 @@
  doi = {10.1063/1.1729798}
 }
 
-@ARTICLE{gallager1962ldpc,
+@ARTICLE{gallager1962toit,
  author={Gallager, Robert G.},
  title={Low-density parity-check codes},
  journal={IRE Transactions on Information Theory},
@@ -1736,6 +2359,7 @@
  volume={8},
  number={1},
  pages={21--28},
+ publisher={IEEE},
  ISSN={0096-1000},
  doi={10.1109/TIT.1962.1057683},
 }
@@ -1789,6 +2413,20 @@
   doi = {10.1071/PH540615},
 }
 
+@article{shannon1948bstj,
+  author = {Shannon, Claude E.},
+  title = {A Mathematical Theory of Communication},
+  journal = {Bell System Technical Journal},
+  volume = {27},
+  number = {3},
+  publisher = {Blackwell Publishing Ltd},
+  pages = {379--423},
+  year = {1948},
+  issn = {1538-7305},
+  url = {http://dx.doi.org/10.1002/j.1538-7305.1948.tb01338.x},
+  doi = {10.1002/j.1538-7305.1948.tb01338.x},
+}
+
 @article{franel1924gdwg,
  author = {Franel, Jérôme},
  title = {Les suites de {F}arey et le problème des nombres premiers},
@@ -1818,15 +2456,6 @@
  volume={13},
  number={49--52},
  year={1902},
-}
-
-@book{minkowski1968geometrie,
-  title={Geometrie der zahlen},
-  author={Minkowski, Hermann},
-  volume={40},
-  year={1968},
-  publisher={Leipzig Teubner},
-  pagetotal={282},
 }
 
 @MISC{glacier,
