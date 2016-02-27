@@ -56,6 +56,6 @@
     \put(0.87613243,0.07142759){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\{p(y_1),\dots,p(y_s)\}$}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{canal.pdf}}%
     \put(0.47979134,0.11093459){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Canal bruité}}}%
-    \put(0.47992771,0.00493197){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$P(Y|X) = \left\{p(y_1|x_1),\cdots,p(y_1|x_r), \cdots, p(y_s|x_r)\right\}$}}}%
+    \put(0.47992771,0.00493197){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$P(X|Y) = \left\{p(x_1,y_1),\dots,p(x_r,y_1), \dots, p(x_r,y_s)\right\}$}}}%
   \end{picture}%
 \endgroup%

@@ -9,141 +9,160 @@
 
 \section*{Introduction du chapitre}
 
-Le terme « information » correspond à un concept et désigne à la fois un
-message à communiquer et les symboles qui le compose. L'information est
-disponible sous plusieurs formes (une lettre, une musique, une image \dots).
-Dans nos travaux, nous traitons de l'information quelle que soit sa forme, tant
-qu'il est possible de fournir une représentation numérique. Une information
-disponible au niveau d'un émetteur a pour but d'être transmise à un
-destinataire à travers un canal. Il existe une multitude de canal de
-transmission tels qu'un réseau câblé ou un support de stockage. Naturellement,
-n'importe quel canal est considéré comme non « sûr ». Plusieurs
-critères sont à prendre en compte pour qu'une transmission soit fiable. En
-particulier, le message reçu doit être intègre et le temps de transmission du
-message doit être court. D'autres critères peuvent s'ajouter en fonction du
-contexte. Par exemple, il peut être nécessaire qu'une information secrète ne
-doit être lue par un tiers.
+\addcontentsline{toc}{section}{Introduction du chapitre}
+
+Le terme «\ information\ » désigne à la fois un message à communiquer et les
+symboles qui le composent. L'information est disponible sous plusieurs formes
+(une lettre, une musique, une image, etc.). Dans nos travaux, nous traitons de
+l'information quelle que soit sa forme. Il est revanche nécessaire de disposer
+d'une représentation numérique. Lors d'une transmission, une information est
+envoyée sur un canal par un émetteur, pour un destinataire. Il existe une
+multitude de canaux de transmission (e.g.\ un réseau câblé, un support de
+stockage). De par sa nature et de par les perturbations de son environnement,
+un canal ne peut être sûr. Plusieurs critères peuvent être utilisés pour
+définir la fiabilité d'une transmission. Par exemple, une transmission peut
+être considérée fiable si le message reçu est intègre, et si le temps de
+transmission est considéré court. D'autres critères peuvent parfois s'ajouter
+en fonction du contexte. Par exemple, il peut être nécessaire qu'une
+information secrète ne doit pas être lisible par un tiers.
 
 La théorie des codes est une branche de la théorie de l'information qui
-s'intéresse à la forme de l'information quand elle transite sur un canal. En
-particulier, on étudie comment transformer l'information avant son passage sur
-le canal afin d'assurer que le récepteur puisse la reconstituer malgré de
-potentiels altérations ou en tenant compte de la confidentialité de
-l'information. Cette transformation doit prendre en compte la capacité du
-canal, et minimiser la taille des données.
-
-Dans le cas de la théorie des codes correcteurs, on s'intéresse en particulier
-à ajouter de la redondance à l'information à transmettre. Cette redondance
-permet au destinataire de reconstituer le message lorsque celui ci a été 
-détérioré pendant la transmission. Une considération essentielle de cette
-théorie est de déterminer la quantité de redondance nécessaire pour réduire
-efficacement le bruit du canal.
+s'intéresse à la forme de l'information quand elle transite sur un canal.
+Dans le cas des codes correcteurs, on s'intéresse à ajouter de la
+redondance à l'information à transmettre. Cette redondance doit permettre au
+destinataire de reconstituer le message quand celui ci a été détérioré
+pendant la transmission. Une considération essentielle de cette théorie est de
+déterminer la quantité minimale de redondance nécessaire pour assurer une
+transmission fiable (i.e.\ réduire le bruit du canal).
 
 Dans les travaux de cette thèse, nous nous intéresserons à la transmission
-d'information par « paquets ». Dans ce mode de transmission, un flux de données
-est découpé par paquets de $w$ bits qui forment un paquet (on utilisera
-également le terme « bloc »). En particulier, nous étudierons le phénomène
-« d'effacement » de ces paquets sur le canal. L'effacement d'un paquet se
+d'information par «\ paquets\ ». Dans ce mode de transmission, un flux de
+données est découpé par paquets de $w$ bits qui forment un paquet (on utilisera
+également le terme «\ bloc\ »). En particulier, nous étudierons le phénomène
+«\ d'effacement\ » de ces paquets sur le canal. L'effacement d'un paquet se
 distingue de l'altération des données par deux considérations : (i)
 l'identifiant du bloc effacé est connu (on sait quel paquet a été reçu), ce qui
 relaxe le processus de détection d'erreur des codes correcteurs; (ii)
-l'ensemble des données du paquet est alors indéterminé. Notre étude porte donc
-sur l'étude des codes à effacement qui génère de l'information redondante au
-sein des blocs encodés afin d'en supporter la perte d'une partie.
+l'ensemble des données du paquet est alors indéterminé.
 
-Il est ainsi possible de répéter sans limite un bloc d'information à
+Différentes techniques permettent de générer de la redondance. Il est par
+exemple possible de répéter plusieurs fois un bloc d'information à
 transmettre. Une quantité suffisante de répétitions permet de réduire
-significativement le bruit du canal. En revanche, plus on augmente le nombre de
-répétitions, plus on réduit le taux de transmission (appelé également
-« rendement ») qui correspond au rapport entre le nombre de blocs utile sur le
-nombre de blocs transférés.
-La question est alors de savoir quel taux de transmission utiliser pour
-transmettre efficacement sur un canal. \shannon a montré en 1948 qu'en fonction
-d'un canal à transmission sans mémoire, il existe une limite du rendement
-appelée « capacité » du canal, notée $C$. En conséquence, si l'on cherche à
-émettre avec un taux de transmission supérieur à $C$, la transmission ne sera
-pas fiable. En revanche, pour un rendement inférieur à $C$, il est possible de
-concevoir un code capable de corriger toutes les erreurs. Dès lors,
-la théorie des codes s'est intéressée à la conception de codes et d'algorithmes
-permettant d'atteindre cette limite.
-Les codes *Low-Density Parity-Check* (LDPC), à matrices de parité creuses,
-permettent en théorie (asymptotique) d'atteindre cette limite. En pratique, sur
-des codes de longueur finie, soit le décodage est efficace mais ne permet pas
+significativement le bruit du canal. En revanche, plus le nombre de
+répétitions est élevé, plus le taux d'information utile diminue. Également
+désigné par le terme «\ rendement\ », ce taux correspond au rapport entre le
+nombre de blocs utiles sur le nombre de blocs transférés.
+La difficulté consiste alors à déterminer la valeur du rendement à utiliser
+pour transmettre efficacement sur un canal. On tend naturellement à penser que
+la probabilité d'erreur tend vers $0$ quand le rendement tend vers $0$
+En 1948, \shannon a montré qu'en réalité dans le cas d'un canal à transmission
+sans mémoire, le rendement possède une valeur limite jusque laquelle la
+probabilité d'erreur est nulle \cite{shannon1948bstj}. Cette valeur limite $C$
+est appelée «\ capacité\ » du canal. Une transmission réalisée avec un
+rendement
+supérieur à $C$ ne peut pas être fiable. En revanche, il existe des codes
+permettant de corriger les erreurs dans le cas où le rendement est inférieur à
+$C$. Dès lors, la théorie des codes s'est intéressée à la conception de codes
+et d'algorithmes permettant d'atteindre cette limite. Par exemple, les codes
+*Low-Density Parity-Check* (LDPC) permettent en théorie d'atteindre cette
+limite de manière asymptotique \cite{gallager1962toit}. En pratique (i.e.\ sur
+des codes de longueur finie) soit le décodage est efficace mais ne permet pas
 d'atteindre cette limite (décodage itératif) soit il s'en approche, mais au
 prix d'une complexité algorithmique significative (décodage par maximum de
 vraisemblance).
 
-En 1950, \hamming a défini la notion de distance d'un code. La théorie
-des codes algébriques s'est développée à partir de là, avec notamment la
-conception des codes de \rs. La notion de « distance de séparation minimale »
-(MDS, pour *Maximum Distance Separable*) concernent des codes qui nécessitent
-une quantité de redondance minimale relativement à une capacité de correction
-arbitrairement fixée.
+En 1950, \hamming a défini la notion de distance d'un code. La théorie des
+codes algébriques s'est développée à partir de là. La notion de «\ distance de
+séparation minimale\ » (MDS, pour *Maximum Distance Separable*) concernent des
+codes qui fournissent une quantité redondance minimale relativement à une
+capacité de correction arbitrairement fixée (i.e.\ qui atteignent la capacité
+du canal). Les codes de \textcite{reed1960jsiam} sont les codes MDS les plus
+connus.
+
+Durant cette introduction, nous avons parcouru différentes notions de la
+théorie des codes. La \cref{sec.theorie.codes} va détailler ces notions et
+en donner les caractéristiques mathématiques. Ces notions seront nécessaire
+afin de comprendre le principe des codes à effacement, présenté dans la
+\cref{sec.codage.effacement}. Cette section présentera notamment comment
+distinguer et évaluer les différents codes à effacement. La
+\cref{sec.exemples.codes.effacement} présentent les grandes familles de codes à
+effacement (\rs, LDPC, etc.). En particulier nous verrons leur construction
+ainsi que les algorithmes de décodage.
 
 
 
 # Notion de théorie des codes {#sec.theorie.codes}
 
-## Caractérisation d'un canal de communication
+Dans cette section, nous verrons dans un premier temps les caractéristiques des
+canaux de transmission dans la \cref{sec.canal}. Les notions d'entropie,
+d'information mutuelle et de capacité du canal y seront traitées. Nous verrons
+par la suite l'exemple du canal binaire symétrique et du canal à effacement
+dans la \cref{sec.exemples.canaux}. La \cref{sec.theorie.codes.correcteurs}
+présentera la théorie des codes correcteurs appliqués au canal à effacement.
+Nous y définirons les opérations d'encodage, de décodage, ainsi que les
+caractéristiques des codes à effacement.
+
+
+## Propriétés d'un canal de communication {#sec.canal}
 
 \begin{figure}
     \centering
     \def\svgwidth{\textwidth}
     \includesvg{img/canal}
-    \caption{Représentation d'un canal de communication. $X$ et $Y$
-    représentent des variables aléatoires.}
+    \caption{Représentation du modèle d'un canal de communication. $X$ et $Y$
+    représentent des variables aléatoires. Chaque élément de ces variables a
+    une probabilité d'apparition notée respectivement $p(x_i)$ et $p(y_i)$. Une
+    loi de transition $P(X|Y)$ définit les probabilité $p(x_i|y_i)$ de recevoir
+    le symbole $y_i$ sachant que $x_i$ a été envoyé.}
     \label{fig.canal}
 \end{figure}
 
 Un canal de communication est un support de transmission d'information
 permettant d'acheminer une information depuis un émetteur vers un destinataire.
 La \cref{fig.canal} représente la modélisation d'un canal. Un canal
-$C(X,Y,P(Y|X)$ est défini par :
+$C\left[X,Y,P(X|Y)\right]$ est défini par :
 
 1. Un alphabet d'entrée $X = \{x_1,\dots,x_{r}\}$, de cardinal $r$,
+représentant la source;
 
 2. Un alphabet de sortie $Y = \{y_1,\dots,y_{s}\}$, de cardinal $s$,
+représentant la destination;
 
-3. D'une loi de transition $P(Y|X)$ qui peut être représentée par la matrice
-stochastique suivant :
+3. D'une loi de transition $P(X|Y)$ qui peut être représentée par la matrice
+stochastique suivante :
 
 \begin{equation}
     P(Y|X) = \begin{pmatrix}
-        P(y_1,x_1) & P(y_2,x_1) & \cdots & P(y_s|x_1)\\
-        P(y_1,x_2) & P(y_2,x_2) & \cdots & P(y_s|x_2)\\
+        P(x_1,y_1) & P(x_1,y_2) & \cdots & P(x_1,y_s)\\
+        P(x_2,y_1) & P(x_2,y_2) & \cdots & P(x_2,y_s)\\
         \vdots     & \vdots     & \ddots & \vdots \\
-        P(y_1,x_r  & P(y_2,x_r) & \cdots & P(y_s|x_r)
-    \end{pmatrix}
+        P(x_r,y_1) & P(x_r,y_2) & \cdots & P(x_r,y_s)
+    \end{pmatrix}\;.
 \end{equation}
 
-\noindent On considère un canal bruité sans mémoire qui transmet des symboles
-d'un alphabet d'entrée $S = \{s_1,\dots,s_{|A|}\}$., Soit $X$ et $Y$ des
-variables aléatoires à valeur dans $A$ modélisant respectivement l'entrée et la
-sortie du canal. Il existe une distribution de transition qui détermine la
-probabilité $p_{j|i}$ d'obtenir $s_j$ en sortie du canal sachant que $s_i$ a
-été émis en entrée. La connaissance du canal permet d'obtenir la distribution
-de ces probabilités :
-
-\begin{equation*}
-    p_{y|x} = P(Y=y | X = x).
-\end{equation*}
-
-\noindent Par exemple, sur un canal sans bruit, $p_{x|x} = 1$ et $p_{y|x} = 0$
-pour $x \neq y$. Dans la suite, nous représenterons deux canaux particuliers :
-le canal binaire symétrique, et le canal à effacement.
-
-### Entropie
-
-Une source d'information $\mathcal{S}$ définit par un couple
+\noindent Une source d'information $\mathcal{S}$ est défini par un couple
 $\mathcal{S}=(A,P)$ où $A$ est un alphabet $A=\{s_1,\dots,s_{|A|}\}$ et $P$ est
 une distribution des probabilités sur $A$, c'est à dire que $p_i$ correspond à
 la probabilité d'apparition de $s_i$ lors d'une transmission. Dans un document
-rédigé en français par exemple, la probabilité d'apparition de la lettre « e »
-est plus importante que pour les autres lettres de l'alphabet. La source est
-« sans mémoire » lorsque l'apparition de $s_i$ est indépendant de $s_j$ pour
-$i \neq j$, et que leur probabilité n'évolue pas pendant la transmission.
+rédigé en français par exemple, la probabilité d'apparition de la lettre
+«\ e\ » est plus importante que pour les autres lettres de l'alphabet.
+La source est «\ sans mémoire\ » lorsque l'apparition de $s_i$ est indépendant
+de $s_j$ pour $i \neq j$, et que leur probabilité n'évolue pas pendant la
+transmission. Dans le cas de notre modélisation, chaque élément de $x_i \in X$
+a une probabilité d'apparition $p(x_i)$.
+Soit $p_{x_i|y_i} = P(X=x_i, Y = y_i)$, la probabilité
+de recevoir le symbole $y_i$ sachant la valeur du symbole émis $x_i$.
+Par exemple, sur un canal sans bruit, $p_{x|x} = 1$ et $p_{x|y} = 0$
+pour $x \neq y$. Dans la section suivante, nous étudierons deux canaux
+particuliers : le canal binaire symétrique, et le canal à effacement.
+Dans le reste de cette section, nous allons définir les différentes
+caractéristiques d'un canal, qui nous serons utiles pour la suite. En
+particulier, nous définirons l'entropie, l'information mutuelle et la capacité
+d'un canal.
 
-Le degré d'originalité $I(s_i)$ (parfois appelé « auto-information ») est
+### Entropie
+
+Le degré d'originalité $I(s_i)$ (parfois appelé «\ auto-information\ ») est
 défini comme l'information transmise par le symbole $s_i$ et vaut
 \cite{shannon1948bstj}:
 
@@ -153,13 +172,15 @@ défini comme l'information transmise par le symbole $s_i$ et vaut
 
 \noindent En conséquence, un symbole qui apparaît souvent ne véhicule que peu
 d'information par rapport à un symbole qui apparaît très rarement.
-
 L'entropie $H(\mathcal{S})$ d'une source correspond à la valeur moyenne du
 degré d'originalité de l'ensemble des symboles de l'alphabet :
 
 \begin{equation}
-    H(\mathcal{S})  = -\sum_{x=1}^r p_x \log_2(p_x)
-                    =  \sum_{x=1}^r p_x \log_2(\frac{1}{p_x}).
+    \begin{split}
+    H(\mathcal{S})  &= \mathbb{E}\left[I(s_i)\right]\\
+                    &= -\sum_{x=1}^r p_x \log_2\left(p_x\right)
+                    =  \sum_{x=1}^r p_x \log_2\left(\frac{1}{p_x}\right).
+    \end{split}
 \end{equation}
 
 \noindent L'entropie $H(\mathcal{S})$ mesure en conséquence l'incertitude des
@@ -167,86 +188,85 @@ informations provenant de la source en bits par symbole. En particulier, si
 $p(s_i) = 1$ et $p(s_j) = 0$ pour $i \neq j$, alors on a aucune incertitude sur
 la source et $H(\mathcal{S})=0$ : le résultat est connu d'avance. À l'inverse,
 si tous les symboles sont équiprobables $p(s_i)=\frac{1}{|A|}$, alors
-$H(\mathcal{S}) = \sum_{i=1}^{|A|} \frac{1}{|A|} \log_2 |A = \log_2 |A|$ et il
+$H(\mathcal{S}) = \sum_{i=1}^{|A|} \frac{1}{|A|} \log_2 |A| = \log_2 |A|$ et il
 est impossible de prédire le résultat puisque l'incertitude est maximale.
 
 ### Entropie de lois conjointes
 
-Dans le cas d'un canal, la modélisation d'un canal de transmission entre en
-émetteur et un destinataire met en jeu deux valeurs aléatoires.
-Soit $(X,Y)$ la loi conjointe de deux valeurs aléatoires $X$ et $Y$. On cherche
-à déterminer l'incertitude associée à deux variables. Pour cela, on calcule
-l'entropie de la loi conjointe :
+Notre modèle de canal représente l'émetteur et le destinataire par deux
+variables aléatoires. Soit $(X,Y)$ la loi conjointe des variables aléatoires
+$X$ et $Y$. On cherche à déterminer l'incertitude associée à ces deux
+variables. Pour cela, on détermine l'entropie de la loi conjointe qui est
+défini ainsi :
 
 \begin{equation}
     H(X,Y)  = \mathbb{E}\left[\log_2 \left(\frac{1}{P(X,Y)}\right)\right]
             = - \sum_x%{i=1}^{|X|}
                 \sum_y%{i=1}^{|Y|}
-                p_{x,y} \log_2 \left( p_{x,y} \right),
+                p_{x|y} \log_2 \left( p_{x|y} \right),
 \end{equation}
 
-\noindent où $p_{x,y}$ correspond à la probabilité $p(X=x,Y=y)$.
+\noindent où $p_{x|y}$ correspond à la probabilité $p(X=x,Y=y)$.
 
 ### Entropie de lois conditionnelles
 
 Dans l'objectif d'obtenir une modélisation d'un canal, on cherche à modéliser
 les perturbations du canal par des probabilités conditionnelles. Pour cela, on
 utilise l'entropie conditionnelle $H(X|Y=y)$ qui correspond à l'incertitude de
-$X$ lorsqu'un valeur de Y est connues :
+$X$ lorsqu'une valeur de Y est connues :
 
 \begin{equation}
-    H(X|Y=y) = - \sum_x p_{x|y} \log_2 p_{x|y},
+    H(X|Y=y) = - \sum_x p_{x|y} \log_2 p_{x|y}\;,
 \end{equation}
 
-\noindent où $p_{x|y} = P(X=x|Y=y)$. Cette notion peut être ensuite étendue
-dans le cas où l'on connait l'ensemble des degrés d'originalité des symboles de
-$Y$ :
+\noindent Cette notion peut être ensuite étendue dans le cas où l'on connait
+l'ensemble des degrés d'originalité des symboles de $Y$ :
 
 \begin{equation}
-    H(X|Y) = - \sum_{x,y} p_{x,y} \log_2 \left( \frac{p_y}{p_{x,y}} \right).
+    H(X|Y) = - \sum_{x,y} p_{x|y} \log_2 \left( \frac{p_y}{p_{x|y}} \right).
 \end{equation}
+
+\noindent $H(X|Y)$ correspond à la quantité d'information perdue sur le canal.
 
 
 ### Information mutuelle
 
 Lors d'une transmission d'information sur un canal, le récepteur doit être
-capable de déterminer $X$ transmis depuis la source, à partir des informations
-reçues $Y$ par le récepteur. L'information mutuelle $I(X,Y)$ mesure la
-quantité d'information reçue, qui correspond à la quantité d'information
-restante lorsque l'on soustrait l'information perdue sur le canal à
-l'information émise par l'émetteur :
+capable de déterminer le symbole $x_i$ transmis depuis la source, à partir des
+informations reçues $y_i$ par le récepteur. L'information mutuelle $I(X,Y)$
+mesure la quantité d'information reçue. Elle correspond à la quantité
+d'information restante lorsque l'on soustrait l'information perdue sur le
+canal $H(X|Y)$, à l'information émise par l'émetteur $H(X)$ :
 
 \begin{equation}
     \begin{split}
         I(X,Y)  &= H(X) - H(X|Y) \\
                 &= \sum_x \sum_y
-                    p_{x,y} \log_2 \left( \frac{p_{x,y}}{p_xp_y} \right).
+                    p_{x|y} \log_2 \left( \frac{p_{x|y}}{p_xp_y} \right).
     \end{split}
 \end{equation}
 
-\noindent En conséquence, deux cas particulier découlent de cette notion. Si
-$H(X) = H(X|Y)$, les variables sont indépendantes, ce qui signifie que la
-réalisation de l'une n'apporte aucune information sur la réalisation de
-l'autre. Dans le deuxième cas, $H(X|Y) = 0$, ce qui signifie que l'information
-mutuelle est maximum. Dans ce cas $Y$ est entièrement déterminée par $X$ et le
-canal ne provoque pas d'erreur.
+\noindent En conséquence, deux cas particuliers découlent de cette notion. Si
+$H(X) = H(X|Y)$, les variables sont indépendantes, ce qui signifie qu'aucune
+information n'est obtenue. Dans le deuxième cas, $H(X|Y) = 0$, ce qui signifie
+que l'information mutuelle est maximum. Dans ce cas $Y$ est entièrement
+déterminée par $X$ et le canal ne provoque pas d'erreur.
 
 ### Capacité d'un canal
 
-La capacité d'un canal $C(X,Y)$ correspond à la quantité maximale d'information
-qui peut être transmise par le canal. L'entropie conditionnelle $H(X|Y)$
-représente la perte d'information en entrée. La capacité du canal correspond
-alors au maximum de la quantité d'information en entrée à laquelle on soustrait
-cette perte :
+La capacité d'un canal $C(X,Y)$ est définie ainsi :
 
 \begin{equation}
-    C(X,Y) = \max(I(X,Y)).
+    C(X,Y) = \max{I(X,Y)}\;.
 \end{equation}
 
+\noindent Elle correspond à la quantité maximale d'information qui peut être transmise par le canal.
 
-## Exemple de canaux
 
-Notre étude va s'intéresser à deux canaux classiques : le canal binaire
+
+## Exemples de canaux {#sec.exemples.canaux}
+
+Notre étude va s'intéresser aux deux canaux suivants : le canal binaire
 symétrique, et le canal à effacement.
 
 ### Canal binaire symétrique
@@ -261,14 +281,15 @@ symétrique, et le canal à effacement.
     \label{fig.cbs}
 \end{figure}
 
-Le canal binaire symétrique (CBS) correspond au cas le plus simple. La source
-possède un alphabet limité à $A={0,1}$. En conséquence, elle émet des bits à
-travers un canal caractérisé par une probabilité $p$ d'inverser la valeur du
-bit. La \cref{fig.cbs} illustre ce canal. En particulier :
+Le canal binaire symétrique (CBS) est un simple à étudier. La source binaire
+est définie par un alphabet $A=\{0,1\}$. En conséquence, elle émet des
+bits à travers un canal caractérisé par une probabilité $p$ d'inverser la
+valeur du bit. La \cref{fig.cbs} illustre ce canal. Ainsi, la loi de transition
+est définie ainsi :
 
 \begin{equation}
-    P(Y|X) = \begin{cases}
-        1-p     &\text{si Y=X}\\
+    P(X|Y) = \begin{cases}
+        1-p     &\text{si X=Y}\\
         p       &\text{sinon}
     \end{cases}\;.
 \end{equation}
@@ -280,7 +301,7 @@ $p=0.5$. La capacité du CBS correspond à \cite[p. 316]{dumas2007book} :
 
 \begin{equation}
     \begin{split}
-        C   &= 1 - H(p)\\
+        C   &= 1 - H_2(p)\\
             &= 1 - + p \log_2(p) + (1-p) \log_2(1-p)\\
     \end{split}\;,
 \end{equation}
@@ -290,9 +311,13 @@ loi de \textsc{Bernoulli} (ou loi binaire), de paramètre $p$. La capacité du
 signal vaut donc $1$ quand la probabilité d'erreur $p$ a valeur dans $\{0,1\}$.
 En particulier, lorsque $p=0$, il n'y a jamais d'erreur de transmission, et $Y$
 correspond à $X$. En revanche, lorsque $p=1$, la valeur du symbole reçu
-correspond toujours à l'inverse du symbole émis. La capacité est nulle quand
-$p=0,5$. Ce dernier cas est le plus défavorable puisque $X$ et $Y$ sont
-indépendants (la sortie n'apporte aucune connaissance sur l'entrée).
+correspond toujours à l'inverse du symbole émis. Un code dont le rendement vaut
+$1$ (i.e.\ sans redondance) suffit alors dans ce cas. En revanche, la capacité
+est nulle quand $p=0,5$. Ce dernier cas est le plus défavorable puisque $X$ et
+$Y$ sont indépendants (la sortie n'apporte aucune connaissance sur l'entrée).
+Du point de vue du rendement, la quantité de redondance nécessaire doit alors
+tendre vers l'infini.
+
 
 ### Canal à effacement
 
@@ -302,59 +327,68 @@ indépendants (la sortie n'apporte aucune connaissance sur l'entrée).
     \includesvg{img/cbe}
     \caption{Représentation d'un canal binaire à effacement. La source transmet
     sur le canal des bits qui peuvent être effacés avec une probabilité $p$.
-    L'effacement représentation la transition d'un bit vers $\epsilon$.}
+    L'effacement représente la transition d'un bit vers «\ $?$\ ».}
     \label{fig.cbe}
 \end{figure}
 
-Un canal à effacement (CAE) se distingue du canal précédent par le fait que
-l'information n'est pas modifiée, mais effacée lors de la transmission. Un
+Un canal binaire à effacement (CBE) se distingue du canal précédent par le fait
+que l'information n'est pas modifiée, mais effacée lors de la transmission. Un
 effacement correspond simplement à la perte de l'information. La \cref{fig.cbe}
-illustre ce canal. En général, on représente la perte d'information par le
-symbole $\epsilon$. La probabilité qu'un symbole soit effacé vaut $p$, ce qui
+illustre ce canal. On représente la perte d'information par le symbole
+«\ $?$\ ». La probabilité qu'un symbole soit effacé vaut $p$, ce qui
 signifie qu'un symbole est correctement transmis avec une probabilité $1-p$. En
-conséquence, on peut représenter la loi de transition $P(Y|X)$ ainsi :
+conséquence, on peut représenter la loi de transition $P(X|Y)$ ainsi :
 
 \begin{equation}
-    P(Y|X) = \begin{pmatrix}
+    P(X|Y) = \begin{pmatrix}
         1-p & p & 0 \\
         0 & p & 1-p
-    \end{pmatrix}
+    \end{pmatrix}\;.
 \end{equation}
 
-\noindent La capacité du canal à effacement vaut $C=1-p$. On peut ainsi
-comparer la capacité de ce canal par rapport au précédent. Puisque $\forall p
-\in [0,1], p < H(p)$, la capacité du canal à effacement est supérieure à celle
-du CAE. Ce résultat était prévisible puisque dans le cas du CAE, la correction
-d'erreurs nécessite au préalable de détecter l'emplacement de ces erreurs avant
-de pouvoir rectifier leurs valeurs. Dans le cas du canal à effacement, la
-position de l'erreur et connue, et la correction correspond uniquement à
-restituer la valeur de l'information perdue.
+\noindent Si l'on reçoit un $0$ ou un $1$, alors il n'y a aucun
+doute sur la valeur émise. En conséquence, $H(X|Y=0) = H(X|Y=1) = 0$. En
+revanche, si on reçoit un « ? », on n'a rien appris sur l'entrée, et donc
+$H(X|Y=?) = H(X)$. La capacité du canal à effacement vaut $C=1-p$. On peut
+ainsi comparer la capacité de ce canal par rapport au précédent. En
+particulier, puisque $\forall p \in [0,\frac{1}{2}], p < H(p)$, la capacité du
+canal à effacement est supérieure à celle du CAE. Il est donc plus facile de
+gérer les effacements que les modifications de valeurs. Ce résultat était
+prévisible puisque dans le cas du CBS, la correction d'erreurs nécessite au
+préalable de détecter l'emplacement de ces erreurs avant de pouvoir rectifier
+leurs valeurs. Dans le cas du canal à effacement en revanche, la position de
+l'erreur est connue, et la correction correspond uniquement à restituer la
+valeur de l'information perdue.
+
+% comparer les deux courbes de capacité
+
+% mettre en annexe le calcul des capacités des canaux
 
 
-## Théorie des codes correcteurs
 
-On appelle « code » une technique qui permet de transformer la représentation
+## Théorie des codes correcteurs {#sec.theorie.codes.correcteurs}
+
+On appelle «\ code\ » une technique qui permet de transformer la représentation
 d'une information en une autre représentation. Le terme code est également
-utilisé pour désigner le résultat de cette transformation.
-En transmission de l'information, on distingue principalement deux types de
-codage. Le premier, appelé « codage source », concerne la compression des
-informations à transmettre. Cette compression a pour but de réduire la
-redondance interne au message à transmettre afin d'optimiser le débit de
-transmission. À l'inverse, le codage canal, qui intervient en général après, a
-pour objectif de générer de la redondance afin de permettre une transmission
-fiable.
+utilisé pour désigner le résultat de cette transformation.  En transmission de
+l'information, on distingue principalement deux types de codage. Le premier,
+appelé «\ codage source\ », concerne la compression des informations à
+transmettre. Cette compression a pour but de réduire la redondance interne au
+message à transmettre afin d'optimiser le débit de transmission. À l'inverse,
+le «\ codage canal\ », qui intervient en général après, a pour objectif de
+générer de la redondance afin de permettre une transmission fiable.
 
 
 ### Codes en blocs
 
-Pour transmettre une information, il faut définir un « alphabet » $A$ qui
+Pour transmettre une information, il faut définir un «\ alphabet\ » $A$ qui
 correspond à un ensemble fini de symboles. Bien que l'information à traiter n'a
 pas toujours de taille définie, il est préférable de travailler sur des
 éléments de tailles fixes, c'est le cas des codes en bloc. Une succession finie
-de symboles correspond à un « mot » (ou bloc, ou paquet). Les mots de codes
+de symboles correspond à un «\ mot\ » (ou bloc, ou paquet). Les mots de codes
 correspondent à l'information encodée que l'on transmet sous la forme de mots.
-La « longueur » $n$ d'un code correspond au nombre de symboles transmis dans
-chaque mot encodé. La « dimension » d'un code correspond à la taille du mot à
+La «\ longueur\ » $n$ d'un code correspond au nombre de symboles transmis dans
+chaque mot encodé. La «\ dimension\ » d'un code correspond à la taille du mot à
 transmettre.
 
 #### Encodage
@@ -388,7 +422,7 @@ par ce mot. Sinon, on ne peut pas corriger l'erreur.
 
 #### Rendement
 
-Le « rendement » $R$ d'un code $(n,k)$ correspond à la quantité de symboles
+Le «\ rendement\ » $R$ d'un code $(n,k)$ correspond à la quantité de symboles
 sources contenus dans un mot de code. Il est défini ainsi :
 
 \begin{equation}
@@ -397,7 +431,7 @@ sources contenus dans un mot de code. Il est défini ainsi :
 
 \noindent Plus le rendement est grand, plus les mots de code contiennent
 d'information utiles. En revanche, la capacité de correction diminue.
-Pour conclure, une « bonne » fonction de codage $\phi$ doit pouvoir fournir
+Pour conclure, une «\ bonne\ » fonction de codage $\phi$ doit pouvoir fournir
 une grande capacité de correction et un rendement important, à travers des
 techniques efficaces. En particulier, on s'intéressera au coût des algorithmes
 d'encodage et de décodage (vérification et correction de l'erreur).
@@ -503,7 +537,7 @@ décodage puisqu'aucun calcul n'est nécessaire.
 
 Il est également possible de définir un code linéaire en définissant une
 application linéaire dont il est le noyau. Cette application est représentée
-par une matrice $H$, appelé « matrice de parité » :
+par une matrice $H$, appelé «\ matrice de parité\ » :
 
 \begin{equation}
     \mathcal{C} = \Big\{(x_1,\dots,x_n) : H \times \begin{pmatrix}
@@ -527,7 +561,7 @@ matrice identité de taille $r \times r$, où $r=n-k$.
 
 Lorsqu'un message $y$ est reçu, pour déterminer si celui correspond à un mot de
 code (et donc s'il n'a pas été altéré, a priori) il suffit de calculer
-$Hy$, qui est appelé le « syndrome ». Si le syndrome n'est pas nul, c'est qu'il
+$Hy$, qui est appelé le «\ syndrome\ ». Si le syndrome n'est pas nul, c'est qu'il
 y a une erreur. On cherche alors à déterminer la valeur du mot de code $x$ à
 partir de $y$. Pour cela, on calcule le vecteur d'erreurs $e=y-x$. Le décodage
 consiste donc à trouver l'unique élément $x \in \mathcal{C} \mid d_H(x,y) \leq
@@ -599,10 +633,10 @@ décodage. Cette complexité théorique dépend du type et du nombre d'opératio
 nécessaires (il s'agit généralement d'additions et de multiplications dans un
 corps fini). Un autre critère essentiel correspond à la capacité de correction.
 Par exemple, bien que les codes LDPC possèdent une complexité de décodage
-linéaire $\mathcal{O}(n)$ reposant sur des opérations de « OU exlusif » (XOR),
-il ne sont pas MDS. Les codes de \rs ont en revanche un rendement optimal
-(codes MDS). Cependant, leur complexité au décodage est moins bon que les
-codes LDPC. Bien que la complexité des codes de \rs soit souvent considérée
+linéaire $\mathcal{O}(n)$ reposant sur des opérations de «\ OU exlusif\ »
+(XOR), il ne sont pas MDS. Les codes de \rs ont en revanche un rendement
+optimal (codes MDS). Cependant, leur complexité au décodage est moins bon que
+les codes LDPC. Bien que la complexité des codes de \rs soit souvent considérée
 quadratique, de récents travaux ont permis de réduire cette complexité à
 $\mathcal{O}(n \log n)$ \cite{lacan2010ccnc}. Nous allons détailler dans la
 suite quelques exemples de codes à effacement.
@@ -808,6 +842,8 @@ si l'algorithme s'arrête.
 
 
 \section*{Conclusion du chapitre}
+
+\addcontentsline{toc}{section}{Conclusion du chapitre}
 
 Ce chapitre nous a permis de présenter un état de l'art des codes correcteurs
 pour le canal à effacement. La \cref{sec.theorie.codes} a introduit les notions
