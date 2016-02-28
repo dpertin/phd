@@ -91,7 +91,7 @@ ainsi que les algorithmes de décodage.
 
 
 
-# Notion de théorie des codes {#sec.theorie.codes}
+# Notions de théorie des codes {#sec.theorie.codes}
 
 Dans cette section, nous verrons dans un premier temps les caractéristiques des
 canaux de transmission dans la \cref{sec.canal}. Les notions d'entropie,
@@ -597,7 +597,7 @@ Enfin, nous verrons dans la \cref{sec.distinction.differents.codes} ce qui
 distingue les différents codes à effacement.
 
 
-## Codage applicatif par paquets {#sec.codage.effacement.paquets}
+## Codage par paquets sur la couche applicative {#sec.codage.effacement.paquets}
 
 En pratique les symboles peuvent représenter différents contenus d'information.
 Sur la couche physique, les symboles correspondent à des bits (comme
