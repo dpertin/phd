@@ -488,7 +488,7 @@ s'annulent. Par exemple :
                 \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}
                 \bigast \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}\;.
     \end{split}
-    \label{eqn.simplification}
+    \label{eqn.simplification2}
 \end{equation}
 
 \noindent La décomposition des projections de fantôme permet ici de simplifier

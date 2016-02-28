@@ -594,7 +594,7 @@ l'image:
     \mu = \frac
         {P \times Q + \sum\limits_{i=0}^{n-k-1} B(P,Q,p_i,q_i)}
         {P \times Q}.
-    \label{eqn.f_non_systematic}
+    \label{eqn.f_systematic}
 \end{equation}
 
 \noindent Puisque la taille d'une projection ne peut être inférieure à la

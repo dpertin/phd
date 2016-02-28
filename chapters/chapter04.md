@@ -849,7 +849,7 @@ On détermine alors le nombre d'opération nécessaire ainsi :
 \begin{equation}
     \gamma(k,w)_e^{\{(p_e,1)\}} =
         \sum_{e} \left( \gamma(k,w)_{l_e}^{(p_e,1)}\right).
-    \label{eqn.mojette_decoding2}
+    \label{eqn.mojette_decoding3}
 \end{equation}
 
 
@@ -1042,7 +1042,7 @@ processeur \intel Xeon à $1,80$GHz, de $16$Go de mémoire RAM et de caches
 processeurs de $128$Ko, $1$Mo et $10$Mo pour les niveaux *L1*, *L2* et *L3*
 respectivement. Notons que cette plate-forme a été utilisée dans des
 expérimentations soumises à plusieurs publications \cite{pertin2014eurosys,
-pertin2015hotstorage, parrein2015ressi}.
+pertin2015corr, parrein2015ressi}.
 
 ## Résultats de l'expérimentation {#sec.expe.resultat}
 
@@ -1164,7 +1164,7 @@ version est particulièrement réduit.
         \input{expe_data/dec13_2.tex}
         \label{fig.decoding_8k_l2}
     \end{subfigure}
-    \ref{named}
+    \ref{named2}
     \caption{Comparaison des performances de décodage pour des paramètres de
     codes $(6,4)$ (\cref{fig.decoding_4k_l1,fig.decoding_8k_l1}) et $(12,8)$
     (\cref{fig.decoding_4k_l2,fig.decoding_8k_l2}). Les courbes à gauche
