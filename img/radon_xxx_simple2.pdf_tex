@@ -62,9 +62,9 @@
     \put(0.37143667,0.05006101){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,0}$}}}}%
     \put(0.22829562,0.11948066){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\tau$}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{radon_xxx_simple2.pdf}}%
-    \put(0.67189755,0.45545323){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{1D-FT}}}}%
+    \put(0.67189755,0.45545323){\color[rgb]{0,0,0}\makebox(0,0)[b]{TF-1D}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{radon_xxx_simple2.pdf}}%
-    \put(0.51069735,0.26286668){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{2D-FT$^{-1}$}}}}%
+    \put(0.51069735,0.26286668){\color[rgb]{0,0,0}\makebox(0,0)[b]{TF$^{-1}$-2D}}%
     \put(0.9713525,0.27744436){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\varphi$}}}}%
   \end{picture}%
 \endgroup%

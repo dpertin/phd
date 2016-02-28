@@ -1,7 +1,7 @@
 
 \chapter{Calcul distribué de nouveaux mots encodés}
 
-\label{sec.reprojection}
+\label{sec.chap6}
 
 
 # Problème de génération de mots encodés {#gen_redondance}
