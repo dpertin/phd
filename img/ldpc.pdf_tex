@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{225.99663086bp}%
+    \setlength{\unitlength}{225.43022461bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,19 +48,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.53218999)%
+  \begin{picture}(1,0.53352715)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{ldpc.pdf}}%
-    \put(0.06110088,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_0$}}}%
-    \put(0.18654091,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_1$}}}%
-    \put(0.3119764,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_2$}}}%
-    \put(0.68828741,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_5$}}}%
-    \put(0.56284749,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_4$}}}%
-    \put(0.437412,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_3$}}}%
-    \put(0.8137229,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_6$}}}%
-    \put(0.93915839,0.00879351){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$b_7$}}}%
-    \put(0.19723043,0.49943577){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$f_0$}}}%
-    \put(0.39790956,0.49943577){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$f_1$}}}%
-    \put(0.59858913,0.49943577){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$f_2$}}}%
-    \put(0.79926912,0.49943577){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$f_3$}}}%
+    \put(0.05999812,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_0$}}}%
+    \put(0.18575333,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_1$}}}%
+    \put(0.31150398,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_2$}}}%
+    \put(0.68876049,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_5$}}}%
+    \put(0.56300539,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_4$}}}%
+    \put(0.43725474,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_3$}}}%
+    \put(0.81451114,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_6$}}}%
+    \put(0.9402618,0.00881561){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$s_7$}}}%
+    \put(0.19646971,0.50069063){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_0$}}}%
+    \put(0.39765306,0.50069063){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_1$}}}%
+    \put(0.59883684,0.50069063){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_2$}}}%
+    \put(0.80002105,0.50069063){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_3$}}}%
   \end{picture}%
 \endgroup%

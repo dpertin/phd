@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{486.48828125bp}%
+    \setlength{\unitlength}{445.9921875bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,16 +48,16 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.51499105)%
+  \begin{picture}(1,0.56175224)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{cbe.pdf}}%
-    \put(0.46383219,0.4723866){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1-p$}}}%
-    \put(0.46383219,0.01194386){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1-p$}}}%
-    \put(0.86965738,0.39991037){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
-    \put(0.86965738,0.07760045){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
-    \put(0.04743819,0.39991037){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
-    \put(0.04743819,0.07760045){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
-    \put(0.17899326,0.17626675){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
-    \put(0.17899326,0.30782182){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
-    \put(0.86965738,0.23875541){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\epsilon$}}}%
+    \put(0.50594816,0.51527931){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1-p$}}}%
+    \put(0.50594816,0.01302836){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1-p$}}}%
+    \put(0.94862228,0.43622224){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.94862228,0.08464657){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.05174558,0.43622224){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.05174558,0.08464657){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.19524585,0.19227177){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
+    \put(0.19524585,0.33577205){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p$}}}%
+    \put(0.94862228,0.2604344){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$?$}}}%
   \end{picture}%
 \endgroup%
