@@ -539,7 +539,7 @@ de la grille, et dont le nombre de dépendances est réduit.
 \begin{table}
     \centering
     \resizebox{\columnwidth}{!}{%
-        \input{removed/xor_table}
+        \input{tab/raid6.tex}
     }
     \caption{Tableau de comparaison du nombre d'opérations nécessaires pour
     différents code à effacement selon les métriques définies dans la
