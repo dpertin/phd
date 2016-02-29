@@ -1,4 +1,10 @@
 
+\section*{Contexte et problématique}
+
+\addcontentsline{toc}{section}{Contexte et problématique}
+
+#### Contexte de l'étude
+
 Avec le nombre croissant d'appareils interconnectés par Internet, la quantité
 de données générées augmente de manière préoccupante. Alors qu'il est
 aujourd'hui courant de posséder plusieurs terminaux tels que les appareils
@@ -130,25 +136,17 @@ rendement de ce code soit sous optimal \cite{parrein2001phd}. Nous montrerons
 cependant des méthodes afin de se rapprocher d'un rendement optimal.
 
 
-\section*{Contexte de travail}
+\section*{Contributions}
 
-\addcontentsline{toc}{section}{Contexte de travail}
+\addcontentsline{toc}{section}{Contributions}
 
-Dans le cadre d'une convention CIFRE, ces travaux de recherche ont été menés
-conjointement au sein de l'équipe Image et Vidéo Communications (IVC) de
-l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
-et au sein de l'entreprise Rozo Systems. En conséquence, ces travaux mêlent
-aspects théoriques et mesures de mises en œuvres. Une intention particulière a
-ainsi été portée sur les implémentations réalisées et intégrées dans le
-système de fichiers distribué RozoFS, développé par l'entreprise. C'est
-pourquoi, un intérêt a été porté sur les performances fournies par nos
-implémentations. En particulier, ces évaluations ont donné lieu à des
-comparaisons avec les alternatives reconnues.
+% mojette systématique
 
+% reprojection sans reconstruction
 
-\section*{Plan et contributions}
+\section*{Plan}
 
-\addcontentsline{toc}{section}{Plan et contributions}
+\addcontentsline{toc}{section}{Plan}
 
 Les travaux de cette thèse sont organisés en deux parties. Chaque partie
 comporte trois chapitres. La première partie mêle théorie de l'information et
@@ -221,4 +219,22 @@ des calculs.
 \noindent Dans une dernière partie, nous aborderons la conclusion des travaux
 présentés dans cette thèse, puis la perspective des futurs travaux de
 recherche.
+
+
+\section*{Financements de thèse}
+
+\addcontentsline{toc}{section}{Financements de thèse}
+
+Dans le cadre d'une convention CIFRE, ces travaux de recherche ont été menés
+conjointement au sein de l'équipe Image et Vidéo Communications (IVC) de
+l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
+et au sein de l'entreprise Rozo Systems. En conséquence, ces travaux mêlent
+aspects théoriques et mesures de mises en œuvres. Une intention particulière a
+ainsi été portée sur les implémentations réalisées et intégrées dans le
+système de fichiers distribué RozoFS, développé par l'entreprise. C'est
+pourquoi, un intérêt a été porté sur les performances fournies par nos
+implémentations. En particulier, ces évaluations ont donné lieu à des
+comparaisons avec les alternatives reconnues.
+
+% FEC4Cloud + montage et configuration de la plate-forme
 
