@@ -4,12 +4,13 @@
 \newcommand\matus{\citeauthor{matus1993pami}\xspace}
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
+\newcommand\shannon{\citeauthor{shannon1948bstj}\xspace}
 
-\newcommand\shannon{\textsc{Shannon}\xspace}
 \newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
 \newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\gj{\textsc{Gauss-Jordan}\xspace}
 \newcommand\singleton{\textsc{Singleton}\xspace}
 \newcommand\rs{\textsc{Reed-Solomon}\xspace}
 \newcommand\eo{\textsc{EVENODD}\xspace}
@@ -25,7 +26,7 @@
 \newcommand\QQ{\mathcal{Q}}
 
 
-\documentclass[12pt,
+\documentclass[11pt,
     french,
     fancyChapter,
     fancyPart,
@@ -103,6 +104,13 @@
 \definecolor{mywhite}{HTML}{DDDDDD}
 \definecolor{mypink}{HTML}{F92672}
 \definecolor{mygreen}{HTML}{A6E22E}
+
+\definecolor{ubl_blue}{HTML}{31849B}
+\definecolor{ubl_red}{HTML}{FF320A}
+\definecolor{ubl_green}{HTML}{C8C83C}
+\definecolor{ubl_black}{HTML}{2B2B2A}
+\definecolor{ubl_gray}{HTML}{ECF0DF}
+\definecolor{ubl_light_gray}{HTML}{F8F8F8}
 
 \usepackage{listings}
 	\lstset{language=C++,
@@ -286,7 +294,8 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 
 \defbibfilter{publications}{
   type=article or
-  type=inproceedings
+  type=inproceedings or
+  type=unpublished
 }
 
 % environnement pour bibliographie sans labels

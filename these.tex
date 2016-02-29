@@ -1,9 +1,17 @@
 %&these
 
-\titre{Approche Géométrique pour la Conception de Codes à Effacement Appliqués
-    dans le Stockage Distribué}
+\titre{Code à Effacement Mojette}
 
-\title{Geometrical Approach to Design Erasure Codes for Distributed Storage}
+\soustitre{pour le Stockage Distribué}
+
+%\titre{Approche Géométrique pour la Conception de Codes à Effacement Appliqués
+%    dans le Stockage Distribué}
+
+\title{Mojette Erasure Code}
+
+\subtitle{for Distributed Storage}
+
+%\title{Geometrical Approach to Design Erasure Codes for Distributed Storage}
 
 \author{M.}{Dimitri}{Pertin}
 
@@ -27,8 +35,8 @@
 \reviewer{M.}
     {Pierre}
     {Duhamel}
-    {Directeur de recherches CNRS}
-    {L2S Centrale Supelec, Paris}
+    {Directeur de recherche CNRS}
+    {L2S Centrale Supélec, Paris}
 
 \reviewer{M.}
     {Martin}
@@ -39,14 +47,14 @@
 \examiner{M.}
     {Imants}
     {Svalbe}
-    {Maître de conférences}
+    {Professeur étranger}
     {Monash University, Melbourne, Australie}
 
-\president{M.}
+\examiner{M.}
     {Jérôme}
     {Lacan}
-    {Professeur des universités}
-    {ISAE, Toulouse}
+    {Professeur}
+    {ISAE-SUPAERO, Toulouse}
 
 \supervisor{M.}
     {Nicolas}
@@ -60,6 +68,13 @@
     {Maitre de conférences titulaire de l'HDR}
     {Université de Nantes}   
 
+\guest{M.}
+    {Évenou}
+    {Pierre}
+    {Ingénieur}
+    {Rozo Systems}
+
+
 \begin{document}
 
 \begin{resume}
@@ -69,7 +84,8 @@
 \end{resume}
 
 \begin{motscles}
-    Code à effacement, transformée Mojette, stockage distribué.
+    Code à effacement, transformée Mojette, stockage distribué,
+    tolérance aux pannes.
 \end{motscles}
 
 \begin{abstract}
@@ -78,7 +94,7 @@
 \end{abstract}
 
 \begin{keywords}
-    Erasure code, Mojette transform, distributed storage.
+    Erasure code, Mojette transform, distributed storage, fault tolerance.
 \end{keywords}
 
 \maketitle
@@ -92,39 +108,83 @@
 \dominitoc
 \tableofcontents
 
+\newrefsegment
+
 \chapter*{Introduction Générale}
 
+\addstarredchapter{Introduction Générale}
+
 \input{chapters/introduction.tex}
+%\input{chapters/introduction.md}
 
 \part{Codes à effacement en géométrie discrète}
 
+\input{chapters/introduction_part_1.tex}
+%\input{chapters/conclusion_part_1.md}
+
 \input{chapters/chapter01.tex}
+%\input{chapters/chapter01.md}
 
 \input{chapters/chapter02.tex}
+%\input{chapters/chapter02.md}
 
 \input{chapters/chapter03.tex}
+%\input{chapters/chapter03.md}
+
+\input{chapters/conclusion_part_1.tex}
+%\input{chapters/conclusion_part_1.md}
 
 \part{Application au stockage distribué}
 
+\input{chapters/introduction_part_2.tex}
+%\input{chapters/introduction_part_2.md}
+
 \input{chapters/chapter04.tex}
+%\input{chapters/chapter04.md}
 
 \input{chapters/chapter05.tex}
+%\input{chapters/chapter05.md}
 
 \input{chapters/chapter06.tex}
+%\input{chapters/chapter06.md}
+
+\input{chapters/conclusion_part_2.tex}
+%\input{chapters/conclusion_part_2.md}
 
 \chapter*{Conclusion Générale}
 
+\addstarredchapter{Conclusion Générale}
+
 \input{chapters/conclusion.tex}
+%\input{chapters/conclusion.md}
+
+\chapter*{Perspectives}
+
+\addstarredchapter{Perspectives}
+
+\input{chapters/perspectives.tex}
+%\input{chapters/perspectives.md}
+
+\endrefsegment
+
+\chapter*{Communications}
+
+\addstarredchapter{Communications}
+
+\input{chapters/communications.tex}
+%\input{chapters/communications.md}
 
 \printbibliography[
+    heading=bibintoc,
+    segment=1
 ]
 
 % segment=1
 
 % \printindex
 
-\section*{Nombre de ref}
-Attention : \total{citenum}\ !!! \textbackslash{}o/
+%\section*{Nombre de ref}
+%Attention : \total{citenum}\ !!! \textbackslash{}o/
 
 \backmatter
 
