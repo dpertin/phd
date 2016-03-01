@@ -189,13 +189,11 @@ codes de \rs. HDFS est un DFS open-source basé sur \emph{Google File System}
 Des fournisseurs de services en nuage tels que Microsoft
 Azure\ \cite{huang2012atc} ou Openstack avec Swift\ \cite{luse2014snia}
 l'utilisent également. L'utilisation des codes de \rs dans les systèmes de
-stockage s'est démocratisé avec le développement de bibliothèques qui en
+stockage s'est démocratisée avec le développement de bibliothèques qui en
 fournissent des implémentations. En particulier, Ceph et Swift ont intégré la
 bibliothèque ISA-L (*Intelligent Storage Acceleration Library*)
 d'\textcite{intel2015isal}.
 
-<!-- %
-% autre attrait c'est repairing -->
 En revanche, les codes à effacement impliquent une complexité significative due
 aux opérations d'encodage et de décodage. Dans le contexte de stockage, ces
 opérations sont déclenchées respectivement à l'écriture et à la lecture de
@@ -207,12 +205,12 @@ comparaison, les données chaudes sont fréquemment sollicitées (typiquement
 le cas des applications HPC qui mettent en jeu plusieurs milliers
 d'entrées/sorties à la seconde).
 En conséquence, on distingue deux types de systèmes de stockage : (i)
-le premier permettant d'archiver les données à bas prix, en reposant sur du
-matériel de stockage de grosse capacité et bon marché (bandes ou disque durs
+le premier permettant d'archiver les données à bas prix, reposant sur du
+matériel de stockage de grande capacité et bon marché (bandes ou disque durs
 mécaniques) et utilisant des codes à effacement\ \cite{andre2014eurosys} ; (ii)
 le second utilisant (potentiellement) des techniques de réplication sur du
-matériel performant et coûteux (disques SSD, RAM) afin d'accéder et traiter les
-données chaudes sans ralentissement.
+matériel performant et coûteux (disques SSD, RAM) afin de traiter les données
+chaudes sans ralentissement.
 Notons toutefois qu'il est possible de réduire l'impact de ces opérations en
 utilisant le code sous une forme systématique. Dans cette forme, le message à
 transmettre est directement accessible. En particulier, il n'est pas nécessaire
@@ -290,7 +288,8 @@ des méthodes afin de se rapprocher d'un code optimal.
 Nos travaux de thèse ont ainsi conduits à deux contributions principales :
 
 1. la conception d'une version systématique du code à effacement basé sur la
-transformée Mojette. De cette contribution découlent quatre sous-contributions : 
+transformée Mojette. De cette contribution découlent quatre contributions
+mineures :
 
     1. une proposition de critère permettant d'évaluer les codes;
 
@@ -355,7 +354,7 @@ particulièrement, les différents chapitres comportent les éléments suivants 
 performances du code Mojette dans le contexte du stockage distribué. Les
 métriques utilisées (nombres d'opérations à l'encodage et au décodage, nombre
 de blocs impacté par la mise à jour de données) mettent en avant la simplicité
-algorithmique du code Mojette par rapport à d'autres codes (e.g. codes de \rs).
+algorithmique du code Mojette par rapport à d'autres codes (e.g.\ codes de \rs).
 En particulier, une mesure des latences en encodage et décodage des
 implémentations du code Mojette est donnée. Dans les conditions de nos tests,
 notre nouvelle conception systématique permet de réduire par trois les temps

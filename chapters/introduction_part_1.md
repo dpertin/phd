@@ -3,31 +3,30 @@
 
 \addstarredchapter{Introduction de la partie}
 
-Les communications utilisées dans les systèmes de communications (tels qu'en
-stockage de l'information) reposent sur des éléments qui ne sont pas fiables.
-En particulier, les pannes dans de tels systèmes sont
-inévitables\ \cite{ford2010osdi}.
-Les canaux de communication ne sont ainsi pas sûrs, et l'information peut être
-altérée ou perdue durant la transmission. En conséquence, des techniques
-doivent être mises en œuvre pour rendre une transmission fiable sur un canal
-instable (relatif au problème $2$ posé en introduction générale). Cette partie
+Les systèmes de communication (tels qu'en stockage de l'information) reposent
+sur des éléments qui ne sont pas fiables. En particulier, les pannes dans de
+tels systèmes sont inévitables\ \cite{ford2010osdi}. Les canaux de
+communication ne sont ainsi pas sûrs, et l'information peut être altérée ou
+perdue durant la transmission. En conséquence, des techniques doivent être
+mises en œuvre pour rendre une transmission fiable sur un canal instable
+(relatif au problème $2$ posé en introduction générale). Cette partie
 s'intéresse ainsi à l'élaboration de méthodes efficaces afin de répondre à ce
 problème. Cette efficacité met en jeu les latences de la méthode proposée,
 ainsi que sa capacité de correction. Pour cela, nous proposons d'étudier des
 versions discrètes de la transformation de \radon, appliquées aux codes
-correcteurs d'erreur.
-Cette partie se compose de trois chapitres dans lesquelles nous allons voir
-les éléments suivants :
+correcteurs d'erreur. Cette partie se compose de trois chapitres dans
+lesquelles nous allons voir les éléments suivants :
 
 1. le \cref{sec.chap1} définira des notions de théorie de codes correcteurs à
 travers l'étude des travaux fondamentaux de \textcite{shannon1948bstj}. Notre
 étude s'intéressera en particulier aux codes linéaires en bloc. Ces notions
 seront nécessaires à la compréhension des codes à effacement, qui permettent de
-répondre au problème de la fiabilité d'une transmission dans le cas
-d'effacement de l'information sur le canal. Nous donnerons des critères
-permettant de distinguer les différents codes à effacement. Une analyse de
-différents codes (dont notre référence, les codes de \textcite{reed1960jsiam})
-permettra de mettre en avant les défauts de chacun;
+répondre au problème de la fiabilité d'une transmission dans le cas de perte
+d'information sur le canal. Une proposition des critères permettant de
+distinguer les différents codes à effacement sera notre première contribution
+mineure. Une analyse de différents codes (dont notre
+référence\ \cite{reed1960jsiam}) permettra de mettre en avant les défauts de
+chacun;
 
 2. le \cref{sec.chap2} portera sur notre proposition d'utiliser conjointement
 transformée discrète et théorie des codes. Nous verrons en particulier deux
