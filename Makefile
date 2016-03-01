@@ -41,7 +41,7 @@ $(OBJS):
 # clean temporary files
 clean: 
 	latexmk -c
-	rm these.m???
+	rm these.m*
 	cd $(CHPTDIR); make clean
 
 # pas très propre le rm these.m??? mais très chiant
@@ -49,5 +49,6 @@ clean:
 # clean temporary files + PDF output
 mrproper: 
 	latexmk -C
+	rm these.fmt
 	cd $(CHPTDIR); make clean
 
