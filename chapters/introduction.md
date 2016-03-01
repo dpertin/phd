@@ -1,7 +1,7 @@
 
-\section*{Contexte}
+%\section*{Contexte}
 
-\addcontentsline{toc}{section}{Contexte}
+%\addcontentsline{toc}{section}{Contexte}
 
 %### Contexte de l'étude
 
@@ -33,41 +33,46 @@ l'information, la capacité du monde numérique évolue de façon exponentielle 
 massive de données, on notera que $27$\% seront générées par des objets
 connectés issus de l'IoT.
 <!--%-->
-Le stockage de cette information permet de très nombreuses applications. La
-conception d'un système de stockage nécessite de répondre à certains critères
-(e.g.\ capacité de stockage, mise à l'échelle, débits en entrées/sorties). Il
-est plus facile d'atteindre ces critères, lorsque l'on considère le cas des
-systèmes de stockage distribués (ou DSS pour *Distributed Storage System*). Les
-DSS permettent de partager l'espace mémoire entre différents supports
+La conception d'un système de stockage met en jeu différents critères
+(e.g.\ capacité de stockage, tolérance aux pannes, mise à l'échelle, débits en
+entrées/sorties). Pour remplir ces critères, il est nécessaire d'utiliser des
+systèmes de stockage distribués (ou DSS pour *Distributed Storage System*).
+Les DSS permettent d'accéder a des données distribuées sur différents supports
 de stockage. En fonction de l'application qui travaille sur les données du DSS,
-certains critères n'ont pas besoin d'être remplis (pour des raisons
-économiques). Ainsi, nous allons voir quatre exemples importants d'application
-qui nécessite de grands volumes de stockage :
+certains critères ont besoin d'être favorisés (pour des raisons économiques).
+Ainsi, nous allons voir quatre exemples importants d'application qui
+nécessitent de grands volumes de stockage :
 
-* les services multimédia telle que la vidéo à la demande nécessitent de
-grandes quantité de données. Par exemple, \textsc{Netflix} dispose de pas moins
+* les services multimédia tels que la vidéo à la demande nécessitent de
+grandes quantité de données. Par exemple, \textsc{Netflix} dispose pas moins
 de $40$ pétaoctets (i.e.\ $10^{15}$ octets) de contenus vidéos sur
-\textsc{Amazon} S3. Cette application privilégie la mise à l'échelle afin de
-supporter un pic de connexions (lors de la sortie d'un nouveau contenu vidéo
-par exemple);
+\textsc{Amazon} S3 \cite{hunt2014aws}. Cette application privilégie la mise à
+l'échelle afin de supporter un pic de connexions (lors de la sortie d'un
+nouveau contenu vidéo par exemple);
 
 * les applications « Big Data » permettent la fouille et le traitement
-analytique d'une quantité non structurée et massive de données. Par exemple,
-\textsc{Amazon} utilise des algorithmes afin d'analyser différents critères
-(e.g.\ les anciens achats, des évaluations de produits, la comparaison avec
-d'autres clients, la présence d'articles dans le panier) pour alimenter son
-système de recommandation. Ces applications nécessitent une importante quantité
-de données;
+analytique d'une quantité massive et non structurée de données. Par exemple,
+\textsc{Amazon} utilise des algorithmes afin de proposer sur la base de
+différents critères (e.g.\ les anciens achats, des évaluations de produits, la
+comparaison avec d'autres clients, la présence d'articles dans le panier) des
+recommandations \cite{linden2003ic}. Ce type d'applications nécessitent une
+importante quantité de données;
 
 * le calcul à haute performance (HPC, pour *High Performance Computing*)
 traite le cas d'importantes quantités de données structurées. Par exemple, il
-est possible de déterminer des profils de personnalité en se basant sur les
-« *likes* » enregistrés sur \textsc{Facebook} \cite{youyou2015computer}. Les
-systèmes de stockage de hauts débits favorisent ces applications;
+est possible d'analyser et d'explorer les graphes que forment les réseaux
+sociaux. Il est ainsi possible d'établir des profils de personnalité en se
+basant sur les « *likes* » enregistrés sur
+\textsc{Facebook}\ \cite{youyou2015computer}. Les systèmes de stockage de hauts
+débits favorisent ces applications;
 
-* l'archivage de données n'a pas de contraintes fortes sur les débits. En
-revanche, cette application a besoin de systèmes de stockage avec d'importantes
-capacités et tolérants aux pannes.
+* l'archivage de données en revanche ne possède pas de contraintes fortes sur
+les débits. Toutefois, cette application a besoin de DSS avec d'importantes
+capacités de stockage, et qui soient tolérants aux pannes. Par exemple,
+\textsc{Amazon} Glacier fournit
+un : « service de stockage sécurisé, durable et à très faible coût pour
+l'archivage (\dots) de données rarement consultées et pour lesquelles un délai
+d'extraction de plusieurs heures reste acceptable »\footnote{https://aws.amazon.com/fr/glacier/}.
 
 <!--
 % http://fr.slideshare.net/AmazonWebServices/ent209-netflix-cloud-migration-devops-and-distributed-systems-aws-reinvent-2014
@@ -103,8 +108,8 @@ définitive, de blocs de données\ \cite{ford2010osdi}. En particulier, la
 probabilité d'apparition des pannes augmente avec la taille du système de
 stockage (e.g.\ défaillance d'un disque, défaillance réseau). Il est donc
 nécessaire d'intégrer de la redondance dans le système de stockage. La
-solution classique pour supporter ces pannes exploite la nature des DSS. Elle
-consiste à distribuer plusieurs copies d'information sur des supports de
+solution classique pour supporter ces pannes consiste à exploiter la nature des
+DSS en distribuant plusieurs copies d'information sur des supports de
 stockage différents. Cette méthode permet d'accéder à une copie de
 l'information lorsque les autres ne sont pas disponibles. Bien que simple à
 mettre en œuvre, chaque copie générée ajoute un surcoût de redondance de
@@ -116,12 +121,17 @@ Une fois qu'un seuil de redondance est mis en place dans le DSS, les pannes
 entraînent la réduction de cette redondance. Il est alors
 nécessaire de concevoir une méthode pour rétablir la redondance. Cette
 réparation nécessite l'échange d'information entre un ensemble de supports de
-stockage sains, et un support en reconstruction. Se pose alors
-la question de comment rétablir un seuil de redondance tout en minimisant
-la quantité de données échangées entre les différents supports de stockage. Ce
-troisième point de nos problématiques est appelé « problème de réparation »
-(*repair problem*)\ \cite{dimakis2010toit}.
-Pour résumer, voici les trois problèmes soulevés par l'étude du contexte :
+stockage sains, et un support en reconstruction. Par exemple, un nœud de
+stockage chez \textsc{Facebook} fait $15000$\ Go. La réparation d'une telle
+quantité d'information entraîne en conséquence un trafic réseau significatif,
+qui peut prendre un temps considérable (plusieurs jours si plusieures pannes
+surviennent en simultané) et ralentir le fonctionnement des services qui
+utilisent les données du DSS\ \cite{sathiamoorthy2013vldb}. Ce problème
+consiste alors à rétablir un seuil de redondance tout en minimisant la quantité
+de données échangées entre les différents supports de stockage. Ce troisième
+point de nos problématiques est appelé « problème de réparation » (*repair
+problem*)\ \cite{dimakis2010toit}. Pour résumer, voici les trois problèmes
+soulevés par l'étude du contexte :
 
 1. proposer un système de stockage distribué flexible;
 
@@ -135,42 +145,55 @@ support.
 
 \addcontentsline{toc}{section}{Notre approche}
 
-Pour répondre à la première problématique, nous proposons d'utiliser le
-logiciel qui définit un système de stockage (ou SDS ou *Software-Defined
-Storage*) RozoFS. Plus particulièrement, RozoFS est un système de fichiers
-distribué (ou DFS pour *Distributed File System*) est un DSS permettant
-d'interagir avec des fichiers. En particulier, il permet d'agréger l'espace
-disponible depuis un ensemble de supports de stockage. Cette agrégation est
-exposée à l'utilisateur sous la forme d'un volume de stockage organisé par une
-arborescence (fichiers et répertoire). En particulier, RozoFS est orienté pour
-les réseaux locaux (*LAN*) rapides (très haut débit, faible latence). Notre
-approche se distinguent alors des architectures pair-à-pair (ou P2P pour
-*Peer-to-Peer*) et des réseaux étendus (*WAN*) de latences plus importantes.
-Pour répondre au problème de la flexibilité, RozoFS utilise une approche
-horizontal (*scale-out*). Cette approche consiste à ajouter adapter le nombre
-de serveurs de stockage participant à la grappe de stockage afin d'augmenter ou
-de réduire la capacité du système. RozoFS correspond ainsi à une couche de
-virtualisation capable d'exploiter du matériel varié et bon marché. Cette
-solution est alors plus flexible et moins onéreuse. En particulier, RozoFS est
-un logiciel libre sous licence GNU GPLv2\footnote{Le projet GitHub de RozoFS se
-situe à l'adresse suivante : \url{https://github.com/rozofs/rozofs}} dans
-lequel il nous est possible d'intégrer nos contributions.
+Pour répondre à la première problématique, nous proposons d'utiliser une
+approche horizontale (*scale-out*). Cette approche consiste à composer un
+ensemble flexible de serveurs de stockage (on parle de grappe). Cette approche
+permet d'adapter le nombre de serveurs (physiques, virtuels ou les deux)
+participant à la grappe de stockage. Il est ainsi possible d'augmenter
+ou de réduire la capacité du système. Cette approche est en conséquence plus
+flexible et plus économique que l'approche *scale-up*\ \cite{oggier2012icdcn}.
+En particulier, nous proposons d'utiliser RozoFS : un logiciel qui définit un
+système de stockage (ou SDS ou *Software-Defined Storage*). Plus précisément,
+RozoFS est un système de fichiers distribué (ou DFS pour *Distributed File
+System*), ce qui correspond à un DSS permettant d'interagir avec des fichiers.
+Notons que d'autres représentation de la donnée existent telles que la forme en
+blocs (interface proposée par les disques) ou en objets (interface au cœur du
+DFS Ceph\ \cite{weil2006osdi}).
+En particulier, il permet d'agréger l'espace disponible depuis un ensemble de
+supports de stockage. Cette agrégation est exposée à l'utilisateur sous la
+forme d'un volume de stockage organisé par une arborescence (fichiers et
+répertoire). En particulier, RozoFS est orienté pour les réseaux locaux (*LAN*)
+rapides (très haut débit, faible latence). Notre approche se distinguent alors
+des architectures pair-à-pair (ou P2P pour *Peer-to-Peer*) et du stockage sur
+réseaux étendus (*WAN*) de latences plus importantes.
+RozoFS correspond ainsi à une couche de virtualisation capable d'exploiter du
+matériel varié et bon marché. Cette solution est alors plus flexible et moins
+onéreuse. En particulier, RozoFS est un logiciel libre sous licence GNU
+GPLv2\footnote{Le projet GitHub de RozoFS se situe à l'adresse suivante :
+\url{https://github.com/rozofs/rozofs}} dans lequel il nous sera possible
+d'intégrer nos contributions.
 
 Afin de minimiser le redondance, relativement au second problème, nous nous
 intéresserons au codage à effacement. Le codage à effacement est une méthode
 qui permet de réduire considérablement la quantité de redondance générée par
 rapport aux techniques de réplication (typiquement d'un facteur
-$2$)\ \cite{weatherspoon2001iptps}. En particulier les codes optimaux (dits MDS
-pour *Maximum Distance Separable*) minimisent la quantité de redondance
-nécessaire pour protéger l'information. Les codes de \rs sont largement
-utilisés parce qu'ils sont MDS. Ils sont ainsi utilisés dans plusieurs DFS
-tels que CephFS\ \cite{weil2006osdi} ou DiskReduce\ \cite{fan2009pdsw}. Des
-fournisseurs de services en nuage tels que Microsoft Azure\ \cite{huang2012atc}
-ou Openstack avec Swift\ \cite{luse2014snia} l'utilisent également.
-L'utilisation des codes de \rs dans les systèmes de stockage s'est démocratisé
-avec le développement de bibliothèques qui en fournissent des implémentations.
-En particulier, Ceph et Swift ont intégré la bibliothèque ISA-L (*Intelligent
-Storage Acceleration Library*) d'\textcite{intel2015isal}.
+$2$)\ \cite{weatherspoon2001iptps,oggier2012icdcn,cook2014hitachi}. En
+particulier les codes optimaux (dits MDS pour *Maximum Distance Separable*)
+minimisent la quantité de redondance nécessaire pour protéger l'information.
+Les codes de \rs sont largement utilisés parce qu'ils sont
+MDS\ \cite{reed1960jsiam}. Ils sont ainsi utilisés dans plusieurs DFS tels que
+CephFS\ \cite{weil2006osdi} ou DiskReduce\footnote{DiskReduce est une
+modification de \emph{Hadoop Distributed File System} (HDFS) qui intègre les
+codes de \rs. HDFS est un DFS open-source basé sur \emph{Google File System}
+(GFS)\ \cite{ghemawat2003sosp}.} \cite{fan2009pdsw}.
+Des fournisseurs de services en nuage tels que Microsoft
+Azure\ \cite{huang2012atc} ou Openstack avec Swift\ \cite{luse2014snia}
+l'utilisent également. L'utilisation des codes de \rs dans les systèmes de
+stockage s'est démocratisé avec le développement de bibliothèques qui en
+fournissent des implémentations. En particulier, Ceph et Swift ont intégré la
+bibliothèque ISA-L (*Intelligent Storage Acceleration Library*)
+d'\textcite{intel2015isal}.
+
 <!-- %
 % autre attrait c'est repairing -->
 En revanche, les codes à effacement impliquent une complexité significative due
@@ -197,28 +220,26 @@ de décoder lorsqu'aucune panne ne survient.
 
 
 <!--
-Depuis quelques années, cette réduction du volume de données tolérant aux
-pannes a motivé plusieurs acteurs du monde du stockage à utiliser des codes à
-effacement. Parmi eux, on compte trois types d'acteurs : (i) des entreprises
-développant des solutions de stockage comme Cleversafe \cite{dhuse2010patent},
-NetApp \cite{storer2015patent} ou Streamscale \cite{anderson2014patent} ; (ii)
-plusieurs projets académiques se sont également développés comme OceanStore
-\cite{kubiatowicz2000sigplan} ou DiskReduce \cite{fan2009pdsw} ; (iii) et
-enfin, plusieurs acteurs majeurs s'y intéressent pour leurs service Cloud tels
-que Microsoft pour Azure \cite{huang2012atc}, OpenStack avec Swift
-\cite{luse2014snia} ou Amazon pour
-Glacier\footnote{https://aws.amazon.com/fr/glacier/}.
-
-Bien que de nombreux codes à effacement existent, la plupart de ces services
-utilisent les codes de \textcite{reed1960jsiam}. Ces codes sont devenu les plus
-populaires pour deux raisons : (i) leur capacité de correction peut être fixée
-arbitrairement ; (ii) leur rendement est optimal (pour une capacité de
-correction donnée, la quantité de redondance générée est minimale). En
-revanche la complexité ajoutée par les opérations d'encodage et de décodage des
-codes de \rs 
+%Depuis quelques années, cette réduction du volume de données tolérant aux
+%pannes a motivé plusieurs acteurs du monde du stockage à utiliser des codes à
+%effacement. Parmi eux, on compte trois types d'acteurs : (i) des entreprises
+%développant des solutions de stockage comme Cleversafe \cite{dhuse2010patent},
+%NetApp \cite{storer2015patent} ou Streamscale \cite{anderson2014patent} ; (ii)
+%plusieurs projets académiques se sont également développés comme OceanStore
+%\cite{kubiatowicz2000sigplan} ou DiskReduce \cite{fan2009pdsw} ; (iii) et
+%enfin, plusieurs acteurs majeurs s'y intéressent pour leurs service Cloud tels
+%que Microsoft pour Azure \cite{huang2012atc}, OpenStack avec Swift
+%\cite{luse2014snia} ou Amazon pour
+%Glacier\footnote{https://aws.amazon.com/fr/glacier/}.
+%
+%Bien que de nombreux codes à effacement existent, la plupart de ces services
+%utilisent les codes de \textcite{reed1960jsiam}. Ces codes sont devenu les plus
+%populaires pour deux raisons : (i) leur capacité de correction peut être fixée
+%arbitrairement ; (ii) leur rendement est optimal (pour une capacité de
+%correction donnée, la quantité de redondance générée est minimale). En
+%revanche la complexité ajoutée par les opérations d'encodage et de décodage des
+%codes de \rs 
 -->
-
-% manque une partie sur la maintenance
 
 
 \section*{Notre proposition}
@@ -226,14 +247,17 @@ codes de \rs
 \addcontentsline{toc}{section}{Notre proposition}
 
 Nous avons vu précédemment que la complexité des codes à effacement limite leur
-utilisation. Dans nos travaux de thèse nous proposons d'intégrer dans RozoFS un
-code à effacement qui répond aux objectifs suivants : 
+utilisation dans les DSS. Dans nos travaux de thèse nous proposons d'intégrer
+dans RozoFS, un code à effacement qui répond aux objectifs suivants :
 
-1. un code MDS;
+1. un code MDS afin de minimiser la quantité de redondance, qui travaille sur
+des blocs de données de taille fixe (code bloc);
 
 2. dont les algorithmes d'encodage et de décodage sont de faibles complexités.
-En particulier, une comparaison basée sur les latences de ces opérations, avec
-les code de \rs, permettra de positionner notre code;
+En particulier, nous considérerons des algorithmes construits sur des
+applications linéaires (codes linéaires). Une comparaison basée sur les
+latences de ces opérations avec notre code de référence (les code de \rs),
+permettra de positionner notre code;
 
 3. et qui dispose d'algorithmes adaptés au problème de réparation.
 
@@ -245,8 +269,8 @@ Cette proposition est motivée pour les raisons suivantes : (i) tout d'abord,
 ces transformées permettent une représentation redondante de l'information
 (caractéristique essentielle pour concevoir un code à effacement); (ii) de
 plus, de nombreuses publications proposent des algorithmes de représentation et
-d'inversion efficaces. Enfin, ces transformées ont déjà fait
-l'objet de publications dans le contexte de codage.
+d'inversion efficaces. Enfin, ces transformées ont déjà fait l'objet de
+publications dans le contexte de codage.
 
 Nous verrons que ces deux versions permettent de concevoir des codes à
 effacement qui disposent de propriétés différentes. Notre étude se concentrera
@@ -255,8 +279,8 @@ est justifié par la faible complexité des algorithmes d'encodage et de décoda
 conçus pour ce code. En particulier, l'algorithme de décodage itératif proposé
 par \textcite{normand2006dgci} permet de reconstruire un symbole avec une
 complexité linéaire. Cette faible complexité nécessite cependant que le
-ne soit que quasi-MDS \cite{parrein2001phd}. Nous montrerons cependant des
-méthodes afin de se rapprocher d'un code optimal.
+soit quasi-MDS (sous optimal)\ \cite{parrein2001phd}. Nous montrerons cependant
+des méthodes afin de se rapprocher d'un code optimal.
 
 
 \section*{Contributions}
@@ -265,16 +289,18 @@ méthodes afin de se rapprocher d'un code optimal.
 
 Nos travaux de thèse ont ainsi conduits à deux contributions principales :
 
-1. Conception d'une version systématique du code à effacement basé sur la
-transformée Mojette. De cette contribution découlent deux sous-contributions : 
+1. la conception d'une version systématique du code à effacement basé sur la
+transformée Mojette. De cette contribution découlent quatre sous-contributions : 
 
-    1. Comparaison théorique avec les codes de \rs;
+    1. une proposition de critère permettant d'évaluer les codes;
 
-    2. Implémentation de cette méthode et évaluation;
+    2. une comparaison théorique avec les codes de \rs;
 
-    3. Intégration de cette méthode dans RozoFS
+    3. une implémentation de cette méthode et son évaluation;
 
-2. Conception d'une méthode pour ré-encoder de la redondance. En particulier
+    4. l'intégration de cette méthode dans RozoFS;
+
+2. la conception d'une méthode pour ré-encoder de la redondance. En particulier
 cette méthode peut être distribuée à l'ensemble des supports de stockage
 participant au ré-encodage. L'avantage de cette technique est de ne pas
 reconstruire explicitement l'information initiale.
@@ -284,28 +310,29 @@ reconstruire explicitement l'information initiale.
 
 \addcontentsline{toc}{section}{Plan}
 
-Les travaux de cette thèse sont organisés en deux parties. Chaque partie
-comporte trois chapitres. La première partie mêle théorie de l'information et
-géométrie discrète afin de concevoir un code à effacement basé sur une version
-discrète de la transformée de \radon. En particulier, il conduit à
-l'élaboration de notre première contribution : le code à effacement Mojette
-sous sa forme systématique. Les trois chapitres qui le composent présentent les
-éléments suivants :
+Les travaux de cette thèse sont organisés en deux parties qui comportent
+chacune trois chapitres. La première partie utilise conjointement théorie de
+l'information et géométrie discrète afin de concevoir un code à effacement basé
+sur une version discrète de la transformée de \radon. En particulier, cette
+partie conduit à l'élaboration de notre première contribution : le code à
+effacement Mojette sous sa forme systématique. Les éléments abordés dans cette
+partie touchent l'ensemble des applications de transmission de données. Les
+trois chapitres qui le composent présentent les éléments suivants :
 
-1. Dans le \cref{sec.chap1}, nous introduirons des notions de la théorie de
+1. Dans le \cref{sec.chap1}, nous introduisons des notions de la théorie de
 l'information nécessaires afin d'établir un état de l'art des codes à
 effacement. Ces notions vont permettre de présenter les principes des codes
 correcteurs appliqués au canal à effacement. Nous verrons ainsi quelques
-exemples qui représentent les grandes familles de codes à effacement.
+exemples qui représentent les grandes familles de codes à effacement (codes MDS
+et non-MDS).
 
 2. Le \cref{sec.chap2} introduit la transformée de \radon. Ce chapitre utilise
 conjointement la géométrie discrète et la théorie des codes. La géométrie
 discrète permettra de définir deux versions discrètes de la transformée de
 \radon : la FRT et la transformée Mojette. La théorie des codes sera nécessaire
 pour concevoir et comprendre les propriétés des codes à effacement basés sur
-ces transformées. Nous verrons ainsi que la FRT donne un code au rendement
-optimale, tandis que la transformée Mojette dispose d'un algorithme de décodage
-itératif efficace.
+ces transformées. Nous verrons ainsi que la FRT donne un code MDS, tandis que
+la transformée Mojette dispose d'un algorithme de décodage itératif efficace.
 
 3. La première contribution est énoncée dans le \cref{sec.chap3}. Cette
 contribution est une nouvelle conception du code à effacement Mojette sous sa
@@ -317,30 +344,29 @@ forme par rapport à la version classique et au cas optimal. Cette évaluation
 permet de mettre en évidence le rendement quasi optimal de notre conception.
 
 \noindent La première partie ayant permis la conception du code à effacement
-Mojette, la seconde partie s'intéresse à son intégration dans le contexte du
-système de stockage distribué. Dans cette partie, les deux premiers chapitres
-mettent en avant les performances du code à effacement Mojette dans ce
-contexte. La troisième partie s'articule autour de notre deuxième contribution
-sur la maintenance du système de stockage. Plus particulièrement, les
-différents chapitres comportent les éléments suivants :
+Mojette, la seconde partie s'intéresse à son intégration dans le contexte des
+systèmes de stockage distribués. Dans cette partie, les deux premiers chapitres
+mettent en avant l'utilisation du code à effacement Mojette dans une
+architecture de stockage distribué, puis spécifiquement dans RozoFS. Le
+troisième chapitre tente de répondre au problème de réparation. Plus
+particulièrement, les différents chapitres comportent les éléments suivants :
 
 1. Le \cref{sec.chap4} présente une analyse théorique et expérimentale des
 performances du code Mojette dans le contexte du stockage distribué. Les
-métriques utilisées (nombres d'opérations à l'encodage, décodage et mise à
-jour de blocs de données) mettent en avant la simplicité algorithmique du code
-Mojette par rapport à d'autres codes (codes de \rs et *Array*).
-En particulier, une mesure des performances en encodage et décodage des
+métriques utilisées (nombres d'opérations à l'encodage et au décodage, nombre
+de blocs impacté par la mise à jour de données) mettent en avant la simplicité
+algorithmique du code Mojette par rapport à d'autres codes (e.g. codes de \rs).
+En particulier, une mesure des latences en encodage et décodage des
 implémentations du code Mojette est donnée. Dans les conditions de nos tests,
 notre nouvelle conception systématique permet de réduire par trois les temps
-d'encodage par rapport à la forme classique. De plus, elle permet d'atteindre
-des performances optimales en lecture (dans le cas où aucune panne ne
-survient). En particulier, ces mesures montrent également que notre
-implémentation est plus performante que l'implémentation des codes de \rs
-développée par \intel.
+d'encodage par rapport à la forme classique. De plus, aucun décodage n'est
+nécessaire en lecture, dans le cas où aucune panne ne survient. En particulier,
+ces mesures montrent également que notre implémentation est plus performante
+que l'implémentation des codes de \rs fournit dans ISA-L.
 
 2. La mise en œuvre et l'intégration du code à effacement Mojette dans le
-système de fichiers distribué RozoFS est expliquée dans le \cref{sec.chap5}. En
-particulier, une évaluation menée sur la plate-forme GRID-5000 permet de
+système de fichiers distribué RozoFS est expliquée dans le \cref{sec.chap5}.
+Une évaluation menée sur la plate-forme GRID-5000 permet de
 montrer que dans le cadre de nos tests, RozoFS est capable de fournir de
 meilleures performances que des systèmes basés sur de la réplication, tout en
 réduisant d'un facteur $2$ le volume total stocké.
@@ -364,12 +390,18 @@ recherche.
 Dans le cadre d'une convention CIFRE, ces travaux de recherche ont été menés
 conjointement au sein de l'équipe Image et Vidéo Communications (IVC) de
 l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
-et au sein de l'entreprise Rozo Systems. En conséquence, ces travaux mêlent
-aspects théoriques et mesures de mises en œuvres. Une intention particulière a
+et au sein de l'entreprise Rozo Systems. En conséquence, ces travaux
+contiennent à la fois des aspects théoriques et des aspects pratiques tels que
+la mesures des implémentations réalisées. Une intention particulière a
 ainsi été portée sur les implémentations réalisées et intégrées dans le
 système de fichiers distribué RozoFS, développé par l'entreprise. C'est
 pourquoi, un intérêt a été porté sur les performances fournies par nos
 implémentations.
 
-% FEC4Cloud + montage et configuration de la plate-forme
+Une partie de ce travail de recherche a également été financé par le projet
+ANR FEC4Cloud. Ce projet a pour objectifs d'analyser et de concevoir des codes
+à effacement pour le stockage distribué. En particulier, le montage et la
+configuration de la plate-forme FEC4Cloud a permis de réaliser la plupart des
+évaluations de nos travaux. Les partenaires de ce projet sont l’IRCCyN
+(coordinateur), l’ISAE et la SATT Ouest Valorisation.
 
