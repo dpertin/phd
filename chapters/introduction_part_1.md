@@ -3,56 +3,84 @@
 
 \addstarredchapter{Introduction de la partie}
 
-La théorie des codes traite des méthodes qui permettent de représenter
-l'information sous une forme qui lui permettent d'être transmise de manière
-fiable. Cette théorie remonte à 1948 avec les travaux de \shannon. On raconte
-que pendant ses travaux sur l'étude de la langue, il s'amusait à retirer
-une partie des lettres d'un message\footnote{\emph{En l'bsnce de crtaines
-letres, le mssage rste lisibl}} et montrait que le message pouvait toujours
-être lu. Ces lettres sont alors «\ redondantes\ ». La détermination de la
-quantité de redondance d'un message fait partie de la théorie de l'information
-dont découle la théorie des codes. Les codes sont notamment utilisés dans la
-compression, le chiffrement et la correction de l'information. Dans le cas de
-la correction de l'information, cette théorie a été utilisée dans de nombreux
-champs d'applications. Les codes correcteurs sont par exemple présents dans les
-supports de stockage optiques (CD, DVD) afin de supporter les rayures, dans les
-code-barres comme le code QR, ou encore dans les télécommunications avec des
-engins spatiaux (comme la sonde *Voyager*). Nous nous intéressons en
-particulier au cas des codes linéaires dont les opérations sont généralement
-décrites par une approche algébrique.
+Les communications utilisées dans les systèmes de communications (tels qu'en
+stockage de l'information) reposent sur des éléments qui ne sont pas fiables.
+En particulier, les pannes dans de tels systèmes sont
+inévitables\ \cite{ford2010osdi}.
+Les canaux de communication ne sont ainsi pas sûrs, et l'information peut être
+altérée ou perdue durant la transmission. En conséquence, des techniques
+doivent être mises en œuvre pour rendre une transmission fiable sur un canal
+instable (relatif au problème $2$ posé en introduction générale). Cette partie
+s'intéresse ainsi à l'élaboration de méthodes efficaces afin de répondre à ce
+problème. Cette efficacité met en jeu les latences de la méthode proposée,
+ainsi que sa capacité de correction. Pour cela, nous proposons d'étudier des
+versions discrètes de la transformation de \radon, appliquées aux codes
+correcteurs d'erreur.
+Cette partie se compose de trois chapitres dans lesquelles nous allons voir
+les éléments suivants :
 
-La transformée de \radon est une application permettant de représenter une
-information par un ensemble de projections. Cette application est notamment
-utilisée en tomographie discrète afin d'obtenir une version numérique d'un
-objet. En particulier, nous nous intéressons à la transformée de \radon finie
-(FRT) et à la transformée Mojette. Ces transformées sont des version discrètes
-et exactes de la transformée de \radon. En particulier, elles permettent de
-représenter l'information de manière redondante.
+1. le \cref{sec.chap1} définira des notions de théorie de codes correcteurs à
+travers l'étude des travaux fondamentaux de \textcite{shannon1948bstj}. Notre
+étude s'intéressera en particulier aux codes linéaires en bloc. Ces notions
+seront nécessaires à la compréhension des codes à effacement, qui permettent de
+répondre au problème de la fiabilité d'une transmission dans le cas
+d'effacement de l'information sur le canal. Nous donnerons des critères
+permettant de distinguer les différents codes à effacement. Une analyse de
+différents codes (dont notre référence, les codes de \textcite{reed1960jsiam})
+permettra de mettre en avant les défauts de chacun;
 
-Dans cette première partie, nous proposons d'étudier conjointement la théorie
-des codes et des transformées discrètes. Notre motivation repose sur la
-conception d'un code à effacement à partir des représentation redondante
-fournies par les versions discrète de la transformée de \radon. Pour cela, les
-éléments suivants seront détaillés :
+2. le \cref{sec.chap2} portera sur notre proposition d'utiliser conjointement
+transformée discrète et théorie des codes. Nous verrons en particulier deux
+versions discrètes de la transformation de \textcite{radon1917akad} qui
+permettent de représenter de manière redondante l'information. En conséquence,
+nous verrons que la FRT fournit un code MDS, tandis que le code à effacement
+Mojette dispose d'un algorithme de reconstruction itératif efficace, basé sur
+l'algorithme de \textcite{normand2006dgci};
 
-1. Le \cref{sec.chap1} introduit des notions de théorie de codes nécessaires à
-la compréhension des codes à effacement, et à leurs caractéristiques. Nous
-verrons en particulier les codes de \rs et les codes LDPC qui représentent deux
-familles de codes largement utilisées.
+3. le \cref{sec.chap3} décrira notre première contribution. Nous y présenterons
+la construction d'une version systématique du code à effacement Mojette, ainsi
+qu'un algorithme de décodage adaptée à cette construction.
+Cet algorithme, basé sur celui de \textcite{normand2006dgci}, permet un
+décodage itératif efficace (en nombre d'opérations). De plus, bien qu'elle ne
+permet pas de fournir un code MDS, cette construction permet de se rapprocher
+de cette optimale. Cette contribution est alors une proposition de solution au
+second problème présenté dans l'introduction générale.
 
-2. Cette compréhension des codes nous serons utile pour concevoir des codes par
-transformée discrète. Dans le \cref{sec.chap2}, nous discrétiserons la
-transformée de \radon pour former deux transformées discrètes capable de
-représenter l'information de manière redondante. En particulier, chacune
-possède un avantage : la FRT permet de fournir un code au rendement optimal,
-tandis que la transformée Mojette utilise un algorithme de reconstruction
-itératif efficace.
 
-3. Le code à effacement Mojette sera au cœur de notre première contribution. Le
-\cref{sec.chap3} contient la construction d'une version systématique du code à
-effacement Mojette. Il fournit également un algorithme de décodage adaptée à
-cette construction. Nous verrons que cette contribution offre un code dont
-l'algorithme de décodage est efficace, et dont le rendement tend davantage vers
-l'optimal. La réduction de la quantité de redondance par rapport à la version
-classique est également évaluée.
-
+<!--
+%shannon a donné naissance en $1940$ à la théorie de l'information, dont
+%l'objectif est de fournir une formulation mathématique des systèmes de
+%communication\ \cite{shannon1948bstj}. Dans ses travaux sur l'étude de la
+%langue, \shannon retirait une partie des lettres d'un message et montrait que
+%le message pouvait toujours être lu\footnote{\emph{En l'bsnce de crtaines
+%letres, le mssage rste lisibl}}\ \cite[chap~7]{shannon1948bstj}.
+%Ces lettres ne sont alors pas nécessaire pour lire le message, et elles forment
+%alors une partie redondante du message. La formulation de la quantité de
+%redondance d'un message. Cette redondance est liée à la notion d'entropie qui
+%détermine la quantité d'information délivrée.
+%Le codage de l'information est une branche de la théorie de l'information. Il
+%permet d'exploiter cette formulation dans les applications de compression, de
+%chiffrement et de correction d'information. Dans nos travaux nous nous
+%intéresserons à la correction de l'information par des codes correcteurs. Les
+%codes correcteurs sont par exemple présents dans les supports de stockage
+%optiques (CD, DVD) afin de supporter les rayures, dans les code-barres comme le
+%code QR, ou encore dans les télécommunications avec des engins spatiaux (comme
+%la sonde *Voyager*). Nous nous intéressons en particulier au cas des codes
+%linéaires en bloc.
+%
+%
+%Notre motivation repose sur la
+%conception d'un code à effacement à partir des représentations redondantes
+%fournies par les versions discrète de la transformée de \radon. Pour cela, les
+%éléments suivants seront détaillés :
+%
+%
+%
+%La transformation de \radon est une application permettant de représenter une
+%information par un ensemble de projections. Cette application est notamment
+%utilisée en tomographie discrète afin d'obtenir une version numérique d'un
+%objet. Nous définirons deux versions discrètes de cette transformation :
+%la transformée de \radon finie (FRT) et à la transformée Mojette. Ces
+%transformées sont des versions discrètes et exactes de la transformée de
+%\radon. 
+-->
