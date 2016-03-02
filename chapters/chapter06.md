@@ -1,7 +1,7 @@
 
 %\chapter{Calcul distribué de nouveaux mots encodés}
 
-\chapter{Nouvelle méthode distribuée de reprojection}
+\chapter{Méthode distribuée de reprojection}
 
 \label{sec.chap6}
 
@@ -9,82 +9,138 @@
 
 \newpage
 
+\section*{Introduction du chapitre}
 
-\section*{Introduction}
-
-Nous avons vu dans les chapitres précédents qu'une représentation redondante de
-la donnée est nécessaire en télécommunications (e.g.\ transmission d'information
-ou systèmes de stockage) afin de fournir de la fiabilité dans des systèmes
-subissant des pannes. Ces pannes provenant par des pertes de paquet, des pannes
-disques, ou l'indisponibilité de serveurs par exemple.
-Dans le cas du code à effacement Mojette non-systématique, la perte d'un
-sous-ensemble de projections est contrebalancée par la présence de redondance
-contenue dans les projections supplémentaires calculées lors de l'opération de
-transformée. Une fois les projections calculées, on considère que l'image
-n'est accessible que par reconstruction. C'est le cas par exemple dans les
-applications de stockage distribué où l'image n'est utilisée que lors de la
-génération des projections. Une fois calculées, les projections sont
-distribuées et stockées sur différents supports de stockage.
-
-Dans ce contexte, il peut être nécessaire de calculer de nouvelles projections
-dans deux situations. Premièrement, les projections peuvent être définitivement
-perdues. C'est le cas lorsque qu'un support de stockage subit une panne
-permanente par exemple. Il est alors nécessaire de calculer et de distribuer de
-nouvelles projections afin de rétablir la tolérance aux pannes du système.
-Dans une autre mesure, il peut être désiré d'augmenter la tolérance aux pannes
-d'un système. C'est le cas en télécommunication lorsqu'on sait que
-l'information traverse un canal fortement bruité. Dans ce cas, il peut être
-nécessaire de calculer de nouvelles projections.
+\addcontentsline{toc}{section}{Introduction du chapitre}
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=.8\columnwidth]
-    {img/reprojection_pb2.pdf}
+    \def\svgwidth{.7\textwidth}
+    \includesvg{img/reprojection_pbx}
+    %\includegraphics[width=.8\columnwidth]
+    %{img/reprojection_pb3.pdf}
     \caption{Représentation du problème de reprojection. Il s'agit de calculer
-    les valeur d'une nouvelle projection (en rouge) suivant la direction
-    $(2,1)$ à partir d'un ensemble de projections (en bleu) suffisant.
-    Classiquement, cela nécessite de reconstruire la grille et de reprojeter
-    les valeurs de l'image suivant la nouvelle direction.}
+    les valeurs d'une nouvelle projection suivant la direction $(2,1)$ à partir
+    d'un ensemble de projections suffisant, sans reconstruire la grille
+    initiale.}
   \label{fig.reprojection.pb}
 \end{figure}
 
-La stratégie classique pour calculer de nouvelles projections à partir d'un
-ensemble existant consiste à reconstruire l'image et à la reprojeter suivant la
-direction voulue. Bien que simple à mettre en pratique, cette technique
-nécessite de reconstruire explicitement l'image. Cette méthode est illustrée
-dans la \cref{fig.reprojection.pb} qui présente l'exemple que nous allons
-étudié tout au long de ce chapitre. Notons que pour faciliter la lecture des
-schémas dans la suite du chapitre, toutes les opérations sont réalisées modulo
-$6$ (le choix de cette valeur est strictement arbitraire). Ainsi l'image peut
-être accessible par le nœud de reconstruction, ce qui n'est pas toujours voulu.
-C'est le cas lorsque l'on utilise la Mojette non-systématique comme base pour
-faire de la dispersion d'information \cite{rabin1989jacm}. Dans cette
-application, on ne désire pas que les nœuds de stockage puisse accéder à
-l'information utilisateur.
-\textcite{guedon2012spie} ont par exemple utilisé RozoFS pour distribuer des
-données sensibles (i.e.\ des documents médicaux) sur des plates-formes Cloud
-privées : *Amazon S3*, *Google Cloud Storage* et *Rackspace Cloud Files*.
-L'objectif de cette étude est le suivant. En considérant qu'une projection
-seule ne peut permettre à un fournisseur de stockage d'avoir d'information sur
-la donnée, il serait nécessaire à $k$ plates-formes Cloud de partager leurs
-informations pour reconstruire la donnée. Dans le cas de la reprojection, c'est
-exactement ce qui est réalisé.
+Les chapitres précédents ont permis de présenter le fonctionnement du code à
+effacement Mojette dans un système de stockage distribué tel que RozoFS. Les
+travaux que nous allons présenté dans ce chapitre utilisent le code Mojette
+sous sa forme non-systématique.
+On rappelle que dans ce cas, l'écriture entraîne la distribution de $n$
+projections sur différents supports de stockage. Ces projections représentent
+de manière redondante une information contenue dans une grille de hauteur $k$,
+tel que $k<n$. Pour la reconstruction, on se base sur le critère de \katz. Il
+permet de garantir qu'un ensemble de $(n-k)$ projections constitue un ensemble
+suffisant pour reconstruire la grille.
 
-Dans ce chapitre, on va s'intéresser à une nouvelle technique pour générer de
-nouvelles projections. En particulier cette nouvelle méthode n'a pas besoin de
-reconstruire explicitement l'image. Dans l'approche classique, le calcul de
-reprojection est centralisé et réalisé par le nœud en reconstruction.
-Nous verrons que cette nouvelle technique permet de distribuer l'opération de
-reprojection sur l'ensemble des nœuds qui participent à la reconstruction.
-En particulier, nous verrons dans la
-\cref{sec.reprojection.sans.reconstruction} cette nouvelle méthode de
-reprojection basée sur la décomposition du processus de reconstruction, et sur
-la définition des fantômes. La \cref{sec.eval.reproj} s'intéressera à
-l'évaluation de cette nouvelle technique. Nous verrons en particulier qu'elle
-permet de diviser par deux le temps nécessaire à cette opération.
+Bien que le système soit capable de supporter $(n-k)$ pannes, chaque panne qui
+engendre la perte d'un support de stockage, entraîne également la perte d'une
+projection. En conséquence, la quantité de redondance diminue avec le nombre de
+panne. Cette baisse de la redondance constitue le problème principal abordé
+dans ce chapitre. Il est alors nécessaire de fournir un moyen pour rétablir un
+seuil de redondance arbitraire. Pour cela, il faut réencoder des données de
+redondance et les stocker de manière distribuée sur différents supports de
+stockage.
+
+Du point de vue de la transformée Mojette, le problème est illustré dans la
+\cref{fig.reprojection.pb}. Cet exemple met en jeu trois projections suivant
+les directions $(p,q)$ de l'ensemble $\{(-1,1),(0,1),(1,1)\}$, calculées à
+partir d'une image de hauteur $3$. Le problème que l'on cherche à résoudre
+consiste à déterminer les valeurs d'une nouvelle projection (ici suivant la
+direction $(2,1)$) à partir de cet ensemble suffisant. Nous appelons
+cette opération une «\ reprojection\ ». Une approche peu performante de
+résolution de ce problème consiste à reconstruire la grille à partir des
+projections, avant de projeter les valeurs reconstruites vers la direction
+voulue.
+
+Pour répondre à ce problème, nous proposerons une méthode de reprojection
+distribuée, sans reconstruction de l'information initiale. Cette méthode sera
+détaillée dans la \cref{sec.reprojection.sans.reconstruction}. Une évaluation
+de cette technique est proposée dans la \cref{sec.eval.reproj} afin de mettre en
+avant le gain de latence dû à la distribution des calculs de reprojection. La
+\cref{sec.applications.reproj} détaille trois applications qui découlent de
+cette technique.
+
+% + application / discussion
+
+<!--
+%Nous avons vu dans les chapitres précédents qu'une représentation redondante de
+%la donnée est nécessaire en télécommunications (e.g.\ transmission d'information
+%ou systèmes de stockage) afin de fournir de la fiabilité dans des systèmes
+%subissant des pannes. Ces pannes provenant par des pertes de paquet, des pannes
+%disques, ou l'indisponibilité de serveurs par exemple.
+%Dans le cas du code à effacement Mojette non-systématique, la perte d'un
+%sous-ensemble de projections est contrebalancée par la présence de redondance
+%contenue dans les projections supplémentaires calculées lors de l'opération de
+%transformée. Une fois les projections calculées, on considère que l'image
+%n'est accessible que par reconstruction. C'est le cas par exemple dans les
+%applications de stockage distribué où l'image n'est utilisée que lors de la
+%génération des projections. Une fois calculées, les projections sont
+%distribuées et stockées sur différents supports de stockage.
+%
+%Dans ce contexte, il peut être nécessaire de calculer de nouvelles projections
+%dans deux situations. Premièrement, les projections peuvent être définitivement
+%perdues. C'est le cas lorsque qu'un support de stockage subit une panne
+%permanente par exemple. Il est alors nécessaire de calculer et de distribuer de
+%nouvelles projections afin de rétablir la tolérance aux pannes du système.
+%Dans une autre mesure, il peut être désiré d'augmenter la tolérance aux pannes
+%d'un système. C'est le cas en télécommunication lorsqu'on sait que
+%l'information traverse un canal fortement bruité. Dans ce cas, il peut être
+%nécessaire de calculer de nouvelles projections.
+%
+%La stratégie classique pour calculer de nouvelles projections à partir d'un
+%ensemble existant consiste à reconstruire l'image et à la reprojeter suivant la
+%direction voulue. Bien que simple à mettre en pratique, cette technique
+%nécessite de reconstruire explicitement l'image. Cette méthode est illustrée
+%dans la \cref{fig.reprojection.pb} qui présente l'exemple que nous allons
+%étudié tout au long de ce chapitre. Notons que pour faciliter la lecture des
+%schémas dans la suite du chapitre, toutes les opérations sont réalisées modulo
+%$6$ (le choix de cette valeur est strictement arbitraire). Ainsi l'image peut
+%être accessible par le nœud de reconstruction, ce qui n'est pas toujours voulu.
+%C'est le cas lorsque l'on utilise la Mojette non-systématique comme base pour
+%faire de la dispersion d'information \cite{rabin1989jacm}. Dans cette
+%application, on ne désire pas que les nœuds de stockage puisse accéder à
+%l'information utilisateur.
+%\textcite{guedon2012spie} ont par exemple utilisé RozoFS pour distribuer des
+%données sensibles (i.e.\ des documents médicaux) sur des plates-formes Cloud
+%privées : *Amazon S3*, *Google Cloud Storage* et *Rackspace Cloud Files*.
+%L'objectif de cette étude est le suivant. En considérant qu'une projection
+%seule ne peut permettre à un fournisseur de stockage d'avoir d'information sur
+%la donnée, il serait nécessaire à $k$ plates-formes Cloud de partager leurs
+%informations pour reconstruire la donnée. Dans le cas de la reprojection, c'est
+%exactement ce qui est réalisé.
+%
+%Dans ce chapitre, on va s'intéresser à une nouvelle technique pour générer de
+%nouvelles projections. En particulier cette nouvelle méthode n'a pas besoin de
+%reconstruire explicitement l'image. Dans l'approche classique, le calcul de
+%reprojection est centralisé et réalisé par le nœud en reconstruction.
+%Nous verrons que cette nouvelle technique permet de distribuer l'opération de
+%reprojection sur l'ensemble des nœuds qui participent à la reconstruction.
+%En particulier, nous verrons dans la
+%\cref{sec.reprojection.sans.reconstruction} cette nouvelle méthode de
+%reprojection basée sur la décomposition du processus de reconstruction, et sur
+%la définition des fantômes. La \cref{sec.eval.reproj} s'intéressera à
+%l'évaluation de cette nouvelle technique. Nous verrons en particulier qu'elle
+%permet de diviser par deux le temps nécessaire à cette opération.
+-->
 
 
 # Reprojection sans reconstruction {#sec.reprojection.sans.reconstruction}
+
+\begin{figure}[t]
+  \centering
+    \def\svgwidth{.7\textwidth}
+    \includesvg{img/part_image2}
+    \caption{Reconstruction partielle d'une grille $3 \times 3$ à partir de
+    la projection suivant la direction $(0,1)$. On utilise l'algorithme de
+    \textcite{normand2006dgci} pour la reconstruction.
+    Les opérations sont réalisées modulo $6$.}
+  \label{fig.part_image}
+\end{figure}
 
 Dans cette section, nous présentons la nouvelle méthode pour reprojeter de
 l'information. La \cref{sec.reconstruction.partielle} définit les notions
@@ -95,25 +151,13 @@ de simples opérations de convolution et de déconvolution 1D. Ces opérations
 permettent en conséquence de reprojeter les informations sans avoir à
 reconstruire explicitement l'image. Enfin, une nouvelle représentation des
 opérations est proposée dans la \cref{sec.simplification.operations}. Cette
-représentation décompose les opérations de notre algorithme afin de simplifier
-certains calculs.
-
+représentation permet de décomposer les opérations de notre algorithme afin de
+simplifier les calculs.
 
 
 ## Reconstruction partielle {#sec.reconstruction.partielle}
 
 \label{sec.dec.rec}
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=.8\columnwidth]
-    {img/part_image.pdf}
-    \caption{Reconstruction partielle d'une grille $3 \times 3$ à partir de
-    la projection suivant la direction $(0,1)$. On utilise l'algorithme de
-    \textcite{normand2006dgci} pour la reconstruction.
-    Les opérations sont réalisées modulo $6$.}
-  \label{fig.part_image}
-\end{figure}
 
 %http://tex.stackexchange.com/questions/19017/how-to-place-a-table-on-a-new-page-with-landscape-orientation-without-clearing-t
 \afterpage{%
@@ -136,27 +180,27 @@ certains calculs.
     %    \clearpage% Flush page
 }
 Soit $S$ un ensemble de $Q$ directions de projection de la forme $(p_i,
-q_i=1)$. Alors la somme $\sum q_i=Q$ et selon \cref{eqn.katz}, toute image
+q_i=1)$. En conséquence $\sum q_i=Q$ et selon le critère de \katz, toute image
 $P \times Q$ peut être reconstruite de manière unique par l'ensemble des
 projections de directions dans $S$.
 Si $R$ est un sous-ensemble non vide de $S$, alors une reconstruction partielle
 est le processus qui reconstruit une image $f_S^R$ depuis un ensemble de
 projections de directions dans $R$ (i.e.\ invalidant le critère de
-\cref{eqn.katz} si $R\subsetneq S$). Cette reconstruction considère que les
+\katz si $R\subsetneq S$). Cette reconstruction considère que les
 informations des autres projections sont nulles, c'est à dire pour l'ensemble
 des projections de directions $S \setminus R$. La \cref{fig.part_image} illustre
 la reconstruction partielle d'une image à partir la projection $(0,1)$ calculée
 depuis la \cref{fig.reprojection.pb}. Il est cependant nécessaire de considérer
 un ensemble de projections suffisant pour la reconstruction. Puisque l'on ne
-connait pas la valeur des autres projections en jeu (de direction $(-1,1)$
-et $(1,1)$), on considère qu'elles sont nulles. Pour la reconstruction, on
-utilisera par exemple l'algorithme de \textcite{normand2006dgci}.
-En particulier, si l'ensemble des directions des projections utilisées forme
-une partition $\mathcal{P}(S)$, alors par linéarité :
+connait que les directions des autres projections en jeu (i.e.\ $(-1,1)$
+et $(1,1)$), on considère que la valeur des éléments de ces projections est
+nulle. Pour la reconstruction, l'algorithme de \textcite{normand2006dgci} peut
+être utilisé. En particulier, si l'ensemble des directions des projections
+utilisées forme une partition $\mathcal{P}(S)$ (i.e.\ $\bigcup_{R_i \in
+\mathcal{P}(S)} R_i = S$), alors par linéarité :
 
 \begin{equation}
-    f=\sum_{i} f_S^{R_i}, 
-        \text{ si } \bigcup_{R_i \in \mathcal{P}(S)} R_i = S\;.
+    f=\sum_{i} f_S^{R_i}\;.
     \label{eqn.somme_image}
 \end{equation}
 
@@ -193,7 +237,7 @@ calculées en dehors de la grille $3 \times 3$ valent $0$. La dernière
 considération consiste à calculer les projections $M_{(2,1)}f_S^{\{(0,1)\}}$,
 $M_{(2,1)}f_S^{\{(1,1)\}}$, $M_{(2,1)}f_S^{\{(-1,1)\}}$ de chaque image obtenue
 suivant la nouvelle direction $(2,1)$. On observe bien que la somme des valeurs
-de ces projections correspond à la valuer de $M_{(2,1)}f$.  Bien que la
+de ces projections correspond à la valeur de $M_{(2,1)}f$.  Bien que la
 reconstruction de l'image originale est de taille infinie, la partie en dehors
 de la grille $3 \times 3$ vaut zéro est peut donc être tronquée. La prochaine
 section présente une technique équivalente qui permet d'éviter la
@@ -201,7 +245,7 @@ reconstruction 2D des images.
 
 
 
-## Reconstruction par Convolutions 1D {#sec.conv}
+## Reconstruction par convolutions 1D {#sec.conv}
 
 Dans cette section, nous utiliserons la définition des fantômes afin de définir
 l'opération de reprojection à travers des opérations de convolution $1$D.
@@ -226,17 +270,19 @@ Un fantôme suivant la direction $(p,q)$ est défini ainsi :
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/fantomes}
+    \includesvg{img/fantomes2}
     \caption{Représentation de quatre fantômes élémentaires. Chaque fantôme est
-    défini suivant une direction de l'ensemble $\{(0,1),(1,1),(-1,1),(2,1)\}$.}
+    défini suivant une direction $(p,q)$ appartenant à l'ensemble
+    $\{(0,1),(1,1),(-1,1),(2,1)\}$.  Par définition, la somme des valeurs de
+    l'image suivant la direction du fantôme est nulle.}
     \label{fig.fantomes}
 \end{figure}
 
-\noindent La \cref{fig.fantomes} représente quatre fantômes suivant chaque
-direction de l'ensemble $\{(0,1),(1,1),(-1,1),(2,1)\}$. En particulier, il est
-possible de construire un fantôme composé $\ghost{(p,q)}$ à partir de fantômes
-élémentaires. Pour cela, l'opérateur de convolution 2D $*$ est utilisé ainsi :
-
+\noindent La \cref{fig.fantomes} représente quatre fantômes élémentaire
+(i.e.\ défini par une seule direction) suivant chaque direction de l'ensemble
+$\{(0,1),(1,1), (-1,1), (2,1)\}$. En particulier, il est possible de construire
+un fantôme composé $\ghost{(p,q)}$ à partir de fantômes élémentaires. Pour
+cela, l'opérateur de convolution 2D $*$ est utilisé ainsi :
 \begin{equation}
     \ghost{(p,q)} = \Conv_{i} G_{(p_i,q_i)}\;.
     \label{eqn.fantome.compose}
@@ -245,9 +291,10 @@ possible de construire un fantôme composé $\ghost{(p,q)}$ à partir de fantôm
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/fantome_compose}
-    \caption{Représentation de quatre fantômes élémentaires. Chaque fantôme est
-    défini suivant une direction de l'ensemble $\{(0,1),(1,1),(-1,1),(2,1)\}$.}
+    \includesvg{img/fantome_compose2}
+    \caption{Différentes itérations de la construction du fantôme composé
+    $\ghost{(2,1),(-1,1),(0,1),(1,1)}$. Par définition, la somme des valeurs de
+    l'image suivant l'ensemble de direction du fantôme est nulle.}
     \label{fig.fantomes.composes}
 \end{figure}
 
@@ -270,15 +317,14 @@ suffisant pour reconstruire l'image de manière unique.
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/convolution_fg}
-    \caption{Convolution d'une image avec le fantôme composé
+    \includesvg{img/convolution_fg2}
+    \caption{Convolution d'une image $f$ avec le fantôme composé
     $\ghost{(0,1),(1,1)}$. Le résultat est une image dont les projections
     suivant les directions du fantôme sont nulles.}
     \label{fig.convolution.fg}
 \end{figure}
 
-
-Puisque les projections d'un fantôme sont nulle, la convolution d'une image $f$
+Puisque les projections d'un fantôme sont nulles, la convolution d'une image $f$
 avec un fantôme $\ghost{(p,q)}$ donne une image dont les valeurs des projections
 suivant les directions de $\dirset{(p,q)}$ sont nulles. La
 \cref{fig.convolution.fg} illustre un exemple dans lequel une image $f$ est
@@ -287,12 +333,12 @@ convoluée avec le fantôme composé $\ghost{(0,1),(1,1)}$.
 
 ### Reprojection par convolutions 1D
 
-Dans cette section, nous faisons le lien entre la reprojection vu dans la
+Dans cette section, nous faisons le lien entre la reprojection définie dans la
 \cref{sec.dec.rec}, et les fantômes vus précédemment. Par définition, la
-reconstruction partielle considère un ensemble insuffisant $R$ de directions de
-projection, tel que les projections de directions appartenant à $S \setminus R$
-soient nulles. Dans la suite, nous considèrerons la reconstruction partielle à
-partir d'une projection de direction $(p_i,q_i)$.
+reconstruction partielle considère un ensemble insuffisant de directions $R$,
+tel que les projections de directions appartenant à $S \setminus R$ soient
+nulles. Dans la suite, nous considèrerons la reconstruction partielle à partir
+d'une projection de direction $(p_i,q_i)$.
 Cela signifie que l'image $f_S^{\{(p_i,q_i)\}}$ issue de cette reconstruction
 partielle est constituée du fantôme composé $G_{S\setminus\dirset{(p_i,q_i)}}$,
 défini par l'\cref{eqn.fantome.compose}, puisque l'image a des projections
@@ -305,7 +351,7 @@ conséquence, il existe une séquence $h$ tel que :
     \label{eqn.reconstruction_partielle}
 \end{equation}
 
-\noindent Par linéarité de l'opérateur Mojette, pour n'importe quelle direction
+\noindent Par linéarité de l'opérateur Mojette, quelle que soit la direction
 $(p,q)$, l'\cref{eqn.reconstruction_partielle} devient :
 
 \begin{equation}
@@ -387,7 +433,7 @@ $(p,q)$ :
             \ast^{-1} \begin{pmatrix} -1 & 2 & -1 \end{pmatrix}\;.
 \end{align}
 
-\noindent Connaissant $h$ il suffit ensuite de réaliser la convolution décrite
+\noindent Connaissant $h$, il suffit ensuite de réaliser la convolution décrite
 dans \cref{eqn.reprojection_p_k} pour obtenir $M_{(p,q)}f_S^{\dirset{(0,1)}}$ :
     
 \begin{align}
@@ -411,10 +457,10 @@ $M_{(p_k,q_k)}f$ comme indiqué dans \cref{eqn.somme_reprojection}.
 % analyse et simplification des opérations
 
 L'\cref{alg.reprojection} suppose que l'on ait déterminé les projections du
-fantôme composé $\ghost{(p,q)}$ suivant les direction $(p_i,q_i) \in
+fantôme composé $\ghost{(p,q)}$ suivant les directions $(p_i,q_i) \in
 \mathcal{P}(S)$ et $(p_q)$ au préalable. Or, par définition, le fantôme
 composé est issu de la convolution de fantômes élémentaires (voir
-\cref{eqn.fantome.compose}). En conséquence, Puiqsue $\ghost{(p,q)}$ est 
+\cref{eqn.fantome.compose}). En conséquence, Puisque $\ghost{(p,q)}$ est 
 
 \begin{equation}
     \begin{split}
@@ -444,8 +490,9 @@ triviale et correspond à la séquence :
 
 \noindent L'intérêt de cette décomposition est de pouvoir exprimer le calcul de
 reprojection sans avoir à réaliser d'opération de projection. La conséquence de
-cette représentation est que dans certains cas, des opérations de convolution
-s'annulent. Par exemple :
+cette représentation est de pouvoir révéler parfois quelques simplifications
+dans les opérations de convolution. En particulier, convoluer et déconvoluer
+par la même séquences revient à ne rien faire. Par exemple :
 
 \begin{equation}
     \begin{split}
@@ -491,14 +538,17 @@ s'annulent. Par exemple :
     \label{eqn.simplification}
 \end{equation}
 
-\noindent La décomposition des projections de fantôme permet ici de simplifier
-l'opération de reprojection en supprimant les éléments en rouge.
-En conséquence, la reprojection d'une reconstruction partielle peut
-être calculée à partir de la connaissance d'une projection et d'un ensemble de
-directions qui vérifie le critère de \katz. L'\cref{eqn.simplification} montre
-comment obtenir ce résultat en utilisant uniquement des opérations de
-convolutions et de déconvolution 1D, dont les opérations peuvent parfois se
-simplifier quand on décompose les projections du fantôme composé.
+\noindent La décomposition des projections de fantôme permet ici de révéler les
+opérations de convolution et de déconvolution par la séquence $\begin{pmatrix}
+-1 & 1
+\end{pmatrix}$. En conséquence, il est possible de simplifier l'opération de
+reprojection en supprimant les éléments en rouge. La reprojection d'une
+reconstruction partielle peut ainsi être calculée à partir de la
+connaissance d'une projection et d'un ensemble de directions qui vérifie le
+critère de \katz. L'\cref{eqn.simplification} montre comment obtenir ce
+résultat en utilisant uniquement des opérations de convolutions et de
+déconvolution 1D, dont les opérations peuvent parfois se simplifier quand on
+décompose les projections du fantôme composé.
 
 % # Applications
 
@@ -533,7 +583,7 @@ chaque reprojection peut être réalisée de manière indépendante (chaque
 opération traite des données bien distinctes, que sont les valeurs de
 projection), le processus gagnera en efficacité à condition que l'opération de
 reprojection soit un processus coûteux.
-Le \cref{lst.map} donne un extrait du code qui correspond à cette
+La \cref{lst.map} donne un extrait du code qui correspond à cette
 fonction *map()*. La boucle *for* permettant d'itérer sur chaque projection
 correspond à la boucle de l'\cref{alg.reprojection}, \cref{alg.reproj.a}.
 La ligne $4$ contient les directives utilisées par *OpenMP* pour distribuer le
@@ -554,7 +604,7 @@ différentes reprojections calculées précédemment. Pour cela, elle va retourn
 un buffer *reproj* correspondant à la projection voulue. Chaque élément de
 cette projection correspond à la somme des éléments correspondants dans
 l'ensemble des reprojections. Cette fonction correspond à la
-\cref{alg.reproj.g} de l'\cref{alg.reprojection}. Le \cref{lst.reduction} donne
+\cref{alg.reproj.g} de l'\cref{alg.reprojection}. La \cref{lst.reduction} donne
 un extrait du code qui correspond à cette fonction *reduce()*. Bien que la
 ligne $4$ concerne les directives d'*OpenMP*, l'addition est une opération trop
 efficace pour gagner en parallélisme.
@@ -579,7 +629,7 @@ sur la plate-forme *FEC4Cloud* présentée précédemment.
 	\caption{Évaluation des performances de latence de la nouvelle technique de
 	reprojection sans reconstruction (continu) par rapport à la reprojection
 	classique (pointillé). La taille $\mathcal{M}$ des blocs étudiés évolue de
-	$4$Ko à $128$Ko.}
+	$4$ Ko à $128$ Ko.}
     \label{fig.eval.reproj}
 \end{figure}
 
@@ -590,59 +640,192 @@ classique est plus efficace que la nouvelle méthode. Ce désavantage de la
 nouvelle technique provient de la création et de la gestion des *threads* qui
 coûte un temps significatif dans le cas où l'opération de réduction est simple
 à réaliser. Après ce point, l'écart des performances enregistrées pour chaque
-technique devient plus en plus significatif. En particulier, lorsque
-$\mathcal{M}=128$Ko, la nouvelle technique calcule la reprojection en
+technique devient de plus en plus significatif. En particulier, lorsque
+$\mathcal{M}=128$ Ko, la nouvelle technique calcule la reprojection en
 $\num*{1.217e-3}$s, ce qui correspond à la moitié du temps nécessaire pour
-l'ancienne méthode qui nécessite $\num*{2.591e-3}$ms. À mesure que la taille du
-bloc augmente, l'opération de reprojection devient de plus en plus compliqué à
+l'ancienne méthode qui nécessite $\num*{2.591e-3}$s. À mesure que la taille du
+bloc augmente, l'opération de reprojection devient de plus en plus compliquée à
 réaliser. En comparaison, le coût de la gestion des *threads* devient
 négligeable. De plus, l'utilisation de plusieurs cœurs CPU en parallèle offre
 un gain de temps linéaire. 
 
 
-% # Perspectives et conclusion
+# Applications de la reprojection {#sec.applications.reproj}
 
-% ## Réduction des données en transmission
+La méthode présentée précédemment peut être utilisée dans plusieurs
+applications du stockage distribué. Nous proposons dans cette section trois
+applications. La \cref{sec.dispersion.information} présente tout d'abord une
+méthode de distribution de données incompréhensibles sur des supports de
+stockages non fiables (en matière de protection de la vie privée par exemple).
+La \cref{sec.retablir.seuil} concerne la génération de redondance
+supplémentaire dans l'objectif : (i) de rétablir un seuil de redondance; (ii)
+d'allouer dynamiquement un seuil de redondance. Enfin, la \cref{sec.reduction}
+traitera de la réduction de la bande passante utilisée pour la réparation.
 
-% ## Codage réseau
+## Dispersion d'information incompréhensible
 
-% ## Conclusion
+% schéma
+
+L'utilisation d'une méthode de reprojection sans reconstruction peut être
+nécessaire dans certaines applications de stockage. Par exemple, la Mojette
+non-systématique peut être utilisée dans un DSS afin de distribuer des données
+incompréhensibles. Cette technique est basée sur l'«\ algorithme de dispersion
+de l'information\ » (ou IDA pour *Information Dispersal Algorithm*)
+\cite{rabin1989jacm}. Dans cette application, on ne désire pas que les nœuds de
+stockage puisse accéder à l'information de l'utilisateur.
+\textcite{guedon2012spie} ont par exemple utilisé RozoFS pour distribuer des
+données sensibles (i.e.\ des documents médicaux) sur des plates-formes de
+stockage en nuage publiques : *\textsc{Amazon} S3*, *Google Cloud Storage* et
+*Rackspace Cloud Files*. Dans leur étude, \citeauthor{guedon2012spie} partent
+du principe qu'il parait compliqué de reconstruire les données utilisateurs à
+partir d'une seule projection. Pour reconstruire efficacement la donnée, il
+serait nécessaire que $k$ plates-formes de stockage partagent leurs
+informations. C'est le cas de la reprojection avec reconstruction, qui consiste
+à fournir à un moment donné (par l'opération de reconstruction), l'information
+de l'utilisateur.
+
+
+## Rétablir un seuil de redondance {#sec.retablir.seuil}
+
+% schéma
+
+Afin de protéger les systèmes de stockage distribués (DSS) face aux pannes
+inévitables, il est nécessaire de distribuer des informations de redondance.
+Cette redondance permet en conséquence de compenser la perte d'une partie de
+l'information lors de la lecture d'une donnée. Dans de tels systèmes, le seuil
+de redondance peut évoluer avec le temps pour deux raisons. La première
+correspond à la perte naturelle de la redondance. En effet, les phénomènes de
+pannes entraîne la perte d'information, et cette perte contribue à faire
+diminuer la redondance au sein du système d'information. La deuxième raisons
+concernent une volonté de modifié le seuil de tolérance par l'administrateur du
+système d'information. On parle d'allocation dynamique de la tolérance du DSS.
+Par exemple, il peut être nécessaire d'augmenter le seuil de redondance de
+données cruciales pour une entreprise. À l'inverse, il peut être nécessaire de
+réduire le seuil de redondance pour des raisons économiques.
+
+Dans les deux cas, le principe consiste à générer de nouvelles projections au
+sein de supports de stockage supplémentaires (i.e.\ qui ne contient pas déjà de
+données relatives à la donnée à protéger). Dans le cas de RozoFS, notre méthode
+de reprojection pourrait agir de la manière suivante : 
+
+1. l'administrateur décide de rétablir un seuil de redondance pour un ensemble
+de fichiers et en fait la demande au serveur de métadonnées;
+
+2. le serveur de métadonnées liste les projections relatives à ces fichiers;
+
+3. pour chaque fichier, un ensemble de $k$ supports de stockage contenant une
+projection participe au calcule de reprojection et transfère le résultat à
+l'ensemble des supports de reconstruction;
+
+4. les supports de reconstruction reconstitue les reprojections en sommant les
+valeurs qui leur sont transférer.
+
+
+## Réduction de la bande passante {#sec.reduction}
+
+La bande passante de la réparation correspond à la quantité d'information
+transférée lors de l'opération de réencodage. Dans le cas où la quantité de
+données contenues dans les disques est très importante (i.e.\ plusieurs
+téraoctets), le processus de réparation peut à la fois nécessiter plusieurs
+heures de transfère, et affecter le trafic réseau nécessaire à l'application
+qui utilise le DSS. C'est le cas chez \textsc{Facebook} qui analyse une grappe
+de $3000$ nœuds de stockage \cite{sathiamoorthy2013vldb}. Chaque nœud
+comptabilise $15$\ To de données, et l'étude présent une moyenne de $20$ pannes
+par jour. Pour donner une référence au lecteur, le transfert de $15$\ To
+d'information nécessite un peu moins de $5$\ heures sur un réseau délivrant un
+débit de $1$\ Gops.
+
+Pour répondre à ce problème, de nouveaux codes ont été proposés. Une première
+proposition consiste à distinguer des blocs de parité locale (i.e.\ interne à
+une baie de stockage) et blocs de parité globale (i.e.\ distribué sur plusieurs
+baies). Désignés sous le nom *Locally Repairable Code* (LRC), ces codes
+permettent de limiter le trafic réseau généré par la réparation entre les baies
+en favorisant les transfert intra-baies\ \cite{sathiamoorthy2013vldb}.
+Une deuxième méthode consiste à utiliser la technique de codage réseau (ou NC
+pour *Network Coding*). Cette technique consiste à combiner l'information de
+blocs de données au sein d'un nœud de stockage afin de réduire la quantité de
+données transmise. Ces opérations de combinaisons linéaires ont été par exemple
+appliquées sur les *Array codes* \cite{dimakis2011ieee} ou sur les codes
+aléatoires \cite{andre2014eurosys}.
+
+\begin{figure}[t]
+    \centering
+    \def\svgwidth{\textwidth}
+    \includesvg{img/mojette_nc8}
+    \caption{Mise en situation permettant d'exploiter notre méthode de
+    reprojection pour faire du codage réseau. L'objectif est de reconstruire
+    une nouvelle projection dans la baie $3$. Les reprojections provenant des
+    nœuds cerclés sont successivement réduites par les nœuds intermédiaires
+    (en gris) afin de transmettre l'équivalent d'une projection (au lieu de
+    trois) vers la baie $3$.}
+    \label{fig.mojette_nc}
+\end{figure}
+
+Dans cette optique, nos travaux permettent également de combiner l'information
+par l'opération de réduction. Notre solution se distinguent des travaux
+cités précédemment puisque la combinaison n'est pas réalisée par les nœuds de
+stockage participant au réencodage. La réduction ne peut être faite que par des
+nœuds intermédiaires. La \cref{fig.mojette_nc} intègre l'exemple présenté au
+cours de ce chapitre, dans cette application. Dans cet exemple, trois
+projections situées dans les baies $1$ et $2$ sont utilisées pour construire la
+nouvelle projection à placer dans la baie $3$. Les nœuds contenant ces
+projections calculent respectivement leur reprojection $M_{2,1}f_S^{R_i}$. Dans
+cet exemple, deux nœuds intermédiaires sont utilisés pour combiner les
+résultats et réduire la quantité d'information transportée par le reste du
+réseau.
+
+
 
 \section*{Conclusion du chapitre}
 
-Ce chapitre a permis de présenter une nouvelle méthode pour déterminer de
-nouvelles projections, à partir d'un ensemble déjà existant. Cette technique est
-décrite dans \cref{sec.reprojection.sans.reconstruction}. Cette méthode se
-base sur la proposition de reconstruction partielle.  En particulier, nous
-avons qu'un ensemble suffisant de reconstructions partielles permet de
-reconstruire l'image. Par linéarité, la somme des projections calculées depuis
-ces reconstructions, suivant $(p,q)$, donne la projection correspondante de
-l'image. Cette technique permet donc de reprojeter l'image suivant une nouvelle
-direction. Chaque reconstruction est indépendante et peut alors être réalisée
-de manière distribuée.
+\addcontentsline{toc}{section}{Conclusion du chapitre}
 
-En se basant sur la définition des fantômes, nous sommes parvenus à définir
-ces opérations à travers des opérations de convolutions et de déconvolutions
-1D. Il est ainsi possible de reprojeter les valeurs d'un ensemble suffisant de
-projections, sans avoir à explicitement reconstruire l'image. Cette méthode
-présente un intérêt particulier dans le cas d'algorithmes de dispersion
-d'information, tel que propose \textcite{rabin1989jacm}.
+Ce chapitre a présenté une nouvelle méthode pour déterminer de nouvelles
+projections, à partir d'un ensemble déjà existant. En particulier, cette
+technique permet de répondre au problème de la flexibilité et de la tolérance
+aux pannes du système au cours du temps.
 
-L'algorithme nécessite de connaître les projections du fantôme composé suivant
-les directions en jeu. Nous sommes cependant parvenus à décomposer les
-opérations utilisées dans notre algorithme afin de déterminer ces valeurs par
-des opérations de convolutions. De plus, en faisant cette décomposition, des
-simplifications dans le calcul peuvent apparaître.
+Cette méthode de reprojection a été décrite dans la
+\cref{sec.reprojection.sans.reconstruction}. Elle se base en particulier sur la
+définition des reconstructions partielles. En particulier, nous avons vu qu'un
+ensemble suffisant de reconstructions partielles permet de reconstruire
+l'image. Par linéarité, la somme des projections calculées depuis ces
+reconstructions partielles donne la projection correspondante issue des valeurs
+de la grille. Cette technique permet donc de reprojeter l'image suivant une
+nouvelle direction. Chaque reconstruction peut être menée pour chacune des
+projections participant à la reprojection de manière indépendante. En
+conséquence, cette méthode peut alors être réalisée de manière distribuée. En
+se basant sur la définition des fantômes, nous sommes également parvenus à
+définir ces opérations en utilisant des opérations de convolutions et de
+déconvolutions 1D. Il est ainsi possible de reprojeter les valeurs d'un
+ensemble suffisant de projections, sans reconstruire les données de la grille.
+Enfin, nous sommes parvenus à décomposer les opérations utilisées dans notre
+algorithme afin de simplifier certaines opérations de convolution.
 
-La \cref{sec.eval.reproj} s'est intéressé à la mise en œuvre d'une
+La \cref{sec.eval.reproj} s'est intéressée à la mise en œuvre d'une
 expérimentation visant à déterminer le gain de cette nouvelle technique. En
 particulier, notre expérimentation repose sur l'utilisation d'*OpenMP* pour
-distribuer les calculs sur l'ensemble des cœurs CPU disponibles. Bien que notre
-méthode ne permet pas de diminuer la complexité des opérations de reprojcetion,
-la distribution des calculs permet un gain significatif lorsque de grandes
-quantités d'information sont traitées (i.e.\ classiquement un facteur $2$).
-Dans un contexte de stockage distribué, la réparation d'un disque est un
-processus qui met en jeu de très grandes quantité d'information.
+distribuer les calculs sur l'ensemble des cœurs CPU disponibles.
+<!--
+%Bien que notre
+%méthode ne permet pas de diminuer la complexité des opérations de reprojection,
+-->
+La distribution des calculs de reprojection permet un gain dans les
+performances de latence lorsque de grandes quantités d'information sont
+traitées. Dans notre expérimentation, nous avons observé que la latence était
+divisée par $2$ en utilisant cette méthode distribuée.
+<!--
+%Dans un contexte de stockage
+%distribué, la réparation d'un disque est un processus qui met en jeu de très
+%grandes quantité d'information.
+-->
 
+Trois applications du stockage distribué ont été présentées dans la
+\cref{sec.applications.reproj}. La première propose d'exploiter l'absence de
+reconstruction de la donnée initiale, pour distribuer des projections non
+exploitables sur des fournisseurs de stockage publics. La seconde application
+permet de maintenir un seuil de redondance voulu dans le système de stockage.
+La dernière application permet d'exploiter la réduction des reprojections pour
+faire du codage réseau.
 
 % ça poutre

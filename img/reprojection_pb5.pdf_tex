@@ -1,0 +1,100 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'reprojection_pb5.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{435.33327055bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.70870304)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{reprojection_pb5.pdf}}%
+    \put(2.06865165,1.13944884){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(2.25944028,1.13944884){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0.49527441,0.01312471){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$4$}}}}%
+    \put(0.39988054,0.01312471){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0.30448623,0.01312471){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{reprojection_pb5.pdf}}%
+    \put(0.30382607,0.18529079){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.39922038,0.18529079){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.49461425,0.18529079){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.30382607,0.2806851){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.39922038,0.2806851){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.49461425,0.2806851){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.30382607,0.37607942){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.39922038,0.37607942){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.49461425,0.37607942){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.25687207,0.63214937){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$4$}}}}%
+    \put(0.20558189,0.58435104){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$0$}}}}%
+    \put(0.15429194,0.5363387){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$4$}}}}%
+    \put(0.11035245,0.49223456){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$4$}}}}%
+    \put(0.06273762,0.44443646){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$4$}}}}%
+    \put(0.73425462,0.43735608){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.69031491,0.48513557){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.63902496,0.5365904){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$2$}}}}%
+    \put(0.59508614,0.58436988){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0.54747064,0.63214937){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{reprojection_pb5.pdf}}%
+    \put(0.11006397,0.06464818){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{$(0,1)$}}}}%
+    \put(-0.00242573,0.28310689){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{$(-1,1)$}}}}%
+    \put(0.68853915,0.28151463){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{$(1,1)$}}}}%
+    \put(0.8091225,0.63242394){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.82808786,0.5942117){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.84667612,0.5573167){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.86581331,0.51952395){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.88459023,0.48197056){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.90300689,0.44465585){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.92206377,0.40621502){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{?}}}}%
+    \put(0.86495571,0.22270911){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{\textbf{$(2,1)$}}}}%
+    \put(0.16083304,0.28071895){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$Q$}}}}%
+    \put(0.40054746,0.52166155){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$P$}}}}%
+    \put(0.86057733,0.65815136){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0.87954269,0.61993912){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.89813095,0.58304412){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$0$}}}}%
+    \put(0.91726814,0.54525137){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$0$}}}}%
+    \put(0.93604506,0.50769798){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$3$}}}}%
+    \put(0.95446172,0.47038326){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{\textbf{$2$}}}}%
+    \put(0.9735186,0.43194244){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+  \end{picture}%
+\endgroup%
