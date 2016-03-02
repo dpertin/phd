@@ -26,34 +26,34 @@ du problème de reconstruction afin de concevoir des codes à effacement.
 %complexité $\mathcal{O}(n^3)$ de la méthode algébrique vue précédemment.
 -->
 
-La transformée de \textcite{radon1917akad} est une application utilisée en
+La transformation de \textcite{radon1917akad} est une application utilisée en
 reconstruction tomographique. Elle permet de représenter une fonction par ses
 projections suivant différents angles. Le problème de reconstruction correspond
 à reconstruire l'information à partir des projections. Nous
-verrons qu'il est possible de définir des versions de cette transformée
+verrons qu'il est possible de définir des versions de cette transformation
 capables de représenter l'information de manière redondante. Notre objectif est
 donc de déterminer des algorithmes capables de reconstruire l'information à
 partir d'un ensemble suffisant de projections (comme un code à effacement).
-L'inversion de la transformée de \radon possède des liens avec la transformée
-de \fourier. Ces liens sont décrits par le théorème de la tranche
-centrale\ \cite{bracewell1956ajp}. Ce théorème peut être utilisée pour
-concevoir un algorithme de reconstruction basé sur la transformée de Fourier
+L'inversion de la transformation de \radon possède des liens avec la
+transformation de \fourier. Ces liens sont décrits par le théorème de la
+tranche centrale\ \cite{bracewell1956ajp}. Ce théorème peut être utilisé pour
+concevoir un algorithme de reconstruction basé sur la transformation de Fourier
 rapide FFT et bénéficier d'une complexité quasi-linéaire $\mathcal{O}(n
 \log{n})$\ \cite{cooley1969tae}.
 
-La première étape consiste à discrétiser la transformée de \radon, initialement
+La première étape consiste à discrétiser transformation de \radon, initialement
 définie dans le domaine continu\ \cite{radon1917akad}. Cette étude sera
 réalisée en \cref{sec.reconstruction_discrete}. \matus sont parvenus à définir
-une version discrète de la transformée de \radon, qui conserve toutes les
+une version discrète de la transformation de \radon, qui conserve toutes les
 propriétés de la version continue\ \cite{matus1993pami} (en particulier, le
 théorème de la tranche centrale).
 Plus particulièrement, nous verrons deux versions discrètes et exactes de la
-transformée de \radon : (i) la transformée de \radon finie (pour *Finite Radon
-Transform* ou FRT); (ii) la transformée Mojette. Cette première version sera
-étudiée dans la \cref{sec.frt}. Nous verrons en particulier le principe de
-cette transformée, un algorithme d'inversion, ainsi que sa mise en œuvre comme
-code à effacement. Nous verrons en particulier que la propriété périodique de
-la FRT permet de fournir un code MDS\ \cite{normand2010wcnc}.
+transformation de \radon : (i) la transformation de \radon finie (pour *Finite
+Radon Transform* ou FRT); (ii) la transformation Mojette. Cette première
+version sera étudiée dans la \cref{sec.frt}. Nous verrons en particulier le
+principe de cette transformation, un algorithme d'inversion, ainsi que sa mise en
+œuvre comme code à effacement. Nous verrons en particulier que la propriété
+périodique de la FRT permet de fournir un code MDS\ \cite{normand2010wcnc}.
 <!--
 %L'algorithme d'inversion algébrique
 %ART proposé par \textcite{gordon1970jtb} permet de comprendre simplement 
@@ -63,7 +63,7 @@ la FRT permet de fournir un code MDS\ \cite{normand2010wcnc}.
 %effacement.
 -->
 La \cref{sec.mojette} présente la seconde version discrète de la
-transformée de \radon. Bien que la propriété
+transformation de \radon. Bien que la propriété
 apériodique des projections Mojette empêche la conception d'un code à
 effacement MDS, elle permet de concevoir un algorithme de reconstruction
 itératifs efficaces. Nous verrons en particulier l'algorithme de
@@ -71,21 +71,21 @@ itératifs efficaces. Nous verrons en particulier l'algorithme de
 complexité linéaire.
 Après avoir défini le critère de \katz permettant de garantir l'unicité de la
 solution de reconstruction, nous verrons comment construire un code à
-effacement à partir de cette transformée. Dans ce chapitre, nous verrons les
+effacement à partir de cette transformation. Dans ce chapitre, nous verrons les
 propriétés des *fantômes* qui sont des éléments de l'image invisible dans
-l'espace de transformée\ \cite{katz1978springer}. Ces fantômes nous permettront
+l'espace transformé\ \cite{katz1978springer}. Ces fantômes nous permettront
 non seulement de comprendre les processus d'inversion dans ce chapitre, mais
 seront également utilisés au \cref{sec.chap6} afin de concevoir une méthode
 pour générer de nouvelles projections.
 
 
-# Discrétisation de la transformée de \radon continue
+# Discrétisation de la transformation de \radon continue
 \label{sec.reconstruction_discrete}
 
-La transformée de \textcite{radon1917akad} est une application linéaire
+La transformation de \textcite{radon1917akad} est une application linéaire
 permettant de représenter une fonction par ses projections suivant différents
 angles. L'opération inverse consiste à reconstruire la fonction à partir des
-valeurs de projections. Cette transformée permet ainsi de résoudre le problème
+valeurs de projections. Cette transformation permet ainsi de résoudre le problème
 de reconstruction tomographique. La tomographie correspond à une catégorie des
 problèmes inverses qui consiste à reconstruire un objet à partir d'un ensemble
 de mesures partielles et discrètes appelées projections. En particulier, cette
@@ -94,7 +94,7 @@ l'objet.
 
 Dans le milieu médical, il faudra attendre $1972$ avant que
 \citeauthor{hounsfield1973bjr} ne parvienne à concevoir le premier scanner à
-rayon X, sans pour autant qu'il n'est eu au préalable connaissance des travaux
+rayon X, sans pour autant qu'il n'ait eu au préalable connaissance des travaux
 de \radon. Il remportera le prix Nobel de médecine en $1979$ avec
 \citeauthor{cormack1963jap} pour leurs travaux respectifs sur le développement
 de la tomographie numérique \cite{hounsfield1973bjr,cormack1963jap}. Cette
@@ -110,20 +110,20 @@ appliqués à la transmission et au stockage d'information.
 % bouger en intro ?
 
 Nous débuterons cette section en introduisant en \cref{sec.radon} la
-transformée de \radon continue telle que définie par \textcite{radon1917akad}.
-Afin de comprendre comment discrétiser cette transformée, quelque notions de
+transformation de \radon continue telle que définie par \textcite{radon1917akad}.
+Afin de comprendre comment discrétiser cette transformation, quelques notions de
 géométrie discrète seront définies par la suite, dans la  \cref{sec.geometrie}.
 Enfin nous verrons une première approche du problème de tomographie discrète
 avec un exemple en \cref{sec.inverse} présentant une méthode de résolution
 algébrique.
 
 
-## Transformée de \radon dans le domaine continu {#sec.radon}
+## Transformation de \radon dans le domaine continu {#sec.radon}
 
-La transformée de \radon est une application qui répond au problème de la
+La transformation de \radon est une application qui répond au problème de la
 tomographie. Nous introduirons dans un premier temps ce problème dans un
 contexte pratique : l'imagerie médicale. Nous verrons ensuite la définition de
-la transformée de \radon continu telle que définie dans les
+la transformation de \radon continu telle que définie dans les
 travaux fondamentaux de \textcite{radon1917akad}.
 
 ### Problème de la tomographie
@@ -217,12 +217,12 @@ de la solution.
     \caption{Représentation d'une projection $r[f](\varphi,t)$ de
     l'objet $f(x,y)$ suivant l'angle de projection $\varphi$, et illustration
     de la reconstruction par le théorème de la tranche centrale (TF désigne
-    Transformée de \fourier).}
+    Transformation de \fourier).}
     \label{fig.radon}
 \end{figure}
 
-\radon définit les bases mathématiques de cette transformée dans ses travaux
-fondamentaux de \citeyear{radon1917akad}. La transformée \radon $R \colon f
+\radon définit les bases mathématiques de cette transformation dans ses travaux
+fondamentaux de \citeyear{radon1917akad}. La transformée de \radon $R \colon f
 \mapsto r$ d'une fonction $f \colon \RR^2 \to \CC$ est un ensemble de
 projections $1$D calculées à partir de la fonction $2$D $f$. Une projection
 $r \colon \RR \to \CC$ est définie par un ensemble de droites $\{\mathcal{L}\}$
@@ -268,7 +268,7 @@ Cette opération inverse consiste à reconstruire $f$ à partir de l'ensemble de
 projections de l'image $f$. \textcite{radon1917akad} a montré qu'il est
 possible d'inverser l'opération décrite dans l'\cref{eqn.projection}.
 Pour cela, il est possible d'utiliser le théorème de la tranche centrale.
-Ce théorème créer un lien entre la transformée de \fourier $1$D d'une
+Ce théorème créer un lien entre la transformation de \fourier $1$D d'une
 projection, et la tranche orthogonale à la direction de projection de la
 transformée de \fourier $2$D de $f$. La \cref{fig.radon} illustre la
 transformation d'une projection de \radon en une tranche du domaine de
@@ -295,7 +295,7 @@ pour répondre à ce problème \cite{averbuch2006fast}, nous verrons dans la sui
 de nos travaux des méthodes qui ne nécessitent pas d'interpolation. Pour
 résumer, la reconstruction suit les étapes suivantes :
 
-1. Calculer les transformée de \fourier $1$D de chaque projection afin de
+1. Calculer les transformées de \fourier $1$D de chaque projection afin de
 remplir la grille polaire;
 
 2. Interpoler la grille polaire sur la grille cartésienne;
@@ -304,7 +304,7 @@ remplir la grille polaire;
 échantillonnée de $f$.
 
 \noindent Il existe trois raisons pour lesquelles la reconstruction par
-transformée de \radon est un *problème mal posé*, au sens défini par
+la transformation de \radon est un *problème mal posé*, au sens défini par
 \textcite{hadamard1902pub}: (i) la solution ne peut être retrouvée puisque les
 mesures réalisées lors de l'acquisition intègre du *bruit* dans les données;
 (ii) il n'est de plus pas possible de garantir l'*unicité* de la solution
@@ -315,7 +315,7 @@ géométrique parallèle). Enfin, une petite erreur d'acquisition entraîne de
 fortes variations des résultats.
 
 Dans ce chapitre, nous présenterons des versions exactes et discrètes de la
-transformée de \radon. Ces versions exactes reposent sur un échantillonnage
+transformation de \radon. Ces versions exactes reposent sur un échantillonnage
 optimal, ce qui permet de ne pas avoir à réaliser d'interpolation lors de la
 reconstruction. L'échantillonnage est optimal lorsque les projections couvrent
 uniformément l'ensemble des éléments de l'image.
@@ -488,7 +488,7 @@ Dans la suite de nos travaux, nous utiliserons le terme *direction discrète*
 pour désigner le couple d'entier $(p,q) \in \mathbb{Z}^2$, premiers entre eux,
 correspondant à la direction de la droite de pente $\frac{q}{p}$. Cette
 définition des angles discrets sera nécessaire lorsque l'on définira des
-versions discrètes de la transformée de \radon (\cref{sec.frt,sec.mojette}).
+versions discrètes de la transformation de \radon (\cref{sec.frt,sec.mojette}).
 
 
 ## Méthode algébrique de reconstruction d'une image discrète {#sec.inverse}
@@ -630,25 +630,25 @@ multiplication matricielle est nécessaire (voir \cref{eqn.art}) dont la
 complexité est $\mathcal{O}(n^3)$ également.
 
 Dans la suite de ce chapitre, nous détaillerons deux versions discrètes et
-exactes de la transformée de \radon : la FRT et la transformée Mojette
+exactes de la transformation de \radon : la FRT et la transformation Mojette
 (respectivement \cref{sec.frt,sec.mojette}). Plus particulièrement, ces
-transformées vont nous servir à deux choses : (i) elles vont permettre de
+transformations vont nous servir à deux choses : (i) elles vont permettre de
 définir des critères simples permettant de déterminer l'unicité de la solution
 de reconstruction: (ii) l'approche géométrique permet de définir des
 algorithmes de reconstruction efficaces.
 
 
 
-# Code MDS par transformée de \radon finie {#sec.frt}
+# Code MDS par transformation de \radon finie {#sec.frt}
 
-Nous avons vu dans la partie précédente que la transformée de \radon continue
+Nous avons vu dans la partie précédente que la transformation de \radon continue
 constitue une application mathématique qui possède une opération inverse.
 Cependant, puisque nous allons traiter des données numériques, il est
 nécessaire de définir une version discrète de cette application.
 
 Cette section présente la FRT qui est une version discrète et exacte de la
-transformée de \radon définie par \textcite{matus1993pami}. La particularité
-de cette transformée est de considérer des droites de projection périodique,
+transformation de \radon définie par \textcite{matus1993pami}. La particularité
+de cette transformation est de considérer des droites de projection périodique,
 dont la période est définie par la taille du support. \matus ont
 montré que cette propriété permet de construire un nombre fini de projections,
 qui permet de calculer de façon unique la solution de reconstruction. Nous
@@ -657,7 +657,7 @@ la méthode de reconstruction de l'image, dans la \cref{sec.frt-intro}.
 La \cref{sec.fantome} permettra de définir les fantômes. Ces objets
 géométriques sont des éléments de l'image générés lorsqu'une projection est
 manquante \cite{katz1978springer}. Les fantômes ne sont pas spécifiques à la
-FRT, aussi nous les réutiliserons pour la transformée Mojette
+FRT, aussi nous les réutiliserons pour la transformation Mojette
 (\cref{sec.mojette}), et pour le calcul de nouvelles projections
 (\cref{sec.chap6}). En particulier, nous verrons un algorithme de
 reconstruction proposé par \citeauthor{chandra2012tip} afin de supprimer ces
@@ -669,9 +669,9 @@ tel code dans un système de stockage est de maintenir une quantité minimale de
 redondance pour une protection donnée.
 
 
-## Transformée de \radon finie {#sec.frt-intro}
+## Transformation de \radon finie {#sec.frt-intro}
 
-### Transformée de \radon finie directe
+### Transformation de \radon finie directe
 
 \begin{figure}
     \centering
@@ -687,8 +687,8 @@ redondance pour une protection donnée.
 
 %\cite{matus1993pami, svalbe2001laa}.
 
-La transformée de \radon finie, pour *Finite Radon Transform* (FRT), est une
-version discrète, exacte et périodique de la transformée de \radon continue,
+La transformation de \radon finie, pour *Finite Radon Transform* (FRT), est une
+version discrète, exacte et périodique de la transformation de \radon continue,
 définie mathématiquement par \textcite{matus1993pami}. Le calcul des
 valeurs de projections $[Rf](m,t)$ d'une fonction discrète $f \colon \ZZ^2 \to
 \RR$, correspondant à un pavage carré de paramètre $p$ premier, est défini
@@ -738,7 +738,7 @@ $I_{sum}$.
 	\caption{Représentation de la FRT et de son inverse. (a) on applique la
 	FRT sur une image $3\times3$ (i.e. $p=3$). Les valeurs des pixels sont
 	symboliques : 9 pixels prennent des valeurs ${a, b,\dots, i}$. (b)
-	correspond au résultat de la transformée, c'est à dire les $p+1=4$
+	correspond à la transformée, c'est à dire aux $p+1=4$
 	projections. Un exemple de calcul est ici représenté en pointillé rouge.
 	Il s'agit du calcul de FRT pour $t=0$ et $m=2$ (i.e. la pente vaut deux).
 	On désigne $afh$ comme étant la somme $a+f+h$. (c) représente la
@@ -771,7 +771,7 @@ fois lors de la génération d'une projection, l'échantillonnage est optimal. E
 conséquence, la reconstruction ne nécessite pas d'interpolation comme c'est le
 cas dans le domaine continu. \textcite{matus1993pami} proposent une méthode
 d'inversion basée sur le fait que l'opérateur FRT est son propre dual.
-Dans ce cas, l'inversion implique de réaliser les opérations de transformée de
+Dans ce cas, l'inversion implique de réaliser les opérations de transformation de
 \radon finie sur les informations de projections $[Rf](m,t)$, le long des
 droites de projection  $\mathcal{L}_{m^{\prime}, t}$ d'angle $m^\prime = p-m$
 (i.e.\ opposé à $m$). On obtient alors une image reconstruite $f^\prime$ dont
@@ -799,12 +799,12 @@ L'équation correspondante à cette opération inverse est :
 Bien que simple à mettre en œuvre, cette méthode n'est pas efficace
 puisque sa complexité algorithmique est $\mathcal{O}(p^3)$.
 \textcite{matus1993pami} ont cependant démontré que la FRT conserve toutes les
-propriétés de la transformée continue de \radon. En particulier, ils
+propriétés de la transformation continue de \radon. En particulier, ils
 définissent mathématiquement une version discrète du théorème de la tranche
 centrale. Comme vu précédemment dans le domaine continu, ce théorème permet de
-faire le lien entre la transformée de \fourier $1$D d'une projection, et la
+faire le lien entre la transformation de \fourier $1$D d'une projection, et la
 tranche orthogonale dans le domaine de \fourier de $f$. La différence
-principale avec la transformée de \radon continue est que l'échantillonnage
+principale avec la transformation de \radon continue est que l'échantillonnage
 optimal de la FRT permet de recouvrir entièrement le domaine de \fourier sans
 avoir besoin d'interpolation. La reconstruction consiste alors à (i) calculer
 la transformée $1$D de \fourier pour chaque projection pour remplir l'espace de
@@ -830,7 +830,7 @@ correspondent aux éléments de cet espace nul.
 
 Dans le domaine continu, \textcite{bracewell1954ajp} définit le concept de
 *distribution invisible*, qui fait référence au terme *fantôme* utilisé plus
-tard par \textcite{cornwell1982sm} dans le cas de la transformée de \radon.
+tard par \textcite{cornwell1982sm} dans le cas de la transformation de \radon.
 D'une manière générale, on définit un fantôme comme une fonction $g \colon
 \RR^2 \to \RR$ tel que \cite{bracewell1956ajp} :
 
@@ -850,7 +850,7 @@ $0$ suivant la direction de projection $\mathcal{L}$\footnote{le nom "fantôme"
 fait référence au fait que ces éléments sont invisibles dans l'espace de
 \radon}. De manière similaire, ils correspond à des éléments de l'image générés
 dés lors que des projections manquent.
-En pratique, puisque la transformée de \radon continue est un problème *mal
+En pratique, puisque la transformation de \radon continue est un problème *mal
 posé*, il existe toujours des projections manquantes de par la nature des
 mesures et de la physique des capteurs. En conséquence, les fantômes empêchent
 l'aboutissement du processus de reconstruction vers une solution unique. De par
@@ -958,7 +958,7 @@ toutes les étapes sont clairement indiquées dans les travaux de
 
 
 
-## Code à effacement par transformée de \radon finie {#sec.fecfrt}
+## Code à effacement par transformation de \radon finie {#sec.fecfrt}
 
 Cette section décrit à présent comment utiliser la FRT comment un code à
 effacement. Plusieurs travaux ont été réalisé pour définir ce code. En
@@ -984,8 +984,8 @@ non-systématique. Dans l'objectif d'obtenir un espace de \radon de même taille
 que l'image, on impose une contrainte de conception qui consiste à faire
 correspondre la dernière colonne à une colonne de parité.
 Cela entraîne deux conséquences : (i) la dernière projection est nulle
-de part la parité horizontale; (ii) la dernière colonne du domaine de
-transformée correspond également à un colonne de parité. En conséquence, il
+de part la parité horizontale; (ii) la dernière colonne du domaine
+transformé correspond également à un colonne de parité. En conséquence, il
 n'est alors pas nécessaire de garder ces informations.
 
 Le code non-systématique est alors conçu de la manière suivante. La donnée est
@@ -1116,7 +1116,7 @@ utilisant la décomposition LU \cite{turner1966inverse}.
 \subsubsection*{Bilan de la FRT}
 
 Nous avons vu que la FRT correspond à une version discrète, exacte et
-périodique de la transformée de \radon continue. Cette propriété lui permet de
+périodique de la transformation de \radon continue. Cette propriété lui permet de
 fournir un code MDS en se basant sur une contrainte de construction mettant en
 jeu une colonne de parité, et un calibrage des données correspondant à des
 lignes de redondance. En particulier, nous avons vu deux algorithmes de
@@ -1136,14 +1136,14 @@ performante des opérations d'encodage et de décodage.
 
 
 
-# Code à effacement par transformée Mojette {#sec.mojette}
+# Code à effacement par transformation Mojette {#sec.mojette}
 
 Dans cette section, nous allons nous intéresser à un code à effacement basé sur
-la transformée Mojette. Tout comme la FRT, cette transformée correspond à une
-version discrète et exacte de la transformée de \radon continue définie dans
+la transformation Mojette. Tout comme la FRT, cette transformation correspond à une
+version discrète et exacte de la transformation de \radon continue définie dans
 \textcite{radon1917akad} (voir \cref{eqn.projection}). Elle a été proposée pour la
 première fois par \textcite{guedon1995vcip} dans le contexte du traitement et
-du codage psychovisuel. Depuis, cette transformée a été utilisée dans de
+du codage psychovisuel. Depuis, cette transformation a été utilisée dans de
 nombreuses applications liées à l'imagerie numérique (codage, transmission,
 tatouage). Dans cette thèse, nous proposons de l'utiliser comme code à
 effacement pour le stockage et la transmission d'information.
@@ -1158,12 +1158,12 @@ reconstruction d'une image rectangulaire. Nous verrons que ce critère est
 nécessaire pour définir la capacité de reconstruction du code à effacement. La
 méthode de reconstruction de \textcite{normand2006dgci} sera également étudiée,
 puisque qu'elle sera utilisée dans le processus de décodage afin de
-reconstruire l'information. Après cette présentation de la transformée Mojette,
+reconstruire l'information. Après cette présentation de la transformation Mojette,
 nous verrons comment ces éléments permettent de concevoir un code à effacement
 en \cref{sec.fecmojette}.
 
 
-## Transformée Dirac-Mojette directe {#sec.mojette-forward}
+## Transformation Dirac-Mojette directe {#sec.mojette-forward}
 
 \begin{figure}
     \centering
@@ -1178,7 +1178,7 @@ en \cref{sec.fecmojette}.
     \label{fig.mojette_directe}
 \end{figure}
 
-La transformée Mojette est une opération linéaire définie par
+La transformation Mojette est une opération linéaire définie par
 \textcite{guedon1995vcip} qui calcule un ensemble de $I$ projections à partir
 d'une image discrète
 $f:\ZZ^2 \mapsto\mathbb R$. Bien que cette image discrète peut avoir n'importe
@@ -1187,10 +1187,10 @@ composée de $P \times Q$ pixels. Une projection Mojette $\M$ est
 un ensemble d'éléments appelés *bins*, qui est définie par une direction de
 projection $(p,q)$, avec $p,q \in \ZZ$ premiers entre eux (comme expliqué en
 \cref{sec.angles}). En particulier, la transformée Dirac-Mojette $[\M f]$ est
-définie par \textcite{guedon1995vcip} ainsi :
+définie par \textcite{guedon1995vcip} comme l'ensemble de projections suivant :
 
 \begin{equation}
-    [\M f](b,p_{i},q_{i}) = 
+    [\M f](b,p_{i},q_{i}) =
         \sum_{k=0}^{Q-1} \sum_{l=0}^{P-1}
         f \left(k,l\right)
         \Delta\left(b-lp_{i}+kq_{i}\right)\;,
@@ -1204,7 +1204,7 @@ bins de la projection suivant la direction $(p_i, q_i)$ résulte de la somme des
 pixels situés sur la droite discrète d'équation $b = -kq_i + lp_{i}$.
 Comme on peut l'observer, l'opération modulaire que l'on avait utilisé dans
 l'\cref{eqn.frt} de la FRT, n'est pas utilisé ici. Cette propriété apériodique
-distingue la transformée Mojette de la FRT.
+distingue la transformation Mojette de la FRT.
 
 La \cref{fig.mojette_directe} représente la transformée Mojette d'une
 grille discrète $(3 \times 3)$ composée de binaires. Le traitement transforme une
@@ -1227,7 +1227,7 @@ sont entièrement définis par un seul pixel. Cette remarque sera nécessaire af
 de comprendre comment s'applique l'algorithme de reconstruction de
 \textcite{normand2006dgci} que l'on détaillera dans la prochaine section.
 Du point de vue de la complexité, puisqu'il faut $\mathcal{O(I}$ opération par
-pixel et que chaque pixel et parcouru, la complexité de la transformée Mojette
+pixel et que chaque pixel et parcouru, la complexité de la transformation Mojette
 vaut $\mathcal{O}(PQI)$. \textcite{normand1996vcip} précisent que si le nombre
 de projections $I$ correspond à $log(PQ)$, alors la complexité de la Mojette
 correspond à celle de la FFT de \textcite{cooley1969tae}.
@@ -1235,7 +1235,7 @@ correspond à celle de la FFT de \textcite{cooley1969tae}.
 %4+5+1 \pmod 6 = 4$
 
 
-## Reconstruction par transformée Mojette {#sec.mojette-inverse}
+## Reconstruction par transformation Mojette {#sec.mojette-inverse}
 
 Dans cette section, nous présentons le critère défini par
 \textcite{katz1978springer} qui permet de déterminer si un ensemble
@@ -1420,9 +1420,9 @@ décomposition de $f$ telle que :
 
 ### Conception du code à effacement non-systématique
 
-Nous avons vu que la transformée Mojette est capable de fournir une
+Nous avons vu que la transformation Mojette est capable de fournir une
 représentation de l'image. Cette propriété essentielle forme la base de notre
-motivation à concevoir code à effacement à partir de cette transformée Mojette.
+motivation à concevoir code à effacement à partir de cette transformation Mojette.
 On rappelle ici qu'en théorie des codes, un code à effacement $(n,k)$
 transforme $k$ blocs de données en un ensemble de $n$ blocs encodés plus grand
 (i.e.\ $n \geq k$).
@@ -1444,7 +1444,7 @@ $Q$. Dans ces conditions, $Q$ projections constituent un ensemble
 suffisant pour reconstruire l'image. En particulier, la transformée Mojette
 correspond à un code à effacement $(n,k)$ où $k$ correspond à la hauteur de
 l'image $Q$, et $n$ correspond au nombre de projections $I$. En conséquence,
-cette condition permet à la transformée Mojette de garantir une solution unique
+cette condition permet à la transformation Mojette de garantir une solution unique
 au problème de reconstruction lorsqu'un maximal de $(n-k) = (I-Q)$ projections
 sont manquantes.
 
@@ -1474,7 +1474,7 @@ effacement, où l'on fixe $q_i=1$, \cref{eqn.nombre_bins} s'écrit :
 \noindent En conséquence, la taille des projections augmente avec $p_i$.
 Rappelons que dans le cas d'un code MDS, la taille d'un bloc encodé correspond
 à la taille d'un bloc de donnée. Du point de vue des projections, la
-transformée Mojette permet de concevoir un code optimal puisqu'un ensemble de
+transformation Mojette permet de concevoir un code optimal puisqu'un ensemble de
 $k$ projections suffisent pour reconstruire une image composée de $k$ lignes.
 En revanche, du point de vue des bins, ce code n'est pas optimal puisque la
 taille des projections augmente avec la valeur de $p_i$. En conséquence, le
@@ -1549,7 +1549,7 @@ ce qui améliore le transfert et le stockage des projections en pratique.
 
 \addcontentsline{toc}{section}{Conclusion du chapitre}
 
-La transformée de \radon pose les bases de la reconstruction tomographique. Son
+La transformation de \radon pose les bases de la reconstruction tomographique. Son
 étude dans le domaine continue a ouvert la voie à de nombreuses techniques
 d'inversion. En particulier, nous avons vu que la tomographie discrète
 attaque le problème de la reconstruction tomographique par une représentation
@@ -1558,10 +1558,10 @@ répondre au problème par une solution exacte par rapport aux solutions émanan
 du domaine continu, grâce à l'échantillonnage possible par la géométrie du
 problème.
 
-Nous avons étudié la FRT et la transformée Mojette qui sont des versions
-discrètes et exactes de la transformée de \radon. La capacité d'inversion de
-ces transformée forme la base de leur conception sous la forme de code à
-effacement. Plus particulièrement nous avons étudié comment ces transformées
+Nous avons étudié la FRT et la transformation Mojette qui sont des versions
+discrètes et exactes de la transformation de \radon. La capacité d'inversion de
+ces transformations forme la base de leur conception sous la forme de code à
+effacement. Plus particulièrement nous avons étudié comment ces transformations
 peuvent être utilisées afin d'encoder et générer des informations redondantes,
 nécessaires pour tolérer l'effacement. Afin de déterminer la capacité des
 codes, nous avons énoncé les critères qui garantissent si un ensemble de
@@ -1570,7 +1570,7 @@ méthodes itératives et efficaces d'inversion ont été détaillées et permett
 à ces codes de reconstruire l'information dans le cas où les données ont été
 altérées.
 
-La transformée Mojette correspond à une version apériodique de la FRT. En
+La transformation Mojette correspond à une version apériodique de la FRT. En
 conséquence, le code à effacement bâti sur la Mojette n'est pas MDS
 contrairement au code fourni par la FRT. Toutefois ce surcout d'encodage est
 limité et la Mojette correspond à un code "quasi MDS". Ce léger surcout ouvre
