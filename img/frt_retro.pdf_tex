@@ -1,0 +1,140 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'frt_retro.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{290.33698362bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.57582609)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{frt_retro.pdf}}%
+    \put(0.04682918,0.50576911){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{a}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{frt_retro.pdf}}%
+    \put(0.12427449,0.50296585){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{b}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{frt_retro.pdf}}%
+    \put(0.20218946,0.50576928){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{frt_retro.pdf}}%
+    \put(0.04684385,0.42486009){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{d}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{frt_retro.pdf}}%
+    \put(0.12493499,0.42766339){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{e}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{frt_retro.pdf}}%
+    \put(0.19969437,0.42472786){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{f}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{frt_retro.pdf}}%
+    \put(0.04684385,0.35254821){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{g}}}%
+    \put(0.12543043,0.06133156){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Image $f(x,y)$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{frt_retro.pdf}}%
+    \put(0.12412774,0.34660398){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{h}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{frt_retro.pdf}}%
+    \put(0.19728723,0.34660398){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{i}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{frt_retro.pdf}}%
+    \put(0.40002525,0.5042413){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{adg}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{frt_retro.pdf}}%
+    \put(0.47910287,0.50101292){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{beh}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{frt_retro.pdf}}%
+    \put(0.5575755,0.50101292){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{cfi}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{frt_retro.pdf}}%
+    \put(0.40136054,0.42290713){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{aei}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{frt_retro.pdf}}%
+    \put(0.47909551,0.42587924){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{bfg}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{frt_retro.pdf}}%
+    \put(0.55753882,0.42290713){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{cdh}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{frt_retro.pdf}}%
+    \put(0.40132386,0.34480133){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{afh}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{frt_retro.pdf}}%
+    \put(0.47913955,0.34480133){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{bdi}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{frt_retro.pdf}}%
+    \put(0.55753146,0.35057696){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ceg}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{frt_retro.pdf}}%
+    \put(0.40073673,0.2666921){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{abc}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{frt_retro.pdf}}%
+    \put(0.47842767,0.2666921){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{def}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{frt_retro.pdf}}%
+    \put(0.55758286,0.26966425){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ghi}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{frt_retro.pdf}}%
+    \put(0.91882863,0.23417825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{cf\textbf{i}}}}%
+    \put(0.91882863,0.19560214){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ae\textbf{i}}}}%
+    \put(0.91882863,0.15702602){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{bd\textbf{i}}}}%
+    \put(0.91882863,0.1184499){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ghi}}}%
+    \put(0.76240467,0.54580261){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{a}dg}}}%
+    \put(0.76240467,0.50722649){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{a}ei}}}%
+    \put(0.76240467,0.46865038){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{a}fh}}}%
+    \put(0.76240467,0.43007426){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{abc}}}%
+    \put(0.84018367,0.54580261){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{b}eh}}}%
+    \put(0.84018367,0.50722649){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{b}fg}}}%
+    \put(0.84018367,0.46865038){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{b}di}}}%
+    \put(0.84018367,0.43007426){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{abc}}}%
+    \put(0.91819406,0.54580261){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{c}fi}}}%
+    \put(0.91819406,0.50722649){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{c}dh}}}%
+    \put(0.91819406,0.46865038){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{c}eg}}}%
+    \put(0.91819406,0.43007426){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{abc}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{frt_retro.pdf}}%
+    \put(0.76255878,0.38996644){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{a\textbf{d}g}}}%
+    \put(0.76255878,0.35139032){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c\textbf{d}h}}}%
+    \put(0.76255878,0.3128142){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{b\textbf{d}i}}}%
+    \put(0.76255878,0.27423809){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{def}}}%
+    \put(0.84034512,0.38996644){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{b\textbf{e}h}}}%
+    \put(0.84034512,0.35139032){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{a\textbf{e}i}}}%
+    \put(0.84034512,0.3128142){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c\textbf{e}g}}}%
+    \put(0.84034512,0.27423809){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{def}}}%
+    \put(0.9177792,0.38996644){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c\textbf{f}i}}}%
+    \put(0.9177792,0.35139032){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{b\textbf{f}g}}}%
+    \put(0.9177792,0.3128142){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{a\textbf{f}h}}}%
+    \put(0.9177792,0.27423809){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{def}}}%
+    \put(0.76256223,0.23417825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ad\textbf{g}}}}%
+    \put(0.76256223,0.19560214){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{bf\textbf{g}}}}%
+    \put(0.76256223,0.15702602){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ce\textbf{g}}}}%
+    \put(0.76256223,0.1184499){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ghi}}}%
+    \put(0.84034512,0.23417825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{be\textbf{h}}}}%
+    \put(0.84034512,0.19560214){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{cd\textbf{h}}}}%
+    \put(0.84034512,0.15702602){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{af\textbf{h}}}}%
+    \put(0.84034512,0.1184499){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{ghi}}}%
+    \put(0.12543043,0.00622318){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(a)}}}%
+    \put(0.48667348,0.06133156){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Radon $R(t,m)$}}}%
+    \put(0.4878256,0.00622318){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(b)}}}%
+    \put(0.84806784,0.06133156){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Rétroprojection $f'(x,y)$}}}%
+    \put(0.84906576,0.00622318){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(c)}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{frt_retro.pdf}}%
+  \end{picture}%
+\endgroup%
