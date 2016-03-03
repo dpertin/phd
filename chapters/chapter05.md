@@ -24,7 +24,7 @@ rapport à la donnée à protéger (e.g.\ $200$\% dans le cas de la réplication
 trois). Les codes à effacement proposent une alternative permettant de fournir
 la même tolérance aux pannes, tout en diminuant significativement la quantité
 de redondance nécessaire (généralement par un facteur $2$)
-\cite{weatherspoon2001iptps, oggier2012survey}. Une des conséquences directes
+\cite{weatherspoon2001iptps, oggier2012icdcn}. Une des conséquences directes
 du passage d'un système de données répliquées à encoder correspond à la
 réduction énergétique du système de stockage.
 

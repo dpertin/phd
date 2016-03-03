@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.91, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'radon_xxx_simple2.pdf' (pdf, eps, ps)
+%% Accompanies image file 'radon_xxx_simple3.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -49,22 +49,22 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.49644114)%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{radon_xxx_simple2.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{radon_xxx_simple3.pdf}}%
     \put(0.31111991,0.21995518){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$f$}}}}%
-    \put(0.29347827,0.34941476){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$r[f](\varphi,t)$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{radon_xxx_simple2.pdf}}%
+    \put(0.19152742,0.39638087){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$R_{\varphi}[f]$}}}}%
     \put(0.41720193,0.17791863){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$x$}}}}%
     \put(0.28073315,0.30698573){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$y$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{radon_xxx_simple2.pdf}}%
-    \put(0.20136763,0.01318473){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,\tau}$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{radon_xxx_simple2.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{radon_xxx_simple3.pdf}}%
+    \put(0.29619244,0.01318473){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,\tau}$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{radon_xxx_simple3.pdf}}%
     \put(0.24296393,0.21497736){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\varphi$}}}}%
     \put(0.37143667,0.05006101){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\mathcal{L}_{\varphi,0}$}}}}%
     \put(0.22829562,0.11948066){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\tau$}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{radon_xxx_simple2.pdf}}%
-    \put(0.67189755,0.45545323){\color[rgb]{0,0,0}\makebox(0,0)[b]{TF-1D}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{radon_xxx_simple2.pdf}}%
-    \put(0.51069735,0.26286668){\color[rgb]{0,0,0}\makebox(0,0)[b]{TF$^{-1}$-2D}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{radon_xxx_simple3.pdf}}%
+    \put(0.67189755,0.45545323){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{1D-FT}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{radon_xxx_simple3.pdf}}%
+    \put(0.51069735,0.26286668){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{2D-FT$^{-1}$}}}}%
     \put(0.9713525,0.27744436){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$\varphi$}}}}%
+    \put(0.05508481,0.23232061){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{\textbf{$r[f](\varphi,\tau)$}}}}%
   \end{picture}%
 \endgroup%

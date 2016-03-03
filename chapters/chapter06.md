@@ -535,7 +535,7 @@ par la même séquences revient à ne rien faire. Par exemple :
                 \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}
                 \bigast \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}\;.
     \end{split}
-    \label{eqn.simplification}
+    \label{eqn.simplification2}
 \end{equation}
 
 \noindent La décomposition des projections de fantôme permet ici de révéler les
@@ -545,7 +545,7 @@ opérations de convolution et de déconvolution par la séquence $\begin{pmatrix
 reprojection en supprimant les éléments en rouge. La reprojection d'une
 reconstruction partielle peut ainsi être calculée à partir de la
 connaissance d'une projection et d'un ensemble de directions qui vérifie le
-critère de \katz. L'\cref{eqn.simplification} montre comment obtenir ce
+critère de \katz. L'\cref{eqn.simplification2} montre comment obtenir ce
 résultat en utilisant uniquement des opérations de convolutions et de
 déconvolution 1D, dont les opérations peuvent parfois se simplifier quand on
 décompose les projections du fantôme composé.
