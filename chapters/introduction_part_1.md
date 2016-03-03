@@ -3,47 +3,88 @@
 
 \addstarredchapter{Introduction de la partie}
 
-Les systèmes de communication (tels qu'en stockage de l'information) reposent
-sur des éléments qui ne sont pas fiables. En particulier, les pannes dans de
-tels systèmes sont inévitables\ \cite{ford2010osdi}. Les canaux de
-communication ne sont ainsi pas sûrs, et l'information peut être altérée ou
-perdue durant la transmission. En conséquence, des techniques doivent être
-mises en œuvre pour rendre une transmission fiable sur un canal instable
-(relatif au problème $2$ posé en introduction générale). Cette partie
-s'intéresse ainsi à l'élaboration de méthodes efficaces afin de répondre à ce
-problème. Cette efficacité met en jeu les latences de la méthode proposée,
-ainsi que sa capacité de correction. Pour cela, nous proposons d'étudier des
-versions discrètes de la transformation de \radon, appliquées aux codes
-correcteurs d'erreur. Cette partie se compose de trois chapitres dans
-lesquelles nous allons voir les éléments suivants :
+<!--
+%, les supports de transmission et de stockage de
+%données ne sont pas fiables. Dans les systèmes distribués en particulier, le
+%phénomène de panne est considéré comme une norme plutôt qu'une exception
+%\cite{ford2010osdi}. Afin de supporter ces pannes, 
+-->
+Dans les systèmes d'information nécessitent l'ajout de données de redondance au
+message à transmettre afin que le destinataire puisse reconstituer
+l'information lorsque celle-ci est détériorée.  Dans cette partie, nous nous
+intéresserons aux codes à effacement comme méthode pour générer cette
+redondance. L'objectif de cette partie est d'utiliser une approche par
+géométrie discrète afin de concevoir un code à effacement performant, c'est à
+dire : (i) fournissant un rendement optimal (code MDS); (ii) et de nouveaux
+algorithmes d'encodage et de décodage de faible complexité.
 
-1. le \cref{sec.chap1} définira des notions de théorie de codes correcteurs à
-travers l'étude des travaux fondamentaux de \textcite{shannon1948bstj}. Notre
-étude s'intéressera en particulier aux codes linéaires en bloc. Ces notions
-seront nécessaires à la compréhension des codes à effacement, qui permettent de
-répondre au problème de la fiabilité d'une transmission dans le cas de perte
-d'information sur le canal. Une proposition des critères permettant de
-distinguer les différents codes à effacement sera notre première contribution
-mineure. Une analyse de différents codes (dont notre
-référence\ \cite{reed1960jsiam}) permettra de mettre en avant les défauts de
-chacun;
+Pour cela, les bases mathématiques de la théorie des codes sera introduite dans
+le \cref{sec.chap1} à travers l'étude des travaux fondamentaux de
+\textcite{shannon1948bstj}. Au delà d'introduire les notions relatives aux
+codes à effacement, ce chapitre va nous permettre de définir une proposition de
+critères afin de comparer différents codes. Le \cref{sec.chap2} décrit notre
+approche pour concevoir des codes à effacement à partir de versions discrètes
+de la transformation de \radon. Le \cref{sec.chap3} contient deux contributions
+apportées par nos travaux de recherche. La première correspond à l'élaboration
+d'une construction du code à effacement Mojette sous une forme systématique.
+Cette construction vise à réduire la complexité du code, ainsi que la quantité
+de redondance générée. La seconde contribution, détaillée à l'issue de cette
+étude, correspond à une évaluation sur le coût réelle de la redondance de cette
+technique.
 
-2. le \cref{sec.chap2} portera sur notre proposition d'utiliser conjointement
-transformée discrète et théorie des codes. Nous verrons en particulier deux
-versions discrètes de la transformation de \textcite{radon1917akad} qui
-permettent de représenter de manière redondante l'information. En conséquence,
-nous verrons que la FRT fournit un code MDS, tandis que le code à effacement
-Mojette dispose d'un algorithme de reconstruction itératif efficace, basé sur
-l'algorithme de \textcite{normand2006dgci};
 
-3. le \cref{sec.chap3} décrira notre première contribution. Nous y présenterons
-la construction d'une version systématique du code à effacement Mojette, ainsi
-qu'un algorithme de décodage adaptée à cette construction.
-Cet algorithme, basé sur celui de \textcite{normand2006dgci}, permet un
-décodage itératif efficace (en nombre d'opérations). De plus, bien qu'elle ne
-permet pas de fournir un code MDS, cette construction permet de se rapprocher
-de cette optimale. Cette contribution est alors une proposition de solution au
-second problème présenté dans l'introduction générale.
+
+
+
+
+<!--
+%par une étude la
+%théorie des codes à travers lesette partie s'intéresse au codage à effacement comme
+%moyen de générer une quantité minimale de redondance de la redondance à la conception de codes à
+%effacement Afin de transmettre l'information de manière fiable, il
+%est nécessaire d'intégrer de la redondance d'information
+%
+%
+%ystèmes de communication et stockage reposent sur des supports éléments qui ne sont pas fiables. En particulier, les pannes dans de
+%tels systèmes sont inévitables\ \cite{ford2010osdi}. Les canaux de
+%communication ne sont ainsi pas sûrs, et l'information peut être altérée ou
+%perdue durant la transmission. En conséquence, des techniques doivent être
+%mises en œuvre pour rendre une transmission fiable sur un canal instable
+%(relatif au problème $2$ posé en introduction générale). Cette partie
+%s'intéresse ainsi à l'élaboration de méthodes efficaces afin de répondre à ce
+%problème. Cette efficacité met en jeu les latences de la méthode proposée,
+%ainsi que sa capacité de correction. Pour cela, nous proposons d'étudier des
+%versions discrètes de la transformation de \radon, appliquées aux codes
+%correcteurs d'erreur. Cette partie se compose de trois chapitres dans
+%lesquelles nous allons voir les éléments suivants :
+%
+%1. le \cref{sec.chap1} définira des notions de théorie de codes correcteurs à
+%travers l'étude des travaux fondamentaux de \textcite{shannon1948bstj}. Notre
+%étude s'intéressera en particulier aux codes linéaires en bloc. Ces notions
+%seront nécessaires à la compréhension des codes à effacement, qui permettent de
+%répondre au problème de la fiabilité d'une transmission dans le cas de perte
+%d'information sur le canal. Une proposition des critères permettant de
+%distinguer les différents codes à effacement sera notre première contribution
+%mineure. Une analyse de différents codes (dont notre
+%référence\ \cite{reed1960jsiam}) permettra de mettre en avant les défauts de
+%chacun;
+%
+%2. le \cref{sec.chap2} portera sur notre proposition d'utiliser conjointement
+%transformée discrète et théorie des codes. Nous verrons en particulier deux
+%versions discrètes de la transformation de \textcite{radon1917akad} qui
+%permettent de représenter de manière redondante l'information. En conséquence,
+%nous verrons que la FRT fournit un code MDS, tandis que le code à effacement
+%Mojette dispose d'un algorithme de reconstruction itératif efficace, basé sur
+%l'algorithme de \textcite{normand2006dgci};
+%
+%3. le \cref{sec.chap3} décrira notre première contribution. Nous y présenterons
+%la construction d'une version systématique du code à effacement Mojette, ainsi
+%qu'un algorithme de décodage adaptée à cette construction.
+%Cet algorithme, basé sur celui de \textcite{normand2006dgci}, permet un
+%décodage itératif efficace (en nombre d'opérations). De plus, bien qu'elle ne
+%permet pas de fournir un code MDS, cette construction permet de se rapprocher
+%de cette optimale. Cette contribution est alors une proposition de solution au
+%second problème présenté dans l'introduction générale.
 
 
 <!--
