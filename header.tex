@@ -4,8 +4,7 @@
 \newcommand\matus{\citeauthor{matus1993pami}\xspace}
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
-\newcommand\shannon{\citeauthor{shannon1948bstj}\xspace}
-
+\newcommand\shannon{\textsc{Shannon}\xspace}
 \newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
@@ -114,18 +113,19 @@
 
 \usepackage{listings}
 	\lstset{language=C++,
-	backgroundcolor=\color{mygrey},
+	%backgroundcolor=\color{mygrey},
 	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
 	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
-	commentstyle=\itshape\color{mybgrey},
+	commentstyle=\itshape\color{mygrey},
 	breaklines=true,
 	captionpos=b,
 	numbers=left,
 	numberstyle=\color{black},
 	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
-	basicstyle={\color{mywhite}},
+	%basicstyle={\color{mywhite}},
 	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
-	frame=none}
+	frame=single%none}
+}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}

@@ -1,0 +1,94 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'fantome_compose3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{2187.35275005bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.28033572)%
+    \put(0.4032752,0.04120503){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0.44124651,0.04120503){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{fantome_compose3.pdf}}%
+    \put(0.49444684,0.09008134){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.49495163,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.53593996,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.53543517,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.45345851,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.45345851,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.49444684,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.49495163,0.21280129){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{fantome_compose3.pdf}}%
+    \put(0.09083845,0.09008135){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.09134325,0.13098808){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{fantome_compose3.pdf}}%
+    \put(0.25280414,0.09008134){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.25330893,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.29429727,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.29379248,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{fantome_compose3.pdf}}%
+    \put(0.76534865,0.09008134){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.76585344,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.80684177,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.80633699,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{1}}}}%
+    \put(0.72436032,0.13098807){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.72436032,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.76534865,0.17189465){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.76585344,0.21280129){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{fantome_compose3.pdf}}%
+    \put(0.8473283,0.13097784){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.84783309,0.17188457){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.88882142,0.17188457){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.88831663,0.21279116){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.80633996,0.17188457){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$2$}}}}%
+    \put(0.80633996,0.21279116){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.8473283,0.21279116){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$-1$}}}}%
+    \put(0.84783309,0.25369779){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{\textbf{$1$}}}}%
+    \put(0.09123172,0.00578709){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\ghost{(0,1)}$}}}%
+    \put(0.27352131,0.00578709){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\ghost{(0,1),(1,1)}$}}}%
+    \put(0.49466981,0.00578709){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\ghost{(-1,1),(0,1),(1,1)}$}}}%
+    \put(0.80656152,0.00578709){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\ghost{(2,1),(-1,1),(0,1),(1,1)}$}}}%
+  \end{picture}%
+\endgroup%
