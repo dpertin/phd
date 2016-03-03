@@ -3,26 +3,40 @@
 
 \addstarredchapter{Introduction de la partie}
 
-La partie précédente a défini un code à effacement basé sur la transformée
-Mojette afin de répondre au problème de transmission d'informations sur un
-canal non-fiable. Dans cette seconde partie, nous nous intéresserons à
-l'application de ce code à effacement dans un système de stockage distribué
-(DSS). Dans ce contexte, le canal de communication est composé de deux parties
-: une première partie pour transporter l'information (e.g.\ bus, réseau); une
-seconde partie qui stocke l'information (e.g.\ bandes, disques durs, SSD).
-Cette deuxième partie permettra de répondre aux deux problèmes non-résolus
-présentés en introduction. Le problème de l'intégration de notre code à
-effacement dans un système de stockage distribué sera traité dans les
-\cref{sec.chap4,sec.chap5}. En particulier, ces chapitres porteront
-respectivement sur l'utilisation des codes dans un DSS, et dans le système de
-fichiers distribué (DFS) de type *scale-out* RozoFS.
+Nous avons défini dans la partie précédente le code à effacement Mojette 
+afin de répondre au problème de la transmission d'informations sur un
+canal non-fiable. Dans cette nouvelle partie, nous nous intéresserons à
+l'application de ce code dans un système de stockage distribué (NDSS).
+Dans ce contexte particulier, le phénomène de panne est considéré comme la
+norme plutôt que l'exception. L'objectif de cette nouvelle partie est de
+concevoir un NDSS capable de gérer à la fois un seuil de redondance (capacité
+nécessaire à l'archivage de données froides), et de fournir de bonnes
+performances (nécessaire pour le traitement de données chaudes).
+Nous verrons en détail, les éléments suivants dans cette partie :
 
-Le dernier problème correspond au problème de la réparation. Une fois qu'un
-seuil de redondance est mis en place dans un DSS, le système de stockage est
-capable de supporter un certain nombre de pannes (qui engendre de la perte
-d'information). Cependant, ces pannes tendent à réduire la quantité de
-redondance. Le problème de réparation nécessite des algorithmes pour réencoder
-l'information afin de rétablir un seuil de redondance.
+<!--
+%Le problème de l'intégration de notre code à effacement dans un système de
+%stockage distribué sera traité dans les \cref{sec.chap4,sec.chap5}. En
+%particulier, ces chapitres porteront respectivement sur nos contributions qui
+%vise à évaluer théoriquement le code Mojette systématique dans un NDSS, puis à
+%l'intégrer spécifiquement dans le système de fichiers distribué (DFS) RozoFS,
+%de type *scale-out*. Le \cref{sec.chap6} traite de notre dernière contribution
+%relativement à l'élaboration d'une méthode de 
+%
+%
+%
+%le canal de communication est composé de deux
+%parties : (i) les supports de transport des données (e.g.\ bus, réseau); (ii)
+%les supports de stockage des données (e.g.\ bandes, disques durs, SSD).
+%
+%Le dernier problème correspond au problème de la réparation. Une fois qu'un
+%seuil de redondance est mis en place dans un DSS, le système de stockage est
+%capable de supporter un certain nombre de pannes (qui engendre de la perte
+%d'information). Cependant, ces pannes tendent à réduire la quantité de
+%redondance. Le problème de réparation nécessite des algorithmes pour réencoder
+%l'information afin de rétablir un seuil de redondance.
+-->
+
 <!--
 %Nous avons vu comment les codes permettent de représenter
 %l'information de façon redondante afin de transmettre les données de manière
@@ -42,25 +56,22 @@ l'information afin de rétablir un seuil de redondance.
 %de transporter l'information entre ces supports et les participants (e.g.\ bus,
 %réseau, etc.).
 -->
-Nous verrons en détail les éléments suivants dans cette partie :
 
 1. le \cref{sec.chap4} présente l'utilisation des codes à effacement dans le
 contexte du stockage distribué. En particulier, le cas du RAID-6 est introduit
-avant de généraliser l'étude. Ce chapitre contient une évaluation théorique des
-performances des codes à effacement. Une évaluation des implémentations de ces
-codes Mojette et \rs est également fournie. Ces deux évaluations correspondent
-aux contributions mineures $2$ et $3$;
+avant de généraliser l'étude. Ce chapitre contient deux contributions
+relativement à : (i) l'évaluation théorique des performances des codes à
+effacement (ii) l'évaluation des performances d'encodage et de décodage des
+implémentations des codes Mojette et \rs;
 
 2. le \cref{sec.chap5} étudie l'intégration du code à effacement Mojette dans
-RozoFS, le DFS développé par Rozo Systems (contribution mineure $4$). On
-comparera les latences enregistrées par RozoFS à celles fournies par un système
-basé sur de la réplication (i.e.\ CephFS) lors d'une expérimentation réalisée
-sur la plate-forme Grid'5000;
+RozoFS, le DFS développé par Rozo Systems. Une évaluation des latences de
+lecture et d'écriture enregistrées par RozoFS sera comparée à celle fournie par
+le DFS CephFS, basé sur une technique de réplication;
 
-3. le \cref{sec.chap6} contient notre seconde principale contribution pour
-répondre au problème de la réparation. Celle-ci correspond à une méthode
-distribuée pour calculer de nouvelles projections Mojette à partir d'un
-ensemble distribué sur un ensemble de support de stockage. En particulier cette
-méthode permet de ne pas reconstruire explicitement l'information initiale
-(réencodage sans reconstruction).
+3. dans le \cref{sec.chap6}, nous proposons une nouvelle méthode distribuée
+pour réencoder de nouveaux symboles de mots de code (i.e.\ projections
+Mojette), sans avoir à reconstruire explicitement la donnée initiale. Cette
+technique sera particulièrement utile pour dans le cas de la réparation de
+supports de stockage, ou d'allocation dynamique de redondance.
 

@@ -436,6 +436,7 @@ conjointement au sein de l'équipe Image et Vidéo Communications (IVC) de
 l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
 et au sein de l'entreprise Rozo Systems. Cette entreprise développe le système
 de fichiers distribué RozoFS.
+
 Une partie de ce travail de recherche a également été financé par le projet
 ANR FEC4Cloud (appel Emergence 2012). Ce projet a pour objectifs d'analyser et
 de concevoir des codes à effacement pour le stockage distribué. Les partenaires
