@@ -1,7 +1,7 @@
 
 \chapter{Nouvelle mise en œuvre systématique}
 
-
+\label{sec.chap3}
 
 # Mise en œuvre d'une version systématique
 

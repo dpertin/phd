@@ -2,6 +2,8 @@
 
 \chapter{Conception de codes définis par géométrie discrète}
 
+\label{sec.chap2}
+
 
 
 # Discrétisation de la transformée de \radon continue
