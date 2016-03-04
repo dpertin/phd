@@ -314,16 +314,16 @@ Des travaux sur une version discrète de cette transformation, la
 «\ transformation de \radon finie\ » (ou FRT pour *Finite Radon Transform*) ont
 déjà permis de concevoir un code à effacement MDS\ \cite{normand2010wcnc}.
 Dans ce travail de thèse, nous proposons l'utilisation d'une autre version
-discrète de cette application : la transformation Mojette\
-\cite{guedon1995vcip}. Il a notamment été établi que la transformée Mojette
-dispose d'un algorithme de reconstruction itératif, permettant de reconstruire
-les données avec une complexité linéaire\ \cite{normand2006dgci}. La conception
-d'un code systématique, basé sur cette transformée, est motivée par l'objectif
-de bénéficier d'un code fournissant de bonnes performances en encodage et en
-décodage. Cette motivation est étendue à l'intégration du code dans RozoFS,
-afin de fournir un DFS capable de fournir de bonnes performances en lecture et
-écriture, tout en tolérant les pannes avec une quantité minimum de redondance
-(code MDS).
+discrète de cette application : la transformation
+Mojette\ \cite{guedon1995vcip}. Il a notamment été établi que la transformée
+Mojette dispose d'un algorithme de reconstruction itératif, permettant de
+reconstruire les données avec une complexité linéaire\ \cite{normand2006dgci}.
+La conception d'un code systématique, basé sur cette transformée, est motivée
+par l'objectif de bénéficier d'un code fournissant de bonnes performances en
+encodage et en décodage. Cette motivation est étendue à l'intégration du code
+dans RozoFS, afin de fournir un DFS capable de fournir de bonnes performances
+en lecture et écriture, tout en tolérant les pannes avec une quantité minimum
+de redondance (code MDS).
 Ce travail de thèse a ainsi conduit aux contributions suivantes :
 
 1. la conception du code à effacement performant sous une forme systématique,
