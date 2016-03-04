@@ -84,6 +84,10 @@
 	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
 	picture,baseline=(#1.base)]
 	  \node (#1) {\strut};}
+
+%http://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15)
+    -- cycle;}
 \usepackage{lscape,afterpage}
 %\usepackage{xcolor} %déjà intégré dans le .cls
 
