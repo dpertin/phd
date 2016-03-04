@@ -11,100 +11,181 @@
 
 \addcontentsline{toc}{section}{Introduction du chapitre}
 
-Le terme «\ information\ » désigne à la fois un message à communiquer et les
-symboles qui le composent. L'information est disponible sous plusieurs formes
-(une lettre, une musique, une image, etc.). Dans nos travaux, nous traitons de
-l'information quelle que soit sa forme. Il est revanche nécessaire de disposer
-d'une représentation numérique. Lors d'une transmission, une information est
-envoyée sur un canal par un émetteur, pour un destinataire. Il existe une
-multitude de canaux de transmission (e.g.\ un réseau câblé, un support de
-stockage). De par sa nature et de par les perturbations de son environnement,
-un canal ne peut être sûr. Plusieurs critères peuvent être utilisés pour
-définir la fiabilité d'une transmission. Par exemple, une transmission peut
-être considérée fiable si le message reçu est intègre, et si le temps de
-transmission est considéré court. D'autres critères peuvent parfois s'ajouter
-en fonction du contexte. Par exemple, il peut être nécessaire qu'une
-information secrète ne doit pas être lisible par un tiers.
+Les systèmes de communication numérique permettent de transmettre de
+l'information d'un émetteur, vers un destinataire (qui transite par un canal).
+Une transmission est fiable lorsque le destinataire accède à l'information en
+un temps acceptable. Pour améliorer les débits, la première étape consiste à
+compresser l'information (codage source). Sans données de redondance, le
+message est particulièrement sensible au bruit. Pour permettre au destinataire
+d'accéder à l'information malgré sa dégradation sur le canal, la seconde étape
+correspond au codage canal. À l'instar des approches de codage
+conjoint source/canal\ \cite{duhamel1997gretsi}, ce schéma est engendré par le
+«\ théorème de séparation\ », introduit par \shannon dans les années $1950$.
+Dans ce travail de thèse, nous nous intéresserons au cas du codage canal. En
+particulier, nous nous focaliserons sur les dégradations qui engendrent la
+perte d'une partie de l'information (appelé « effacement »). Nous verrons
+précisément en quoi la correction d'effacements se distingue de la correction
+des valeurs des données reçues.
 
-La théorie des codes est une branche de la théorie de l'information qui
-s'intéresse à la forme de l'information quand elle transite sur un canal.
-Dans le cas des codes correcteurs, on s'intéresse à ajouter de la
-redondance à l'information à transmettre. Cette redondance doit permettre au
-destinataire de reconstituer le message quand celui ci a été détérioré
-pendant la transmission. Une considération essentielle de cette théorie est de
-déterminer la quantité minimale de redondance nécessaire pour assurer une
-transmission fiable (i.e.\ réduire le bruit du canal).
+% capacité du canal
 
-Dans les travaux de cette thèse, nous nous intéresserons à la transmission
-d'information par «\ paquets\ ». Dans ce mode de transmission, un flux de
-données est découpé par paquets de $w$ bits qui forment un paquet (on utilisera
-également le terme «\ bloc\ »). En particulier, nous étudierons le phénomène
-«\ d'effacement\ » de ces paquets sur le canal. L'effacement d'un paquet se
-distingue de l'altération des données par deux considérations : (i)
-l'identifiant du bloc effacé est connu (on sait quel paquet a été reçu), ce qui
-relaxe le processus de détection d'erreur des codes correcteurs; (ii)
-l'ensemble des données du paquet est alors indéterminé.
+Se pose alors la question du rendement du code. Par exemple, il est
+possible de générer de la redondance en répétant plusieurs fois le bloc
+d'information à transmettre. Une quantité suffisante de répétitions permet
+supprimer le bruit du canal. Toutefois, l'augmentation du nombre de
+répétitions entraine la diminution de la part d'information utile dans la
+transmission. Désigné comme le «\ rendement\ » du code, ce taux correspond au
+rapport entre le nombre de blocs utiles sur le nombre de blocs transférés.
+En définissant la notion l'entropie, \shannon est parvenu a établir un théorème
+qui pose les limites du codage canal \cite{shannon1948bstj}. Ce théorème 
+énonce que le rendement d'un code possède une valeur limite $C$, appelée
+«\ capacité\ » du canal, jusque laquelle la probabilité d'erreur est nulle.
+Ainsi, une transmission réalisée avec un rendement supérieur à $C$ ne peut pas
+être fiable. Bien que ce théorème montre qu'il existe des codes permettant
+de corriger les erreurs (à condition que leur rendement soit inférieur à $C$),
+on ne sait pas comment les construire.
 
-Différentes techniques permettent de générer de la redondance. Il est par
-exemple possible de répéter plusieurs fois un bloc d'information à
-transmettre. Une quantité suffisante de répétitions permet de réduire
-significativement le bruit du canal. En revanche, plus le nombre de
-répétitions est élevé, plus le taux d'information utile diminue. Également
-désigné par le terme «\ rendement\ », ce taux correspond au rapport entre le
-nombre de blocs utiles sur le nombre de blocs transférés.
-La difficulté consiste alors à déterminer la valeur du rendement à utiliser
-pour transmettre efficacement sur un canal. On tend naturellement à penser que
-la probabilité d'erreur tend vers $0$ quand le rendement tend vers $0$
-En 1948, \shannon a montré qu'en réalité dans le cas d'un canal à transmission
-sans mémoire, le rendement possède une valeur limite jusque laquelle la
-probabilité d'erreur est nulle \cite{shannon1948bstj}. Cette valeur limite $C$
-est appelée «\ capacité\ » du canal. Une transmission réalisée avec un
-rendement
-supérieur à $C$ ne peut pas être fiable. En revanche, il existe des codes
-permettant de corriger les erreurs dans le cas où le rendement est inférieur à
-$C$. Dès lors, la théorie des codes s'est intéressée à la conception de codes
-et d'algorithmes permettant d'atteindre cette limite. Par exemple, les codes
-*Low-Density Parity-Check* (LDPC) permettent en théorie d'atteindre cette
-limite de manière asymptotique \cite{gallager1962toit}. En pratique (i.e.\ sur
-des codes de longueur finie) soit le décodage est efficace mais ne permet pas
-d'atteindre cette limite (décodage itératif) soit il s'en approche, mais au
-prix d'une complexité algorithmique significative (décodage par maximum de
-vraisemblance).
+% recherche de la construction des codes
 
-En 1950, \hamming introduit la notion de distance d'un code. La théorie des
-codes algébriques s'est développée à partir de là. Le «\ *Maximum Distance
-Separable*\ » (MDS) est utilisé pour qualifier les codes qui fournissent une
-quantité redondance minimale relativement à une capacité de correction
-arbitrairement fixée. La signification mathématique du concept des codes MDS
-sera détaillé en \cref{sec.codage.effacement} avec l'étude des codes linéaires
-en blocs. Notons que les codes de \textcite{reed1960jsiam} sont les codes MDS
-les plus connus.
+Dès lors, la conception des codes capables d'atteindre la capacité du canal a
+été un enjeu important de la théorie des codes.
+Par exemple, les codes *Low-Density Parity-Check* (LDPC) permettent en théorie
+d'atteindre cette limite, de manière asymptotique \cite{gallager1962toit}. En
+pratique (i.e.\ sur des codes de longueur finie) le constat est différent. Soit
+l'algorithme de décodage associé est efficace, mais ne permet pas d'atteindre
+cette limite (décodage itératif), soit il s'en approche, au prix d'une
+complexité algorithmique significative (décodage par maximum de vraisemblance).
+De la construction du code, dépendent ses propriétés. Ainsi, nous verrons que les codes ne sont pas égaux.
 
-Durant cette introduction, nous avons parcouru différentes notions de la
-théorie des codes. La \cref{sec.theorie.codes} va détailler ces notions et
-en donner les caractéristiques mathématiques. Ces notions seront nécessaire
-afin de comprendre le principe des codes à effacement, présenté dans la
-\cref{sec.codage.effacement}. Cette section présentera notamment comment
-distinguer et évaluer les différents codes à effacement. La
-\cref{sec.exemples.codes.effacement} présentent les grandes familles de codes à
-effacement (\rs, LDPC, etc.). En particulier nous verrons leur construction
-ainsi que les algorithmes de décodage.
+% historique de construction des codes
+
+En $1950$, \hamming invente le premier code correcteur dans l'objectif que son
+calculateur à carte perforée puisse finir son traitement le week-end malgré la
+présence de *bugs*. Ses travaux fondamentaux comportent notamment la définition
+de la notion de distance d'un code \cite{hamming1950bstj}. Cette notion
+permet d'évaluer la capacité de correction d'un code. Le code qu'il parvient à
+concevoir permet ainsi de corriger une erreur.
+De la notion de distance, découle la définition du concept de codes MDS (pour
+«\ *Maximum Distance Separable*\ »). Ce terme est utilisé pour qualifier les
+codes qui fournissent une quantité redondance minimale relativement à une
+capacité de correction fixée (la définition mathématique de cette notion sera
+donnée au cours du chapitre). Depuis l'introduction de la notion de distance,
+la théorie des codes algébriques s'est largement développée. En particulier,
+l'ensemble des corps finis $\FF$ fournit une structure algébrique adaptée aux
+codes en bloc. Les codes en bloc travaillent sur des blocs de données de taille
+fixe. \textcite{reed1960jsiam} introduisent de nouveaux codes en
+$1960$. Ces code MDS ont la particularité de pouvoir corriger un nombre
+arbitraire d'erreurs. Ils remplacent donc avantageusement le code de \hamming,
+et sont notamment utilisés par la NASA afin de garantir la fiabilité des
+communications dans le cas des missions spatiales. Bien qu'ils soient
+encore présents dans de nombreuses applications aujourd'hui, ils sont souvent
+utilisés conjointement avec les codes de convolution. Introduits par
+\textsc{Elias} en $1955$, ces codes forment une alternative aux codes par bloc.
+Alors que les codes par blocs découpent le message en blocs de symboles de
+taille fixe, les codes convolutifs appliquent sure fenêtre glissantes sur le
+flux de données à transmettre, et produisent une séquence continue de symboles
+encodés.
+
+Ce chapitre a pour objectif de définir un état de l'art de la théorie des codes
+linéaires par blocs. En particulier nous introduirons dans la
+\cref{sec.theorie.codes} la théorie mathématique de l'information telle que
+présentée dans les travaux de \textcite{shannon1948bstj}, puis la théorie
+algébrique des codes, définie à partir des travaux de
+\textcite{hamming1950bstj}. Les propriétés des codes à effacement seront
+définies dans la \cref{sec.codage.effacement}. En particulier, nous proposerons
+une liste de critères permettant de comparer les différents codes à effacement.
+La \cref{sec.exemples.codes.effacement} présentera une étude des principaux
+codes à effacement linéaires en bloc (e.g.\ \rs, LDPC) à travers l'analyse de
+ces critère..
+
+
+<!--
+%Durant cette introduction, nous avons parcouru différentes notions de la
+%théorie des codes. La \cref{sec.theorie.codes} va détailler ces notions et
+%en donner les caractéristiques mathématiques. Ces notions seront nécessaire
+%afin de comprendre le principe des codes à effacement, présenté dans la
+%\cref{sec.codage.effacement}. Cette section présentera notamment comment
+%distinguer et évaluer les différents codes à effacement. La
+%\cref{sec.exemples.codes.effacement} présentent les grandes familles de codes à
+%effacement (\rs, LDPC, etc.). En particulier nous verrons leur construction
+%ainsi que les algorithmes de décodage.
+
+%Le terme «\ information\ » désigne à la fois un message à communiquer et les
+%symboles qui le composent. L'information est disponible sous plusieurs formes
+%(une lettre, une musique, une image, etc.). Dans nos travaux, nous traitons de
+%l'information quelle que soit sa forme. Il est revanche nécessaire de disposer
+%d'une représentation numérique. Lors d'une transmission, une information est
+%envoyée sur un canal par un émetteur, pour un destinataire. Il existe une
+%multitude de canaux de transmission (e.g.\ un réseau câblé, un support de
+%stockage). De par sa nature et de par les perturbations de son environnement,
+%un canal ne peut être sûr. Plusieurs critères peuvent être utilisés pour
+%définir la fiabilité d'une transmission. Par exemple, une transmission peut
+%être considérée fiable si le message reçu est intègre, et si le temps de
+%transmission est considéré court. D'autres critères peuvent parfois s'ajouter
+%en fonction du contexte. Par exemple, il peut être nécessaire qu'une
+%information secrète ne doit pas être lisible par un tiers.
+%
+%La théorie des codes est une branche de la théorie de l'information qui
+%s'intéresse à la forme de l'information quand elle transite sur un canal.
+%Dans le cas des codes correcteurs, on s'intéresse à ajouter de la
+%redondance à l'information à transmettre. Cette redondance doit permettre au
+%destinataire de reconstituer le message quand celui ci a été détérioré
+%pendant la transmission. Une considération essentielle de cette théorie est de
+%déterminer la quantité minimale de redondance nécessaire pour assurer une
+%transmission fiable (i.e.\ réduire le bruit du canal).
+%
+%Dans les travaux de cette thèse, nous nous intéresserons à la transmission
+%d'information par «\ paquets\ ». Dans ce mode de transmission, un flux de
+%données est découpé par paquets de $w$ bits qui forment un paquet (on utilisera
+%également le terme «\ bloc\ »). En particulier, nous étudierons le phénomène
+%«\ d'effacement\ » de ces paquets sur le canal. L'effacement d'un paquet se
+%distingue de l'altération des données par deux considérations : (i)
+%l'identifiant du bloc effacé est connu (on sait quel paquet a été reçu), ce qui
+%relaxe le processus de détection d'erreur des codes correcteurs; (ii)
+%l'ensemble des données du paquet est alors indéterminé.
+%
+%En 1948, \shannon a montré qu'en réalité dans le cas d'un canal à transmission
+%sans mémoire, le rendement possède une valeur limite jusque laquelle la
+%probabilité d'erreur est nulle \cite{shannon1948bstj}. Cette valeur limite $C$
+%est appelée «\ capacité\ » du canal. Une transmission réalisée avec un
+%rendement
+%supérieur à $C$ ne peut pas être fiable. En revanche, il existe des codes
+%permettant de corriger les erreurs dans le cas où le rendement est inférieur à
+%$C$. Dès lors, la théorie des codes s'est intéressée à la conception de codes
+%et d'algorithmes permettant d'atteindre cette limite. Par exemple, les codes
+%*Low-Density Parity-Check* (LDPC) permettent en théorie d'atteindre cette
+%limite de manière asymptotique \cite{gallager1962toit}. En pratique (i.e.\ sur
+%des codes de longueur finie) soit le décodage est efficace mais ne permet pas
+%d'atteindre cette limite (décodage itératif) soit il s'en approche, mais au
+%prix d'une complexité algorithmique significative (décodage par maximum de
+%vraisemblance).
+%
+%En 1950, \hamming introduit la notion de distance d'un code. La théorie des
+%codes algébriques s'est développée à partir de là. Le «\ *Maximum Distance
+%Separable*\ » (MDS) est utilisé pour qualifier les codes qui fournissent une
+%quantité redondance minimale relativement à une capacité de correction
+%arbitrairement fixée. La signification mathématique du concept des codes MDS
+%sera détaillé en \cref{sec.codage.effacement} avec l'étude des codes linéaires
+%en blocs. Notons que les codes de \textcite{reed1960jsiam} sont les codes MDS
+%les plus connus.
+-->
 
 
 
 # Notion de théorie des codes {#sec.theorie.codes}
 
-Dans cette section, nous verrons dans un premier temps les caractéristiques des
-canaux de transmission dans la \cref{sec.canal}. Les notions d'entropie,
+Dans cette section, nous verrons dans un premier temps la théorie mathématique
+de l'information, introduite par \textcite{shannon1948bstj}. Cette étude
+sera le sujet de la \cref{sec.canal}. Les notions d'entropie,
 d'information mutuelle et de capacité du canal y seront traitées. Nous verrons
 par la suite l'exemple du canal binaire symétrique et du canal à effacement
 dans la \cref{sec.exemples.canaux}. La \cref{sec.theorie.codes.correcteurs}
-présentera la théorie des codes correcteurs appliqués au canal à effacement.
-Nous y définirons les opérations d'encodage, de décodage, ainsi que les
-caractéristiques des codes à effacement.
+présentera la théorie algébrique des codes correcteurs, définie par
+\textcite{hamming1950bstj}. Nous y définirons les opérations d'encodage, de
+décodage, ainsi que les caractéristiques des codes à effacement.
 
 
-## Propriétés d'un canal de communication {#sec.canal}
+## Théorie mathématique de l'information {#sec.canal}
 
 \begin{figure}
     \centering
@@ -187,16 +268,19 @@ définie comme\ \cite[p. 11]{shannon1948bstj} :
     \end{split}
 \end{equation}
 
-\noindent L'entropie $H(\mathcal{S})$ est un concept fort, puisqu'il
-donne une mesure de la quantité minimale d'information (en bit) que l'on doit
-conserver afin de représenter la donnée sans perte. Elle mesure également
-l'incertitude des informations provenant de la source. Deux cas particuliers
-peuvent être identifiés. Premièrement, si $p(s_i) = 1$ et $p(s_j) = 0$ pour $i
-\neq j$, alors on a aucune incertitude sur la source et $H(\mathcal{S})=0$ : le
-résultat est connu d'avance. À l'inverse, si tous les symboles sont
-équiprobables $p(s_i)=\frac{1}{|A|}$, alors $H(\mathcal{S}) = \sum_{i=1}^{|A|}
-\frac{1}{|A|} \log_2 |A| = \log_2 |A|$ et il est impossible de prédire le
-résultat puisque l'incertitude est maximale.
+\noindent où $\mathbb{E}$ correspond à l'espérance mathématique. L'entropie
+$H(\mathcal{S})$ s'exprime ici en bits par symbole. Il s'agit d'un concept
+fort, puisqu'il donne une mesure de la quantité minimale d'information
+nécessaire afin de représenter la donnée sans perte, ce qui correspond à une
+mesure de l'incertitude des informations provenant de la source. Deux cas
+particuliers peuvent être identifiés. Premièrement, si $p(s_i) = 1$ et $p(s_j)
+= 0$ pour $i \neq j$, alors $H(\mathcal{S})=0$, c'est à dire que le résultat
+est connu d'avance (aucune incertitude sur la valeur reçue).
+À l'inverse, si tous les symboles sont équiprobables $p(s_i)=\frac{1}{|A|}$,
+alors $H(\mathcal{S}) = \sum_{i=1}^{|A|} \frac{1}{|A|} \log_2 |A| = \log_2
+|A|$. Il est alors impossible de prédire le résultat puisque l'incertitude est
+maximale.
+
 
 #### Entropie de lois conjointes
 
@@ -227,7 +311,8 @@ $X$ lorsqu'une valeur de Y est connues :
 \end{equation}
 
 \noindent Cette notion peut être ensuite étendue dans le cas où l'on connait
-l'ensemble des degrés d'originalité des symboles de $Y$ :
+l'ensemble des degrés d'originalité des symboles de $Y$\ \cite[p.
+12]{shannon1948bstj} :
 
 \begin{equation}
     H(X|Y) = - \sum_{x,y} p_{x|y} \log_2 \left( \frac{p_y}{p_{x|y}} \right).
@@ -243,7 +328,8 @@ capable de déterminer le symbole $x_i$ transmis depuis la source, à partir des
 informations reçues $y_i$ par le récepteur. L'information mutuelle $I(X,Y)$
 mesure la quantité d'information reçue. Elle correspond à la quantité
 d'information restante lorsque l'on soustrait l'information perdue sur le
-canal $H(X|Y)$, à l'information émise par l'émetteur $H(X)$ :
+canal $H(X|Y)$, à l'information émise par l'émetteur $H(X)$\ \cite[p.
+12]{shannon1948bstj} :
 
 \begin{equation}
     \begin{split}
@@ -262,7 +348,7 @@ déterminée par $X$ et le canal ne provoque pas d'erreur.
 ### Capacité d'un canal
 
 La capacité d'un canal $C(X,Y)$ est définie
-ainsi\ \cite[p.11]{shannon1948bstj} :
+ainsi\ \cite[p. 22]{shannon1948bstj} :
 
 \begin{equation}
     C(X,Y) = \max{I(X,Y)}\;.
@@ -382,20 +468,16 @@ effacement entraîne la perte d'un mot entier.
 
 
 
-## Théorie des codes correcteurs {#sec.theorie.codes.correcteurs}
+## Théorie algébrique des codes correcteurs {#sec.theorie.codes.correcteurs}
 
-Un code une technique qui permet de représenter une information
-différemment. Le terme «\ code\ » désigne également le résultat de cette
-transformation. En transmission de l'information, deux types de codage sont
-utilisés en série. Le premier vise à compresser l'information en éliminant les
-redondances : c'est le «\ codage source\ ». Après quoi, le «\ codage canal\ »
-permet de rajouter de la redondance afin de transmettre l'information de
-manière fiable. Dans nos travaux, nous étudierons le cas du codage canal. Dans
-la suite de cette section, nous verrons le principe et les caractéristiques des
-codes en bloc, puis nous verrons en particulier le cas des codes linéaires.
+Cette section présente une étude des codes linéaires par blocs à travers une
+approche algébrique. Une définition des opérations d'encodage et de décodage
+sera présentée, ainsi que la notion fondamentale de la distance de
+\textcite{hamming1950bstj}. Cette notion fondamentale de la théorie des codes
+permet de déterminer la capacité de correction d'un code.
 
 
-### Codes en bloc
+### Codes par blocs
 
 Jusque là, nous avons étudié le transfert d'information bit à bit. En pratique,
 on souhaite transférer un flux d'information de taille conséquente. Pour
@@ -411,13 +493,12 @@ la distance de \hamming.
 Pour un code correcteur $(n,k)$, l'encodage correspond à une application
 injective $\phi : A^k \to A^n$, où $A$ est un alphabet (dans le cas du canal
 binaire, $A=\{0,1\}$) et où $k \leq n$. En particulier, on appelle $k$ la
-dimension du code, et $n$ sa longueur.
-L'ensemble $\mathcal{C}_{\phi}=\{\phi(s) : s \in A^k\}$ correspond au code
-$(n,k)$ dont les éléments sont des mots de codes. Les corps finis correspondent
-à des structures discrètes adaptées aux applications de codage. Lors d'une
-transmission, les valeurs de $n$ et $k$ sont définies en fonction de la
-capacité du canal. Les mots de code ainsi calculés sont transmis sur le canal
-en direction du destinataire.
+dimension du code, et $n$ sa longueur. L'ensemble $\mathcal{C}_{\phi} =
+\{\phi(s) : s \in A^k\}$ correspond au code $(n,k)$ dont les éléments sont des
+mots de codes. Les corps finis correspondent à des structures discrètes
+adaptées aux applications de codage. Lors d'une transmission, les valeurs de
+$n$ et $k$ sont définies en fonction de la capacité du canal. Les mots de code
+ainsi calculés sont transmis sur le canal en direction du destinataire.
 
 #### Décodage
 
