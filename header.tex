@@ -4,6 +4,7 @@
 \newcommand\matus{\citeauthor{matus1993pami}\xspace}
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
+
 \newcommand\shannon{\textsc{Shannon}\xspace}
 \newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
@@ -93,8 +94,6 @@
 
 %\geometry{inner=2.5cm, outer=2.5cm, top=2.5cm, bottom=2cm}
 %\geometry{inner=1.5cm, outer=1.5cm, top=2cm, bottom=2cm}
-
-\usepackage[french=guillemets]{csquotes}
 
 \usepackage{textcomp}
 \usepackage{pdflscape}
@@ -221,7 +220,8 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
     maxbibnames=99,
     language=french,
     babel=other,
-    backref=true
+    backref=true,
+	%style=trad-plain
 ]{biblatex}
 \addbibresource{these.bib}
 

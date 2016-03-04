@@ -7,70 +7,46 @@
 
 \newpage
 
-% Dans le chapitre précédent, nous avons vu la transformée
-
-% de \radon fini et la transformée Mojette. Ces deux codes à
-
-% effacement sont conçus à partir d'une approche géométrique.
-
-% En particulier, nous avons montré que ces deux codes disposent
-
-% d'algorithmes efficaces pour générer des données de redondance
-
-% lors de l'encodage, puis pour décoder et reconstruire
-
-% l'information initiale.  Bien que la transformée de \radon
-
-% fini a l'avantage de fournir un code optimal au sens MDS,
-
-% la transformée Mojette offre des complexités d'encodage et
-
-% de décodage plus efficaces.
-
 \section*{Introduction}
 
-Nous avons vu dans le chapitre précédent que la transformée Mojette est capable
-de produire efficacement de la redondance de l'information, nécessaire pour
-garantir une disponibilité des données face à des pannes éventuelles. On
-appelle chemin de données, l'ensemble des composants par lesquels la donnée
-transite lors d'une communication.
-Situé entre les unités de traitement et de transmission des données, le code à
-effacement forme un maillon crucial dans le chemin de données. Il est important
-que le code soit suffisamment performant pour ne pas former un goulot
-d'étranglement dans cette chaîne de transmission.
-L'objectif de ce chapitre est d'expliquer ma contribution dans l'élaboration
-d'une version systématique du code à effacement Mojette, dans l'objectif
-d'optimiser ses performances.
+Le chapitre précédent a permis de définir les codes à effacement basés sur la
+FRT et sur la transformée Mojette. Ce dernier, bien que sous-optimal (au sens
+MDS), a la particularité de disposer d'un algorithme de reconstruction
+itératif, de faible complexité \cite{normand2006dgci}.
+La latence est un critère essentiel des codes à effacement *AL-FEC*,
+puisque l'encodeur (et le décodeur) sont des composants connectés en série dans
+la chaîne de traitement. Par exemple, dans les systèmes de stockage distribués,
+le chemin de données correspond à l'ensemble des composants par lesquels la
+donnée transite lors d'une communication. Afin de ne pas former de goulot, le
+code doit fournir de très faibles latences.
 
-Nous avons vu dans le \cref{sec.chap1} que les codes systématiques intègrent la
-donnée dans l'ensemble des informations encodées. En conséquence, l'encodage
-systématique nécessite de calculer une quantité significativement réduite de
-redondance en comparaison du même code en version non-systématique. De plus, le
-principal avantage réside dans le fait que le décodage est optimal
-lorsqu'aucune information n'est perdue.
-Jusque là, les seuls travaux réalisés sur cette technique concerne une mise en
-œuvre au sein d'un brevet \cite{david2013patent}. La \cref{sec.systematique}
-présente la nécessité de mettre en œuvre une version systématique du code à
-effacement, et détaille ses avantages face à la version actuellement
-développée.
-La \cref{sec.algo-sys} présente la mise en œuvre et l'algorithme conçu pour
-décoder l'information sous cette forme. En particulier, nous verrons que
-l'algorithme utilisé est une extension de l'algorithme de
-\textcite{normand2006dgci}.
-La \cref{sec.eval.red} analyse le gain de redondance de cette version sur la
-version non-systématique, et compare ce coût face aux codes MDS.
+L'objectif de ce chapitre est d'améliorer les performances d'encodage et de
+décodage du code à effacement Mojette. Pour cela, nous allons définir ce code
+sous sa forme systématique. Pour rappel, le message à transmettre fait partie
+intégrante d'un de code systématique. Cette amélioration des performances
+provient des considérations suivantes : (i) lors de l'encodage, le code
+systématique ne génère que $(n-k)$ symboles de redondance (au lieu de $n$ en
+non-systématique). Le gain en décodage est encore plus important, puisqu'il
+n'est pas nécessaire de décoder l'information lorsque la partie systématique du
+mot de code est intacte.
 
-% Pour finir, nos verrons une évaluation du code à effacement
-
-% Mojette, et comparerons ses performances avec les meilleures
-
-% implémentations actuelles. En particulier, nous verrons que
-
-% cette version améliore significativement les performances du code,
-
-% et offre de meilleures performances que l'implémentation des codes
-
-% de Reed-Solomon développée par \textcite{intel2015isal}.
+<!--
+%Jusque là, les seuls travaux réalisés sur cette technique concerne une mise en
+%œuvre au sein d'un brevet \cite{david2013patent}.
+-->
+Ce chapitre est organisé de la manière suivante. La \cref{sec.systematique}
+détaille la nécessité d'améliorer les performances du code à effacement, au
+sein d'un système de communication. Nous y détaillerons également les bénéfices
+d'une version systématique dans le contexte du code Mojette. En particulier,
+nous verrons que la forme systématique permet également d'améliorer le
+rendement du code. Cette propriété découle de la géométrie de la transformée
+Mojette, dont les projections ont des tailles différentes.
+La \cref{sec.algo-sys} présente notre contribution à l'amélioration des
+performances du code. En particulier, une mise en œuvre de la version
+systématique est donnée, accompagné d'un algorithme de décodage.
+La \cref{sec.eval.red} analyse le gain de redondance obtenu par notre
+contribution, par rapport à la version non-systématique, et permet de
+positionner notre code par rapport aux codes MDS.
 
 
 
@@ -594,7 +570,7 @@ l'image:
     \mu = \frac
         {P \times Q + \sum\limits_{i=0}^{n-k-1} B(P,Q,p_i,q_i)}
         {P \times Q}.
-    \label{eqn.f_systematic}
+    \label{eqn.f_non_systematic}
 \end{equation}
 
 \noindent Puisque la taille d'une projection ne peut être inférieure à la
