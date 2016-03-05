@@ -1178,14 +1178,14 @@ performante des opérations d'encodage et de décodage.
 # Code à effacement par transformation Mojette {#sec.mojette}
 
 Dans cette section, nous allons nous intéresser à un code à effacement basé sur
-la transformation Mojette. Tout comme la FRT, cette transformation correspond à une
-version discrète et exacte de la transformation de \radon continue définie dans
-\textcite{radon1917akad} (voir l'\cref{eqn.projection}). Elle a été proposée pour la
-première fois par \textcite{guedon1995vcip} dans le contexte du traitement et
-du codage psychovisuel. Depuis, cette transformation a été utilisée dans de
-nombreuses applications liées à l'imagerie numérique (codage, transmission,
-tatouage). Dans cette thèse, nous proposons de l'utiliser comme code à
-effacement pour le stockage et la transmission d'information.
+la transformation Mojette. Tout comme la FRT, cette transformation correspond à
+une version discrète et exacte de la transformation de \radon continue définie
+dans \textcite{radon1917akad}. Elle a été proposée pour la première fois par
+\textcite{guedon1995vcip} dans le contexte du traitement et du codage
+psychovisuel. Depuis, cette transformation a été utilisée dans de nombreuses
+applications liées à l'imagerie numérique (codage, transmission, tatouage).
+Dans cette thèse, nous proposons de l'utiliser comme code à effacement pour le
+stockage et la transmission d'information.
 
 Nous décrirons en \cref{sec.mojette-forward} la méthode de calcul des
 projections Mojette, qui se distinguent des projections FRT par leur géométrie

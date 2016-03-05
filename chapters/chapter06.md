@@ -149,7 +149,7 @@ permet notamment la distribution des calculs de reprojection. Par linéarité de
 l'opérateur Mojette, nous montrons que la reprojection par des opérations 2D
 est possible.
 
-### Reconstruction partielle {#sec.reconstruction.partielle}
+### Reconstruction partielle
 
 \label{sec.dec.rec}
 
@@ -771,7 +771,7 @@ supplémentaire dans l'objectif : (i) de rétablir un seuil de redondance; (ii)
 d'allouer dynamiquement un seuil de redondance. Enfin, la \cref{sec.reduction}
 traitera de la réduction de la bande passante utilisée pour la réparation.
 
-## Dispersion d'information incompréhensible
+## Dispersion d'information incompréhensible {#sec.dispersion.information}
 
 % schéma
 

@@ -719,7 +719,7 @@ Sur la couche physique, les symboles correspondent à des bits (comme
 nous l'avons vu jusqu'à présent). Dans le cas du standard de transmission vidéo
 DVB-H \cite{faria2006ieee}, un symbole correspond à un octet. Dans l'exemple
 d'un protocole réseau, il peut s'agir de paquets réseau
-\cite{tournoux2011tom,roca2015rfc}. Dans un contexte de stockage, un symbole
+\cite{tournoux2011tom,lacan2009rfc}. Dans un contexte de stockage, un symbole
 peut également représenter des parties de fichiers, voire des fichiers entiers
 \cite{huang2012atc}.
 
@@ -907,7 +907,7 @@ suivante : n'importe quelle sous-matrice de taille $k \times k$ de $G$ est
 inversible. Les matrices de \vander $V_{i,j} = \alpha_i^{j-1}$, où
 les $\alpha_i$ correspondent à des éléments du corps fini, possèdent une telle
 propriété. L'encodage correspond alors à multiplier une matrice de \vander avec
-le vecteur colonne représentant le message à transmettre \cite{lacan2015rfc}.
+le vecteur colonne représentant le message à transmettre \cite{lacan2009rfc}.
 
 Soit $x'$ le message à transmettre, $x$ le mot de code transmis, et $y$ le
 message reçu. Dès que le destinataire reçoit $k$ symboles parmi les $n$
