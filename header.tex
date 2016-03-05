@@ -166,14 +166,16 @@
 \DeclareMathOperator*{\bigast}{\ast}
 \DeclareMathOperator*{\bigastinv}{\ast^{-1}}
 \newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
-\def\dirset#1{\left\{#1\right\}}
-\def\ghost#1{G_{\dirset{#1}}}
+\def\dir#1{\left\{#1\right\}}
+\def\ghost#1{g_{#1}}
+\def\moj#1#2{M_{#1}\left[#2\right]}
 
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
 \makeatother
 
-\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
+\algrenewcommand\algorithmicrequire{\textbf{Entrée :}}
+\algrenewcommand\algorithmicensure{\textbf{Sortie :}}
 \algrenewcommand\algorithmicfor{\textbf{pour}}
 \algrenewcommand\algorithmicforall{\textbf{pour tout}}
 \algrenewcommand\algorithmicdo{\textbf{faire}}

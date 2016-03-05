@@ -1,0 +1,114 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'convolution_fg4.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{983.75672038bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.38745532)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{convolution_fg4.pdf}}%
+    \put(0.9430521,0.56883586){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(1.02748013,0.56883586){\color[rgb]{0.50196078,0.50196078,0.50196078}\makebox(0,0)[b]{\smash{}}}%
+    \put(0.24679921,0.05414929){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$4$}}}%
+    \put(0.2045854,0.05414929){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.16237138,0.05414929){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{convolution_fg4.pdf}}%
+    \put(0.10877274,0.37687342){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.08607574,0.35572164){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.06337885,0.33447516){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.04393469,0.31495814){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.02286412,0.29380646){\color[rgb]{0,0.00392157,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{convolution_fg4.pdf}}%
+    \put(0.10522254,0.00605003){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.08577828,0.02719347){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.06308139,0.04996333){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.04363753,0.07110677){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.02256666,0.09225021){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{convolution_fg4.pdf}}%
+    \put(0.16237138,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.2045854,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.24679921,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.16237138,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.2045854,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.24679921,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$4$}}}%
+    \put(0.16237138,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.2045854,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.24679921,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{convolution_fg4.pdf}}%
+    \put(0.41560504,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.2890847,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.33129872,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.37351253,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.41560504,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$2$}}}%
+    \put(0.2890847,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$2$}}}%
+    \put(0.33129872,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$4$}}}%
+    \put(0.37351253,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.41560504,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.2890847,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.33129872,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.37351253,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{convolution_fg4.pdf}}%
+    \put(0.55719932,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.59941314,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0.76821897,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.64169863,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.68391264,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.72612646,0.18849043){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$3$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{convolution_fg4.pdf}}%
+    \put(0.89425955,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.93647376,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.97868758,0.14596708){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.89425955,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.93647376,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.97868758,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$1$}}}%
+    \put(0.89425955,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0.93647376,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$5$}}}%
+    \put(0.97868758,0.23039511){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$0$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{convolution_fg4.pdf}}%
+    \put(0.82920282,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$\bigast$}}}%
+    \put(0.48765506,0.18818109){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{=}}}%
+  \end{picture}%
+\endgroup%
