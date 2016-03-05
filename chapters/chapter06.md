@@ -149,7 +149,7 @@ permet notamment la distribution des calculs de reprojection. Par linéarité de
 l'opérateur Mojette, nous montrons que la reprojection par des opérations 2D
 est possible.
 
-### Reconstruction partielle {#sec.reconstruction.partielle}
+### Reconstruction partielle
 
 \label{sec.dec.rec}
 
@@ -390,18 +390,22 @@ est suffisant pour reconstruire l'image de manière unique.
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/convolution_fg2}
+    \includesvg{img/convolution_fg5}
     \caption{Convolution d'une image $f$ avec le fantôme composé
-    $\ghost{(0,1),(1,1)}$. Le résultat est une image dont les projections
-    suivant les directions du fantôme sont nulles.}
+    $\ghost{(-1,1),(1,1)}$. Le résultat est une image dont les projections
+    suivant les directions du fantôme sont nulles. Les opérations sont
+    réalisées modulo $6$.}
     \label{fig.convolution.fg}
 \end{figure}
 
 Puisque les projections d'un fantôme sont nulles, la convolution d'une image $f$
 avec un fantôme $\ghost{(p,q)}$ donne une image dont les valeurs des projections
 suivant les directions de $\dirset{(p,q)}$ sont nulles. La
-\cref{fig.convolution.fg} illustre un exemple dans lequel une image $f$ est
-convoluée avec le fantôme composé $\ghost{(0,1),(1,1)}$.
+\cref{fig.convolution.fg} illustre un exemple dans lequel une image $f$ de
+hauteur $Q=1$ est convoluée avec le fantôme composé $\ghost{(-1,1),(1,1)}$.
+L'image qui correspond à cette opération possède des projections nulles suivant
+les directions du fantômes. Dans cet exemple, les opérations sont sont
+réalisées modulo $6$.
 
 
 ### Reprojection par convolutions 1D
@@ -440,7 +444,7 @@ Notre approche diffère de celle de \citeauthor{philippe1998phd} puisque pour
 débloquer l'algorithme, nous initialisons les valeurs des projections de
 direction dans $S \setminus R$ tel que ces projections soient nulles. Si l'on
 considère à présent la reconstruction partielle à partir d'une seule et une
-seule projection de direction $(p_i,q_i)$, alors :
+seule projection de direction $(p_i,q_i=1)$, alors :
 
 1. $f_{SC}$ correspond à la reconstruction à partir des projections de
 directions dans $S \setminus R$, initialisées à zéro. En conséquence 
@@ -453,17 +457,22 @@ issue de la reconstruction partielle résulte d'une convolution de l'image
 \noindent En conséquence, l'\cref{eqn.decomposition.fantome} peut s'écrire :
 
 \begin{equation}
-    f_S^{\dirset{(p_i,q_i)}}=h \ast G_{S\setminus\dirset{(p_i,q_i)}}\;,
+    f_S^{\dirset{(p_i,q_i=1)}} =
+        h \ast G_{S\setminus\dirset{(p_i,q_i)}}\;,
     \label{eqn.reconstruction_partielle}
 \end{equation}
 
-\noindent où $h$ est une image de hauteur $1$. Par linéarité de l'opérateur
-Mojette, quelle que soit la direction $(p,q)$,
+\noindent où $h$ est une image de hauteur $1$ (parce que $q_i=1$). La
+\cref{fig.convolution.fg} illustre cette équation. L'image $f_S^{(0,1)}$
+correspond à la convolution d'une image de hauteur $Q=1$, avec le fantôme
+$\ghost{(-1,1),(1,1)}$ de directions $S \setminus R$.
+Par linéarité de l'opérateur Mojette, quelle que soit la direction $(p,q)$,
 l'\cref{eqn.reconstruction_partielle} devient :
 
 \begin{align}
     \MM_{(p,q)}f_S^{\dirset{(p_i,q_i)}}
-        & = \MM_{(p,q)}h \ast \MM_{(p,q)}(G_{S\setminus\dirset{(p_i,q_i)}})\\
+        & = \MM_{(p,q)}h
+            \ast \MM_{(p,q)}(G_{S\setminus\dirset{(p_i,q_i)}})\;,\\
         & = h \ast \MM_{(p,q)}(G_{S\setminus\dirset{(p_i,q_i)}})\;,
     \label{eqn.reprojection_p_k}
 \end{align}
@@ -644,7 +653,7 @@ par la même séquences revient à ne rien faire. Par exemple :
                 \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}
                 \bigast \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}\;.
     \end{split}
-    \label{eqn.simplification}
+    \label{eqn.simplification2}
 \end{equation}
 
 \noindent La décomposition des projections de fantôme permet ici de révéler les
@@ -654,7 +663,7 @@ opérations de convolution et de déconvolution par la séquence $\begin{pmatrix
 reprojection en supprimant les éléments en rouge. La reprojection d'une
 reconstruction partielle peut ainsi être calculée à partir de la
 connaissance d'une projection et d'un ensemble de directions qui vérifie le
-critère de \katz. L'\cref{eqn.simplification} montre comment obtenir ce
+critère de \katz. L'\cref{eqn.simplification2} montre comment obtenir ce
 résultat en utilisant uniquement des opérations de convolutions et de
 déconvolution 1D, dont les opérations peuvent parfois se simplifier quand on
 décompose les projections du fantôme composé.
@@ -771,7 +780,7 @@ supplémentaire dans l'objectif : (i) de rétablir un seuil de redondance; (ii)
 d'allouer dynamiquement un seuil de redondance. Enfin, la \cref{sec.reduction}
 traitera de la réduction de la bande passante utilisée pour la réparation.
 
-## Dispersion d'information incompréhensible
+## Dispersion d'information incompréhensible {#sec.dispersion.information}
 
 % schéma
 
