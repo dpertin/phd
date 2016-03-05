@@ -131,13 +131,12 @@ cette méthode peut être avantageusement utilisée.
 
 # Reprojection sans reconstruction {#sec.reprojection.sans.reconstruction}
 
-Dans cette section, nous présentons la nouvelle méthode de reprojection.
-Nous définissons dans la \cref{sec.reconstruction.partielle} la méthode de
-reprojection. La \cref{sec.conv} montre ensuite, comment traduire ces
-opérations par des convolutions et des déconvolutions 1D. Cette méthode permet
-en conséquence une reprojection sans reconstruction de l'image initiale.
-Enfin, la \cref{sec.simplification.operations} expose des simplifications dans
-les opérations de convolution.
+Dans cette section, nous présentons la nouvelle méthode de reprojection.  Nous
+définissons dans la \cref{sec.reconstruction.partielle} la méthode de
+reprojection sans reconstruction par des opérations 2D. La \cref{sec.conv}
+montre ensuite, comment traduire ces opérations par des convolutions et des
+déconvolutions 1D. Enfin, la \cref{sec.simplification.operations} expose des
+simplifications dans les opérations de convolution.
 
 
 ## Méthode de reprojection {#sec.reconstruction.partielle}
@@ -167,19 +166,18 @@ est possible.
     \label{fig.part_image}
 \end{figure}
 
-La notion de reconstruction partielle a été introduite par \textcite[chap.
-3]{philippe1998phd} dans ses travaux de thèse. Rappelons que le critère de
-\katz permet de déterminer l'unicité de la solution de reconstruction,
-relativement à un ensemble de projections.
-Considérons par ailleurs, un ensemble de projections insuffisant au regard du
-critère de \katz. Dans ce cas, l'algorithme de reconstruction ne permet pas de
-reconstruire entièrement la grille. En revanche, les informations contenues
-dans les projections permettent de reconstruire une partie de la grille.
-L'algorithme de reconstruction peut ainsi reconstruire un nombre insuffisant
-de pixels avant d'être bloqué. Dans ce cas, \textcite{philippe1998phd} propose
-d'affecter une valeur arbitraire à certaine partie de l'image (appelée
-«\ érodée\ » de l'image), afin de poursuivre la reconstruction exacte des pixels
-de la grille.
+La notion de reconstruction partielle a été introduite par
+\textcite[chap. 3]{philippe1998phd} dans ses travaux de thèse. Rappelons que le
+critère de \katz permet de déterminer l'unicité de la solution de
+reconstruction, relativement à un ensemble de projections.  Considérons par
+ailleurs, un ensemble de projections insuffisant au regard du critère de \katz.
+Dans ce cas, l'algorithme de reconstruction ne permet pas de reconstruire
+entièrement la grille. En revanche, les informations contenues dans les
+projections permettent de reconstruire une partie de la grille.  L'algorithme
+de reconstruction peut ainsi reconstruire un nombre insuffisant de pixels avant
+d'être bloqué. Dans ce cas, \textcite{philippe1998phd} propose d'affecter une
+valeur arbitraire à certaine partie de l'image (appelée «\ érodée\ » de
+l'image), afin de poursuivre la reconstruction exacte des pixels de la grille.
 
 Dans cette section, nous proposons de débloquer le processus de reconstruction
 en étendant l'ensemble de projection disponible par des projections de valeur
@@ -211,8 +209,8 @@ projections de directions dans $R$ (i.e.\ invalidant le critère de
 \katz si $R\subsetneq S$). Parce que les projections dont les directions sont
 dans l'ensemble $S \setminus R$ sont nulles, la reconstruction partielle
 $f_S^R$ est un fantôme pour ces même directions. Les fantômes ont été
-introduits dans le second chapitre. Un fantôme est une image $f :
-\MM_{\{(p_q\}}f = 0$. Les propriétés des fantômes seront utilisées dans la
+introduits dans le second chapitre. Un fantôme est une image $g :
+\moj{\dir{\dir{(p,q)}}}{g} = 0$. Les propriétés des fantômes seront utilisées dans la
 \cref{sec.conv}.
 
 
@@ -220,9 +218,9 @@ introduits dans le second chapitre. Un fantôme est une image $f :
 
 <!-- %projection partielle -->
 On considère à présent un ensemble de projections suffisant, dont l'ensemble
-des directions est $S$. Soit $\MM_{S}f$ l'ensemble des projections
+des directions est $S$. Soit $\moj{S}{f}$ l'ensemble des projections
 (i.e.\ transformée) de $f$, engendré par l'ensemble des directions $S$. Soit
-$R$ un sous-ensemble non vide de $S$. On considère alors $\MM_Rf$, qui
+$R$ un sous-ensemble non vide de $S$. On considère alors $\moj{R}{f}$, qui
 correspond à un sous-ensemble de projections de la transformée engendrée par
 $S$.  En conséquence, si l'ensemble des directions de projection utilisées
 forme une partition $\mathcal{P}(S)$ (i.e.\ $\cup_{R_i \in \mathcal{P}(S)} R_i =
@@ -230,7 +228,7 @@ S$) alors l'ensemble des projections engendré par $R_i$ est égale à la
 transformée de $f$ par $S$ :
 
 \begin{equation}
-    \bigcup_{R_i \in \mathcal{P}(S)} {\MM_{R_i}}f = \MM_Sf\;.
+    \bigcup_{R_i \in \mathcal{P}(S)} \moj{R_i}{f} = \moj{S}{f}\;.
     \label{eqn.somme_projection}
 \end{equation}
 
@@ -270,14 +268,14 @@ valeurs de ces reconstructions partielles donne l'image $f$ :
 \noindent Il est ainsi possible de reconstruire une image de hauteur $Q$ à
 partir de ces reconstructions partielles. En particulier, chaque reconstruction
 partielle $f_S^R$ peut être utilisée pour calculer une projection
-$\MM_{(p_k,q_k)}f_S^R$ suivant une direction $(p_k,q_k)$. Par
+$\moj{\dir{(p_k,q_k)}}{f_S^R}$ suivant une direction $(p_k,q_k)$. Par
 linéarité de l'opérateur Mojette, la somme des projections obtenues
-correspond à la projection $\MM_{(p_k,q_k)}f$.
+correspond à la projection $\moj{\dir{(p_k,q_k)}}{f}$.
 L'\cref{eqn.somme_image} peut alors s'écrire :
 
 \begin{equation}
-    \MM_{(p_k,q_k)}f =
-        \sum_{R_i \in \mathcal{P}(S)} \MM_{(p_k,q_k)}{f_S^{R_i}}\;.
+    \moj{\dir{(p_k,q_k)}}{f} =
+        \sum_{R_i \in \mathcal{P}(S)} \moj{\dir{(p_k,q_k)}}{f_S^{R_i}}\;.
     \label{eqn.somme_reprojection}
 \end{equation}
 
@@ -290,7 +288,8 @@ obtenue à partir d'une projection de direction dans $S=\left\{(0,1), (1,1),
 (-1,1) \right\}$. Cette reconstruction est réalisée à la manière de la
 \cref{fig.part_image}. Plus précisément, les images $f_S^{\{(0,1)\}}$,
 $f_S^{\{(1,1)\}}$, et $f_S^{\{(-1,1)\}}$, sont respectivement reconstruites
-depuis les projections $\MM_{(0,1)}f$, $\MM_{(1,1)}f$ et $\MM_{(-1,1)}f$. 
+depuis les projections $\moj{\dir{(0,1)}}{f}$, $\moj{\dir{(1,1)}}{f}$ et
+$\moj{\dir{(-1,1)}}{f}$. 
 <!-- %2 -->
 Deuxièmement, puisque les trois projections utilisés forment une partition de
 $S$, la somme des images obtenues par reconstructions partielles reconstruise
@@ -300,16 +299,18 @@ reconstruction peut se limiter à la taille de l'image. Par ailleurs, on observe
 que l'ensemble des valeurs obtenues externes à la grille $3 \times 3$, est
 nul (et peut donc être tronqué).
 <!-- %3 -->
-Troisièmement, on représente les projections $\MM_{(2,1)}f_S^{\{(0,1)\}}$,
-$\MM_{(2,1)}f_S^{\{(1,1)\}}$ et $\MM_{(2,1)}f_S^{\{(-1,1)\}}$ de chaque
-reconstruction partielle, suivant la nouvelle direction $(2,1)$. 
-La somme de ces projections permet de déterminer la projection $\MM_{(2,1)}f$
-que l'on recherche (cf.\ \cref{eqn.somme_projection}. En pratique, dans le cas
-où les projections sont distribuées (comme dans le cas du stockage distribué,
-présenté en introduction) le processus de reconstruction peut être distribué
-puisque la valeur des projections distantes n'a pas besoin d'être connu.
-En particulier, l'image n'a pas besoin d'être reconstruite pour déterminer la
-valeur de la nouvelle projection.
+Troisièmement, on représente les projections
+$\moj{\dir{(2,1)}}{f_S^{\{(0,1)\}}}$, $\moj{\dir{(2,1)}}{f_S^{\{(1,1)\}}}$ et
+$\moj{\dir{(2,1)}}{f_S^{\{(-1,1)\}}}$ de chaque reconstruction partielle,
+suivant la nouvelle direction $(2,1)$. Nous appellerons ces projections des
+«\ reprojections partielles\ » La somme de ces projections permet de
+déterminer la projection $\moj{\dir{(2,1)}}{f}$ que l'on recherche
+(cf.\ \cref{eqn.somme_projection}. En pratique, dans le cas où les projections
+sont distribuées (comme dans le cas du stockage distribué, présenté en
+introduction) le processus de reconstruction peut être distribué puisque la
+valeur des projections distantes n'a pas besoin d'être connu.  En particulier,
+l'image n'a pas besoin d'être reconstruite pour déterminer la valeur de la
+nouvelle projection.
 
 Cette première approche a permis de valider la méthode de reprojection par des
 opérations 2D (i.e.\ reconstruction et projection de l'image). La notion de
@@ -333,7 +334,7 @@ le domaine projeté suivant les directions pour lesquelles ils sont définis.
 Un fantôme élémentaire est défini par une unique direction $(p,q)$ tel que :
 
 \begin{equation}
-    G_{(p,q)}(x,y) = \begin{cases}
+    g_{\{(p,q)\}}(x,y) = \begin{cases}
         1 &\text{si }(x,y)=(0,0)\\
         -1&\text{si }(x,y)=(p,q)\\
         0 &\text{sinon}
@@ -343,7 +344,7 @@ Un fantôme élémentaire est défini par une unique direction $(p,q)$ tel que :
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/fantomes2}
+    \includesvg{img/fantomes3}
     \caption{Représentation de quatre fantômes élémentaires. Chaque fantôme est
     défini suivant une direction $(p,q)$ appartenant à l'ensemble
     $\{(0,1),(1,1),(-1,1),(2,1)\}$.  Par définition, la somme des valeurs de
@@ -354,20 +355,21 @@ Un fantôme élémentaire est défini par une unique direction $(p,q)$ tel que :
 \noindent La \cref{fig.fantomes} représente quatre fantômes élémentaire
 (i.e.\ défini par une seule direction) suivant chaque direction de l'ensemble
 $\{(0,1),(1,1), (-1,1), (2,1)\}$. Il est possible de construire
-un fantôme composé $\ghost{(p,q)}$ à partir de fantômes élémentaires. Pour
+un fantôme composé $\ghost{\dir{(p,q)}}$ à partir de fantômes élémentaires. Pour
 cela, l'opérateur de convolution 2D $*$ est utilisé ainsi :
+
 \begin{equation}
-    \ghost{(p,q)} = \Conv_{i} G_{(p_i,q_i)}\;.
+    \ghost{\dir{(p,q)}} = \Conv_{i} g_{(p_i,q_i)}\;.
     \label{eqn.fantome.compose}
 \end{equation}
 
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/fantome_compose2}
+    \includesvg{img/fantome_compose3}
     \caption{Différentes itérations de la construction du fantôme composé
-    $\ghost{(2,1),(-1,1),(0,1),(1,1)}$. Par définition, la somme des valeurs de
-    l'image suivant chaque direction du fantôme est nulle.}
+    $\ghost{\dir{(2,1),(-1,1),(0,1),(1,1)}}$. Par définition, la somme des
+    valeurs de l'image suivant chaque direction du fantôme est nulle.}
     \label{fig.fantomes.composes}
 \end{figure}
 
@@ -376,10 +378,11 @@ ensemble de fantômes élémentaires. La \cref{fig.fantomes.composes} illustre
 cette opération à travers plusieurs itérations de convolution :
 
 \begin{align*}
-  \ghost{(0,1),(1,1)}               &= G_{(0,1)} \ast G_{(1,1)}\;,\\
-  \ghost{(-1,1),(0,1),(1,1)}        &= \ghost{(0,1),(1,1)} \ast G_{(-1,1)}\;,\\
-  \ghost{(2,1),(-1,1),(0,1),(1,1)}  &= \ghost{(-1,1),(0,1),(1,1)} \ast
-      G_{(2,1)}\;.
+  \ghost{\dir{(0,1),(1,1)}}               &= g_{(0,1)} \ast g_{(1,1)}\;,\\
+  \ghost{\dir{(-1,1),(0,1),(1,1)}}        &= \ghost{\dir{(0,1),(1,1)}}
+        \ast \ghost{\dir{(-1,1)}}\;,\\
+  \ghost{\dir{(2,1),(-1,1),(0,1),(1,1)}}  &= \ghost{\dir{(-1,1),(0,1),(1,1)}}
+        \ast \ghost{\dir{(2,1)}}\;.
 \end{align*}
 
 \noindent Considérons le fantôme composé construit à partir des directions d'un
@@ -390,22 +393,22 @@ est suffisant pour reconstruire l'image de manière unique.
 \begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
-    \includesvg{img/convolution_fg5}
+    \includesvg{img/convolution_fg6}
     \caption{Convolution d'une image $f$ avec le fantôme composé
-    $\ghost{(-1,1),(1,1)}$. Le résultat est une image dont les projections
-    suivant les directions du fantôme sont nulles. Les opérations sont
-    réalisées modulo $6$.}
+    $\ghost{\dir{(-1,1),(1,1)}}$. Le résultat est une image dont les
+    projections suivant les directions du fantôme sont nulles. Les opérations
+    sont réalisées modulo $6$.}
     \label{fig.convolution.fg}
 \end{figure}
 
-Puisque les projections d'un fantôme sont nulles, la convolution d'une image $f$
-avec un fantôme $\ghost{(p,q)}$ donne une image dont les valeurs des projections
-suivant les directions de $\dirset{(p,q)}$ sont nulles. La
+Puisque les projections d'un fantôme sont nulles, la convolution d'une image
+$f$ avec un fantôme $\ghost{\dir{(p,q)}}$ donne une image dont les valeurs des
+projections suivant les directions de $\dir{(p,q)}$ sont nulles. La
 \cref{fig.convolution.fg} illustre un exemple dans lequel une image $f$ de
-hauteur $Q=1$ est convoluée avec le fantôme composé $\ghost{(-1,1),(1,1)}$.
-L'image qui correspond à cette opération possède des projections nulles suivant
-les directions du fantômes. Dans cet exemple, les opérations sont sont
-réalisées modulo $6$.
+hauteur $Q=1$ est convoluée avec le fantôme composé
+$\ghost{\dir{(-1,1),(1,1)}}$.  L'image qui correspond à cette opération possède
+des projections nulles suivant les directions du fantômes. Dans cet exemple,
+les opérations sont sont réalisées modulo $6$.
 
 
 ### Reprojection par convolutions 1D
@@ -417,7 +420,7 @@ $R$, tel que les projections de directions appartenant à $S \setminus R$ soient
 nulles. Nous remarquions très justement dans la première section que l'image
 obtenue est alors un fantôme pour les directions de $S \setminus R$. 
 En conséquence, cette image $f_S^{\{(p_i,q_i)\}}$ est constituée du fantôme
-composé $G_{S\setminus\dirset{(p_i,q_i)}}$.
+composé $g_{S\setminus\dir{(p_i,q_i)}}$.
 
 <!-- % O.Philippe -->
 Cette conséquence a été étudiée par \citeauthor{philippe1998phd} dans ses
@@ -444,7 +447,7 @@ Notre approche diffère de celle de \citeauthor{philippe1998phd} puisque pour
 débloquer l'algorithme, nous initialisons les valeurs des projections de
 direction dans $S \setminus R$ tel que ces projections soient nulles. Si l'on
 considère à présent la reconstruction partielle à partir d'une seule et une
-seule projection de direction $(p_i,q_i=1)$, alors :
+seule projection de direction $R=\dir{(p_i,q_i=1)}$, alors :
 
 1. $f_{SC}$ correspond à la reconstruction à partir des projections de
 directions dans $S \setminus R$, initialisées à zéro. En conséquence 
@@ -452,121 +455,149 @@ $f_{SC}$ est nulle;
 
 2. l'érodée correspond alors à une image 1D (i.e.\ de hauteur $1$), et l'image
 issue de la reconstruction partielle résulte d'une convolution de l'image
-érodée avec le fantôme composé $G_{S\setminus\dirset{(p_i,q_i)}}$.
+érodée avec le fantôme composé $g_{S\setminus\dir{(p_i,q_i)}}$.
 
 \noindent En conséquence, l'\cref{eqn.decomposition.fantome} peut s'écrire :
 
 \begin{equation}
-    f_S^{\dirset{(p_i,q_i=1)}} =
-        h \ast G_{S\setminus\dirset{(p_i,q_i)}}\;,
+    f_S^{\dir{(p_i,q_i=1)}} =
+        h \ast \ghost{S\setminus\dir{(p_i,q_i)}}\;,
     \label{eqn.reconstruction_partielle}
 \end{equation}
 
 \noindent où $h$ est une image de hauteur $1$ (parce que $q_i=1$). La
 \cref{fig.convolution.fg} illustre cette équation. L'image $f_S^{(0,1)}$
 correspond à la convolution d'une image de hauteur $Q=1$, avec le fantôme
-$\ghost{(-1,1),(1,1)}$ de directions $S \setminus R$.
-Par linéarité de l'opérateur Mojette, quelle que soit la direction $(p,q)$,
+$\ghost{\dir{(-1,1),(1,1)}}$ de directions $S \setminus R$.
+Par linéarité de l'opérateur Mojette, quelle que soit la direction $(p_k,q_k)$,
 l'\cref{eqn.reconstruction_partielle} devient :
 
-\begin{align}
-    \MM_{(p,q)}f_S^{\dirset{(p_i,q_i)}}
-        & = \MM_{(p,q)}h
-            \ast \MM_{(p,q)}(G_{S\setminus\dirset{(p_i,q_i)}})\;,\\
-        & = h \ast \MM_{(p,q)}(G_{S\setminus\dirset{(p_i,q_i)}})\;,
+\begin{equation}
+    \moj{\dir{(p_k,q_k)}}{f_S^{\dir{(p_i,q_i)}}}
+        = \underbrace{\moj{\dir{(p_k,q_k)}}{h}}_h
+            \ast \moj{\dir{(p_k,q_k)}}{\ghost{S\setminus\dir{(p_i,q_i)}}}\;,\\
     \label{eqn.reprojection_p_k}
-\end{align}
+\end{equation}
 
 \noindent puisque la transformée d'une image 1D pour n'importe quelle direction
-correspond à l'image. En particulier pour la direction $(p_i,q_i)$, qui
-correspond à la direction la projection dont on connait les valeurs,
-l'\cref{eqn.reprojection_p_k} peut s'écrire :
+correspond à l'image. En particulier, la reprojection de la reconstruction
+partielle suivant la direction de $R=\dir{(p_i,q_i)}$ correspond à la
+projection de l'image suivant cette direction :
 
-\begin{align}
-    \MM_{(p_i,q_i)}f_S^{\dirset{(p_i,q_i)}}
-        &= h\ast (\MM_{(p_i,q_i)}G_{S\setminus\dirset{(p_i,q_i)}})\;,\\
-    \MM_{(p_i,q_i)}f
-        &= h\ast (\MM_{(p_i,q_i)}G_{S\setminus\dirset{(p_i,q_i)}})\;,
+\begin{equation}
+    \moj{\dir{(p_i,q_i)}}{f_S^{\dir{(p_i,q_i)}}}
+        = {\moj{\dir{(p_i,q_i)}}{f}}\;.
+%    \underbrace{
+%        \moj{\dir{(p_i,q_i)}}{f_S^{\dir{(p_i,q_i)}}}
+%        }_{\moj{\dir{(p_i,q_i)}}{f}}
+%        = h\ast \left(\moj{\dir{(p_i,q_i)}}
+%            {\ghost{S\setminus\dir{(p_i,q_i)}}}\right)\;,
     \label{eqn.reprojection_p_i}
-\end{align}
+\end{equation}
 
-\noindent puisque par définition : $\MM_{(p_i,q_i)}f_S^{\dirset{(p_i,q_i)}} =
-\MM_{(p_i,q_i)}f$. Puisque nous connaissons la valeur de la projection
-$\MM_{(p_i,q_i)}f$, et que l'on peut déterminer la valeur des projections du
-fantôme composé $\MM_{(p_i,q_i)}G_{S\setminus\dirset{(p_i,q_i)}}$ et
-$\MM_{(p,q)}G_{S\setminus\dirset{(p_i,q_i)}}$ (suivant la nouvelle direction),
-alors il est possible de calculer la reprojection
-$\MM_{(p,q)}f_S^{\dirset{(p_i,q_i)}}$. Ce qui est intéressant ici, c'est que
-l'obtention de la reprojection ne nécessite que des opérations de convolution
-et de déconvolution 1D.
+Puisque nous connaissons la valeur de la projection $\moj{\dir{(p_i,q_i)}}{f}$,
+et que l'on peut déterminer la valeur des projections du fantôme composé
+$\moj{\dir{(p_i,q_i)}} {\ghost{S\setminus\dir{(p_i,q_i)}}}$, ainsi que
+$\moj{\dir{(p,q)}} {\ghost{S\setminus\dir{(p_i,q_i)}}}$ (suivant la nouvelle
+direction). En conséquence on peut déterminer la reprojection
+$\moj{\dir{(p,q)}}{f_S^{\dir{(p_i,q_i)}}}$, tel que :
+
+\begin{equation}
+    \begin{split}
+        \moj{\dir{(p_k,q_k)}}{f_S^{\dir{(p_i,q_i)}}}
+            &= \moj{\dir{(p_i,q_i)}}{f}\\
+            & \bigastinv 
+                \moj{\dir{(p_i,q_i)}}
+                {\ghost{\dir{S\setminus\dir{p_i,q_i}}}}\\
+            & \bigast
+                \moj{\dir{(p_k,q_k)}}
+                {\ghost{\dir{S\setminus\dir{p_i,q_i}}}}\;.
+    \end{split}
+    \label{eqn.reprojection}
+\end{equation}
+
+\noindent Cette équation permet donc de déterminer la reprojection par des
+opérations de convolution et de déconvolution 1D.
 
 \begin{algorithm*}[t]
     \begin{algorithmic}[1]
-        \Require un ensemble suffisant de projections de l'image
-        $\MM_{(p_i,q_i)}f \mid $ et la direction de reprojection $(p,q)$
-        \ForAll{$(p_i,q_i)$ d'une partition de $S$} \label{alg.reproj.a}
-            \State Calculer $\MM_{(p_i,q_i)}G_{S\setminus\dirset{(p_i,q_i)}}$
-                \label{alg.reproj.b}
-            \State Calculer $\MM_{(p,q)}G_{S\setminus\dirset{(p_i,q_i)}}$
-                \label{alg.reproj.c}
-            \State Calculer $h$ par déconvolution 1D
-                \label{alg.reproj.d}
-                \Comment{\cref{eqn.reprojection_p_i}}
-            \State Calculer $\MM_{(p,q)}f_S^{\dirset{(p_i,q_i)}}$ par
-                \label{alg.reproj.e}
-                convolution 1D
-                \Comment{\cref{eqn.reprojection_p_k}}
-        \EndFor  \label{alg.reproj.f}
-        \State Calculer $\MM_{(p,q)}f$ par somme \label{alg.reproj.g}
-            \Comment{\cref{eqn.somme_reprojection}}
+        \Require $(P,Q)$ : les dimensions de la grille
+        \Require $\moj{\dir{p_i,q_i=1}}{f}$ : une projection d'une projection
+        \Require $S$ : un ensemble de directions satisfaisant le critère de
+        \katz
+        \Require $(p_k,q_k=1)$ : une direction de reprojection
+        \Ensure $\moj{\dir{p_k,q_k=1}}{f_S^{\{(p_i,q_i)\}}}$ : la
+        reprojection partielle suivant la nouvelle direction
+
+        \State Calculer $\moj{\dir{(p_i,q_i)}}{\ghost{S\setminus\dir{(p_i,q_i)}}}$
+            \label{alg.reproj.b}
+        \State Calculer $\moj{\dir{(p,q)}}{\ghost{S\setminus\dir{(p_i,q_i)}}}$
+            \label{alg.reproj.c}
+        \State Calculer la reprojection par convolution, puis par déconvolution
+        1D
+            \label{alg.reproj.d}
+            \Comment{\cref{eqn.reprojection}}
     \end{algorithmic}
-    \caption{Algorithme de reprojection}
-    \label{alg.reprojection}
+    \caption{Algorithme de reprojection partielle}
+    \label{alg.map}
 \end{algorithm*}
 
-L'\cref{alg.reprojection} décrit les étapes pour obtenir une projection suivant
+\begin{algorithm*}[t]
+    \begin{algorithmic}[1]
+        \Require un ensemble suffisant de reprojections partielles
+            $\moj{\dir{(p_k,q_k=1)}}{ \ghost{S\setminus\dir{(p_i,q_i)}}}$
+        \Ensure $\moj{\dir{(p_k,q_k=1)}}{f}$
+        \ForAll{$(p_i,q_i)$ d'une partition de $S$} \label{alg.reproj.a}
+            \State $\moj{\dir{(p_k,q_k)}}{f} \leftarrow
+                \sum_{R_i \in \mathcal{P}(S)}
+                    \moj{\dir{(p_k,q_k)}}{f_S^{R_i}}$
+                \label{alg.reproj.g}
+                \Comment{\cref{eqn.somme_reprojection}}
+        \EndFor  \label{alg.reproj.f}
+    \end{algorithmic}
+    \caption{Algorithme de fusion des reprojections partielles}
+    \label{alg.reduce}
+\end{algorithm*}
+
+Les \cref{alg.map,alg.reduce} décrit les étapes pour obtenir une projection suivant
 une direction $(p,q)$ à partir d'un ensemble de projections suffisant. Pour
-cela, on considère indépendamment chaque projection de l'image $\MM_{(p_i,q_i)}f$
-et une direction de reprojection $(p,q)$. Prenons l'exemple de la
+cela, on considère indépendamment chaque projection de l'image
+$\moj{\dir{(p_i,q_i)}}{f}$
+et une direction de reprojection $(p,q)$. Reprenons l'exemple de la
 \cref{fig.part_image} dans laquelle on détermine la reprojection suivant
 $(2,1)$ à partir de la projection suivant la direction $(0,1)$.
 Dans un premier temps, on détermine le fantôme composé qui correspond à
-$G_{S\setminus\dirset{0,1}}=\ghost{(1,1),(-1,1)}$. Il est ensuite nécessaire de
-déterminer la valeur de ses projections suivant la direction $(p_i,q_i)$ et
-$(p,q)$ :
+$\ghost{S\setminus\dir{0,1}}=\ghost{\dir{(1,1),(-1,1)}}$. Il est ensuite
+nécessaire de déterminer la valeur de ses projections suivant la direction
+$(p_i,q_i)$ et $(p,q)$ :
 
 \begin{align}
-    \MM_{(0,1)}G_{S\setminus\dirset{(0,1)}} &= 
-        \begin{pmatrix} -1 & 2 &-1 \end{pmatrix}\;,\\
-    \MM_{(2,1)}G_{S\setminus\dirset{(0,1)}} & =
-        \begin{pmatrix} 1 -1 & 0 & -1 & 1 \end{pmatrix}\;.
+    \moj{\dir{(0,1)}}{g_{S\setminus\dir{(0,1)}}} &= 
+        \begin{pmatrix} 5 & 2 & 5 \end{pmatrix}\;,\\
+    \moj{\dir{(2,1)}}{g_{S\setminus\dir{(0,1)}}} & =
+        \begin{pmatrix} 1 5 & 0 & 5 & 1 \end{pmatrix}\;.
 \end{align}
 
-\noindent La séquence $h$ est alors calculée par déconvolution depuis
-\cref{eqn.reprojection_p_i} :
+\noindent en considérant les opérations, modulo $6$. En utilisant
+\cref{eqn.reprojection}, on peut alors déterminer la valeur de la
+reprojection :
 
-\begin{align}
-    h   &= (\MM_{(0,1)}f)\ast^{-1}(\MM_{(0,1)}G_{S\setminus\dirset{(0,1)}})\;,\\
-        &= \begin{pmatrix} 3 & 3 & 4 \end{pmatrix}
-            \ast^{-1} \begin{pmatrix} -1 & 2 & -1 \end{pmatrix}\;.
-\end{align}
-
-\noindent Connaissant $h$, il suffit ensuite de réaliser la convolution décrite
-dans \cref{eqn.reprojection_p_k} pour obtenir $\MM_{(p,q)}f_S^{\dirset{(0,1)}}$ :
-    
-\begin{align}
-    \MM_{(2,1)}f_S^{\{(0,1)\}}
-        &= h \ast (\MM_{(2,1)}G_{S\setminus\dirset{(0,1)}})\;,\\
-        &= \begin{pmatrix} 3 & 3 & 4 \end{pmatrix}
-            \ast^{-1} \begin{pmatrix} 1 & -1 & 0 & -1 & 1 \end{pmatrix}\;,\\
-        &= \begin{pmatrix}
+\begin{equation}
+    \begin{split}
+    \moj{\dir{(2,1)}}{f_S^{\{(0,1)\}}} &= 
+        \begin{pmatrix} 3 & 3 & 4 \end{pmatrix}\\
+        & \bigastinv \begin{pmatrix} 5 & 2 & 5 \end{pmatrix}\\
+        & \bigast \begin{pmatrix} 1 5 & 0 & 5 & 1 \end{pmatrix}\\
+    \moj{\dir{(2,1)}}{f_S^{\{(0,1)\}}} &= 
+        \begin{pmatrix}
             0 & 3 & 0 & 2 & 5 & 2 & 0 & 5 & 3 & 3 & 5
-            \end{pmatrix}\;.
-\end{align}
+        \end{pmatrix}\;.
+    \end{split}
+\end{equation}
 
 \noindent Ce qui correspond bien au résultat attendu. Une fois les
-reprojections calculées, on les somme pour obtenir la projection
-$\MM_{(p_k,q_k)}f$ comme indiqué dans \cref{eqn.somme_reprojection}.
+reprojections partielles calculées, on les somme pour obtenir la projection
+$\moj{\dir{(p_k,q_k)}}{f}$ comme indiqué dans \cref{eqn.somme_reprojection}.
 
 
 
@@ -574,25 +605,27 @@ $\MM_{(p_k,q_k)}f$ comme indiqué dans \cref{eqn.somme_reprojection}.
 
 % analyse et simplification des opérations
 
-L'\cref{alg.reprojection} suppose que l'on ait déterminé les projections du
-fantôme composé $\ghost{(p,q)}$ suivant les directions $(p_i,q_i) \in
-\mathcal{P}(S)$ et $(p_q)$ au préalable. Or, par définition, le fantôme
-composé est issu de la convolution de fantômes élémentaires (voir
-\cref{eqn.fantome.compose}). En conséquence, Puisque $\ghost{(p,q)}$ est 
+L'\cref{alg.reduce} utilise les projections du fantôme composé
+$\ghost{\dir{(p_k,q_k)}}$ suivant les directions $(p_i,q_i) \in \mathcal{P}(S)$
+et $(p_k,q_k)$. La détermination de ces projections nécessite des opérations 2D
+de transformation Mojette. Or, par définition, le fantôme composé est issu de
+la convolution de fantômes élémentaires (voir \cref{eqn.fantome.compose}). Il
+est donc possible de les déterminer par des opérations de convolutions 1D.
+L'\cref{eqn.reprojection} peut alors s'écrire sous la forme :
 
 \begin{equation}
     \begin{split}
-        \MM_{(p,q)} f_S^{\dirset{(p_i,q_i)}}
-            &= (\MM_{(p_i,q_i)}f)\\
-            & \bigastinv_{(p_j,q_j) \in S \setminus \dirset{(p_i,q_i)}}
-                (\MM_{(p_i,q_i)} G_{(p_j,q_j)})\\
-            & \bigast_{(p_j,q_j) \in S \setminus \dirset{(p_i,q_i)}}
-                (\MM_{(p,q)} G_{(p_j,q_j)})\;.
+        \moj{\dir{(p_k,q_k)}}{f_S^{\dir{(p_i,q_i)}}}
+            &= (\moj{\dir{(p_i,q_i)}}{f})\\
+            & \bigastinv_{(p_j,q_j) \in S \setminus \dir{(p_i,q_i)}}
+                (\moj{\dir{(p_i,q_i)}}{\ghost{\dir{(p_j,q_j)}}})\\
+            & \bigast_{(p_j,q_j) \in S \setminus \dir{(p_i,q_i)}}
+                (\moj{\dir{(p_k,q_k)}}{\ghost{\dir{(p_j,q_j)}}})\;.
     \end{split}
     \label{eqn.simplification}
 \end{equation}
 
-\noindent En particulier, chaque $(\MM_{(p_i,q_i)} G_{(p_j,q_j)}$ de
+\noindent En particulier, chaque $\moj{\dir{(p_i,q_i)}}{\ghost{(p_j,q_j)}}$ de
 l'\cref{eqn.simplification} correspond à la projection d'un fantôme élémentaire
 suivant la direction $(p_i,q_i)$. La détermination de cette projection est
 triviale et correspond à la séquence :
@@ -607,17 +640,22 @@ triviale et correspond à la séquence :
 \end{equation}
 
 \noindent L'intérêt de cette décomposition est de pouvoir exprimer le calcul de
-reprojection sans avoir à réaliser d'opération de projection. La conséquence de
-cette représentation est de pouvoir révéler parfois quelques simplifications
+reprojection sans avoir à réaliser d'opération de projection. D'autre part,
+cette décomposition permet de faciliter les opérations de déconvolution. En effet, les séquences ainsi obtenues sont de la forme
+$\begin{pmatrix}
+1,\dots,-1
+\end{pmatrix}$. La déconvolution correspond alors à un filtre récursif.
+Cette représentation permet également de révéler parfois des simplifications
 dans les opérations de convolution. En particulier, convoluer et déconvoluer
 par la même séquences revient à ne rien faire. Par exemple :
 
 \begin{equation}
     \begin{split}
-        \MM_{(0,1)} G_{S \setminus \{(0,1)\}}
+        \moj{\dir{(0,1)}}{g_{S \setminus \{(0,1)\}}}
             &= \begin{pmatrix} -1 & 2 & -1 \end{pmatrix}\\
-        \MM_{(0,1)} G_{S \setminus \{(0,1)\}}
-            &= (\MM_{(0,1)} G_{(-1,1)}) \bigast (\MM_{(0,1)} G_{(-1,1)})\\
+        \moj{\dir{(0,1)}}{g_{S \setminus \{(0,1)\}}}
+            &= \left(\moj{\dir{(0,1)}}{\ghost{\dir{(-1,1)}}}\right)
+                \bigast \left(\moj{\dir{(0,1)}}{\ghost{\dir{(-1,1)}}}\right)\\
             &= \begin{pmatrix} -1 & 1 \end{pmatrix}
                     \bigast \begin{pmatrix} 1 & -1 \end{pmatrix}
     \end{split}
@@ -626,10 +664,11 @@ par la même séquences revient à ne rien faire. Par exemple :
 
 \begin{equation}
     \begin{split}
-        \MM_{(2,1)} G_{S \setminus \{(0,1)\}}
+        \moj{\dir{(2,1)}}{\ghost{S \setminus \{(0,1)\}}}
             &= \begin{pmatrix} 1 & -1 & 0 & -1 & 1 \end{pmatrix}\\
-        \MM_{(2,1)} G_{S \setminus \{(0,1)\}}
-            &= (\MM_{(2,1)} G_{(-1,1)}) \bigast (\MM_{(2,1)} G_{(-1,1)})\\
+        \moj{\dir{(2,1)}}{\ghost{S \setminus \{(0,1)\}}}
+            &= \left(\moj{\dir{(2,1)}}{\ghost{\dir{(-1,1)}}}\right) \bigast \left(
+                \moj{\dir{(2,1)}}{\ghost{\dir{(-1,1)}}}\right)\\
             &= \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
                     \bigast \begin{pmatrix} -1 & 1 \end{pmatrix}
     \end{split}
@@ -640,18 +679,30 @@ par la même séquences revient à ne rien faire. Par exemple :
 
 \begin{equation}
     \begin{split}
-        \MM_{(2,1)} f_S^{\dirset{(0,1)}}
-            &= (\MM_{(0,1)}f)\\
+        \moj{\dir{(2,1)}}{f_S^{\dir{(0,1)}}}
+            &= \moj{\dir{(0,1)}}{f}\\
             & \bigastinv \left( 
                 \textcolor{red}{ \begin{pmatrix} -1 & 1 \end{pmatrix} }
                 \ast \begin{pmatrix} 1 & -1 \end{pmatrix} \right)\\
             & \bigast \left(
                     \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
                     \ast \textcolor{red}{\begin{pmatrix} -1 & 1 \end{pmatrix}}
-                \right)\\
-            &= (\MM_{(0,1)}f) 
-                \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}
-                \bigast \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}\;.
+                \right)\;,\\
+            &= \moj{\dir{(0,1)}}{f}\\
+            & \bigast
+                    \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
+                \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}\\
+            & \underbrace{
+              \ast \textcolor{red}{
+                \begin{pmatrix} -1 & 1 \end{pmatrix}}
+                \bigastinv 
+                    \textcolor{red}{
+                    \begin{pmatrix} -1 & 1 \end{pmatrix}}
+                }_{0}\;,\\
+        \moj{\dir{(2,1)}}{f_S^{\dir{(0,1)}}}
+            &= \moj{\dir{(0,1)}}{f}
+                \bigast \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
+                \bigastinv \begin{pmatrix} 1 & -1 \end{pmatrix}\;.
     \end{split}
     \label{eqn.simplification2}
 \end{equation}
@@ -668,9 +719,8 @@ résultat en utilisant uniquement des opérations de convolutions et de
 déconvolution 1D, dont les opérations peuvent parfois se simplifier quand on
 décompose les projections du fantôme composé.
 
-% # Applications
 
-# Évaluation de la nouvelle technique {#sec.eval.reproj}
+# Évaluation des performances {#sec.eval.reproj}
 
 Dans cette section, nous nous intéresserons à l'évaluation de la technique
 décrite dans la section précédente. En particulier, nous verrons dans un
@@ -687,6 +737,8 @@ langage de programmation C. Afin d'exploiter l'ensemble des cœurs du CPU à
 notre disposition, nous avons utilisé la bibliothèque *Open Multi-Processing*
 (OpenMP) qui offre un ensemble de directives pour le compilateur, ainsi qu'une
 interface de programmation pour le calcul parallèle \cite{dagum1998cse}.
+En particulier, notre code repose sur deux fonctions principales montées en
+série, inspirées du modèle de programmation *Map-Reduce*.
 
 \begin{figure}
     \begin{minipage}{.96\textwidth}
@@ -694,13 +746,12 @@ interface de programmation pour le calcul parallèle \cite{dagum1998cse}.
     \end{minipage}
 \end{figure}
 
-En particulier, notre code repose sur deux fonctions principales inspirées du
-patron d'architecture *Map-Reduce*. La première fonction *map* consiste à
-distribuer la tâche de reprojection à l'ensemble des nœuds de calcul. Puisque
-chaque reprojection peut être réalisée de manière indépendante (chaque
-opération traite des données bien distinctes, que sont les valeurs de
-projection), le processus gagnera en efficacité à condition que l'opération de
-reprojection soit un processus coûteux.
+#### La fonction *map* 
+
+Cette fonction consiste à distribuer la tâche de reprojection à l'ensemble des
+nœuds de calcul. Puisque chaque reprojection peut être réalisée de manière
+indépendante (chaque reprojection traite des éléments de projections
+distincts), le processus peut être parallélisé.
 La \cref{lst.map} donne un extrait du code qui correspond à cette
 fonction *map()*. La boucle *for* permettant d'itérer sur chaque projection
 correspond à la boucle de l'\cref{alg.reprojection}, \cref{alg.reproj.a}.
@@ -717,15 +768,17 @@ remplir le buffer *p\_reprojections* avec ces valeurs.
     \end{minipage}
 \end{figure}
 
-La deuxième fonction *réduction* consiste à réduire la solution à partir des
-différentes reprojections calculées précédemment. Pour cela, elle va retourner
-un buffer *reproj* correspondant à la projection voulue. Chaque élément de
-cette projection correspond à la somme des éléments correspondants dans
-l'ensemble des reprojections. Cette fonction correspond à la
-\cref{alg.reproj.g} de l'\cref{alg.reprojection}. La \cref{lst.reduction} donne
-un extrait du code qui correspond à cette fonction *reduce()*. Bien que la
-ligne $4$ concerne les directives d'*OpenMP*, l'addition est une opération trop
-efficace pour gagner en parallélisme.
+#### La fonction *reduce* 
+
+Cette seconde fonction prend en entrée reprojections partielles calculées par
+la fonction *map*, et consiste à les fusionner pour obtenir la reprojection de
+l'image. Pour cela, elle retourne un buffer *reproj* correspondant à la
+projection voulue. Chaque élément de cette projection correspond à la somme des
+éléments correspondants dans l'ensemble des reprojections. Cette fonction
+correspond à la \cref{alg.reproj.g} de l'\cref{alg.reprojection}. La
+\cref{lst.reduction} donne un extrait du code qui correspond à cette fonction
+*reduce()*. Bien que la ligne $4$ concerne les directives d'*OpenMP*,
+l'addition est une opération trop efficace pour gagner en parallélisme.
 
 Dans notre expérience, nous enregistrons la latence nécessaire pour réaliser
 ces opérations en fonction de la technique utilisée. En particulier, nos tests
@@ -733,9 +786,9 @@ mettent en jeu la technique classique qui consiste à reconstruire l'image à
 priori et la nouvelle technique précédente qui permet de ne pas reconstruire
 l'image. Puisque ces résultats dépendent de la difficulté de l'opération de
 reprojection, nous faisons varier la taille $\mathcal{M}$ des blocs étudiés.
-Les résultats correspondent à la moyenne de $10$ itérations, auxquels figurent
-également l'écart-type des résultats obtenus. Cette expérience a été conduite
-sur la plate-forme *FEC4Cloud* présentée précédemment.
+Les valeurs affichées résultent de la moyenne de $10$ itérations. Cette
+expérience a été conduite sur un serveur de la plate-forme *FEC4Cloud*,
+présentée précédemment.
 
 
 
@@ -762,8 +815,8 @@ technique devient de plus en plus significatif. En particulier, lorsque
 $\mathcal{M}=128$ Ko, la nouvelle technique calcule la reprojection en
 $\num*{1.217e-3}$s, ce qui correspond à la moitié du temps nécessaire pour
 l'ancienne méthode qui nécessite $\num*{2.591e-3}$s. À mesure que la taille du
-bloc augmente, l'opération de reprojection devient de plus en plus compliquée à
-réaliser. En comparaison, le coût de la gestion des *threads* devient
+bloc augmente, le coût de l'opération de reprojection devient de plus en plus
+important. En comparaison, le coût de la gestion des *threads* devient
 négligeable. De plus, l'utilisation de plusieurs cœurs CPU en parallèle offre
 un gain de temps linéaire. 
 
@@ -786,8 +839,9 @@ traitera de la réduction de la bande passante utilisée pour la réparation.
 
 L'utilisation d'une méthode de reprojection sans reconstruction peut être
 nécessaire dans certaines applications de stockage. Par exemple, la Mojette
-non-systématique peut être utilisée dans un DSS afin de distribuer des données
-incompréhensibles. Cette technique est basée sur l'«\ algorithme de dispersion
+non-systématique peut être utilisée dans un système de stockage distribué
+(NDSS) afin de distribuer des données incompréhensibles.
+Cette technique est basée sur l'«\ algorithme de dispersion
 de l'information\ » (ou IDA pour *Information Dispersal Algorithm*)
 \cite{rabin1989jacm}. Dans cette application, on ne désire pas que les nœuds de
 stockage puisse accéder à l'information de l'utilisateur.
@@ -807,24 +861,24 @@ de l'utilisateur.
 
 % schéma
 
-Afin de protéger les systèmes de stockage distribués (DSS) face aux pannes
+Afin de protéger les systèmes de stockage distribués face aux pannes
 inévitables, il est nécessaire de distribuer des informations de redondance.
 Cette redondance permet en conséquence de compenser la perte d'une partie de
 l'information lors de la lecture d'une donnée. Dans de tels systèmes, le seuil
 de redondance peut évoluer avec le temps pour deux raisons. La première
-correspond à la perte naturelle de la redondance. En effet, les phénomènes de
-pannes entraîne la perte d'information, et cette perte contribue à faire
-diminuer la redondance au sein du système d'information. La deuxième raisons
-concernent une volonté de modifié le seuil de tolérance par l'administrateur du
-système d'information. On parle d'allocation dynamique de la tolérance du DSS.
+correspond à la perte naturelle de la redondance. En effet, les
+pannes entraînent la perte d'information, et cette perte contribue à faire
+diminuer la redondance au sein du système d'information. La deuxième raison
+concerne une volonté de modifier le seuil de tolérance par l'administrateur du
+système d'information. On parle d'allocation dynamique de la tolérance du NDSS.
 Par exemple, il peut être nécessaire d'augmenter le seuil de redondance de
 données cruciales pour une entreprise. À l'inverse, il peut être nécessaire de
 réduire le seuil de redondance pour des raisons économiques.
 
-Dans les deux cas, le principe consiste à générer de nouvelles projections au
-sein de supports de stockage supplémentaires (i.e.\ qui ne contient pas déjà de
-données relatives à la donnée à protéger). Dans le cas de RozoFS, notre méthode
-de reprojection pourrait agir de la manière suivante : 
+Dans les deux cas, le principe consiste à distribuer de nouvelles projections
+au sein de supports de stockage ne contenant pas déjà de projections sur la
+donnée à protéger. Dans le cas d'une architecture comme celle utilisée dans
+RozoFS, notre méthode de reprojection pourrait agir de la manière suivante :
 
 1. l'administrateur décide de rétablir un seuil de redondance pour un ensemble
 de fichiers et en fait la demande au serveur de métadonnées;
@@ -835,8 +889,8 @@ de fichiers et en fait la demande au serveur de métadonnées;
 projection participe au calcule de reprojection et transfère le résultat à
 l'ensemble des supports de reconstruction;
 
-4. les supports de reconstruction reconstitue les reprojections en sommant les
-valeurs qui leur sont transférer.
+4. les supports de reconstruction reconstituent les reprojections en sommant
+les valeurs qui leur sont transférées.
 
 
 ## Réduction de la bande passante {#sec.reduction}
@@ -845,11 +899,11 @@ La bande passante de la réparation correspond à la quantité d'information
 transférée lors de l'opération de réencodage. Dans le cas où la quantité de
 données contenues dans les disques est très importante (i.e.\ plusieurs
 téraoctets), le processus de réparation peut à la fois nécessiter plusieurs
-heures de transfère, et affecter le trafic réseau nécessaire à l'application
-qui utilise le DSS. C'est le cas chez \textsc{Facebook} qui analyse une grappe
+heures de transfert, et affecter le trafic réseau nécessaire à l'application
+qui utilise le NDSS. C'est le cas chez \textsc{Facebook} qui analyse une grappe
 de $3000$ nœuds de stockage \cite{sathiamoorthy2013vldb}. Chaque nœud
-comptabilise $15$\ To de données, et l'étude présent une moyenne de $20$ pannes
-par jour. Pour donner une référence au lecteur, le transfert de $15$\ To
+comptabilise $15$\ To de données, et l'étude présente une moyenne de $20$
+pannes par jour. Pour donner une référence au lecteur, le transfert de $15$\ To
 d'information nécessite un peu moins de $5$\ heures sur un réseau délivrant un
 débit de $1$\ Gops.
 
@@ -873,14 +927,14 @@ aléatoires \cite{andre2014eurosys}.
     \caption{Mise en situation permettant d'exploiter notre méthode de
     reprojection pour faire du codage réseau. L'objectif est de reconstruire
     une nouvelle projection dans la baie $3$. Les reprojections provenant des
-    nœuds cerclés sont successivement réduites par les nœuds intermédiaires
+    nœuds cerclés sont successivement fusionnées par les nœuds intermédiaires
     (en gris) afin de transmettre l'équivalent d'une projection (au lieu de
     trois) vers la baie $3$.}
     \label{fig.mojette_nc}
 \end{figure}
 
 Dans cette optique, nos travaux permettent également de combiner l'information
-par l'opération de réduction. Notre solution se distinguent des travaux
+par l'opération de réduction. Notre solution se distingue des travaux
 cités précédemment puisque la combinaison n'est pas réalisée par les nœuds de
 stockage participant au réencodage. La réduction ne peut être faite que par des
 nœuds intermédiaires. La \cref{fig.mojette_nc} intègre l'exemple présenté au
@@ -903,22 +957,34 @@ projections, à partir d'un ensemble déjà existant. En particulier, cette
 technique permet de répondre au problème de la flexibilité et de la tolérance
 aux pannes du système au cours du temps.
 
-Cette méthode de reprojection a été décrite dans la
-\cref{sec.reprojection.sans.reconstruction}. Elle se base en particulier sur la
-définition des reconstructions partielles. En particulier, nous avons vu qu'un
-ensemble suffisant de reconstructions partielles permet de reconstruire
-l'image. Par linéarité, la somme des projections calculées depuis ces
-reconstructions partielles donne la projection correspondante issue des valeurs
-de la grille. Cette technique permet donc de reprojeter l'image suivant une
-nouvelle direction. Chaque reconstruction peut être menée pour chacune des
-projections participant à la reprojection de manière indépendante. En
-conséquence, cette méthode peut alors être réalisée de manière distribuée. En
-se basant sur la définition des fantômes, nous sommes également parvenus à
-définir ces opérations en utilisant des opérations de convolutions et de
-déconvolutions 1D. Il est ainsi possible de reprojeter les valeurs d'un
-ensemble suffisant de projections, sans reconstruire les données de la grille.
-Enfin, nous sommes parvenus à décomposer les opérations utilisées dans notre
-algorithme afin de simplifier certaines opérations de convolution.
+La \cref{sec.reprojection.sans.reconstruction} a permis de présenter la
+nouvelle méthode de reprojection. En particulier, nous y avons défini la notion
+de reconstruction partielle, afin de décomposer le processus de reconstruction de
+la grille. Cette décomposition permet notamment la distribution des calculs de
+reprojection. Par linéarité de l'opérateur Mojette, nous avons montré que la
+reprojection sans reconstruction de la grille, est possible en utilisant des
+opérations 2D.
+La \cref{sec.conv} montre ensuite, comment traduire ces opérations par des
+convolutions et des déconvolutions 1D. Cette méthode permet en conséquence une
+reprojection sans reconstruction de l'image initiale.
+Enfin, la \cref{sec.simplification.operations} expose des simplifications dans
+les opérations de convolution.
+
+. Elle se base sur la définition des
+reconstructions partielles. En particulier, nous avons vu qu'un ensemble
+suffisant de reconstructions partielles permet de reconstruire l'image. Par
+linéarité, la somme des projections calculées depuis ces reconstructions
+partielles donne la projection correspondante issue des valeurs de la grille.
+Cette technique permet donc de reprojeter l'image suivant une nouvelle
+direction. Chaque reconstruction peut être menée pour chacune des projections
+participant à la reprojection de manière indépendante. En conséquence, cette
+méthode peut alors être réalisée de manière distribuée. En se basant sur la
+définition des fantômes, nous sommes également parvenus à définir ces
+opérations en utilisant des opérations de convolution et de déconvolution 1D.
+Il est ainsi possible de reprojeter les valeurs d'un ensemble suffisant de
+projections, sans reconstruire les données de la grille. Enfin, nous sommes
+parvenus à décomposer les opérations utilisées dans notre algorithme afin de
+simplifier certaines opérations de convolution.
 
 La \cref{sec.eval.reproj} s'est intéressée à la mise en œuvre d'une
 expérimentation visant à déterminer le gain de cette nouvelle technique. En
@@ -948,14 +1014,4 @@ faire du codage réseau.
 
 % ça poutre
 
-%Dans cette section, nous présentons la nouvelle méthode de reprojection.
-%Nous définissons dans la \cref{sec.reconstruction.partielle} la notion de
-%reconstruction partielle, afin de décomposer le processus de reconstruction de
-%la grille. Cette décomposition permet notamment la distribution des calculs de
-%reprojection. Par linéarité de l'opérateur Mojette, nous montrons que la
-%reprojection par des opérations 2D est possible.
-%La \cref{sec.conv} montre ensuite, comment traduire ces opérations par des
-%convolutions et des déconvolutions 1D. Cette méthode permet en conséquence une
-%reprojection sans reconstruction de l'image initiale.
-%Enfin, la \cref{sec.simplification.operations} expose des simplifications dans
-%les opérations de convolution.
+
