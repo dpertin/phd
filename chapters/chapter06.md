@@ -732,7 +732,7 @@ lorsque la taille des blocs utilisés sont importants.
 ## Implémentation distribuée par *OpenMP*
 
 L'évaluation met en avant le bénéfice de la distribution des calculs. Pour
-cela, nous avons réalisé une implémentation de l'\cref{alg.reprojection} en
+cela, nous avons réalisé une implémentation des \cref{alg.map,alg.reduce} en
 langage de programmation C. Afin d'exploiter l'ensemble des cœurs du CPU à
 notre disposition, nous avons utilisé la bibliothèque *Open Multi-Processing*
 (OpenMP) qui offre un ensemble de directives pour le compilateur, ainsi qu'une
@@ -754,11 +754,10 @@ indépendante (chaque reprojection traite des éléments de projections
 distincts), le processus peut être parallélisé.
 La \cref{lst.map} donne un extrait du code qui correspond à cette
 fonction *map()*. La boucle *for* permettant d'itérer sur chaque projection
-correspond à la boucle de l'\cref{alg.reprojection}, \cref{alg.reproj.a}.
+correspond à la boucle de l'\cref{alg.map}, \cref{alg.reproj.a}.
 La ligne $4$ contient les directives utilisées par *OpenMP* pour distribuer le
-calcul sur les cœurs du CPU. La fonction *reprojection()* contient l'ensemble
-des instructions indiquées dans l'\cref{alg.reprojection}
-(\cref{alg.reproj.b,alg.reproj.c,alg.reproj.d,alg.reproj.e}).
+calcul sur les cœurs du CPU. La fonction *reprojection()* correspond à
+l'\cref{eqn.reprojection}.
 En particulier, elle permet de calculer la valeur des reprojections, et de
 remplir le buffer *p\_reprojections* avec ces valeurs.
 
@@ -775,7 +774,7 @@ la fonction *map*, et consiste à les fusionner pour obtenir la reprojection de
 l'image. Pour cela, elle retourne un buffer *reproj* correspondant à la
 projection voulue. Chaque élément de cette projection correspond à la somme des
 éléments correspondants dans l'ensemble des reprojections. Cette fonction
-correspond à la \cref{alg.reproj.g} de l'\cref{alg.reprojection}. La
+correspond à la \cref{alg.reproj.g} de l'\cref{alg.reduce}. La
 \cref{lst.reduction} donne un extrait du code qui correspond à cette fonction
 *reduce()*. Bien que la ligne $4$ concerne les directives d'*OpenMP*,
 l'addition est une opération trop efficace pour gagner en parallélisme.
