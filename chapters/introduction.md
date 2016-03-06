@@ -6,16 +6,18 @@
 %### Contexte de l'étude
 
 Le nombre d'appareils interconnectés par Internet augmente de manière
-exponentielle. Alors qu'en moyenne moins d'un appareil connecté ($0,08$) était
-détenu par habitant dans le monde en $2003$, le rapport
-d'\textcite{evans2011cisco} estime que ce nombre sera porté à plus de six
-($6,58$) d'ici $2020$, totalisant $50$ milliards de terminaux. L'analyse
-réalisée par le cabinet de conseil IDC auprès d'EMC (leader mondial des
-solutions de stockage) présente deux facteurs permettant d'expliquer cette
-augmentation\ \cite{gantz2012idc}: (i) l'extension d'Internet aux objets du
-quotidien, désignée par le terme « Internet des objets » (IoT pour *Internet of
-Things*); (ii) l'émergence de nouveaux marchés numériques (Chine, Brésil, Inde,
-Russie, Mexique).
+exponentielle. En $2003$, ce nombre était largement inférieur au
+nombre d'habitant dans le monde (0.08 appareils par habitant en moyenne). Dans
+son rapport sur l'évolution d'Internet, \citeauthor{evans2011cisco} estime que ce
+nombre sera porté à plus de six appareils par habitant ($6,58$) d'ici
+$2020$\ \cite{evans2011cisco}.
+Si cette estimation s'avère juste, le nombre total d'appareils connectés
+atteindra les $50$ milliards. L'analyse menée par le cabinet de conseil IDC,
+auprès d'EMC (leader mondial des solutions de stockage), présente deux facteurs
+permettant d'expliquer cette augmentation\ \cite{gantz2012idc}: (i) l'extension
+d'Internet aux objets du quotidien, désignée par le terme
+\ct{Internet des objets} (IoT pour *Internet of Things*); (ii) l'émergence de
+nouveaux marchés numériques (Chine, Brésil, Inde, Russie, Mexique).
 Afin de supporter cette croissance, Internet s'adapte : évolution des
 protocoles (e.g.\ le passage à IPv6) et des infrastructures (e.g.\ construction
 de centres de données). Les utilisateurs aussi s'adaptent et découvrent de
@@ -29,25 +31,25 @@ dans le monde correspondra à $44$ zettaoctets\footnote{Si un caractère
 nécessite un octet, un zettaoctet contiendrait plus de $200000$ milliards de
 fois l'œuvre \emph{Le Monde Perdu} d'Arthur Conan Doyle.
 \textcite{hilbert2011science} rappellent que ce volume de données correspond à
-la quantité d'information génétique contenue dans un corps humain, mais que «
-par rapport à la capacité de la nature à traiter l'information, la capacité du
-monde numérique évolue de façon exponentielle ».} (i.e.\ $10^{21}$ octets)
+la quantité d'information génétique contenue dans un corps humain, mais que
+\ct{par rapport à la capacité de la nature à traiter l'information, la capacité
+du monde numérique évolue de façon exponentielle}.} (i.e.\ $10^{21}$ octets)
 d'ici 2020 \cite{gantz2012idc}. Parmi cette quantité massive de données, on
 notera que $27$\% seront générées par des objets connectés issus de l'IoT.
 <!--%-->
 La conception d'un système de stockage nécessite de considérer différents
 critères (e.g.\ capacité de stockage, tolérance aux pannes, mise à l'échelle,
-débits des lectures et écritures). Les systèmes centralisés (composé d'un seul
-serveur) présente des limites, notamment en ce qui concerne la mise à l'échelle
-(les ressources du serveur sont limitées) et la tolérance aux pannes (rien ne
-peut survivre à la perte du serveur). Pour satisfaire ces critères, il est en
-conséquence nécessaire d'utiliser des systèmes de stockage distribués.
-Un système distribué est défini par \textcite{tanenbaum2006book} comme
-«\ un ensemble de serveurs indépendants, dont les utilisateurs ont une
-vision cohérente d'un système unique\ ». Les systèmes de stockage distribués
-offrent donc une représentation cohérente d'un volume de stockage dont les
-données sont réparties sur plusieurs serveurs. Dans la suite, nous utiliserons
-le terme «\ *Networked Distributed Storage System*\ » (NDSS) défini par
+débits des lectures et écritures). Les systèmes centralisés (composés d'un seul
+serveur) présentent des limites, notamment en ce qui concerne la mise à
+l'échelle (les ressources du serveur sont limitées) et la tolérance aux pannes
+(rien ne peut survivre à la perte du serveur). Pour satisfaire ces critères, il
+est en conséquence nécessaire d'utiliser des systèmes de stockage distribués.
+Un système distribué est défini par \textcite{tanenbaum2006book} comme \ct{un
+ensemble de serveurs indépendants, dont les utilisateurs ont une vision
+cohérente d'un système unique}. Les systèmes de stockage distribués offrent
+donc une représentation cohérente d'un volume de stockage dont les données sont
+réparties sur plusieurs serveurs. Dans la suite, nous utiliserons le terme
+\ct{\emph{Networked Distributed Storage System}} (NDSS) défini par
 \textcite{oggier2012icdcn} pour insister sur l'interconnexion des supports de
 stockage à travers un réseau (e.g.\ bus, ethernet). En fonction de
 l'application qui travaille sur les données du NDSS, certains critères ont
@@ -62,14 +64,14 @@ Amazon S3 \cite{hunt2014aws}. Cette application privilégie la mise à
 l'échelle afin de supporter un pic de connexions (lors de la sortie d'un
 nouveau contenu vidéo par exemple);
 
-* le « *Big Data* » concerne la fouille et le traitement analytique d'une
+* le \ct{\emph{Big Data}} concerne la fouille et le traitement analytique d'une
 quantité massive et non structurée de données. Les moteurs de recherche par
 exemple, doivent gérer une quantité de données théoriquement limitée par
 l'échelle d'Internet. Pour adresser ce problème, Google a développé
 son propre système de fichiers distribué, *Google File System*
 (GFS)\ \cite{ghemawat2003sosp}, ainsi que le modèle de programmation
 *MapReduce*\ \cite{dean2008acm}. Ces outils permettent d'extraire des relations
-entre différents types de contenus, tels que des données collectés sur les
+entre différents types de contenus, tels que des données collectées sur les
 pages web, les contenus générés par les utilisateurs, ou encore les données
 proposées par les différents services Google (e.g.\ maps, shopping);
 <!--
@@ -82,8 +84,8 @@ proposées par les différents services Google (e.g.\ maps, shopping);
 
 * le calcul à haute performance (HPC, pour *High Performance Computing*)
 traite le cas d'importantes quantités de données structurées. Par exemple,
-\textcite{zwaenepoel2015wos} adresse problème de l'optimisation du traitement
-d'analyser d'un graphe très large (i.e.\ $32$ milliards de sommets, et
+\textcite{zwaenepoel2015wos} adresse le problème de l'optimisation du
+traitement d'analyse d'un graphe très large (i.e.\ $32$ milliards de sommets, et
 $10^{12}$ arêtes) par un système distribué constitué de seulement $32$
 serveurs. Ce type d'application nécessite principalement de hauts débits en
 lecture et écriture;
@@ -98,11 +100,12 @@ lecture et écriture;
 
 * l'archivage de données en revanche ne possède pas de contraintes fortes sur
 les débits. Toutefois, cette application a besoin de DSS avec d'importantes
-capacités de stockage, et qui soient tolérants aux pannes. Par exemple,
+capacités de stockage, et, qui soient tolérants aux pannes. Par exemple,
 Amazon Glacier fournit
-un : « service de stockage sécurisé, durable et à très faible coût pour
+un : \ct{service de stockage sécurisé, durable et à très faible coût pour
 l'archivage (\dots) de données rarement consultées et pour lesquelles un délai
-d'extraction de plusieurs heures reste acceptable »\footnote{https://aws.amazon.com/fr/glacier/}.
+d'extraction de plusieurs heures reste
+acceptable}\footnote{https://aws.amazon.com/fr/glacier/}.
 
 <!--
 % http://fr.slideshare.net/AmazonWebServices/ent209-netflix-cloud-migration-devops-and-distributed-systems-aws-reinvent-2014
@@ -124,7 +127,7 @@ de favoriser certains des critères énoncés. Par exemple, les délais garantis
 par Amazon Glacier ne sont pas appropriés pour gérer des données sur lesquelles
 seront exécutés des traitements HPC. À l'inverse, le coût d'une grappe de
 calcul est beaucoup trop élevé pour y archiver des données. On peut ainsi
-différentier deux types de données : (i) les données froides qui correspondent
+différencier deux types de données : (i) les données froides qui correspondent
 à du contenu peu accédé (utilisé typiquement dans les applications d'archivage
 où les données sont écrites une fois pour être sollicitées à l'occasion); (ii)
 les données chaudes, qui à l'inverse sont fréquemment sollicitées (typiquement
@@ -133,8 +136,8 @@ d'entrées/sorties à la seconde). Les administrateurs des systèmes de stockage
 sont souvent contraints de définir deux systèmes de stockage différents (un
 système coûteux pour le traitement intensif, l'autre bon marché pour archiver
 des données). Dans ce formalisme, notre premier problème consiste alors à
-concevoir un système de stockage capable de gérer aussi bien les données
-froides, que les données chaudes.
+\textbf{concevoir un système de stockage capable de gérer aussi bien les
+données froides, que les données chaudes}.
 
 Les applications citées précédemment peuvent interagir avec une quantité
 massive de données (de l'ordre du pétaoctet par exemple). Il est donc
@@ -143,10 +146,10 @@ charge de plus en plus importante. Les besoins de l'application peuvent
 également évoluer dans le temps, et nécessiter moins de capacité de stockage.
 L'approche verticale (*scale-up*) consiste à migrer les données vers des
 supports de stockage de plus grandes capacités, avant que la capacité du
-système de stockage ne soit atteint. Cette approche n'est ni flexible (limite
+système de stockage ne soit atteinte. Cette approche n'est ni flexible (limite
 de la taille des ressources) ni économique (requiert d'acheter du matériel
-récent). Notre second problème consiste alors à pouvoir allouer dynamiquement
-les ressources de stockage.
+récent). Notre second problème consiste alors à \textbf{permettre l'allocation
+dynamique des ressources de stockage}.
 
 % scale-out NAS
 
@@ -162,15 +165,15 @@ stockage différents. Cette méthode permet d'accéder à la copie d'un
 bloc lorsque les autres ne sont pas disponibles. Bien que simple à
 mettre en œuvre, chaque copie générée ajoute un surcoût de redondance de
 $100\%$. Cette méthode implique alors un coût de stockage important.
-Notre second troisième problème consiste à garantir un seuil de redondance
+Notre troisième problème consiste à \textbf{garantir un seuil de redondance
 permettant au NDSS de supporter les pannes, tout en minimisant cette quantité
-de redondance.
+de redondance}.
 
 Une fois qu'un seuil de redondance est mis en place dans le NDSS, les pannes
-inévitable entraînent nécessairement la réduction de cette redondance dans le
-temps. Notre quatrième problème sera de rétablir ce seuil de redondance.
-Pour résumer, voici les quatre problèmes identifiés dans cette section vise la
-conception d'un NDSS capable :
+inévitables entraînent nécessairement la réduction de cette redondance dans le
+temps. Notre quatrième problème sera de \textbf{rétablir un seuil de
+redondance}. Pour résumer, les quatre problèmes identifiés dans cette section
+visent à concevoir un NDSS capable :
 
 <!--
 %Il est alors
@@ -236,7 +239,7 @@ redondance. Cette forme permet notamment de ne pas avoir à décoder
 l'information lorsque la partie contenant le message est disponible. En
 conséquence, sous cette forme, les débits en lecture et écriture sont plus
 importants. La conception d'un code sous cette forme sera le sujet d'une de nos
-contribution dans ce travail de thèse.
+contributions dans ce travail de thèse.
 
 <!--
 %En conséquence, on distingue deux types de systèmes de stockage : (i)
@@ -259,20 +262,20 @@ En particulier, nous proposons d'utiliser RozoFS : un logiciel qui définit un
 système de stockage (ou SDS ou *Software-Defined Storage*). Plus précisément,
 RozoFS est un système de fichiers distribué (ou DFS pour *Distributed File
 System*), ce qui correspond à un NDSS permettant d'interagir avec des fichiers.
-Notons que d'autres représentation de la donnée existent telles que la forme en
+Notons que d'autres représentations de la donnée existent telles que la forme en
 blocs (interface proposée par les disques) ou en objets (interface au cœur du
 DFS Ceph\ \cite{weil2006osdi}).
 En particulier, il permet d'agréger l'espace disponible depuis un ensemble de
 supports de stockage. Cette agrégation est exposée à l'utilisateur sous la
 forme d'un volume de stockage organisé par une arborescence (fichiers et
-répertoire). En particulier, RozoFS est orienté pour les réseaux locaux (*LAN*)
-rapides (très haut débit, faible latence). Notre approche se distingue alors
-des architectures pair-à-pair (ou P2P pour *Peer-to-Peer*) et du stockage sur
-réseaux étendus (*WAN*) de latences plus importantes.
+répertoires). En particulier, RozoFS est orienté pour les réseaux locaux
+(*LAN*) rapides (très haut débit, faible latence). Notre approche se distingue
+alors des architectures pair-à-pair (ou P2P pour *Peer-to-Peer*) et du stockage
+sur réseaux étendus (*WAN*) de latences plus importantes.
 RozoFS correspond ainsi à une couche de virtualisation capable d'exploiter du
 matériel varié et bon marché. Cette solution est alors plus flexible et moins
 onéreuse. En particulier, RozoFS est un logiciel libre sous licence GNU
-GPLv2\footnote{Le projet GitHub de RozoFS se situe à l'adresse suivante :
+GPLv2\footnote{Le projet GitHub de RozoFS est accessible à l'adresse suivante :
 \url{https://github.com/rozofs/rozofs}} dans lequel il nous sera possible
 d'intégrer nos contributions.
 
@@ -311,7 +314,7 @@ algorithmes pour le codage à effacement. Dans cette optique, nous proposons
 d'étudier la transformation de \radon qui est une application mathématique
 pouvant être utilisée afin de représenter des données de manière redondante.
 Des travaux sur une version discrète de cette transformation, la
-«\ transformation de \radon finie\ » (ou FRT pour *Finite Radon Transform*) ont
+\ct{transformation de \radon finie} (ou FRT pour *Finite Radon Transform*) ont
 déjà permis de concevoir un code à effacement MDS\ \cite{normand2010wcnc}.
 Dans ce travail de thèse, nous proposons l'utilisation d'une autre version
 discrète de cette application : la transformation
@@ -326,16 +329,15 @@ en lecture et écriture, tout en tolérant les pannes avec une quantité minimum
 de redondance (code MDS).
 Ce travail de thèse a ainsi conduit aux contributions suivantes :
 
-1. la conception du code à effacement performant sous une forme systématique,
-basé sur la transformation Mojette;
+1. la conception d'une version systématique du code à effacement basé sur la
+transformation Mojette;
 
 2. une comparaison théoriques de notre code avec différentes alternatives
 (e.g.\ les codes de \rs), basée sur une proposition de critère de comparaison;
 
-3. une implémentation du code systématique Mojette, ainsi qu'une évaluation
-comparant les latences en encodage et décodage de notre code avec son
-équivalent non-systématique, et avec l'implémentation des codes de \rs fournies
-dans ISA-L;
+3. une implémentation des codes Mojette, ainsi qu'une évaluation des
+latences d'encodage et de décodage (comparaison avec les codes de \rs fournis
+dans ISA-L));
 
 4. une comparaison du coût de la redondance des versions systématique et
 non-systématique du code Mojette avec les codes MDS (e.g.\ \rs);
@@ -437,7 +439,7 @@ l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
 et au sein de l'entreprise Rozo Systems. Cette entreprise développe le système
 de fichiers distribué RozoFS.
 
-Une partie de ce travail de recherche a également été financé par le projet
+Une partie de ce travail de recherche a également été financée par le projet
 ANR FEC4Cloud (appel Emergence 2012). Ce projet a pour objectifs d'analyser et
 de concevoir des codes à effacement pour le stockage distribué. Les partenaires
 de ce projet sont l’IRCCyN (coordinateur), Supaero-ISAE et la SATT Ouest

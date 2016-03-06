@@ -9,7 +9,7 @@
 %phénomène de panne est considéré comme une norme plutôt qu'une exception
 %\cite{ford2010osdi}. Afin de supporter ces pannes, 
 -->
-Dans les systèmes d'information nécessitent l'ajout de données de redondance au
+Les systèmes d'information nécessitent l'ajout de données de redondance au
 message à transmettre afin que le destinataire puisse reconstituer
 l'information lorsque celle-ci est détériorée.  Dans cette partie, nous nous
 intéresserons aux codes à effacement comme méthode pour générer cette
