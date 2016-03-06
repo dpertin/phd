@@ -795,9 +795,9 @@ addition. Le coût d'une opération dépend cependant de la manière dont elle e
 mise en œuvre;
 
 3. l' \textbf{indépendance des paramètres} de codes forme le troisième critère.
-Ce critère correspond à la capacité de sélectionner arbitrairement les valeurs
+Ce critère correspond à la possibilité de choisir arbitrairement les valeurs
 $(n,k)$ du code. Nous verrons dans la prochaine section l'exemple du code de
-parité, restreint à $n=k+1$;
+parité, dont la longueur et la dimension sont liées par la relation $n=k+1$;
 
 4. le \textbf{rendement} correspond au quatrième critère. Nous cherchons à
 concevoir des codes MDS qui minimisent la quantité de redondance nécessaire;
