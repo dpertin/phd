@@ -20,10 +20,10 @@ message est particulièrement sensible au bruit. Pour permettre au destinataire
 d'accéder à l'information malgré sa dégradation sur le canal, la seconde étape
 correspond au codage canal. À l'instar des approches de codage
 conjoint source/canal\ \cite{duhamel1997gretsi}, ce schéma est engendré par le
-«\ théorème de séparation\ », introduit par \shannon dans les années $1950$.
+\ct{théorème de séparation}, introduit par \shannon dans les années $1950$.
 Dans ce travail de thèse, nous nous intéresserons au cas du codage canal. En
 particulier, nous nous focaliserons sur les dégradations qui engendrent la
-perte d'une partie de l'information (appelé « effacement »). Nous verrons
+perte d'une partie de l'information (appelé \ct{effacement}). Nous verrons
 précisément en quoi la correction d'effacements se distingue de la correction
 des valeurs des données reçues.
 
@@ -32,14 +32,14 @@ des valeurs des données reçues.
 Se pose alors la question du rendement du code. Par exemple, il est
 possible de générer de la redondance en répétant plusieurs fois le bloc
 d'information à transmettre. Une quantité suffisante de répétitions permet
-supprimer le bruit du canal. Toutefois, l'augmentation du nombre de
+de supprimer le bruit du canal. Toutefois, l'augmentation du nombre de
 répétitions entraine la diminution de la part d'information utile dans la
-transmission. Désigné comme le «\ rendement\ » du code, ce taux correspond au
+transmission. Désigné comme le \ct{rendement}» du code, ce taux correspond au
 rapport entre le nombre de blocs utiles sur le nombre de blocs transférés.
-En définissant la notion l'entropie, \shannon est parvenu a établir un théorème
+En définissant la notion d'entropie, \shannon est parvenu a établir un théorème
 qui pose les limites du codage canal \cite{shannon1948bstj}. Ce théorème 
 énonce que le rendement d'un code possède une valeur limite $C$, appelée
-«\ capacité\ » du canal, jusque laquelle la probabilité d'erreur est nulle.
+\ct{capacité} du canal, jusque laquelle la probabilité d'erreur est nulle.
 Ainsi, une transmission réalisée avec un rendement supérieur à $C$ ne peut pas
 être fiable. Bien que ce théorème montre qu'il existe des codes permettant
 de corriger les erreurs (à condition que leur rendement soit inférieur à $C$),
@@ -66,14 +66,14 @@ de la notion de distance d'un code \cite{hamming1950bstj}. Cette notion
 permet d'évaluer la capacité de correction d'un code. Le code qu'il parvient à
 concevoir permet ainsi de corriger une erreur.
 De la notion de distance, découle la définition du concept de codes MDS (pour
-«\ *Maximum Distance Separable*\ »). Ce terme est utilisé pour qualifier les
-codes qui fournissent une quantité redondance minimale relativement à une
+\ct{\emph{Maximum Distance Separable}}). Ce terme est utilisé pour qualifier les
+codes qui fournissent une quantité de redondance minimale relativement à une
 capacité de correction fixée (la définition mathématique de cette notion sera
 donnée au cours du chapitre). Depuis l'introduction de la notion de distance,
 la théorie des codes algébriques s'est largement développée. En particulier,
 l'ensemble des corps finis $\FF$ fournit une structure algébrique adaptée aux
-codes en bloc. Les codes en bloc travaillent sur des blocs de données de taille
-fixe. \textcite{reed1960jsiam} introduisent de nouveaux codes en
+codes en \blocs. Les codes en \blocs travaillent sur des blocs de données de
+taille fixe. \textcite{reed1960jsiam} introduisent de nouveaux codes en
 $1960$. Ces code MDS ont la particularité de pouvoir corriger un nombre
 arbitraire d'erreurs. Ils remplacent donc avantageusement le code de \hamming,
 et sont notamment utilisés par la NASA afin de garantir la fiabilité des
@@ -82,7 +82,7 @@ encore présents dans de nombreuses applications aujourd'hui, ils sont souvent
 utilisés conjointement avec les codes de convolution. Introduits par
 \textsc{Elias} en $1955$, ces codes forment une alternative aux codes par bloc.
 Alors que les codes par blocs découpent le message en blocs de symboles de
-taille fixe, les codes convolutifs appliquent sure fenêtre glissantes sur le
+taille fixe, les codes convolutifs appliquent une fenêtre glissante sur le
 flux de données à transmettre, et produisent une séquence continue de symboles
 encodés.
 
@@ -96,7 +96,7 @@ définies dans la \cref{sec.codage.effacement}. En particulier, nous proposerons
 une liste de critères permettant de comparer les différents codes à effacement.
 La \cref{sec.exemples.codes.effacement} présentera une étude des principaux
 codes à effacement linéaires en bloc (e.g.\ \rs, LDPC) à travers l'analyse de
-ces critère..
+ces critères.
 
 
 <!--
@@ -194,8 +194,8 @@ décodage, ainsi que les caractéristiques des codes à effacement.
     \caption{Représentation du modèle d'un canal de communication. $X$ et $Y$
     représentent des variables aléatoires. Chaque élément de ces variables a
     une probabilité d'apparition notée respectivement $p(x_i)$ et $p(y_i)$. Une
-    loi de transition $P(X|Y)$ définit les probabilité $p(x_i|y_i)$ de recevoir
-    le symbole $y_i$ sachant que $x_i$ a été envoyé.}
+    loi de transition $P(X|Y)$ définit les probabilités $p(x_i|y_i)$ de
+    recevoir le symbole $y_i$ sachant que $x_i$ a été envoyé.}
     \label{fig.canal}
 \end{figure}
 
@@ -222,20 +222,22 @@ stochastique suivante :
     \end{pmatrix}\;.
 \end{equation}
 
-\noindent Une source d'information $\mathcal{S}$ est défini par un couple
+\noindent Une source d'information $\mathcal{S}$ est définie par un couple
 $\mathcal{S}=(A,P)$ où $A$ est un alphabet $A=\{s_1,\dots,s_{|A|}\}$ et $P$ est
 une distribution des probabilités sur $A$, c'est à dire que $p_i$ correspond à
 la probabilité d'apparition de $s_i$ lors d'une transmission. Dans un document
 rédigé en français par exemple, la probabilité d'apparition de la lettre
-«\ e\ » est plus importante que pour les autres lettres de l'alphabet.
-La source est «\ sans mémoire\ » lorsque l'apparition de $s_i$ est indépendant
+\ct{e} est plus importante que pour les autres lettres de l'alphabet.
+La source est \ct{sans mémoire} lorsque l'apparition de $s_i$ est indépendant
 de $s_j$ pour $i \neq j$, et que leur probabilité n'évolue pas pendant la
 transmission. Dans le cas de notre modélisation, chaque élément de $x_i \in X$
 a une probabilité d'apparition $p(x_i)$.
 Soit $p_{x_i|y_i} = P(X=x_i, Y = y_i)$, la probabilité
 de recevoir le symbole $y_i$ sachant la valeur du symbole émis $x_i$.
 Par exemple, sur un canal sans bruit, $p_{x|x} = 1$ et $p_{x|y} = 0$
-pour $x \neq y$. Dans la section suivante, nous étudierons deux canaux
+pour $x \neq y$.
+
+Dans la section suivante, nous étudierons deux canaux
 particuliers : le canal binaire symétrique, et le canal à effacement.
 Dans le reste de cette section, nous allons définir les différentes
 caractéristiques d'un canal, qui nous serons utiles pour la suite. En
@@ -246,8 +248,8 @@ d'un canal. L'ensemble de ces définitions est introduit dans les travaux de
 ### Entropie
 
 Pour pouvoir définir l'entropie, il faut introduire au préalable le concept de
-«\ degré d'originalité\ ». Ce degré d'originalité $I(s_i)$ (parfois appelé «\
-auto-information\ ») est défini comme l'information transmise par le symbole
+\ct{degré d'originalité}. Ce degré d'originalité $I(s_i)$ (parfois appelé
+\ct{auto-information} est défini comme l'information transmise par le symbole
 $s_i$ (en bit) et vaut\ \cite[p. 1]{shannon1948bstj} :
 
 \begin{equation}
@@ -288,7 +290,7 @@ Notre modèle de canal représente l'émetteur et le destinataire par deux
 variables aléatoires. Soit $(X,Y)$ la loi conjointe des variables aléatoires
 $X$ et $Y$. On cherche à déterminer l'incertitude associée à ces deux
 variables. Pour cela, on détermine l'entropie de la loi conjointe qui est
-défini ainsi :
+définie ainsi :
 
 \begin{equation}
     H(X,Y)  = \mathbb{E}\left[\log_2 \left(\frac{1}{P(X,Y)}\right)\right]
@@ -304,7 +306,7 @@ défini ainsi :
 Dans l'objectif d'obtenir une modélisation d'un canal, on cherche à modéliser
 les perturbations du canal par des probabilités conditionnelles. Pour cela, on
 utilise l'entropie conditionnelle $H(X|Y=y)$ qui correspond à l'incertitude de
-$X$ lorsqu'une valeur de Y est connues :
+$X$ lorsqu'une valeur de Y est connue :
 
 \begin{equation}
     H(X|Y=y) = - \sum_x p_{x|y} \log_2 p_{x|y}\;,
@@ -375,11 +377,11 @@ symétrique, et le canal à effacement.
     \label{fig.cbs}
 \end{figure}
 
-Le canal binaire symétrique (CBS) est un simple à étudier. La source binaire
-est définie par un alphabet $A=\{0,1\}$. En conséquence, elle émet des
-bits à travers un canal caractérisé par une probabilité $p$ d'inverser la
-valeur du bit. La \cref{fig.cbs} illustre ce canal. Ainsi, la loi de transition
-est définie ainsi :
+Le canal binaire symétrique (CBS) est un canal dont la source est définie par
+un alphabet $A=\{0,1\}$. En conséquence, elle émet des bits à travers un canal
+caractérisé par une probabilité $p$ d'inverser la valeur du bit. La
+\cref{fig.cbs} illustre ce canal. La loi de transition de ce canal est définie
+ainsi :
 
 \begin{equation}
     P(X|Y) = \begin{cases}
@@ -421,7 +423,7 @@ tendre vers l'infini.
     \includesvg{img/cbe}
     \caption{Représentation d'un canal binaire à effacement. La source transmet
     sur le canal des bits qui peuvent être effacés avec une probabilité $p$.
-    L'effacement représente la transition d'un bit vers «\ $?$\ ».}
+    L'effacement représente la transition d'un bit vers \ct{$?$\}.}
     \label{fig.cbe}
 \end{figure}
 
@@ -429,7 +431,7 @@ Le canal binaire à effacement (CBE) a été introduit par \textcite{elias1955it
 Ce canal se distingue du CBS par le fait que l'information n'est pas modifiée,
 mais effacée lors de la transmission. Un effacement correspond simplement à la
 perte de l'information. La \cref{fig.cbe} illustre ce canal. On représente la
-perte d'information par le symbole «\ $?$\ ». La probabilité qu'un symbole soit
+perte d'information par le symbole \ct{$?$}. La probabilité qu'un symbole soit
 effacé vaut $p$, ce qui signifie qu'un symbole est correctement transmis avec
 une probabilité $1-p$. En conséquence, on peut représenter la loi de transition
 $P(X|Y)$ ainsi :
@@ -443,7 +445,7 @@ $P(X|Y)$ ainsi :
 
 \noindent Si l'on reçoit un $0$ ou un $1$, alors il n'y a aucun
 doute sur la valeur émise. En conséquence, $H(X|Y=0) = H(X|Y=1) = 0$. En
-revanche, si on reçoit un « ? », on n'a rien appris sur l'entrée, et donc
+revanche, si on reçoit un \ct{?}, on n'a rien appris sur l'entrée, et donc
 $H(X|Y=?) = H(X)$. La capacité du canal à effacement vaut $C=1-p$. On peut
 ainsi comparer la capacité de ce canal par rapport au précédent. En
 particulier, puisque $\forall p \in [0,\frac{1}{2}], p < H(p)$, la capacité du
@@ -456,11 +458,11 @@ l'erreur est connue, et la correction correspond uniquement à restituer la
 valeur de l'information perdue.
 
 Bien que le CBE permet de comprendre le principe des effacements, les
-applications transmettent des informations sous forme de bloc (ou de paquet).
+applications transmettent des informations sous forme de blocs (ou de paquets).
 Ces blocs correspondent à des mots de plusieurs bits. Le modèle utilisé est
-appelé «\ canal à effacement de paquet \» est correspond au CBE sauf les
-symboles transmis sont à présent des mots de bits. En conséquence, un
-effacement entraîne la perte d'un mot entier.
+appelé \ct{canal à effacement de paquets} est correspond au CBE dans le cas où
+les symboles transmis sont des mots de bits (et non plus des bits). En
+conséquence, un effacement entraîne la perte d'un mot entier.
 
 % comparer les deux courbes de capacité
 
@@ -470,20 +472,20 @@ effacement entraîne la perte d'un mot entier.
 
 ## Théorie algébrique des codes correcteurs {#sec.theorie.codes.correcteurs}
 
-Cette section présente une étude des codes linéaires par blocs à travers une
+Cette section présente une étude des codes linéaires par \blocs à travers une
 approche algébrique. Une définition des opérations d'encodage et de décodage
 sera présentée, ainsi que la notion fondamentale de la distance de
 \textcite{hamming1950bstj}. Cette notion fondamentale de la théorie des codes
 permet de déterminer la capacité de correction d'un code.
 
 
-### Codes par blocs
+### Codes par \blocs
 
 Jusque là, nous avons étudié le transfert d'information bit à bit. En pratique,
 on souhaite transférer un flux d'information de taille conséquente. Pour
 travailler efficacement sur ce flux d'information, il est préférable de le
-segmenter en éléments de taille fixe. Ces éléments sont appelés «\ mot\ » (ou
-encore bloc, ou paquet). Les mots de code sont le résultat d'une opération
+segmenter en éléments de taille fixe. Ces éléments sont appelés \ct{mots} (ou
+encore blocs ou paquets). Les mots de code sont le résultat d'une opération
 d'encodage utilisant des mots d'information en entrée. Dans la suite, nous
 définirons ce qu'est l'encodage, le décodage, le rendement d'un code, ainsi que
 la distance de \hamming.
@@ -507,7 +509,7 @@ $\mathcal{C}_\phi$. Si ce n'est pas le cas, deux stratégies sont possibles pour
 corriger l'erreur :
 
 1. Le récepteur peut demander à la source de réémettre le message. Cette
-stratégique appelée *Automatic Repeat reQuest* (ARQ), n'est pas toujours
+stratégie appelée *Automatic Repeat reQuest* (ARQ), n'est pas toujours
 possible (certains médias ne disposent pas de canal de retour). De plus elle
 entraîne un délai significatif;
 
@@ -522,7 +524,7 @@ par ce mot. Sinon, on ne peut pas corriger l'erreur.
 
 #### Rendement
 
-Le «\ rendement\ » $R$ d'un code $(n,k)$ correspond à la quantité de symboles
+Le \ct{rendement} $R$ d'un code $(n,k)$ correspond à la quantité de symboles
 sources contenus dans un mot de code. Il est défini ainsi :
 
 \begin{equation}
@@ -575,7 +577,7 @@ systématique du code, ainsi que la matrice de parité et le décodage.
 Un code $(n,k)$ est linéaire s'il existe une application linéaire $\phi : \FF^k
 \to \FF^n \mid \phi(\FF^k) = \mathcal{C}$. Une telle application peut alors
 être décrite par une matrice $G$ de taille $k \times n$, à coefficient dans
-$\FF$, appelée « matrice génératrice ». L'encodage correspond alors à la
+$\FF$, appelée \ct{matrice génératrice}. L'encodage correspond alors à la
 multiplication matricielle suivante :
 
 \begin{equation}
@@ -586,7 +588,7 @@ multiplication matricielle suivante :
 matrice sont déterminants pour définir un bon code correcteur. Au cours de ce
 manuscrit, plusieurs matrices d'encodage seront présentées. Nous verrons que la
 structure des matrices d'encodage joue un rôle essentiel sur la complexité des
-opération d'encodage et de décodage (e.g.\ matrice creuse, matrice de
+opérations d'encodage et de décodage (e.g.\ matrice creuse, matrice de
 \vander).
 
 Nous allons voir comment obtenir une matrice d'encodage permettant de
@@ -617,7 +619,7 @@ peut utiliser la méthode d'élimination de \gj pour obtenir une telle matrice :
 
 \noindent Tout code linéaire peut être écrit sous cette forme, appelée forme
 systématique. Par opposition, lorsque $G$ ne contient pas de matrice $I_k$, les
-codes engendrés sont non-systématique. Contrairement à ceux-ci, les codes de
+codes engendrés sont non-systématiques. Contrairement à ceux-ci, les codes de
 forme systématique ont l'avantage d'intégrer le message source en clair, dans
 le mot encodé. En particulier, les $k$ premiers symboles du mot de code
 correspondent au message, tandis que les $r=n-k$ derniers correspondent à des
@@ -627,7 +629,7 @@ En pratique, cette forme a deux avantages. Elle permet tout d'abord de réduire
 l'opération d'encodage (puisque $\frac{n}{k}$\% du mot de code correspond au
 message). De plus, elle permet au récepteur d'accéder directement
 à la donnée lorsque les $k$ premiers symboles n'ont pas été altérés durant la
-transmission. Dans ce cas, aucune opération de décodage est nécessaire.
+transmission. Dans ce cas, aucune opération de décodage n'est nécessaire.
 
 Nous allons à présent évaluer le rapport entre la capacité de correction et le
 rendement, en définissant la borne de \textcite{singleton1964toit}.
@@ -635,8 +637,8 @@ rendement, en définissant la borne de \textcite{singleton1964toit}.
 #### Borne de \singleton et codes MDS
 
 Il existe une relation entre la distance minimale $d_{\min}(\mathcal{C})$ et
-les paramètres $(n,k)$ du code. Cette relation, appelée «\ borne de
-\singleton\ », est définie ainsi\ \cite{singleton1964toit} :
+les paramètres $(n,k)$ du code. Cette relation, appelée \ct{borne de
+\singleton}, est définie ainsi\ \cite{singleton1964toit} :
 
 \begin{equation}
     d_{\min}(\mathcal{C}) \leq n-k+1\;.
@@ -647,13 +649,14 @@ $d_{\min}(\mathcal{C})$ doit nécessairement générer au moins $n - k + 1$
 symboles supplémentaires. Lorsqu'un code atteint la borne de \singleton, il
 fournit précisément cette quantité de redondance. Dans ce cas, la quantité de
 redondance est minimale pour une valeur de rendement fixé. Les codes qui
-atteignent la borne de \singleton sont appelés « codes MDS », pour *Maximum
+atteignent la borne de \singleton sont appelés \ct{codes MDS}, pour *Maximum
 Distance Separable*.
 
-\textcite[p. 317]{macwilliams2006book} relient le terme « *separable* » à la 
-séparation des symboles (message et parité) dans le cas des codes systématique.
-Nous préférons considérer que les codes MDS peuvent être systématique ou
-non-systématique. Nous resterons alors sur la définition des codes MDS comme
+\textcite[p. 317]{macwilliams2006book} relient le terme \ct{\emph{separable}} à
+la séparation des symboles (message et parité) dans le cas des codes
+systématiques.
+Nous préférons considérer que les codes MDS peuvent être systématiques ou
+non-systématiques. Nous resterons alors sur la définition des codes MDS comme
 étant des codes tels que $d_{\min}(\mathcal{C}) = n-k+1$.
 
 On peut à présent définir une nouvelle matrice $H$ d'une application dont les
@@ -664,7 +667,7 @@ noyaux correspondent aux mots de code.
 
 Il est également possible de définir un code linéaire en utilisant une
 application linéaire dont le noyau correspond au code. Cette application est
-représentée par une matrice $H$, appelé «\ matrice de contrôle de parité\ » :
+représentée par une matrice $H$, appelée \ct{matrice de contrôle de parité} :
 
 \begin{equation}
     \mathcal{C} = \Big\{(y_1,\dots,y_n) : H \times \begin{pmatrix}
@@ -674,7 +677,7 @@ représentée par une matrice $H$, appelé «\ matrice de contrôle de parité\ 
 
 \noindent Une telle matrice est facilement déterminée à partir de la matrice
 $G=[I|T]$ définie précédemment. En particulier, $G \times H^{t} = 0$, on en
-conclu que :
+conclut que :
 
 \begin{equation}
     H = \left[ -T^{t}
@@ -689,9 +692,9 @@ mot de code, et de détecter les erreurs.
 
 #### Syndrome et décodage
 
-Lorsqu'un message $y$ est reçu, pour déterminer si celui correspond à un mot de
-code (et donc s'il n'a pas été altéré, a priori) on calcule la valeur
-$Hy$, qui correspond au «\ syndrome\ » du mot de code. Si le syndrome n'est pas
+Lorsqu'un message $y$ est reçu, pour déterminer si celui-ci correspond à un mot
+de code (et donc s'il n'a pas été altéré, a priori) on calcule la valeur
+$Hy$, qui correspond au \ct{syndrome} du mot de code. Si le syndrome n'est pas
 nul, la présence d'erreurs est validée. On cherche alors à déterminer la valeur
 du mot de code $x$ à partir de $y$. Pour cela, on calcule le vecteur d'erreurs
 $e=y-x$. Le décodage consiste donc à trouver l'unique élément $x \in
@@ -724,11 +727,11 @@ peut également représenter des parties de fichiers, voire des fichiers entiers
 \cite{huang2012atc}.
 
 Jusque là, nous avons considéré le cas du canal binaire à effacement. Dans ce
-contexte, les codes travaillent sur un mot constitués de $n$ symboles. En
-informatique, la transmission d'information réalisée au niveau applicatif
+contexte, les codes travaillent sur un mot constitué de $n$ symboles. En
+informatique, les transmissions d'information réalisées au niveau applicatif
 travaillent sur de grandes tailles d'informations découpées en paquets (ou blocs).
 On désigne les codes à effacement appliqués à la couche applicative par le
-terme «\ codes AL-FEC\ » (pour *Application-Level Forward Erasure
+terme \ct{codes AL-FEC} (pour *Application-Level Forward Erasure
 Codes*)\ \cite{cunche2010phd}. On définit alors le canal à effacement par
 paquets dans lequel les codes ont pour but de générer $n$ blocs de redondance à
 partir de l'information contenue dans $k$ paquets.
@@ -755,13 +758,13 @@ Un code à effacement $(n,k)$ permet de générer $n$ paquets encodés à partir
 d'un ensemble de $k$ paquets de données, tel que $k \leq n$. La \cref{fig.ec}
 illustre le principe d'un code à effacement $(6,4)$ MDS. Dans l'exemple de la
 figure, le code est présenté sous sa forme systématique. Les $n=6$ paquets
-encodés contiennent alors les $k=4$ paquets d'information (blocs systématique),
+encodés contiennent alors les $k=4$ paquets d'information (blocs systématiques),
 auxquels s'ajoutent $r$ paquets de parité (ou de redondance). Lors de la
 réception des paquets, il est nécessaire de vérifier si certains blocs
 systématiques ont été perdus. Le cas échéant, l'opération de décodage consiste
 à reconstruire cette information à partir des informations de parité.
 Si le code est MDS, l'information contenue dans les $r$ blocs de parité
-permettent de reconstruire n'importe quel sous-ensemble de $r$ blocs de données
+permet de reconstruire n'importe quel sous-ensemble de $r$ blocs de données
 perdus.
 
 
@@ -828,7 +831,7 @@ donnerons en conclusion un récapitulatif de cette étude.
 
 ## Les codes de répétition
 
-Les codes de répétition correspondent des codes $(n,1)$, dont la mise en œuvre
+Les codes de répétition correspondent à des codes $(n,1)$, dont la mise en œuvre
 est simple. Il s'agit de transmettre plusieurs fois les symboles à transmettre.
 Considérons le cas du canal binaire à effacement. Dans ce cas, chaque bit est
 répété $n$ fois. Dans le cas d'un code de longueur $3$, le code génère les
@@ -847,7 +850,7 @@ suivante :
 
 Dans le cas du canal binaire symétrique, le décodage consiste à déterminer
 quelle valeur est la plus répétée dans le mot reçu. Pour le canal à effacement,
-dés lors qu'un symbole ($k=1$) parmi les $n$ est reçu, il correspond au symbole
+dès lors qu'un symbole ($k=1$) parmi les $n$ est reçu, il correspond au symbole
 transmis par l'émetteur.
 Puisque les mots de code n'ont aucun bit en commun, cela signifie que la
 distance minimale vaut $d_{\min}(\mathcal{C})=n$. En conséquence, ce code
@@ -861,7 +864,7 @@ verrons des codes proposant de meilleurs rendements.
 
 Le code de parité est un autre code simple à mettre en œuvre. Il permet un
 meilleur rendement que les codes de répétition, mais sa capacité à corriger est
-limité à une erreur : il s'agit d'un code $(n, k = n-1)$. La matrice d'encodage
+limitée à une erreur : il s'agit d'un code $(n, k = n-1)$. La matrice d'encodage
 d'un code de parité de longueur $n$ correspond à :
 
 \begin{equation}
@@ -893,7 +896,7 @@ somme des valeurs des autres symboles. Quelle que soit la longueur de ce code,
 sa distance minimale vaut $2$. Ainsi, bien qu'il soit MDS, ce code
 n'est capable de corriger qu'un seul effacement. En conséquence, ce code n'est
 pas bon au regard du critère $3$. En revanche, son rendement vaut
-$R=\frac{n-1}{n}$ ce qui est signifie qu'une quantité plus importante de
+$R=\frac{n-1}{n}$ ce qui signifie qu'une quantité plus importante de
 données utiles est contenue dans un mot de code par rapport au code de
 répétition.
 
@@ -926,7 +929,7 @@ par rapport aux additions (ce qui pénalise le critère $1$ et $2$).
 Plusieurs méthodes ont été proposées pour réduire cette complexité.
 \textcite{blomer1995icsi} utilisent des matrices d'encodage basées sur des
 matrices de \cauchy. En particulier, ils représentent la matrice d'encodage de
-telle sorte à définir les opérations qu'avec des additions. En conséquence, ils
+façon à réaliser les opérations sans multiplications. En conséquence, ils
 parviennent à réduire la complexité à $\mathcal{O}(k^2)$.
 \textcite{lacan2010ccnc} ont par la suite réduit cette complexité à
 $\mathcal{O}(k \log k)$ en utilisant la transformée de \fourier.
@@ -991,7 +994,7 @@ une structure particulière (triangulaire, par bloc, etc.).
 
 La \cref{fig.ldpc} représente le graphe de \textsc{Tanner} correspondant à
 l'\cref{eqn.ldpc}. Un tel graphe contient deux ensembles de sommets qui
-correspondent à (i) les bits à transférer; (ii) les sommets de contrainte.
+correspondent (i) aux bits à transférer; (ii) aux sommets de contrainte.
 Chaque arête fait le lien entre les deux ensembles de sommets.
 
 ### Décodage
@@ -1006,8 +1009,9 @@ optimal en capacité de correction. Il consiste à considérer les équations
 décrites par l'\cref{eqn.ldpc} dont l'une des variables est inconnue. La valeur
 de cette variable correspond donc à la constante de l'équation. Par la suite,
 la valeur de cette variable est mise à jour dans l'ensemble des équations du
-système. Lorsque qu'aucune des équations ne contient qu'une seule inconnue, ou
-que l'ensemble des symboles est reconstruit, l'algorithme s'arrête.
+système. Dès lors qu'aucune équations ne contient plus qu'une seule inconnue,
+ou bien dès lors que l'ensemble des symboles est reconstruit, l'algorithme
+s'arrête.
 
 #### Décodage au maximum de vraisemblance
 
@@ -1052,8 +1056,8 @@ l'élimination de \gj se réduit.
 		\bottomrule
 		\end{tabular}
 	\caption{Résumé de l'analyse théoriques des différents codes en fonction
-	des critères énumérées précédemment (voir \cref{sec.criteres}). Le tableau
-	distingue les critères satisfait par une coche. Le critère \(6\) n'est pas
+	des critères énumérés précédemment (voir \cref{sec.criteres}). Le tableau
+	distingue les critères satisfaits par une coche. Le critère \(6\) n'est pas
 	évalué puisqu'il concerne les implémentations de ces codes.}
     \label{tab.code.criteres}
 \end{table}
@@ -1083,10 +1087,10 @@ pour le canal à effacement. La \cref{sec.theorie.codes} a introduit les notions
 nécessaires pour comprendre la théorie des codes. En particulier, nous avons
 défini la capacité d'un canal. Par la suite, nous avons étudié le cas du canal
 à effacement dans lequel certains symboles ont une probabilité d'être effacé.
-En comparant leur capacité respective, nous avons vu la correction de
+En comparant leur capacité respective, nous avons vu que la correction de
 l'effacement est plus simple à résoudre que la correction d'erreur.
 
-Afin de résoudre le problème du canal à effacement par paquet, il est
+Afin de résoudre le problème du canal à effacement par paquets, il est
 nécessaire de proposer des codes à effacement capables de générer des paquets
 de redondance au niveau du récepteur. En particulier, les codes AL-FEC sont
 utilisés au niveau de la couche logiciel afin que le destinataire puisse
@@ -1094,16 +1098,17 @@ reconstituer l'information même lorsqu'une partie des paquets a été effacée.
 \cref{sec.codage.effacement} présente le principe de ces codes à effacement
 linéaires ainsi que six critères permettant de les caractériser.
 
-Nous avons vu dans la dernière \cref{sec.exemples.codes.effacement} quelques
-exemples représentatifs des familles de codes à effacement. En particulier, les
-codes de parité sont simples à mettre en œuvre, mais particulièrement coûteux
-puisque leur rendement est mauvais. Les codes de parité offrent un meilleur
-rendement mais ne peuvent corriger qu'un effacement. Les codes de \rs sont les
+Enfin, quelques exemples représentatifs des codes à effacement linéaires en
+blocs ont été vus dans la \cref{sec.exemples.codes.effacement}. En particulier,
+les codes de répétition sont simples à mettre en œuvre, mais particulièrement
+coûteux puisque leur rendement est particulièrement mauvais.
+Les codes de parité offrent un meilleur rendement, mais ne peuvent toutefois
+corriger qu'un seul effacement. Les codes de \rs sont les
 plus populaires puisque leur capacité de correction n'a théoriquement pas de
 limite, et que leur rendement est optimal (ce sont des codes MDS). En revanche,
-ils induisent une complexité quadratique au décodage qui les pénalise. Les
-codes LDPC possèdent une algorithme décodage itératif linéaire efficace, mais
-n'ont pas un rendement optimal (MDS dans le cas asymptotique).
+ces codes impliquent une complexité quadratique au décodage qui les pénalise.
+Les codes LDPC possèdent un algorithme de décodage itératif linéaire efficace,
+mais n'ont pas un rendement optimal (MDS dans le cas asymptotique).
 
 En conséquence, les codes que nous avons proposé ne sont pas parfaits. Un code
 parfait correspond à un code MDS, de faible complexité en encodage et décodage,
