@@ -4,7 +4,8 @@
     \label{alg.systematique}
     \begin{algorithmic}[1]
 
-    \Require $\text{Proj}(P_i,1,b)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
+    %\Require $\text{Proj}(P_i,1,b)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
+    \Require $\text{Proj}(P_i,1)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
     \Require $\text{Eff}(i)$ trié par ordre décroissant, avec $i \in \ZZ_e$
 
     \LineComment Calcule $S-$, $S+$ et $S$
@@ -22,7 +23,7 @@
     \State offset$(e-1) \leftarrow \text{max}(\text{max}(0,-p_r)
         + S_{\text{minus}}, \text{max}(0, p_r) + S_{\text{plus}})$
 
-    \LineComment Calcule la valeur de l'offset les autres
+    \LineComment Calcule la valeur de l'offset des autres
     \For{$i \leftarrow (e - 2) \text{ à } 0$}
         \State $\text{offset}(i) \leftarrow \text{offset}(i+1) + p_{i+1}$
         \LineComment Mise à jour des offsets des lignes inférieures
@@ -34,6 +35,7 @@
         \EndFor
 
     \EndFor
+\label{alg.offsets.fin}
 
     \LineComment Détermination du plus petit offset
     \State $\text{offset}_{\text{min}} = \text{offset}(0)$
@@ -44,14 +46,18 @@
     \EndFor
 
     \For{$k \leftarrow -\text{max}(\text{offset}(0),\text{offset}(e)) \text{ à } (P - \text{offset}_{\text{min}}-1)$}
+    \label{alg.pixel}
         \For{$l \leftarrow 0 \text{ à } \text{offset}(e - 1)$}
             \State $y=\text{Eff}(l)$
             \LineComment Détermination de la valeur du pixel \label{alg.pxl}
             \LineComment \cref{eqn.sys_pxl}
-            \State $f(k,l) \leftarrow \text{Proj}_f(p_i, q_i, k - (p_i \times
-            y)) - \text{Proj}_{\tilde{f}}(p_i, q_i, k - (p_i \times y))$
+            %\State $f(k,l) \leftarrow \text{Proj}_f(p_i, q_i, k - (p_i \times
+            %y)) - \text{Proj}_{f'}(p_i, q_i, k - (p_i \times y))$
+            \State $f(k,l) \leftarrow \text{Proj}_f(p_i, q_i) -
+            \text{Proj}_{f'}(p_i, q_i)$
         \EndFor
     \EndFor
+    \label{alg.pixel.fin}
     
     \end{algorithmic}
 \end{algorithm}
