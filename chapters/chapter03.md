@@ -445,7 +445,8 @@ dépendent du schéma de perte.
     l'information de l'interface réseau (NIC). Cette interface transmet ensuite
     l'information encodée sur le canal à effacement. Après réception des
     données par le nœud $2$, une opération de décodage est réalisée avant de
-    restituer la donnée reconstruite à la mémoire.}
+    restituer la donnée reconstruite à la mémoire. Cette figure est inspirée de
+    \cite{tanenbaum2014os}.}
     \label{fig.data_path}
 \end{figure}
 

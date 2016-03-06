@@ -859,7 +859,7 @@ la transformée $1$D de \fourier pour chaque projection afin de remplir l'espace
 de \fourier; (ii) calculer la transformée de \fourier $2$D inverse pour obtenir
 l'image. Il est ainsi possible de réduire la complexité à celle de la FFT,
 i.e.\ $\mathcal{O}(p^2 \log_2 p)$ \cite{kingston2006aiep}.
-\textcite{chandra2010ietcv} ont proposé une extension de cette méthode, basée
+\textcite{chandra2014ietcv} ont proposé une extension de cette méthode, basée
 sur la transformation de \fourier modulaire. Cette méthode permet de remplacer
 une racine complexe de l'unité par une racine entière de l'unité.
 
@@ -1113,8 +1113,8 @@ $l$. On définit alors l'opérateur ainsi :
     \label{eqn.frt_poly}
 \end{equation}
 
-\noindent avec $m \neq p$. Il est possible de poser ce problème sous une forme
-matricielle :
+\noindent avec $m \in \{0,\dots,p-1\}$. Il est possible de poser ce problème
+sous une forme matricielle :
 
 \begin{equation}
     R_m(\boldsymbol{f}) =

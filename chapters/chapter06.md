@@ -688,6 +688,7 @@ par la même séquences revient à ne rien faire. Par exemple :
                     \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
                     \ast \textcolor{red}{\begin{pmatrix} -1 & 1 \end{pmatrix}}
                 \right)\;,\\
+        \moj{\dir{(2,1)}}{f_S^{\dir{(0,1)}}}
             &= \moj{\dir{(0,1)}}{f}\\
             & \bigast
                     \begin{pmatrix} -1 & 0 & 0 & 1 \end{pmatrix}
