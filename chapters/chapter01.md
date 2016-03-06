@@ -356,14 +356,17 @@ ainsi\ \cite[p. 22]{shannon1948bstj} :
     C(X,Y) = \max{I(X,Y)}\;.
 \end{equation}
 
-\noindent Elle correspond à la quantité maximale d'information qui peut être transmise par le canal.
+\noindent Elle correspond à la quantité maximale d'information qui peut être
+transmise par le canal.
 
 
 
 ## Exemples de canaux {#sec.exemples.canaux}
 
+
 Notre étude va s'intéresser aux deux canaux suivants : le canal binaire
 symétrique, et le canal à effacement.
+
 
 ### Canal binaire symétrique
 
@@ -423,7 +426,7 @@ tendre vers l'infini.
     \includesvg{img/cbe}
     \caption{Représentation d'un canal binaire à effacement. La source transmet
     sur le canal des bits qui peuvent être effacés avec une probabilité $p$.
-    L'effacement représente la transition d'un bit vers \ct{$?$\}.}
+    L'effacement représente la transition d'un bit vers \ct{$?$}.}
     \label{fig.cbe}
 \end{figure}
 

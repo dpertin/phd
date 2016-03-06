@@ -1,0 +1,69 @@
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'data_path3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{298.656bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.25565365)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{data_path3.pdf}}%
+    \put(0.84045523,0.23624378){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{Nœud 2}}}%
+    \put(0.15868807,0.23624378){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{Nœud 1}}}%
+    \put(0.8116097,0.19064824){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{RAM}}}%
+    \put(0.2013156,0.19294388){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{RAM}}}%
+    \put(0.2842145,0.19294388){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{NIC}}}%
+    \put(0.71645301,0.19294388){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{NIC}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{data_path3.pdf}}%
+    \put(0.04267259,0.14148748){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{CPU}}}%
+    \put(0.06945926,0.06648481){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{encodage}}}%
+    \put(0.10746493,0.02956542){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{OS}}}%
+    \put(0.10775849,0.11370575){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{User}}}%
+    \put(0.48264587,0.02508445){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{Switch}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{data_path3.pdf}}%
+    \put(0.9297561,0.06648481){\color[rgb]{0.13333333,0.11764706,0.12156863}\makebox(0,0)[b]{\smash{decodage}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{data_path3.pdf}}%
+  \end{picture}%
+\endgroup%
