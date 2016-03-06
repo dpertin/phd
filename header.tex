@@ -10,6 +10,7 @@
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
 \newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\gj{\textsc{Gauss-Jordan}\xspace}
 \newcommand\singleton{\textsc{Singleton}\xspace}
 \newcommand\rs{\textsc{Reed-Solomon}\xspace}
 \newcommand\eo{\textsc{EVENODD}\xspace}
@@ -18,11 +19,14 @@
 \newcommand\intel{\textsc{Intel}\xspace}
 
 \newcommand\ZZ{\mathbb{Z}}
+\newcommand\NN{\mathbb{N}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\CC{\mathbb{C}}
 \newcommand\FF{\mathbb{F}}
 \newcommand\PP{\mathcal{P}}
 \newcommand\QQ{\mathcal{Q}}
+%\newcommand\MM{\mathcal{M}}
+\newcommand\MM{M}
 
 
 \documentclass[11pt,
@@ -83,13 +87,15 @@
 	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
 	picture,baseline=(#1.base)]
 	  \node (#1) {\strut};}
+
+%http://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15)
+    -- cycle;}
 \usepackage{lscape,afterpage}
 %\usepackage{xcolor} %déjà intégré dans le .cls
 
 %\geometry{inner=2.5cm, outer=2.5cm, top=2.5cm, bottom=2cm}
 %\geometry{inner=1.5cm, outer=1.5cm, top=2cm, bottom=2cm}
-
-\usepackage[french=guillemets]{csquotes}
 
 \usepackage{textcomp}
 \usepackage{pdflscape}
@@ -113,18 +119,19 @@
 
 \usepackage{listings}
 	\lstset{language=C++,
-	backgroundcolor=\color{mygrey},
+	%backgroundcolor=\color{mygrey},
 	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
 	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
-	commentstyle=\itshape\color{mybgrey},
+	commentstyle=\itshape\color{mygrey},
 	breaklines=true,
 	captionpos=b,
 	numbers=left,
 	numberstyle=\color{black},
 	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
-	basicstyle={\color{mywhite}},
+	%basicstyle={\color{mywhite}},
 	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
-	frame=none}
+	frame=single%none}
+}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
@@ -151,6 +158,8 @@
 
 \def\proj{\mathrm{proj}}
 \def\M{\mathcal{M}}
+\def\blocs{blocs}
+
 
 \DeclareMathOperator*{\xor}{\bigoplus}
              
@@ -159,14 +168,18 @@
 \DeclareMathOperator*{\bigast}{\ast}
 \DeclareMathOperator*{\bigastinv}{\ast^{-1}}
 \newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
-\def\dirset#1{\left\{#1\right\}}
-\def\ghost#1{G_{\dirset{#1}}}
+\def\dir#1{\left\{#1\right\}}
+\def\ghost#1{g_{#1}}
+\def\moj#1#2{M_{#1}\left[#2\right]}
+
+\def\ct#1{«~#1~»}
 
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
 \makeatother
 
-\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
+\algrenewcommand\algorithmicrequire{\textbf{Entrée :}}
+\algrenewcommand\algorithmicensure{\textbf{Sortie :}}
 \algrenewcommand\algorithmicfor{\textbf{pour}}
 \algrenewcommand\algorithmicforall{\textbf{pour tout}}
 \algrenewcommand\algorithmicdo{\textbf{faire}}
@@ -215,7 +228,8 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
     maxbibnames=99,
     language=french,
     babel=other,
-    backref=true
+    backref=true,
+	%style=trad-plain
 ]{biblatex}
 \addbibresource{these.bib}
 
@@ -345,7 +359,7 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 % Cleveref can’t cope with active characters being present in cross-reference
 % label names. For example, if French babel support is loaded, the commonly
 % used “:”
-\usepackage[french,capitalize,nameinlink]{cleveref}
+\usepackage[french,nameinlink]{cleveref}
     \crefname{lstlisting}{Listing}{listings}
     \Crefname{lstlisting}{Listing}{Listings}
 

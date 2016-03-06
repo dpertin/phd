@@ -190,6 +190,7 @@
 \RequirePackage[a4paper]{geometry}
 \RequirePackage{ifthen}
 \RequirePackage[english,french]{babel}
+\RequirePackage[babel]{csquotes}
 \RequirePackage{setspace}
 \RequirePackage{times} % police de caract`eres des 1re et 4e de couverture
 \if@inEnglish
@@ -1427,7 +1428,8 @@
       \vspace{\baselineskip}
 
       \footnotesizecover
-      \noindent\textbf{Soutenue le \@date}\par
+      %\noindent\textbf{Soutenue le \@date}\par
+      \noindent\textbf{Soutenance prévue le \@date}\par
       \ifx\@thesisnumber\@empty
       \else
          \noindent\textbf{Th\`ese n\textdegree\ : \@thesisnumber}\par

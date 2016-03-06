@@ -10,43 +10,151 @@
 \section*{Introduction}
 
 Le chapitre précédent a permis de définir les codes à effacement basés sur la
-FRT et sur la transformée Mojette. Ce dernier, bien que sous-optimal (au sens
-MDS), a la particularité de disposer d'un algorithme de reconstruction
-itératif, de faible complexité \cite{normand2006dgci}.
-La latence est un critère essentiel des codes à effacement *AL-FEC*,
-puisque l'encodeur (et le décodeur) sont des composants connectés en série dans
-la chaîne de traitement. Par exemple, dans les systèmes de stockage distribués,
-le chemin de données correspond à l'ensemble des composants par lesquels la
-donnée transite lors d'une communication. Afin de ne pas former de goulot, le
-code doit fournir de très faibles latences.
+FRT et sur la transformée Mojette. Bien que le rendement de ce dernier soit
+sous-optimal ($1+\epsilon$-MDS), il a la particularité de disposer d'un
+algorithme de reconstruction itératif, de faible
+complexité\ \cite{normand2006dgci}. La complexité des codes détermine le nombre
+d'opérations réalisées à l'encodage et au décodage. Cette complexité joue alors
+un rôle important dans les latences du code, et donc, sur les latences du
+système de communication qui les utilise. Dans nos travaux de thèse, nous nous
+intéressons au cas des codes à effacement AL-FEC, utilisés par les couches
+\ct{hautes} du modèle TCP/IP (i.e.\ transport et application). Dans le cas de
+ces codes, la latence est un critère essentiel puisque l'encodeur et le
+décodeur sont des composants branchés en série dans la chaîne de traitement
+de l'information. Il est donc nécessaire que ces codes ne limitent pas les
+performance du système de communication (i.e.\ le code ne doit pas être un
+goulot d'étranglement). Par exemple, dans les systèmes de stockage distribués
+logiciels (SDS), le chemin de données correspond à l'ensemble des composants
+par lesquels la donnée transite lors d'une communication. Afin de ne pas
+limiter la latence des transferts de fichiers, le code doit être suffisamment
+performant.
 
-L'objectif de ce chapitre est d'améliorer les performances d'encodage et de
-décodage du code à effacement Mojette. Pour cela, nous allons définir ce code
-sous sa forme systématique. Pour rappel, le message à transmettre fait partie
-intégrante d'un de code systématique. Cette amélioration des performances
-provient des considérations suivantes : (i) lors de l'encodage, le code
-systématique ne génère que $(n-k)$ symboles de redondance (au lieu de $n$ en
-non-systématique). Le gain en décodage est encore plus important, puisqu'il
-n'est pas nécessaire de décoder l'information lorsque la partie systématique du
-mot de code est intacte.
+L'objectif de ce chapitre est de proposer une approche de conception du code à
+effacement Mojette sous sa forme systématique. Cette forme permet en somme
+d'intégrer les symboles sources dans les mots de code générés à l'encodage.
+La construction du code dans sa version systématique est présentée dans
+la \cref{sec.algo-sys}. Du point du code Mojette, nous verrons dans la
+\cref{sec.systematique} que cette représentation apporte deux
+principaux avantages : (i) une amélioration du rendement du code à
+effacement Mojette provoquée par la géométrie même de la transformée; (ii) une
+réduction du nombre d'opérations réalisées par le code. Enfin, la
+\cref{sec.eval.red} propose une évaluation de ce gain de rendement afin de
+positionner notre code par rapport aux codes MDS.
 
 <!--
 %Jusque là, les seuls travaux réalisés sur cette technique concerne une mise en
 %œuvre au sein d'un brevet \cite{david2013patent}.
 -->
-Ce chapitre est organisé de la manière suivante. La \cref{sec.systematique}
-détaille la nécessité d'améliorer les performances du code à effacement, au
-sein d'un système de communication. Nous y détaillerons également les bénéfices
-d'une version systématique dans le contexte du code Mojette. En particulier,
-nous verrons que la forme systématique permet également d'améliorer le
-rendement du code. Cette propriété découle de la géométrie de la transformée
-Mojette, dont les projections ont des tailles différentes.
-La \cref{sec.algo-sys} présente notre contribution à l'amélioration des
-performances du code. En particulier, une mise en œuvre de la version
-systématique est donnée, accompagné d'un algorithme de décodage.
-La \cref{sec.eval.red} analyse le gain de redondance obtenu par notre
-contribution, par rapport à la version non-systématique, et permet de
-positionner notre code par rapport aux codes MDS.
+
+
+
+
+# Conception du code à effacement Mojette systématique {#sec.algo-sys}
+
+Nous verrons ici notre conception du code à effacement Mojette dans sa version
+systématique. Dans un premier temps, cette conception repose sur une
+construction du code afin d'intégrer les symboles sources dans le mot de code à
+l'encodage. Cet aspect de notre méthode de conception sera abordé dans la
+\cref{sec.construction.code.systematique}. Dans un second temps, un algorithme
+de reconstruction sera conçu afin de reconstituer les symboles sources en
+cas d'effacement. L'algorithme d'inversion présenté dans cette section
+correspond à une extension de l'algorithme inverse de
+\textcite{normand2006dgci}, qui a été étudié dans le chapitre précédent.
+<!--
+%Une bonne compréhension de cet algorithme est nécessaire pour
+%comprendre ce qui est réalisé dans cette section.
+-->
+Deux principales modifications de cet algorithme seront détaillées dans la
+suite de cette section. Ces modifications concernent : (i) une nouvelle
+détermination des décalages, prenant en compte les lignes de la grille
+(i.e.\ les symboles sources) déjà présentes dans la grille. Cette modification
+sera le sujet de la \cref{sec.offsets}; (ii) une nouvelle méthode de calcul de
+la valeur d'un pixel à reconstruire prenant en compte les pixels déjà présents
+sur la droite de projection. Cette méthode sera introduite dans la
+\cref{sec.pxl}.
+ 
+\input{alg/systematique}
+
+
+## Construction du code systématique {#sec.construction.code.systematique}
+
+Une mise en œuvre de l'opération de décodage du code à effacement Mojette sous
+sa forme systématique est donnée par \textcite{david2013patent}. Dans ce
+brevet, le procédé pour reconstruire l'information manquante d'une image
+dégradée $f'$ repose sur trois étapes : (i) la première étape consiste à
+calculer les valeurs des projections de la grille partielle
+$[Mf'](b, p_i, q_i)$. Les directions de projection sont définies par un
+ensemble suffisant de $e$ projections pour reconstruire une grille dont $e$
+lignes sont manquantes; (ii) la seconde étape consiste à calculer la différence
+entre les projections obtenues $[Mf](b, p_i, q_i)$ par l'image d'origine, et
+l'image partielle $[Mf'](b, p_i, q_i)$; (iii) la dernière étape consiste à
+appliquer l'algorithme de reconstruction de \textcite{normand1996vcip} en
+utilisant les valeurs des différences entre projections, et une grille
+construite à partir des lignes effacées.
+Dans la suite, nous allons présenter une nouvelle mise en œuvre basée sur
+l'algorithme de \textcite{normand2006dgci}.
+
+
+
+## Détermination des *offsets* pour la reconstruction {#sec.offsets}
+
+De manière comparable à ce qui est réalisé dans l'algorithme de
+\textcite{normand2006dgci}, il est nécessaire de déterminer la valeur des
+*offsets* pour chaque ligne à reconstruire.
+De manière graphique, ces *offsets* correspondent à des décalages attribués à
+chaque ligne à reconstruire afin de parcourir le chemin de reconstruction. En
+particulier, ces *offsets* permettent à l'algorithme de déterminer pour chaque
+itération, un pixel reconstructible (i.e.\ auquel ne s'applique aucune
+dépendance).
+
+En non-systématique, puisque toutes les lignes doivent être reconstruites, ces
+offsets étaient déterminés à partir de l'index de la ligne à reconstruire et de
+la direction de la projection utilisée pour la reconstruire.
+Dans la version systématique, il est nécessaire de prendre en compte les lignes
+déjà présentes dans le calcul des offsets des lignes à reconstruire. On
+considère dans la suite l'ensemble des index des lignes effacées
+$\text{Eff}(i)$ trié par ordre décroissant, avec $i \in \ZZ_e$, et $e$ le
+nombre de lignes effacées. Il faut tout d'abord calculer l'offset de la
+dernière ligne à reconstruire $\text{Offset}(\text{Eff}(e-1))$ :
+
+\begin{align}
+    S_{\text{minus}} &= \sum_{I=1}^{Q-2}\text{max}(0,-p_i),\label{eqn.sp}\\
+    S_{\text{plus}} &= \sum_{I=1}^{Q-2}\text{max}(0,p_i),\label{eqn.sm}\\
+    \text{Offset}(\text{Eff}(e-1)) &=
+        \text{max}(\text{max}(0,-p_r) + S_{\text{minus}}, \text{max}(0,p_r)
+        + S_{\text{plus}}).\label{eqn.offr}
+\end{align}
+
+\noindent La méthode pour déterminer la valeur des offsets est ensuite décrite
+à la \cref{alg.offsets} de l'\cref{alg.systematique}.
+
+
+## Calcul de la valeur du pixel à reconstruire {#sec.pxl}
+\label{sec.valeur_pxl}
+
+En non-systématique, la valeur du pixel est directement lue dans le bin associé
+$\text{Proj}_f(p_i, q_i, b)$. Dans la version systématique, lors de la
+reconstruction, les valeurs des pixels ne dépendent plus seulement des valeurs
+de bins, mais elles peuvent dépendre des valeurs des pixels non-effacés ou déjà
+reconstruits.
+En particulier, si l'on observe la reconstruction d'un pixel par une
+projection suivant la direction $(p_i,q_i)$, il participe à la somme de la
+valeur des pixels qui détermine la valeur du bin $b$ tel que ces pixels sont
+situés sur la droite d'équation $b = -kq_i + lp_{i}$.
+On définit alors deux versions de l'image : (i) $\tilde{f}(k,l)$
+correspond à la valeur des pixels durant le processus de reconstruction; (ii)
+${f}(k,l)$ qui correspond à la valeur des pixels de l'image d'origine.
+En conséquence, la valeur du pixel à reconstruire est donnée par :
+
+\begin{equation}
+    f(k,l) = Proj_f(p_i, q_i, k - lp_i) + Proj_{\tilde{f}}(p_i, 1, k - lp_i).
+    \label{eqn.sys_pxl}
+\end{equation}
+
+\noindent où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des
+valeurs des pixels de l'image en reconstruction selon la droite passant par le
+pixel de coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où
+$Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
 
 
 
@@ -352,127 +460,35 @@ les performances sont meilleures.
 
 
 
-# Algorithme inverse en systématique {#sec.algo-sys}
-
-L'algorithme d'inversion présenté dans cette section correspond à une extension
-de l'algorithme inverse de \textcite{normand2006dgci}, étudié dans le chapitre
-précédent. Une bonne compréhension de cet algorithme est nécessaire pour
-comprendre ce qui est réalisé dans cette section.
-Dans la suite, nous décrirons deux principales modifications à cet
-algorithme : (i) une nouvelle détermination des offsets de chaque projection
-est nécessaire pour prendre en compte les lignes déjà reconstruites de la
-grille, cette détermination sera présentée en \cref{sec.offsets}; (ii) un
-nouveau calcul de la valeur du pixel à reconstruire qui prend en compte la
-valeur des pixels présents sur la droite de projection, étudié en
-\cref{sec.pxl}. Les différentes étapes pour reconstruire l'image en
-systématique sont énumérées dans l'\cref{alg.systematique}.
- 
-\input{alg/systematique}
-
-
-## Mise en œuvre de la version systématique
-
-% ajouter une superbe figure !
-
-Une mise en œuvre de l'opération de décodage du code à effacement Mojette sous
-sa forme systématique est donnée par \textcite{david2013patent}. Dans ce
-brevet, le procédé pour reconstruire l'information manquante d'une image
-dégradée $f'$ repose sur trois étapes : (i) la première étape consiste à
-calculer les valeurs des projections de la grille partielle
-$[Mf'](b, p_i, q_i)$. Les directions de projection sont définies par un
-ensemble suffisant de $e$ projections pour reconstruire une grille dont $e$
-lignes sont manquantes; (ii) la seconde étape consiste à calculer la différence
-entre les projections obtenues $[Mf](b, p_i, q_i)$ par l'image d'origine, et
-l'image partielle $[Mf'](b, p_i, q_i)$; (iii) la dernière étape consiste à
-appliquer l'algorithme de reconstruction de \textcite{normand1996vcip} en
-utilisant les valeurs des différences entre projections, et une grille
-construite à partir des lignes effacées.
-Dans la suite, nous allons présenter une nouvelle mise en œuvre basée sur
-l'algorithme de \textcite{normand2006dgci}.
-
-
-
-## Détermination des *offsets* pour la reconstruction {#sec.offsets}
-
-De manière comparable à ce qui est réalisé dans l'algorithme de
-\textcite{normand2006dgci}, il est nécessaire de déterminer la valeur des
-*offsets* pour chaque ligne à reconstruire.
-De manière graphique, ces *offsets* correspondent à des décalages attribués à
-chaque ligne à reconstruire afin de parcourir le chemin de reconstruction. En
-particulier, ces *offsets* permettent à l'algorithme de déterminer pour chaque
-itération, un pixel reconstructible (i.e.\ auquel ne s'applique aucune
-dépendance).
-
-En non-systématique, puisque toutes les lignes doivent être reconstruites, ces
-offsets étaient déterminés à partir de l'index de la ligne à reconstruire et de
-la direction de la projection utilisée pour la reconstruire.
-Dans la version systématique, il est nécessaire de prendre en compte les lignes
-déjà présentes dans le calcul des offsets des lignes à reconstruire. On
-considère dans la suite l'ensemble des indexes des lignes effacées
-$\text{Eff}(i)$ trié par ordre décroissant, avec $i \in \ZZ_e$, et $e$ le
-nombre de lignes effacées. Il faut tout d'abord calculer l'offset de la
-dernière ligne à reconstruire $\text{Offset}(\text{Eff}(e-1))$ :
-
-\begin{align}
-    S_{\text{minus}} &= \sum_{I=1}^{Q-2}\text{max}(0,-p_i),\label{eqn.sp}\\
-    S_{\text{plus}} &= \sum_{I=1}^{Q-2}\text{max}(0,p_i),\label{eqn.sm}\\
-    \text{Offset}(\text{Eff}(e-1)) &=
-        \text{max}(\text{max}(0,-p_r) + S_{\text{minus}}, \text{max}(0,p_r)
-        + S_{\text{plus}}).\label{eqn.offr}
-\end{align}
-
-\noindent La méthode pour déterminer la valeur des offsets est ensuite décrite
-à la \cref{alg.offsets} de l'\cref{alg.systematique}.
-
-
-## Calcul de la valeur du pixel à reconstruire {#sec.pxl}
-\label{sec.valeur_pxl}
-
-En non-systématique, la valeur du pixel est directement lu dans le bin associé
-$\text{Proj}_f(p_i, q_i, b)$. Dans la version systématique, lors de la
-reconstruction, les valeurs des pixels ne dépendent plus seulement des valeurs
-de bins, mais elles peuvent dépendre des valeurs des pixels non-effacés ou déjà
-reconstruits.
-En particulier, si l'on observe la reconstruction d'un pixel par une
-projection suivant la direction $(p_i,q_i)$, il participe à la somme de la
-valeur des pixels qui détermine la valeur du bin $b$ tel que ces pixels sont
-situés sur la droite d'équation $b = -kq_i + lp_{i}$.
-On définit alors deux versions de l'image : (i) $\tilde{f}(k,l)$
-correspond à la valeur des pixels durant le processus de reconstruction; (ii)
-${f}(k,l)$ qui correspond à la valeur des pixels de l'image d'origine.
-En conséquence, la valeur du pixel à reconstruire est donnée par :
-
-\begin{equation}
-    f(k,l) = Proj_f(p_i, q_i, k - lp_i) + Proj_{\tilde{f}}(p_i, 1, k - lp_i).
-    \label{eqn.sys_pxl}
-\end{equation}
-
-\noindent où $Proj_{\tilde{f}}(p_i, 1, k - lp_i)$ correspond à la somme des
-valeurs des pixels de l'image en reconstruction selon la droite passant par le
-pixel de coordonnées $(k,l)$, et d'équation $b=-kq_i +lp_i$, et où
-$Proj_{f}(p_i, 1, k - lp_i)$ correspond à la valeur du bin de la projection.
-
-
-
 
 # Évaluation du coût de la redondance du code Mojette {#sec.eval.red}
 \label{sec.surcout_stockage}
 
 Un code MDS génère la quantité minimale de redondance pour une tolérance aux
 pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
-effacement Mojette n'est pas optimal et est considéré comme $(1+\epsilon)$ MDS.
-En effet, bien qu'il soit capable de décoder $k$ blocs de données à partir de
-$k$ blocs encodés, la taille de ces blocs peuvent dépasser la taille optimale.
-En conséquence, pour une protection donnée, notre code génère plus de données
-que la quantité minimale.
-Dans cette section, nous allons définir et évaluer le surcout de redondance
-généré par le code à effacement Mojette. Pour cette évaluation, nous
-définissons $\mu$ comme étant le facteur correspondant au rapport de la quantité
-de données encodées sur la quantité de données initiale. Dans la suite nous
-évaluerons dans un premier temps le gain de redondance induit par la version
-systématique du code Mojette, par rapport à sa version non-systématique. Une
-seconde étude permettra de positionner le coût de la redondance du code Mojette
-par rapport aux coûts induits par les techniques de réplication et les codes MDS.
+effacement Mojette n'est pas optimal et est considéré comme $(1+\epsilon)$
+MDS\ \cite{parrein2001phd}. Cette désignation met en exergue deux types de
+redondance dans le code à effacement Mojette : (i) le premier type de
+redondance correspond à la définition du rendement du code $\frac{k}{n}$. En ce
+sens, le code Mojette définit un nombre de symboles optimal pour une capacité
+de correction donnée; (ii) le second type de redondance provient de la
+géométrie même de la transformée. Nous avons vu dans le chapitre précédent que
+la taille des projections augmente à mesure que la valeur de $|p_i|$ s'accroit.
+La valeur de l'$\epsilon$ désigne le facteur de redondance présente à
+l'intérieur de $k$ symboles (i.e.\ un ensemble suffisant pour
+reconstruire)\ \cite{parrein2001phd}. Ce critère dépend ainsi du choix des $k$
+symboles étudiés parmi les $n$ générés.
+
+Nous choisissons plutôt de nous intéresser à la redondance totale, générée par
+le code. Ce critère permet par exemple d'évaluer la taille totale
+occupée par les données encodées dans le cas d'une application de stockage.
+Pour cela, nous définissons $\mu$ comme le rapport entre le nombre d'éléments
+de symboles encodés (i.e.\ bins Mojette), et le nombre d'éléments sources
+(i.e.\ pixels de la grille). Dans la suite nous évaluerons dans un premier
+temps le gain de redondance induit par la version systématique du code Mojette,
+par rapport à sa version non-systématique. Une seconde étude permettra de
+positionner le coût de la redondance du code Mojette par rapport aux coûts
+induits par les techniques de réplication et les codes MDS.
 
 
 ## Réduction de la redondance en systématique
@@ -617,7 +633,7 @@ fournissent respectivement une tolérance face à une, deux et quatre pannes.
 \label{fig.ec_vs_rep}
 \end{figure}
 
-Le \cref{tab.f} compare les résultats des coûts $\mu$ (à l'arrondis près) pour
+Le \cref{tab.f} compare les résultats des coûts $\mu$ (à l'arrondi près) pour
 les deux versions du code à effacement Mojette avec les ensembles de projection
 proposés précédemment. Pour obtenir ces résultats, on a utilisé une taille de
 pixel de $64$ bits. En conséquence, la valeur de $P$ qui correspond à la
@@ -658,10 +674,10 @@ l'ensemble $\left\{(3,2),(6,4),(9,6),(12,8)\right\}$.
 Pour les codes MDS, la valeur du facteur de redondance $\mu$ correspond au taux
 de codage. En effet $r$ correspond à la quantité de donnée en sortie $n$ sur la
 quantité de donnée en entrée $k$. C'est pourquoi, si l'on fixe un taux de
-codage $r$, quelque soit la tolérance au panne de notre code, la quantité de
-redondance produite reste la même. En conséquence dans la \cref{fig.ec_vs_rep},
-la valeur de $\mu$ correspond à $r=\frac{3}{2}=1,5$ quel que soit la tolérance
-aux pannes fixée.
+codage $r$, la quantité de redondance produite reste la même, indépendamment de
+la tolérance aux pannes du code. En conséquence dans la \cref{fig.ec_vs_rep},
+la valeur de $\mu$ correspond à $r=\frac{3}{2}=1,5$ quelle que soit la
+tolérance aux pannes fixée.
 
 
 
