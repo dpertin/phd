@@ -1,5 +1,4 @@
-
-% \chapter{Redondance dans les systèmes de stockage
+ \chapter{Redondance dans les systèmes de stockage
 
 % distribués par codage à effacement}
 
@@ -539,7 +538,7 @@ de la grille, et dont le nombre de dépendances est réduit.
 \begin{table}
     \centering
     \resizebox{\columnwidth}{!}{%
-        \input{tab/raid6.tex}
+        \input{removed/xor_table}
     }
     \caption{Tableau de comparaison du nombre d'opérations nécessaires pour
     différents code à effacement selon les métriques définies dans la
@@ -849,7 +848,7 @@ On détermine alors le nombre d'opération nécessaire ainsi :
 \begin{equation}
     \gamma(k,w)_e^{\{(p_e,1)\}} =
         \sum_{e} \left( \gamma(k,w)_{l_e}^{(p_e,1)}\right).
-    \label{eqn.mojette_decoding3}
+    \label{eqn.mojette_decoding2}
 \end{equation}
 
 
@@ -981,12 +980,12 @@ Mojette, cette taille correspond au nombre de pixels de la grille discrète. Ce
 paramètre dépend de l'application utilisée. Dans le cadre de stockage de
 données POSIX, on choisira une taille $\mathcal{M}$ correspondante à la taille
 des blocs du système de fichiers. Dans l'exemple d'*ext4*, cette taille de
-blocs est de $4$ Ko. En revanche, dans des applications mettant en jeu des
+blocs est de $4$\ Ko. En revanche, dans des applications mettant en jeu des
 accès séquentiels sur de grands fichiers, on choisira une taille de bloc
 beaucoup plus importante afin de limiter le nombre d'entrées/sorties. C'est le
 cas du système de fichiers *Hadoop Distributed File Systems* HDFS, qui met en
 jeu des applications d'analyse parallèle grâce à *Hadoop Map-Reduce* sur des
-blocs de *128* Mo par défaut \cite{shvachko2010msst}.
+blocs de $128$\ Mo par défaut \cite{shvachko2010msst}.
 
 La \cref{fig.expe_code} représente l'expérimentation que l'on réalise.
 Notre mesure lors de l'encodage corresponde
@@ -1038,11 +1037,11 @@ Enfin, nous affichons la valeur moyenne qui résulte de $100$ itérations.
 L'écart type n'est pas présenté puisqu'il est trop négligeable (et correspond à
 moins d'un pour-cent des valeurs présentées). La machine utilisée provient de
 la plate-forme *FEC4Cloud* située à Polytech Nantes. Cette machine dispose d'un
-processeur \intel Xeon à $1,80$GHz, de $16$Go de mémoire RAM et de caches
-processeurs de $128$Ko, $1$Mo et $10$Mo pour les niveaux *L1*, *L2* et *L3*
+processeur \intel Xeon à $1,80$\ GHz, de $16$\ Go de mémoire RAM et de caches
+processeurs de $128$\ Ko, $1$\ Mo et $10$\ Mo pour les niveaux *L1*, *L2* et *L3*
 respectivement. Notons que cette plate-forme a été utilisée dans des
 expérimentations soumises à plusieurs publications \cite{pertin2014eurosys,
-pertin2015corr, parrein2015ressi}.
+pertin2015hotstorage, parrein2015ressi}.
 
 ## Résultats de l'expérimentation {#sec.expe.resultat}
 
@@ -1066,7 +1065,7 @@ pertin2015corr, parrein2015ressi}.
     \centering
     \ref{named}
     \caption{Comparaison des performances d'encodage sur des blocs de données
-    de $4$Ko (a) et $8$Ko (b). Les performances des codes Mojette et
+    de $4$\ Ko (a) et $8$\ Ko (b). Les performances des codes Mojette et
     \rs sont comparées par le nombre de cycles CPU nécessaires pour
     réaliser l'opération d'encodage (plus le résultat est petit, plus il est
     bon). Deux paramètres de codage ont été utilisés: $(6,4)$ et $(12,8)$. Les
@@ -1082,9 +1081,9 @@ des tailles de blocs $\mathcal{M}$ équivalent à $4096$ et $8192$ octets
 respectivement. Nous avons représenté en hachuré sur ces courbes, les
 performances optimales obtenues par une opération équivalente sans encodage.
 Plus précisément, ces performances correspondent à la copie de $n$ blocs de
-données. Dans le cas où $\mathcal{M}$ vaut $4$Ko, cette opération correspond à
-copier $6$Ko. Pour une taille de bloc de $\mathcal{M}=8$Ko, les performances
-optimaux représentées correspondent à la copie de $12$Ko de données. Dans notre
+données. Dans le cas où $\mathcal{M}$ vaut $4$\ Ko, cette opération correspond à
+copier $6$\ Ko. Pour une taille de bloc de $\mathcal{M}=8$\ Ko, les performances
+optimaux représentées correspondent à la copie de $12$\ Ko de données. Dans notre
 expérimentation, cette opération de copie de cette information est implémentée
 à partir de la fonction *memcpy()* de la bibliothèque standard du C.
 
@@ -1115,7 +1114,7 @@ des implémentations systématiques correspond à : (i) la copie des $k$ blocs
 d'informations en clair; (ii) plus le calcul des $(n-k)$ blocs de
 parité. Les résultats observés correspondent donc à la somme de cette copie et
 de l'encodage. En revanche, si l'on prend l'exemple des résultats du code
-Mojette $(6,4)$ sur des blocs de $4$Ko, présentés dans la
+Mojette $(6,4)$ sur des blocs de $4$\ Ko, présentés dans la
 \cref{fig.encoding4k}, on observe que $(705-321) \times 3 = 1152$, où $321$
 correspond aux nombres de cycles CPU nécessaires pour copier $4096$ octets, et
 où $1152$ correspond à la valeur observée dans les résultats de la version
@@ -1129,9 +1128,11 @@ choisis dans nos expériences, l'encodage de l'implémentation non-systématique
 offre des performances comparables à la meilleure implémentation des codes de
 \rs développée par \intel. De plus, la version systématique du code
 Mojette que nous avons développée offre des performances d'encodage largement
-supérieures à ce que proposent les autres codes utilisés dans nos tests. En
-particulier, les résultats atteint par notre nouvelle mise en œuvre sont
-proches des résultats optimaux correspondant à la copie de l'information, sans
+supérieures à ce que proposent les autres codes utilisés dans nos tests. On
+observe ainsi une réduction de la latence par deux environ dans le cas de
+l'encodage du code Mojette par rapport aux codes de \rs. Dans une
+autre mesure, les résultats atteint par notre nouvelle mise en œuvre sont
+proches des résultats optimaux, correspondant à la copie de l'information, sans
 opération d'encodage. Ceci montre que le surcout calculatoire de cette nouvelle
 version est particulièrement réduit.
 
@@ -1164,13 +1165,13 @@ version est particulièrement réduit.
         \input{expe_data/dec13_2.tex}
         \label{fig.decoding_8k_l2}
     \end{subfigure}
-    \ref{named2}
+    \ref{named}
     \caption{Comparaison des performances de décodage pour des paramètres de
     codes $(6,4)$ (\cref{fig.decoding_4k_l1,fig.decoding_8k_l1}) et $(12,8)$
     (\cref{fig.decoding_4k_l2,fig.decoding_8k_l2}). Les courbes à gauche
-    montrent les résultats pour des tailles de blocs de $4$Ko
+    montrent les résultats pour des tailles de blocs de $4$\ Ko
     (\cref{fig.decoding_4k_l1,fig.decoding_4k_l2}) tandis que les courbes de
-    droite concernent des blocs de $8$Ko
+    droite concernent des blocs de $8$\ Ko
     (\cref{fig.decoding_8k_l1,fig.decoding_8k_l2}). Les performances des codes
     Mojette et \rs sont comparées par le nombre de cycles CPU enregistré durant
     l'opération de décodage (plus c'est bas, mieux c'est) alors que l'on
@@ -1184,7 +1185,8 @@ Nous analysons dans cette partie les résultats à l'issu de notre
 expérimentation sur les performances de décodage en matière de cycles CPU
 nécessaires pour reconstruire la donnée initiale. Les
 \cref{fig.decoding_4k_l1,fig.decoding_8k_l1} donnent le nombre de cycles CPU
-nécessaires pour le décodage des codes $(6,4)$ pour des blocs de $4$Ko et $8$Ko
+nécessaires pour le décodage des codes $(6,4)$ pour des blocs de $4$\ Ko
+et $8$\ Ko
 respectivement.
 De manière similaire, les \cref{fig.decoding_4k_l2,fig.decoding_8k_l2}
 concernent des codes $(12,8)$. Nous avons représenté sur ces courbes les
@@ -1227,12 +1229,32 @@ les valeurs enregistrées sont d'une part toujours meilleures que celles
 observées pour la version non systématique (puisqu'il s'agit du cas où la
 grille doit être entièrement reconstruite). D'autre part, ces performances sont
 significativement meilleures que les performances observées par
-l'implémentation systématique des codes de \rs.
+l'implémentation systématique des codes de \rs. On peut ainsi observer dans nos
+tests, une réduction par trois de la latence de décodage en utilisant le code
+Mojette.
 
-% ### Influence de la tolérance aux pannes
+### Impact de la taille des blocs
 
-% ### Impact de la taille des blocs
+L'influence de la taille des blocs $\mathcal{M}$ est étudiée ici.
+Dans nos tests, nous n'utilisons que de petites tailles de blocs
+(i.e.\ $\mathcal{M}$ vaut $4$\ Ko ou 8\ Ko), correspondant
+à l'application de stockage visée. Pour les valeurs de nos tests, on observe
+que le nombre de cycles double en même temps que la valeur de $\mathcal{M}$,
+pour les deux versions du code Mojette. Cette observation est la même
+dans le cas de l'encodage, que du décodage. Cela confirme la complexité
+linéaire de la transformation Mojette.
 
+### Influence de la tolérance aux pannes
+
+Nous analysons à présent l'impact du paramétrage $(n,k)$ du code sur les
+performances des codes systématiques. Bien que pour les valeurs des paramètres
+utilisés dans cette expérimentation, le code Mojette fournisse de meilleures
+performances que l'implémentation des codes de \rs, l'écart des performances
+entre les deux méthodes semble diminuer à mesure que seuil maximum de tolérance
+aux pannes augmentent.  En conséquence, il est possible que pour très grandes
+valeurs de paramètre, la situation s'inverse. Toutefois, comme précisé
+auparavant, une protection face à quatre pannes apporte déjà une protection
+importante\ \cite{sathiamoorthy2013vldb}.
 
 
 
@@ -1252,10 +1274,12 @@ comparant les codes Mojette et \rs. Dans une dernière section, nous avons
 évalué par la pratique les performances de notre implémentation. En
 particulier, notre expérimentation a permis de montrer le gain significatif de
 notre nouvelle mise en œuvre du code systématique par rapport à la version
-non-systématique. De plus, dans les cadres de notre expérimentation, notre
-implémentation obtient de meilleurs résultats en encodage et décodage que
-l'implémentation des codes de \rs contenue dans la bibliothèque développée par
-\textcite{intel2015isal}.
+non-systématique. Il est intéressant de remarquer toutefois, que malgré ce
+gain, le code sous sa forme non-systématique parvient tout à fait à fournir de
+bonnes performances. De plus, dans les cadres de notre expérimentation, notre
+implémentation obtient de meilleurs résultats en encodage (un facteur $2$) et
+décodage (jusqu'à un facteur $3$) que l'implémentation des codes de \rs
+contenue dans la bibliothèque développée par \textcite{intel2015isal}.
 
 Rappelons cependant que les bonnes performances obtenues par le code à
 effacement Mojette nécessitent davantage d'information encodée que ce qui est
@@ -1263,8 +1287,9 @@ produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
 \cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale quand
 la taille des blocs augmente.
 
-Ce chapitre a permis de mettre en avant le fait que le code a effacement
-Mojette est suffisamment efficace pour ne pas former un goulot d'étranglement
-dans la chaîne de transmission des données. Dans le chapitre suivant, nous
-allons nous intéresser à l'intégration de ce code au sein d'un système de
-stockage distribué.
+Ce chapitre a permis de mettre en avant le fait que le code à effacement
+Mojette (systématique ou non-systématique) est suffisamment efficace pour ne
+pas former un goulot d'étranglement dans la chaîne de transmission des données.
+Dans le chapitre suivant, nous allons nous intéresser à l'intégration de ce
+code au sein d'un système de stockage distribué.
+

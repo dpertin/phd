@@ -605,7 +605,7 @@ supports concernés sont fournis par *exportd*. Prenons l'exemple de
 l'écriture d'un gigaoctet d'information sur un volume RozoFS défini en *layout*
 $0$, comme illustré dans la \cref{fig.write}. L'écriture distribue trois
 fichiers contenant les informations de projections. Plus précisément, chaque
-fichier fait environ $500$ Mo tel que $d_1$ et $d_2$ contiennent les données en
+fichier fait environ $500$\ Mo tel que $d_1$ et $d_2$ contiennent les données en
 clair, et $p_1$ contient les données de la projection suivant la direction
 $(0,1)$.
 
@@ -614,7 +614,7 @@ $(0,1)$.
 Lorsqu'une application demande la lecture d'une donnée présente sur le point de
 montage de RozoFS, celui ci favorise la lecture des $k$ blocs de données en
 clair (i.e.\ $d_1$ et $d_2$). Cette situation est représentée dans la
-\cref{fig.read}. Le processus transfère alors environ $2 \times 500$ Mo en
+\cref{fig.read}. Le processus transfère alors environ $2 \times 500$\ Mo en
 parallèle. Ensuite, la donnée est transmise à l'application.
 
 ### Impact en cas de pannes
@@ -714,7 +714,7 @@ cas où plusieurs clients sont impliqués simultanément dans l'expérimentation
 Cette particularité est adaptée aux systèmes de fichiers distribués.
 IOzone fournit ainsi le débit, ou le nombre d'E/S par seconde (ESPS), mesuré au
 niveau de chaque client. Dans notre expérimentation, un client implique une
-opération sur un fichier de $100$ Mo. En pratique, les accès séquentiels sont
+opération sur un fichier de $100$\ Mo. En pratique, les accès séquentiels sont
 plus importants que les accès aléatoires. C'est pourquoi nous fixons la taille
 des E/S en accès séquentiel à $64$\ Ko, et $8$\ Ko pour les tests en aléatoire. Il
 s'agit de valeurs classiques dans ce genre de test. Dans la suite, nous
@@ -749,7 +749,7 @@ Nous verrons dans un premier temps les résultats de l'expérimentation en
     \caption{Évaluation des performances d'écriture séquentielle et aléatoire.
     Les performances sont représentées comme les débits cumulés enregistrés par
     un nombre croissant de clients. La charge de travail correspond à
-    l'écriture d'un fichier de $100$ Mo par chaque client simultanément. En
+    l'écriture d'un fichier de $100$\ Mo par chaque client simultanément. En
     particulier, les accès sont réalisés par blocs de $64$\ Ko et $8$\ Ko
     respectivement pour les accès séquentiels et aléatoires.}
     \label{fig.write_dfs}
