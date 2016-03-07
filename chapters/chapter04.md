@@ -1129,9 +1129,11 @@ choisis dans nos expériences, l'encodage de l'implémentation non-systématique
 offre des performances comparables à la meilleure implémentation des codes de
 \rs développée par \intel. De plus, la version systématique du code
 Mojette que nous avons développée offre des performances d'encodage largement
-supérieures à ce que proposent les autres codes utilisés dans nos tests. En
-particulier, les résultats atteint par notre nouvelle mise en œuvre sont
-proches des résultats optimaux correspondant à la copie de l'information, sans
+supérieures à ce que proposent les autres codes utilisés dans nos tests. On
+observe ainsi une réduction de la latence par deux environ dans le cas de
+l'encodage du code Mojette par rapport aux codes de \rs. Dans une
+autre mesure, les résultats atteint par notre nouvelle mise en œuvre sont
+proches des résultats optimaux, correspondant à la copie de l'information, sans
 opération d'encodage. Ceci montre que le surcout calculatoire de cette nouvelle
 version est particulièrement réduit.
 
@@ -1227,12 +1229,31 @@ les valeurs enregistrées sont d'une part toujours meilleures que celles
 observées pour la version non systématique (puisqu'il s'agit du cas où la
 grille doit être entièrement reconstruite). D'autre part, ces performances sont
 significativement meilleures que les performances observées par
-l'implémentation systématique des codes de \rs.
+l'implémentation systématique des codes de \rs. On peut ainsi observer dans nos
+tests, une réduction par trois de la latence de décodage en utilisant le code
+Mojette.
 
-% ### Influence de la tolérance aux pannes
+### Impact de la taille des blocs
 
-% ### Impact de la taille des blocs
+L'influence de la tailles blocs $\mathcal{M}$ est étudiée ici.
+Dans nos tests, nous n'utilisons que de petites tailles de blocs, correspondant
+à l'application de stockage visée. Pour les valeurs de nos tests, on observe
+que le nombre de cycles double en même temps que la valeur de $\mathcal{M}$
+dans le cas des deux versions du code Mojette. Cette observation est la même
+dans le cas de l'encodage, que du décodage. Cela confirme la complexité
+linéaire de la transformation Mojette.
 
+### Influence de la tolérance aux pannes
+
+Nous analysons à présent l'impact du paramétrage $(n,k)$ du code sur les
+performances des codes systématiques. Bien que pour les valeurs des paramètres
+utilisés dans cette expérimentation, le code Mojette fournisse de meilleures
+performances que l'implémentation des codes de \rs, l'écart entre les deux
+semble diminuer à mesure que seuil maximum de tolérance aux pannes augmentent.
+En conséquence, il est possible que pour très grandes valeurs de paramètre, la
+situation s'inverse. Toutefois, comme précisé auparavant, une protection face à
+quatre pannes apporte déjà une protection importante
+\cite{sathiamoorthy2013vldb}.
 
 
 
@@ -1252,10 +1273,12 @@ comparant les codes Mojette et \rs. Dans une dernière section, nous avons
 évalué par la pratique les performances de notre implémentation. En
 particulier, notre expérimentation a permis de montrer le gain significatif de
 notre nouvelle mise en œuvre du code systématique par rapport à la version
-non-systématique. De plus, dans les cadres de notre expérimentation, notre
-implémentation obtient de meilleurs résultats en encodage et décodage que
-l'implémentation des codes de \rs contenue dans la bibliothèque développée par
-\textcite{intel2015isal}.
+non-systématique. Il est intéressant de remarquer toutefois, que malgré ce
+gain, le code sous sa forme non-systématique parvient tout à fait à fournir de
+bonnes performances. De plus, dans les cadres de notre expérimentation, notre
+implémentation obtient de meilleurs résultats en encodage (un facteur $2$) et
+décodage (jusqu'à un facteur $3$) que l'implémentation des codes de \rs
+contenue dans la bibliothèque développée par \textcite{intel2015isal}.
 
 Rappelons cependant que les bonnes performances obtenues par le code à
 effacement Mojette nécessitent davantage d'information encodée que ce qui est
@@ -1263,8 +1286,9 @@ produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
 \cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale quand
 la taille des blocs augmente.
 
-Ce chapitre a permis de mettre en avant le fait que le code a effacement
-Mojette est suffisamment efficace pour ne pas former un goulot d'étranglement
-dans la chaîne de transmission des données. Dans le chapitre suivant, nous
-allons nous intéresser à l'intégration de ce code au sein d'un système de
-stockage distribué.
+Ce chapitre a permis de mettre en avant le fait que le code à effacement
+Mojette (systématique ou non-systématique) est suffisamment efficace pour ne
+pas former un goulot d'étranglement dans la chaîne de transmission des données.
+Dans le chapitre suivant, nous allons nous intéresser à l'intégration de ce
+code au sein d'un système de stockage distribué.
+
