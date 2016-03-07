@@ -60,7 +60,7 @@ Nous verrons en détail, les éléments suivants dans cette partie :
 1. le \cref{sec.chap4} présente l'utilisation des codes à effacement dans le
 contexte du stockage distribué. En particulier, le cas du RAID-6 est introduit
 avant de généraliser l'étude. Ce chapitre contient deux contributions
-relativement à : (i) l'évaluation théorique des performances des codes à
+concernant : (i) l'évaluation théorique des performances des codes à
 effacement (ii) l'évaluation des performances d'encodage et de décodage des
 implémentations des codes Mojette et \rs;
 
@@ -72,6 +72,6 @@ le DFS CephFS, basé sur une technique de réplication;
 3. dans le \cref{sec.chap6}, nous proposons une nouvelle méthode distribuée
 pour réencoder de nouveaux symboles de mots de code (i.e.\ projections
 Mojette), sans avoir à reconstruire explicitement la donnée initiale. Cette
-technique sera particulièrement utile pour dans le cas de la réparation de
+technique sera particulièrement utile dans le cas de la réparation de
 supports de stockage, ou d'allocation dynamique de redondance.
 

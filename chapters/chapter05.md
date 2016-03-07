@@ -959,7 +959,6 @@ expliqué l'évolution de la distribution des données sur des supports de
 stockage depuis l'invention du RAID dans les années 80. On a par la suite
 expliqué comment fonctionne un système de fichiers distribué et comment gérer
 la redondance dans les systèmes de fichiers distribués actuelles.
->>>>>>> chapter05
 
 La \cref{sec.rozofs} a décrit RozoFS. En particulier, nous avons étudié son
 fonctionnement basé sur trois éléments : (i) le serveur de métadonnée, (ii) les
@@ -974,7 +973,12 @@ encodage et décodage, de RozoFS avec CephFS. Les résultats obtenus ont montré
 que dans les conditions de nos tests, RozoFS est capable de fournir de
 meilleures performances qu'un système de fichiers distribué basé sur de la
 réplication, tout en divisant par deux le volume de stockage grâce au code à
-effacement Mojette. Le DFS RozoFS est ainsi capable de gérer à la fois : (i)
+effacement Mojette.
+
+<!--
+%Le DFS RozoFS est ainsi capable de gérer à la fois : (i)
 les données froides (i.e.\ données à archiver), grâce à la capacité de
-correction du code à effacement Mojette; (ii) et les données chaudes (i.e.\
-nécessitant de , que stockage 
+correction du code à effacement Mojette; (ii) et les données
+
+%chaudes (i.e.\ nécessitant de , que stockage 
+-->
