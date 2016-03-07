@@ -1,7 +1,7 @@
 
 \begin{lstlisting}[
 	caption={Fonction \emph{map}. La directive \emph{pragma omp parallel}
-	permet de rendre la boucle parralèle.},
+	permet de rendre la boucle parallèle.},
 	label={lst.map},]
 /* map the reprojection process for every projection, produce partial reconstructions */
 void map(int w, int k, projection_t *projections, projection_t *p_reprojections, int nb_proj, int extra_dir)

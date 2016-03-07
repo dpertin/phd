@@ -1040,6 +1040,8 @@ valeur avant et après nos fonctions d'encodage et de décodage et d'afficher la
 différence. \intel propose une mise en œuvre afin de filtrer les résultats
 aberrants \cite{intel1997rdtsc}.
 
+\label{fec4cloud}
+
 Enfin, nous affichons la valeur moyenne qui résulte de $100$ itérations.
 L'écart type n'est pas présenté puisqu'il est trop négligeable (et correspond à
 moins d'un pour-cent des valeurs présentées). La machine utilisée provient de
