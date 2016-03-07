@@ -7,7 +7,9 @@
 
 \newpage
 
-\section*{Introduction}
+\section*{Introduction du chapitre}
+
+\addcontentsline{toc}{section}{Introduction du chapitre}
 
 Les systèmes de fichiers distribués permettent d'agréger des supports de
 stockage disponible sur plusieurs nœuds d'un réseau, en un volume unique. Ce
@@ -71,7 +73,7 @@ famille RAID s'est alors agrandie grâce à de nouvelles techniques permettant
 une protection face à la perte d'un second disque (RAID-6). Pour un ensemble de
 disques donné, cette technique améliore la tolérance aux pannes du système, au
 prix d'une diminution de la capacité de stockage. Une première construction
-repose sur les codes de « \rs $\PP+\QQ$ » \cite{chen1994acm}. Le principal
+repose sur les codes de \ct{\rs $\PP+\QQ$} \cite{chen1994acm}. Le principal
 problème de cette méthode correspond à la complexité des calculs des blocs de
 parité, qui impacte significativement les performances en écriture et lors des
 opérations de reconstruction. En conséquence, plusieurs méthodes de codage ont
@@ -133,17 +135,17 @@ le serveur offre une vision uniformisée d'une partie de son système de fichier
 local (quel que soit le type de ce système de fichier). NFS dispose d'un
 protocole de communication qui permet aux clients d'accéder aux fichiers du
 serveur. Plus précisément, le client ne sait pas comment sont implémentées les
-opérations pour interagir sur le système de fichier du serveur distant. En
+opérations pour interagir sur le système de fichiers du serveur distant. En
 revanche, le serveur, lui, propose une interface accessible par des requêtes
 *Remote Procedure Calls* (RPC), pour réaliser ces opérations. Et le serveur,
 qui maîtrise la façon dont ces opérations sont implémentées, les applique.
 Ainsi, il est possible que des processus, installés sur différentes machines,
 fonctionnant sur différents systèmes d'exploitation, peuvent interagir avec un
-système de fichier virtuel partagé.
+système de fichiers virtuel partagé.
 
-Côté client, NFS permet de monter le système de fichier distant. Cette
+Côté client, NFS permet de monter le système de fichiers distant. Cette
 opération est possible grâce au *Virtual File System* (VFS) qui remplace
-l'interface du système de fichier local afin d'interfacer plusieurs systèmes de
+l'interface du système de fichiers local afin d'interfacer plusieurs systèmes de
 fichiers \cite{kleiman1986usenix}. En particulier, il intercepte les appels
 systèmes pour les transmettre au client NFS.
 
@@ -169,7 +171,7 @@ alors possible de distribuer également les applications.
 Dans cette approche, proposée par \textsc{Google} pour son *Google File System*
 (GFS) \cite{ghemawat2003sosp}, chaque grappe correspond à un nœud maître et
 plusieurs nœuds de stockage. Le nœud maître est contacté pour ce qui concerne
-les métadonnées. En particulier, un client fournit l'identifiant d'un fichier à
+les métadonnées. En particulier, un client fournit l'identifiant d'un fichiers à
 ce nœud afin qu'il lui réponde avec les informations permettant d'atteindre les
 données désirées sur les serveurs de stockage.
 
@@ -184,7 +186,7 @@ déterminer de manière décentralisée la position des données dans un anneau
 \cite{stoica2001sigcomm}. Cette technique est par exemple utilisée dans le
 système de fichiers pair à pair Ivy \cite{muthitacharoen2002sigops}. D'autres
 méthodes existent telles que, la distribution des données issue de l'algorithme
-Crush utilisé dans Ceph \cite{weil2006osdi}.
+\textsc{Crush} utilisé dans Ceph \cite{weil2006osdi}.
 
 
 ### Principes de conception
@@ -201,7 +203,7 @@ seront plus précisément décrit dans la section suivante.
 L'utilité d'un système de fichiers distribué est de pouvoir interagir avec un
 volume de stockage distribué sur un ensemble de supports de stockage.
 La mise en œuvre doit permettre à l'utilisateur d'avoir l'impression
-d'interagir avec un système de fichier UNIX local. C'est le rôle du VFS que
+d'interagir avec un système de fichiers UNIX local. C'est le rôle du VFS que
 d'intercepter les appels systèmes depuis les applications et les fournir à la
 couche du DFS afin que celui ci applique les opérations nécessaires sur
 l'ensemble des supports de stockage en jeu.
@@ -224,7 +226,7 @@ est déterminé, il est possible d'accéder à la structure de l'inode, et donc 
 données du fichier.
 
 Dans le cas des systèmes de fichiers distribués, le montage d'un système de
-fichier localement, il dispose d'une arborescence correspondant à un volume de
+fichiers localement, il dispose d'une arborescence correspondant à un volume de
 stockage *exporté*. Par exemple dans NFS, le serveur peut définir d'exporter un
 répertoire de son système de fichiers local. Un espace de nommage
 supplémentaire est alors nécessaire afin de réaliser la correspondance du nom
@@ -342,7 +344,7 @@ réduction de la quantité de redondance est devenue une préoccupation importan
 dans le milieu scientifique et industriel.
 
 HDFS est l'une des solutions de stockage les plus populaires. Cette solution
-offre un système de fichier extensible et tolérant aux pannes. Le modèle
+offre un système de fichiers extensible et tolérant aux pannes. Le modèle
 *Map-Reduce* utilise HDFS afin de diviser et distribuer les tâches sur les
 différents nœuds de travail \cite{dean2008acm}. En particulier, ce système de
 fichiers est conçu pour accomplir des tâches d'analyse en parallèle sur de très
@@ -352,11 +354,11 @@ $4000$ serveurs qui agrègent une capacité totale de $14,25$ pétaoctets
 exploitée par $14000$ clients simultanément \cite{shvachko2008hadoop}. Côté
 performances, l'exploitation du parallélisme par *Map-Reduce* permet de trier
 un téraoctet de données en une minute \cite{omalley2009hadoop}. HDFS est adapté
-pour ce genre d'applications. En particulier, ce système de fichier travaille
-de manière séquentiel sur d'importants blocs de données de $128$Mo par défaut.
+pour ce genre d'applications. En particulier, ce système de fichiers travaille
+de manière séquentiel sur d'importants blocs de données de $128$\ Mo par défaut.
 Un bloc correspond à la plus petite quantité de données sur laquelle un système
 de fichiers peut lire ou écrire. L'ensemble des opérations qu'il réalise est
-effectué sur une quantité de données multiple de la taille d'un bloc.  La
+effectué sur une quantité de données multiple de la taille d'un bloc. La
 taille des blocs a une influence sur le système de stockage. L'utilisation de
 grands blocs entraîne trois conséquences : (i) la réduction des interactions
 entre les clients et le serveur de métadonnées; (ii) la réduction de la
@@ -366,37 +368,46 @@ de tailles importantes permettent d'augmenter les performances de lecture et
 d'écriture dans le cas où de larges fichiers sont parcourus de manière
 séquentielle (e.g.\ lecture d'une vidéo de haute qualité). En effet, le support
 de stockage peut lire ou écrire la donnée de manière continue, sans avoir à
-localiser le bloc suivant.  Cependant, une part significative du bloc peut être
+localiser le bloc suivant. Cependant, une part significative du bloc peut être
 perdue dans le cas où le fichier est plus petit que la taille d'un bloc. En
-comparaison, les systèmes de fichiers POSIX reposent sur de petites tailles de
-blocs (e.g.\ $4$Ko dans le cas de *ext4* \cite{mathur2007linux}). Dans la
-suite, nous nous intéresserons à la conception d'un système de fichiers
-distribué POSIX qui travaillera sur des blocs de l'ordre de $4\text{-}8$Ko
-comme compromis entre la capacité d'accéder de manière séquentielle les
-données, et le gaspillage d'espace au sein des blocs \cite[p.
-34]{gianpaolo1998fs}.
+comparaison, les systèmes de fichiers compatibles POSIX\footnote{POSIX est le
+standard des interfaces de programmation utilisés par les logiciels mis en
+œuvre sur des systèmes de type UNIX.} reposent sur de petites
+tailles de blocs (e.g.\ $4$\ Ko dans le cas de *ext4* \cite{mathur2007linux}).
+Dans la suite, nous nous intéresserons à la conception d'un système de fichiers
+distribué compatible POSIX qui travaillera sur des blocs de l'ordre de
+$4\text{-}8$\ Ko comme compromis entre la capacité d'accéder de manière
+séquentielle les données, et le gaspillage d'espace au sein des
+blocs\ \cite[p. 34]{gianpaolo1998fs}.
 
 Alors que la réplication par trois est le paramètre de haute disponibilité par
 défaut dans HDFS, \textcite{fan2009pdsw} ont développé une version modifiée
 basée sur les codes de \rs, dénommée *DiskReduce*. Dans leur publication,
 l'utilisation des codes à effacement permet de réduire le volume de stockage
 d'un facteur de $2,4$. Cependant, cette technique est mise en œuvre en tâche de
-fond, et permet d'encoder des blocs d'information de $64$ Mo issus des
-répliquas, ce qui n'est pas adapté dans le cas des applications POSIX.
+fond, et permet d'encoder des blocs d'information de $64$\ Mo issus des
+répliquas, ce qui n'est pas adapté dans le cas des applications compatibles
+avec POSIX.
 \textcite{muralidhar2014osdi} ont également utilisé les codes de \rs au sein
-des grappes de stockage de \textsc{Facebook} pour des données considérées «
-tièdes » (i.e.\ $80$ lectures par seconde).
-GlusterFS\footnote{http://www.gluster.org/} et CephFS \cite{weil2006osdi} sont
-d'autres exemples de système de fichiers distribués populaires. Par rapport à
-HDFS, ils sont conçus pour des applications POSIX. Les techniques de
-réplication sont par défaut utilisées pour fournir de la haute disponibilité
-dans ces systèmes. Le codage à effacement est en revanche recommandé que dans
-le cas d'applications liées aux données froides, telles que l'archivage.
+des grappes de stockage de \textsc{Facebook} pour des données considérées
+\ct{tièdes} (i.e.\ $80$ lectures par seconde).
+GlusterFS\footnote{http://www.gluster.org/} et Ceph \cite{weil2006osdi} sont
+d'autres exemples de système de stockage distribué populaire. Ceph a la
+particularité de stocker les données sous la forme d'objets. Toutefois, il
+Ceph dispose d'un système de fichiers, nommé CephFS (pour *Ceph File System*),
+permettant de créer une interface POSIX entre les applications et les volumes
+de stockage objet. Par rapport à HDFS qui est conçu pour des applications
+spécifiques, CephFS et GlusterFS sont destinés à toute application. Ces DFS
+fournissent des techniques de tolérance aux pannes. La technique de réplication
+est la technique proposée par défaut afin de fournir une haute
+disponibilité des données dans ces systèmes. Le codage à effacement, bien que
+disponible, n'est en revanche recommandé que dans le cas d'applications liées
+aux données froides, telles que l'archivage.
 
 
 
 
-# Le DFS à la Mojette : RozoFS {#sec.rozofs}
+# RozoFS : le DFS basé sur le code à effacement Mojette {#sec.rozofs}
 
 \begin{figure}
     \begin{subfigure}{.49\textwidth}
@@ -425,9 +436,10 @@ le cas d'applications liées aux données froides, telles que l'archivage.
 \end{figure}
 
 Dans cette section, nous présenterons la conception des systèmes de fichiers
-distribués RozoFS et CephFS. Ces deux systèmes sont à « code source ouvert » et
-POSIX. En particulier, ils reposent sur un ensemble de système de fichiers
-locaux sous-jacents. Une fois montés, ils fournissent un espace de noms globale
+distribués RozoFS et CephFS. Ces deux systèmes sont à \ct{code source ouvert} et
+compatibles avec POSIX. En particulier, ils reposent sur un ensemble de système
+de fichiers locaux sous-jacents. Une fois montés, ils fournissent un espace de
+noms globale
 (i.e.\ un ensemble de répertoires et fichiers structuré comme une arborescence)
 qui repose sur un ensemble de nœuds de stockage standards (*commodity*). Alors
 que traditionnellement, CephFS repose sur des techniques de réplication, la
@@ -494,7 +506,7 @@ et de lecture respectivement.
 
 
 
-##  Les interactions entre les composants de RozoFS
+## Les interactions entre les composants de RozoFS
 
 ### Distribution de l'information
 
@@ -583,7 +595,7 @@ l'opération d'écriture.
 
 Une opération d'écriture déclenche un processus d'encodage Mojette. En
 particulier, un flux de donnée à écrire est découpé en blocs de $\mathcal{M} =
-4Ko$ par défaut. Ces blocs de données remplissent un buffer adressé par $k$
+4$\ Ko par défaut. Ces blocs de données remplissent un buffer adressé par $k$
 pointeurs, qui représentent les $k$ lignes d'une grille Mojette. Les *threads*
 permettent de gérer plusieurs opérations d'encodage et de décodage en
 parallèle. Plus précisément, puisque l'on considère le code à effacement
@@ -593,7 +605,7 @@ supports concernés sont fournis par *exportd*. Prenons l'exemple de
 l'écriture d'un gigaoctet d'information sur un volume RozoFS défini en *layout*
 $0$, comme illustré dans la \cref{fig.write}. L'écriture distribue trois
 fichiers contenant les informations de projections. Plus précisément, chaque
-fichier fait environ $500$Mo tel que $d_1$ et $d_2$ contiennent les données en
+fichier fait environ $500$ Mo tel que $d_1$ et $d_2$ contiennent les données en
 clair, et $p_1$ contient les données de la projection suivant la direction
 $(0,1)$.
 
@@ -602,7 +614,7 @@ $(0,1)$.
 Lorsqu'une application demande la lecture d'une donnée présente sur le point de
 montage de RozoFS, celui ci favorise la lecture des $k$ blocs de données en
 clair (i.e.\ $d_1$ et $d_2$). Cette situation est représentée dans la
-\cref{fig.read}. Le processus transfère alors environ $2 \times 500$Mo en
+\cref{fig.read}. Le processus transfère alors environ $2 \times 500$ Mo en
 parallèle. Ensuite, la donnée est transmise à l'application.
 
 ### Impact en cas de pannes
@@ -653,7 +665,7 @@ entrée du décodeur Mojette afin de reconstituer $d_1$.
 ### CephFS
 
 CephFS est un compétiteur intéressant dans une comparaison avec RozoFS
-puisqu'il s'agit d'un système de fichier distribué POSIX basé sur des
+puisqu'il s'agit d'un système de fichiers distribué POSIX basé sur des
 techniques de réplication. Par défaut, CephFS propose une réplication par
 trois, permettant de supporter deux pannes.
 
@@ -674,21 +686,21 @@ fichiers de projection et les lectures nécessitent $4$ fichiers parmi eux),
 afin de fournir la même capacité de correction que CephFS qui utilise de la
 réplication par trois. Dans CephFS, le nombre de *placement group* (PG) doit
 être correctement choisi. Un PG agrège les objets dans un ensemble de support
-de stockage. Dans notre expérimentation, on dispose de $64$ PGs pour le
-stockage des objets, et $64$ PGs pour les métadonnées.
+de stockage. Dans notre expérimentation, on dispose de $64$\ PGs pour le
+stockage des objets, et $64$\ PGs pour les métadonnées.
 
 ### Mise en place de l'expérimentation
 
 Toutes les expériences ont été réalisées sur la plate-forme expérimentale
-Grid5000. En particulier, elles ont été conduites sur la grappe « econome »,
-composée de $22$ serveurs. Chaque serveur contient deux CPU \intel Xeon E5-2660
-cadencés à $2,2$Ghz, $64$Go de RAM, de $1$To de disque dur SATA d'une vitesse
-de 7200 tours par minute, et d'une interface réseau $10$GbE. En particulier,
-$8$ serveurs sont utilisés pour stocker les données dans le cas de RozoFS et de
-CephFS. Un nœud supplémentaire contient le serveur de métadonnées. Une machine
-supplémentaire est nécessaire pour le monitorage de CephFS. Enfin, côté
-clients, neuf machines sont réservées pour réaliser les opérations de lecture
-et d'écriture.
+Grid'5000\ \cite{balouek2013ccss}. En particulier, elles ont été conduites sur
+la grappe \ct{econome}, composée de $22$ serveurs. Chaque serveur contient deux
+CPU \intel Xeon E5-2660 cadencés à $2,2$\ Ghz, $64$\ Go de RAM, de $1$\ To de
+disque dur SATA d'une vitesse de 7200 tours par minute, et d'une interface
+réseau $10$\ GbE. En particulier, $8$ serveurs sont utilisés pour stocker les
+données dans le cas de RozoFS et de CephFS. Un nœud supplémentaire contient le
+serveur de métadonnées. Une machine supplémentaire est nécessaire pour le
+monitorage de CephFS. Enfin, côté clients, neuf machines sont réservées pour
+réaliser les opérations de lecture et d'écriture.
 
 ### Configuration de l'expérimentation
 
@@ -697,14 +709,14 @@ d'un logiciel populaire pour tester les systèmes de fichiers et les supports de
 stockage. En particulier, il est possible de définir différents tests en
 fonction de l'E/S désirée : lecture ou écrite; ainsi qu'en fonction du schéma
 d'accès voulu : séquentiel ou aléatoire. La particularité d'IOzone est de
-fournir un mode « cluster » permettant de mesurer les bandes passantes dans le
+fournir un mode \ct{cluster} permettant de mesurer les bandes passantes dans le
 cas où plusieurs clients sont impliqués simultanément dans l'expérimentation.
 Cette particularité est adaptée aux systèmes de fichiers distribués.
 IOzone fournit ainsi le débit, ou le nombre d'E/S par seconde (ESPS), mesuré au
 niveau de chaque client. Dans notre expérimentation, un client implique une
-opération sur un fichier de $100$Mo. En pratique, les accès séquentiels sont
+opération sur un fichier de $100$ Mo. En pratique, les accès séquentiels sont
 plus importants que les accès aléatoires. C'est pourquoi nous fixons la taille
-des E/S en accès séquentiel à $64$Ko, et $8$Ko pour les tests en aléatoire. Il
+des E/S en accès séquentiel à $64$\ Ko, et $8$\ Ko pour les tests en aléatoire. Il
 s'agit de valeurs classiques dans ce genre de test. Dans la suite, nous
 évaluons le débit enregistré à mesure que l'on augmente le nombre de clients
 (de $3$ à $9$) impliqués simultanément sur un point de montage RozoFS, puis
@@ -737,8 +749,8 @@ Nous verrons dans un premier temps les résultats de l'expérimentation en
     \caption{Évaluation des performances d'écriture séquentielle et aléatoire.
     Les performances sont représentées comme les débits cumulés enregistrés par
     un nombre croissant de clients. La charge de travail correspond à
-    l'écriture d'un fichier de $100$Mo par chaque client simultanément. En
-    particulier, les accès sont réalisés par blocs de $64$Ko et $8$Ko
+    l'écriture d'un fichier de $100$ Mo par chaque client simultanément. En
+    particulier, les accès sont réalisés par blocs de $64$\ Ko et $8$\ Ko
     respectivement pour les accès séquentiels et aléatoires.}
     \label{fig.write_dfs}
 \end{figure}
@@ -746,7 +758,7 @@ Nous verrons dans un premier temps les résultats de l'expérimentation en
 Dans cette section, nous étudions les performances de RozoFS et de CephFS en
 écriture séquentielle, puis aléatoire. Les débits mesurés correspondent
 au quotient de la taille du fichier écrit sur le temps nécessaire pour stocker
-de façon « sûre » la donnée. Cette « sureté » correspond à la confirmation que
+de façon \ct{sûre} la donnée. Cette \ct{sureté} correspond à la confirmation que
 la donnée est stockée de manière redondante au niveau des $n$ supports de
 stockage. Notons cependant qu'en pratique, à un moment donné, la donnée peut
 être contenue dans le cache d'un nœud de stockage et non de manière sûre sur le
@@ -759,7 +771,7 @@ représentent respectivement les résultats pour des accès séquentiels et
 aléatoires. Dans les deux cas, on observe que les performances de RozoFS sont
 supérieures à celles fournies par CephFS. Alors qu'à mesure que l'on ajoute de
 nouveaux clients, les performances de RozoFS augmentent jusqu'à une limite
-correspondant à $2.7$Go/s en séquentiel, et $60000$ ESPS en aléatoire, les
+correspondant à $2.7$\ Go/s en séquentiel, et $60000$\ ESPS en aléatoire, les
 mesures obtenues pour CephFS n'évolue pas significativement.
 
 Il semble alors que RozoFS ait atteint les limites imposées par le matériel
@@ -786,7 +798,7 @@ dans les débits mesurés.
     \caption{Impact du facteur de réplication sur les performances en écritures
     séquentielles dans CephFS. Ces performances correspondent aux débits
     cumulés mesurés à mesure que l'on augmente le nombre de clients. Chaque
-    client écrit un fichier de $100$Mo par blocs de $64$Ko. La valeur du
+    client écrit un fichier de $100$\ Mo par blocs de $64$\ Ko. La valeur du
     facteur de réplication $r$ évolue dans l'ensemble $\{1,2,3\}$.}
     \label{fig.ceph_sequential_write}
 \end{figure}
@@ -796,9 +808,9 @@ des performances en écriture de CephFS. Les paramètres sont similaires à
 l'expérience précédente, cependant, le facteur de réplication $r$ varie de $1$
 à $3$. Les résultats de cette expérimentation sont fournis dans la
 \cref{fig.ceph_sequential_write}. Par exemple, lorsque dix clients écrivent
-simultanément, CephFS atteint un débit proche des $300$Mo/s quand aucune
+simultanément, CephFS atteint un débit proche des $300$\ Mo/s quand aucune
 copie d'information n'est générée (i.e.\ $r=1$). En revanche, la valeur de ce
-débit chute à $120$Mo/s lorsque le système gère $r=3$ copies d'information.
+débit chute à $120$\ Mo/s lorsque le système gère $r=3$ copies d'information.
 Enfin un élément supplémentaire concerne la gestion de la cohérence des
 données. Dans CephFS, un journal est tenu afin garantir des transactions
 fiables. En conséquence, lorsqu'une E/S modifie la donnée, une E/S
@@ -830,8 +842,8 @@ un disque séparé, ce qui n'a pas pu être mis en place sur la plate-forme
     \caption{Évaluation des performances de lecture séquentielle et aléatoire.
     Les performances sont représentées comme les débits cumulés enregistrés par
     un nombre croissant de clients. La charge de travail correspond à
-    la lecture d'un fichier de $100$Mo par chaque client simultanément. En
-    particulier, les accès sont réalisés par blocs de $64$Ko et $8$Ko
+    la lecture d'un fichier de $100$\ Mo par chaque client simultanément. En
+    particulier, les accès sont réalisés par blocs de $64$\ Ko et $8$\ Ko
     respectivement pour les accès séquentiels et aléatoires.}
     \label{fig.read_dfs}
 \end{figure}
@@ -843,8 +855,8 @@ Dans ce test, les performances de RozoFS sont $30$\% plus faibles que celles
 fournies par CephFS. À la différence des opérations en écriture, la lecture met
 en jeu la récupération de la même quantité d'information pour les deux
 systèmes. La différence provient probablement de la taille des blocs utilisée
-dans chaque système. CephFS accède aux données par des blocs de $4$Mo, tandis
-que RozoFS utilise des blocs de $4$Ko. En conséquence, le nombre d'E/S
+dans chaque système. CephFS accède aux données par des blocs de $4$\ Mo, tandis
+que RozoFS utilise des blocs de $4$\ Ko. En conséquence, le nombre d'E/S
 nécessaire pour le premier est moins important et le comportement séquentiel du
 test bénéficie à ce système.
 
@@ -860,17 +872,93 @@ probablement à la limite des performances des disques. Il serait intéressant d
 vérifier si cette limite est repoussée dans le cas où on utilise soit plus de
 disques durs (pour répartir la charge) soit des disques SSD.
 
-% ## Discussion
+## Discussion
 
-\section*{Conclusion}
+Avant de conclure le chapitre, nous proposons de discuter dans un premier temps
+des résultats obtenus dans notre expérimentation, puis du choix de la version
+du code à effacement Mojette.
 
-Ce chapitre a permis de détailler la mise en œuvre du code à effacement au sein
-du système de fichier distribué RozoFS. La \cref{sec.dfs} a présenté quelques
-notions sur les systèmes de stockage. En particulier on a expliqué l'évolution
-de la distribution des données sur des supports de stockage depuis l'invention
-du RAID dans les années 80. On a par la suite expliqué comment fonctionne un
-système de fichiers distribués et comment est gérée la redondance dans les
-systèmes de fichiers distribués actuelles.
+#### Choix de CephFS
+
+CephFS a été choisi comme DFS de comparaison à RozoFS dans cette
+expérimentation parce qu'il s'agit d'un logiciel libre, proposant un système de
+fichiers compatible POSIX et de type *scale-out* (i.e.\ extension du système
+par ajout de serveurs). Toutefois, ces systèmes sont trop complexes pour
+pouvoir les comparer directement. Pour s'en convaincre, il suffit de considérer
+les différences de conception, d'architecture, et de paramètres disponibles.
+Sans toutes les énumérer, nous proposons de discuter de deux différences
+fondamentales.
+La première différence notable est que Ceph est conçu pour la mise à l'échelle
+et la cohérence des données. La mise à échelle repose principalement sur
+l'algorithme décentralisé de distribution de données \textsc{Crush}, proposé par
+\textcite{weil2007phd} dans ses travaux de thèse. Le second point, qui
+concerne la cohérence des données, joue un rôle essentiel dans les mesures des
+performances enregistrées. Ceph est un système de fichiers qui garde trace des
+opérations de lecture et d'écriture afin de garantir une cohérence forte des
+données et des transactions. En conséquence, chaque opération d'écriture sur
+un OSD entraîne une seconde écriture dans le journal. En particulier, si le
+facteur de réplication vaut $2$, une écriture de l'application revient à
+déclencher $4$ opérations d'écritures ($1$ E/S sur deux OSDs, et $2$ E/S dans
+le journal).
+
+En conséquence, les résultats obtenus ne permettent naturellement pas de se
+prononcer sur quel est le meilleur système de fichiers. Toutefois, ces
+résultats laissent apparaître le fait que RozoFS est capable de fournir de
+bonnes performances, tout en divisant le volume de données stockées par deux.
+
+#### Choix entre version systématique et non-systématique
+
+Le code à effacement non-systématique a quelques avantages sur sa version
+systématique. Nous proposons de discuter de deux
+avantages intéressants. Tout d'abord, la distribution des données sous forme de
+projections peut permettre de compliquer la lecture de la donnée (qui n'est pas
+stockée en clair) à un tiers malveillant. C'est le principe de l'algorithme de
+dispersion d'information (ou IDA, pour *Information Dispersal Algorithm*) de
+\textcite{rabin1989jacm}. Pour reconstituer exactement la donnée initiale, il
+doit disposer de $k$ projections, ce qui signifie corrompre $k$ supports de
+stockage.
+
+L'équité de l'ensemble des symboles du mot de code constitue le deuxième
+avantage de cette version. On s'intéresse ici au poids d'une projection dans la
+distribution d'un bloc de donnée. En particulier, chaque projection d'un code
+non-systématique possède le même poids. En revanche, dans le cas systématique,
+l'opération de lecture tend à favoriser la récupération des $k$ premiers
+symboles (i.e.\ les lignes de la grille) dans le cas du code systématique.
+En conséquence, cela complique la prise de décision concernant par exemple, le
+délai d'attente en lecture avant de réclamer une projection, lorsque le dernier
+symbole systématique tarde à arriver.
+
+Les \cref{sec.chap3,sec.chap4} ont montré que malgré le gain observé des
+performances en systématique, la version non-systématique permet déjà de fournir de
+très hauts débits. Le goulot d'étranglement du système correspond ainsi soit à
+la partie matérielle (e.g.\ disques ou réseau), soit au surcoût impliqué par la
+gestion logicielle du DFS (e.g.\ journalisation, réplication). Le critère des
+performances n'est donc pour l'instant pas déterminant dans le choix
+de la version du code. Par conséquence, l'utilisation du code non-systématique
+dans RozoFS se justifie par les avantages présentés précédemment.
+<!--
+%; (ii)
+%l'ensemble des nœuds à contacter pour récupérer un bloc de donnée. Dans le cas
+%systématique, on essaie toujours de contacter les $k$ premiers, tandis qu'en
+%non-systématique, on peut par exemple l'ensemble de le critère qui détermine quel ensemble de
+%projections  pour éviter le décodage, ou demand
+-->
+
+
+
+%cephfs
+
+\section*{Conclusion du chapitre}
+
+\addcontentsline{toc}{section}{Conclusion du chapitre}
+
+Ce chapitre a permis de détailler la mise en œuvre du code à effacement Mojette
+au sein du système de fichiers distribué RozoFS. La \cref{sec.dfs} a présenté
+quelques notions sur les systèmes de stockage. En particulier, nous avons
+expliqué l'évolution de la distribution des données sur des supports de
+stockage depuis l'invention du RAID dans les années 80. On a par la suite
+expliqué comment fonctionne un système de fichiers distribué et comment gérer
+la redondance dans les systèmes de fichiers distribués actuelles.
 
 La \cref{sec.rozofs} a décrit RozoFS. En particulier, nous avons étudié son
 fonctionnement basé sur trois éléments : (i) le serveur de métadonnée, (ii) les
@@ -879,10 +967,13 @@ entre ces éléments, et en particulier, le cas des entrées/sorties tolérantes
 aux pannes grâce au code à effacement Mojette.
 
 Dans une dernière partie, nous avons évalué les performances de RozoFS dans des
-tests de charges intensives menés sur la plate-forme de test Grid 5000. La
-\cref{sec.rozofs.perf} donne une comparaison des performances de RozoFS avec
-celles fournies par CephFS. Les résultats obtenus ont montré que dans les
-conditions de nos tests, RozoFS est capable de fournir de meilleures
-performances qu'un système de fichiers distribué basé sur de la réplication,
-tout en divisant par deux le volume de stockage grâce au code à effacement
-Mojette.
+tests de charges intensives, menés sur la plate-forme de test Grid'5000. La
+\cref{sec.rozofs.perf} donne une comparaison des performances de latence en
+encodage et décodage, de RozoFS avec CephFS. Les résultats obtenus ont montré
+que dans les conditions de nos tests, RozoFS est capable de fournir de
+meilleures performances qu'un système de fichiers distribué basé sur de la
+réplication, tout en divisant par deux le volume de stockage grâce au code à
+effacement Mojette. Le DFS RozoFS est ainsi capable de gérer à la fois : (i)
+les données froides (i.e.\ données à archiver), grâce à la capacité de
+correction du code à effacement Mojette; (ii) et les données chaudes (i.e.\
+nécessitant de , que stockage 
