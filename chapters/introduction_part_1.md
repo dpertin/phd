@@ -11,26 +11,27 @@
 -->
 Les systèmes d'information nécessitent l'ajout de données de redondance au
 message à transmettre afin que le destinataire puisse reconstituer
-l'information lorsque celle-ci est détériorée.  Dans cette partie, nous nous
-intéresserons aux codes à effacement comme méthode pour générer cette
-redondance. L'objectif de cette partie est d'utiliser une approche par
-géométrie discrète afin de concevoir un code à effacement performant, c'est à
-dire : (i) fournissant un rendement optimal (code MDS); (ii) et de nouveaux
+l'information lorsque celle-ci est détériorée. Dans cette partie, nous
+tâcherons d'une part de minimiser la quantité de redondance générée, et,
+d'autre part d'optimiser les performances du code.
+Pour cela, l'objectif ici est de concevoir de nouveaux codes à
+effacement qui se basent sur des transformées discrètes afin de fournir deux
+éléments : un rendement optimal (code MDS), et, de nouveaux
 algorithmes d'encodage et de décodage de faible complexité.
 
-Pour cela, les bases mathématiques de la théorie des codes sera introduite dans
-le \cref{sec.chap1} à travers l'étude des travaux fondamentaux de
-\textcite{shannon1948bstj}. Au delà d'introduire les notions relatives aux
-codes à effacement, ce chapitre va nous permettre de définir une proposition de
-critères afin de comparer différents codes. Le \cref{sec.chap2} décrit notre
-approche pour concevoir des codes à effacement à partir de versions discrètes
-de la transformation de \radon. Le \cref{sec.chap3} contient deux contributions
-apportées par nos travaux de recherche. La première correspond à l'élaboration
-d'une construction du code à effacement Mojette sous une forme systématique.
-Cette construction vise à réduire la complexité du code, ainsi que la quantité
+Pour cela, les bases mathématiques de la théorie des codes seront introduites
+dans le \cref{sec.chap1} à travers l'étude des travaux fondamentaux de
+\textcite{shannon1948bstj}. En particulier, nous définirons une proposition de
+critères, comme base pour notre première contribution, à savoir, la comparaison
+des différents codes présentés dans ce manuscrit. Le \cref{sec.chap2} décrit
+notre approche pour concevoir des codes à effacement à partir de versions discrètes
+de la transformation de \radon. Le \cref{sec.chap3} contient deux
+contributions. La première correspond à l'élaboration d'une construction
+du code à effacement Mojette sous une forme systématique. Cette construction
+vise à réduire la complexité du code, ainsi que la quantité
 de redondance générée. La seconde contribution, détaillée à l'issue de cette
-étude, correspond à une évaluation sur le coût réelle de la redondance de cette
-technique.
+étude, correspond à une évaluation du gain de redondance de cette nouvelle
+construction, par rapport à la version non-systématique et aux codes MDS.
 
 
 

@@ -7,7 +7,7 @@ Nous avons défini dans la partie précédente le code à effacement Mojette
 afin de répondre au problème de la transmission d'informations sur un
 canal non-fiable. Dans cette nouvelle partie, nous nous intéresserons à
 l'application de ce code dans un système de stockage distribué (NDSS).
-Dans ce contexte particulier, le phénomène de panne est considéré comme la
+Dans ce contexte, le phénomène de panne est considéré comme la
 norme plutôt que l'exception. L'objectif de cette nouvelle partie est de
 concevoir un NDSS capable de gérer à la fois un seuil de redondance (capacité
 nécessaire à l'archivage de données froides), et de fournir de bonnes
@@ -66,8 +66,8 @@ implémentations des codes Mojette et \rs;
 
 2. le \cref{sec.chap5} étudie l'intégration du code à effacement Mojette dans
 RozoFS, le DFS développé par Rozo Systems. Une évaluation des latences de
-lecture et d'écriture enregistrées par RozoFS sera comparée à celle fournie par
-le DFS CephFS, basé sur une technique de réplication;
+lecture et d'écriture enregistrées par RozoFS sera comparée à celles fournies
+par le DFS CephFS, basé sur une technique de réplication;
 
 3. dans le \cref{sec.chap6}, nous proposons une nouvelle méthode distribuée
 pour réencoder de nouveaux symboles de mots de code (i.e.\ projections
