@@ -819,7 +819,7 @@ Pour mettre en évidence cette considération, nous avons réalisé une évaluat
 des performances en écriture de CephFS. Les paramètres sont similaires à
 l'expérience précédente, cependant, le facteur de réplication $r$ varie de $1$
 à $3$. Les résultats de cette expérimentation sont fournis dans la
-\cref{fig.ceph_sequential_write} (cf.\ \cpageref{fig.ceph.sequential_write}).
+\cref{fig.ceph_sequential_write}.
 Par exemple, lorsque dix clients écrivent
 simultanément, CephFS atteint un débit proche des $300$\ Mo/s quand aucune
 copie d'information n'est générée (i.e.\ $r=1$). En revanche, la valeur de ce
@@ -862,8 +862,7 @@ grande qu'*econome*.
 \end{figure}
 
 On considère à présent les performances des deux systèmes en lecture. Les
-résultats des tests sont illustrés dans la \cref{fig.read_dfs} (cf.\
-\cpageref{fig.read_dfs}). En particulier,
+résultats des tests sont illustrés dans la \cref{fig.read_dfs}. En particulier,
 la \cref{fig.seq_read} présente les résultats en accès séquentiel.
 Dans ce test, les performances de RozoFS sont $30$\% plus faibles que celles
 fournies par CephFS. À la différence des opérations en écriture, la lecture met
@@ -879,8 +878,8 @@ ce cas, les performances de RozoFS sont trois plus élevées que celles obtenues
 par CephFS. Bien que les performances augmentent globalement pour les deux
 systèmes, il est intéressant de remarquer que celles de RozoFS plafonnent
 à proximité des $60000$ IOPS. Cette limite correspond à la même limite
-rencontrée en séquentiel dans la \cref{fig.seq_write} (cf.\
-\cref{fig.seq_write}). Les disques rotatifs
+rencontrée en dans le test en séquentiel, et représentée dans la
+\cref{fig.seq_write} (cf.\ \cref{fig.seq_write}). Les disques rotatifs
 offrent généralement les mêmes performances en lecture ou écriture quand les
 accès se font en aléatoire. En conséquence, cette limite correspond
 probablement à la limite des performances des disques. Il serait intéressant de

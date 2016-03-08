@@ -163,7 +163,7 @@ de  $\text{Offset}(\text{Eff}(e-1))$, tel que :
 
 \noindent La méthode pour déterminer la valeur de l'offset des autres lignes
 est décrite entre les \cref{alg.offsets,alg.offsets.fin} de
-l'\cref{alg.systematique} de reconstruction (cf. \cpageref{alg.systematic}).
+l'\cref{alg.systematique} de reconstruction (cf. \cpageref{alg.systematique}).
 
 
 ### Calcul de la valeur du pixel à reconstruire {#sec.pxl}
@@ -744,7 +744,7 @@ suite, nous avons analysé les conséquences de cette construction, et avons
 déterminé deux améliorations.
 
 La première amélioration concerne le rendement du code, qui est sous-optimal
-dans le cas du code à effacement Mojette. La \cref{eval.red.sec} a permis de
+dans le cas du code à effacement Mojette. La \cref{sec.eval.red} a permis de
 montrer que le surcoût de redondance de ce code provient de la géométrie de la
 transformation. Plus précisément, les projections sont de taille variable, et
 cette taille augmente avec l'index de la projection.

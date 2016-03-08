@@ -27,9 +27,12 @@ Dans ce contexte, le rôle des systèmes de stockage de données est
 crucial. En effet, cette explosion du nombre d'appareils s'accompagne d'une
 évolution exponentielle des données générées et stockées.
 En particulier, le rapport d'IDC estime que la quantité de données stockées
-dans le monde correspondra à $44$ zettaoctets\footnote{<!--%Si un caractère
+dans le monde correspondra à $44$ zettaoctets\footnote{
+%<!--
+%Si un caractère
 %nécessite un octet, un zettaoctet contiendrait plus de $200000$ milliards de
-%fois l'œuvre \emph{Le Monde Perdu} d'Arthur Conan Doyle.-->
+%fois l'œuvre \emph{Le Monde Perdu} d'Arthur Conan Doyle.
+%-->
 \textcite{hilbert2011science} rappellent que ce volume de données correspond à
 la quantité d'information génétique contenue dans un corps humain, mais que
 \ct{par rapport à la capacité de la nature à traiter l'information, la capacité
