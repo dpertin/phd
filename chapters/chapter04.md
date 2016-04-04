@@ -852,7 +852,7 @@ On détermine alors le nombre d'opérations nécessaires ainsi :
 \begin{equation}
     \gamma(k,w)_e^{\{(p_e,1)\}} =
         \sum_{e} \left( \gamma(k,w)_{l_e}^{(p_e,1)}\right).
-    \label{eqn.mojette_decoding2}
+    \label{eqn.mojette_decoding3}
 \end{equation}
 
 
@@ -1049,8 +1049,8 @@ la plate-forme *FEC4Cloud* située à Polytech Nantes. Cette machine dispose d'u
 processeur \intel Xeon à $1,80$\ GHz, de $16$\ Go de mémoire RAM et de caches
 processeurs de $128$\ Ko, $1$\ Mo et $10$\ Mo pour les niveaux *L1*, *L2* et *L3*
 respectivement. Notons que cette plate-forme a été utilisée dans des
-expérimentations soumises à plusieurs publications \cite{pertin2014eurosys,
-pertin2015hotstorage, parrein2015ressi}.
+expérimentations soumises dans plusieurs publications \cite{pertin2014eurosys,
+pertin2015corr, parrein2015ressi}.
 
 ## Résultats de l'expérimentation {#sec.expe.resultat}
 

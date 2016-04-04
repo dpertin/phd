@@ -167,7 +167,7 @@ est possible.
 \end{figure}
 
 La notion de reconstruction partielle a été introduite par
-\textcite[chap. 3]{philippe1998phd} dans ses travaux de thèse. Rappelons que le
+\textcite[chap.\ 3]{philippe1998phd} dans ses travaux de thèse. Rappelons que le
 critère de \katz permet de déterminer l'unicité de la solution de
 reconstruction, relativement à un ensemble de projections.  Considérons par
 ailleurs, un ensemble de projections insuffisant au regard du critère de \katz.
@@ -425,8 +425,8 @@ composé $g_{S\setminus\dir{(p_i,q_i)}}$.
 
 <!-- % O.Philippe -->
 Cette conséquence a été étudiée par \citeauthor{philippe1998phd} dans ses
-travaux de thèse. En particulier, dans son théorème de la \ct{ Décomposition
-Unique en Fantômes}, \textcite[p. 76]{philippe1998phd} démontre qu'il existe
+travaux de thèse. En particulier, dans son théorème de la \ct{Décomposition
+Unique en Fantômes}, \textcite[p.\ 76]{philippe1998phd} démontre qu'il existe
 une décomposition unique de l'image $f$ par la somme d'une image sous
 contrainte $f_{SC}$ avec un ensemble de fantômes ${g_i}$ de directions dans
 $S$, telle que :

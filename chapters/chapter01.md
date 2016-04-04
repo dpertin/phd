@@ -250,7 +250,7 @@ d'un canal. L'ensemble de ces définitions est introduit dans les travaux de
 Pour pouvoir définir l'entropie, il faut introduire au préalable le concept de
 \ct{degré d'originalité}. Ce degré d'originalité $I(s_i)$ (parfois appelé
 \ct{auto-information} est défini comme l'information transmise par le symbole
-$s_i$ (en bit) et vaut\ \cite[p. 1]{shannon1948bstj} :
+$s_i$ (en bit) et vaut\ \cite[p.\ 1]{shannon1948bstj} :
 
 \begin{equation}
     I(s_i) = -\log_2(p_i).
@@ -260,7 +260,7 @@ $s_i$ (en bit) et vaut\ \cite[p. 1]{shannon1948bstj} :
 d'information par rapport à un symbole qui apparaît très rarement.
 L'entropie $H(\mathcal{S})$ d'une source correspond à la valeur moyenne du
 degré d'originalité de l'ensemble des symboles de l'alphabet. Elle est ainsi
-définie comme\ \cite[p. 11]{shannon1948bstj} :
+définie comme\ \cite[p.\ 11]{shannon1948bstj} :
 
 \begin{equation}
     \begin{split}
@@ -313,8 +313,8 @@ $X$ lorsqu'une valeur de Y est connue :
 \end{equation}
 
 \noindent Cette notion peut être ensuite étendue dans le cas où l'on connait
-l'ensemble des degrés d'originalité des symboles de $Y$\ \cite[p.
-12]{shannon1948bstj} :
+l'ensemble des degrés d'originalité des symboles de
+$Y$\ \cite[p.\ 12]{shannon1948bstj} :
 
 \begin{equation}
     H(X|Y) = - \sum_{x,y} p_{x|y} \log_2 \left( \frac{p_y}{p_{x|y}} \right).
@@ -330,8 +330,8 @@ capable de déterminer le symbole $x_i$ transmis depuis la source, à partir des
 informations reçues $y_i$ par le récepteur. L'information mutuelle $I(X,Y)$
 mesure la quantité d'information reçue. Elle correspond à la quantité
 d'information restante lorsque l'on soustrait l'information perdue sur le
-canal $H(X|Y)$, à l'information émise par l'émetteur $H(X)$\ \cite[p.
-12]{shannon1948bstj} :
+canal $H(X|Y)$, à l'information émise par l'émetteur
+$H(X)$\ \cite[p.\ 12]{shannon1948bstj} :
 
 \begin{equation}
     \begin{split}
@@ -350,7 +350,7 @@ déterminée par $X$ et le canal ne provoque pas d'erreur.
 ### Capacité d'un canal
 
 La capacité d'un canal $C(X,Y)$ est définie
-ainsi\ \cite[p. 22]{shannon1948bstj} :
+ainsi\ \cite[p.\ 22]{shannon1948bstj} :
 
 \begin{equation}
     C(X,Y) = \max{I(X,Y)}\;.
@@ -396,7 +396,7 @@ ainsi :
 \noindent L'entropie est à son maximal lorsque la distribution de $Y$ est
 uniforme. Dans le cas du canal symétrique, cela correspond à une distribution
 de $X$ uniforme. En conséquence, l'information mutuelle est maximale lorsque
-$p=0.5$. La capacité du CBS correspond à \cite[p. 316]{dumas2007book} :
+$p=0.5$. La capacité du CBS correspond à \cite[p.\ 316]{dumas2007book} :
 
 \begin{equation}
     \begin{split}
@@ -655,7 +655,7 @@ redondance est minimale pour une valeur de rendement fixé. Les codes qui
 atteignent la borne de \singleton sont appelés \ct{codes MDS}, pour *Maximum
 Distance Separable*.
 
-\textcite[p. 317]{macwilliams2006book} relient le terme \ct{\emph{separable}} à
+\textcite[p.\ 317]{macwilliams2006book} relient le terme \ct{\emph{separable}} à
 la séparation des symboles (message et parité) dans le cas des codes
 systématiques.
 Nous préférons considérer que les codes MDS peuvent être systématiques ou

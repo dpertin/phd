@@ -157,9 +157,9 @@ systèmes pour les transmettre au client NFS.
     \footnotesize
     \includesvg{img/gfs}
     \caption{Représentation d'une architecture en grappe centralisée comme
-    utilisée dans GFS. Un client contacte le nœud *master* afin de déterminer la
-    position des blocs d'un fichier. Il contacte ensuite les serveurs de
-    stockage appropriés pour récupérer l'information voulue.}
+    utilisée dans GFS. Un client contacte le nœud \emph{master} afin de
+    déterminer la position des blocs d'un fichier. Il contacte ensuite les
+    serveurs de stockage appropriés pour récupérer l'information voulue.}
     \label{fig.dfs}
 \end{figure}
 
@@ -179,7 +179,7 @@ données désirées sur les serveurs de stockage.
 
 Le modèle précédent n'est pas adapté pour certains types d'infrastructures tels
 qu'en pair à pair. Il existe des moyens pour ne pas avoir à garder un index
-contenu dans un nœud master. Pour cela, on combine un mécanisme clé-valeur avec
+contenu dans un nœud *master*. Pour cela, on combine un mécanisme clé-valeur avec
 un système permettant de calculer de façon unique la position des données dans
 une grappe. Il est par exemple possible d'utiliser le protocole Chord pour
 déterminer de manière décentralisée la position des données dans un anneau
@@ -671,10 +671,10 @@ puisqu'il s'agit d'un système de fichiers distribué POSIX basé sur des
 techniques de réplication. Par défaut, CephFS propose une réplication par
 trois, permettant de supporter deux pannes. En comparaison avec HDFS, CephFS
 n'est pas conçu pour une application en particulier. L'architecture de CephFS
-est représentée dans la \cref{fig.rozoceph_archi} (cf.\
-\cpageref{fig.rozoceph_archi}). Elle est composée de services similaires à
-RozoFS. Toutefois, un service de monitorage supplémentaire est proposé afin de
-vérifier par exemple l'état d'une grappe de serveurs. 
+est représentée dans la \cref{fig.rozoceph_archi}
+(cf.\ \cpageref{fig.rozoceph_archi}). Elle est composée de services similaires
+à RozoFS. Toutefois, un service de monitorage supplémentaire est proposé afin
+de vérifier par exemple l'état d'une grappe de serveurs.
 
 
 # Évaluation {#sec.rozofs.perf}
@@ -879,7 +879,7 @@ par CephFS. Bien que les performances augmentent globalement pour les deux
 systèmes, il est intéressant de remarquer que celles de RozoFS plafonnent
 à proximité des $60000$ IOPS. Cette limite correspond à la même limite
 rencontrée en dans le test en séquentiel, et représentée dans la
-\cref{fig.seq_write} (cf.\ \cref{fig.seq_write}). Les disques rotatifs
+\cref{fig.seq_write} (cf.\ \cpageref{fig.seq_write}). Les disques rotatifs
 offrent généralement les mêmes performances en lecture ou écriture quand les
 accès se font en aléatoire. En conséquence, cette limite correspond
 probablement à la limite des performances des disques. Il serait intéressant de
