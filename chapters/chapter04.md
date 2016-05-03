@@ -1,6 +1,3 @@
- \chapter{Redondance dans les systèmes de stockage
-
-% distribués par codage à effacement}
 
 \chapter{Les codes à effacement dans le stockage distribué}
 
@@ -112,7 +109,7 @@ validés dans l'expérimentation en dernière partie.
 La particularité de l'organisation des disques en RAID-6 est non seulement
 d'améliorer les performances de lecture et d'écriture, mais également
 d'apporter de la tolérance aux pannes. L'amélioration des performances provient
-de la distribution des données sur un ensemble de disques. Quand à la
+de la distribution des données sur un ensemble de disques. Quant à la
 protection des données, elle se limite au cas où deux disques sont en panne, en
 utilisant deux disques de parité. On représente généralement cette organisation
 sous la forme d'une matrice de $n$ disques possédant la même capacité de
@@ -127,8 +124,9 @@ de $\beta$ bits, la valeur de $w$ est trop grande. C'est pourquoi, on applique
 la technique de codage sur des sous-ensembles de $w$ blocs adaptés pour le code.
 Nous verrons dans la suite quelle valeur de $w$ est utilisée pour chaque code.
 Les codes RAID-6 correspondent à une famille de codes généralement MDS,
-de paramètres $(n=k+2,k)$. En conséquence, le nombre de blocs $w$ des disques
-de parité correspond au nombre de blocs des disques de données.
+de paramètres $(n=k+2,k)$. Puisque les codes sont MDS, la quantité de données
+de parité est optimale. En conséquence, le nombre de blocs $w$ des disques
+de parité équivaut au nombre de blocs $w$ des disques de données.
 
 
 ## Métriques d'analyse de performance {#sec.metriques}
@@ -516,9 +514,8 @@ ligne correspond à :
     \caption{Nombre d'opérations nécessaires pour la reconstruction Mojette
     depuis la projection de direction $(1,1)$, en fonction de
     la position de la ligne effacée. La grille utilisée correspond à $k=11$ et
-    $w=20$. La ligne en tirets représente les performances obtenues lors
-    de la reconstruction par la projection $(0,1)$, que par les codes RDP
-    (i.e.\ $(k-1)w$).}
+    $w=20$. La ligne en tirets représente les performances obtenues par les
+    codes RDP (i.e.\ $(k-1)w$).}
     \label{fig.decodeur_raid6}
 \end{figure}
 
@@ -972,7 +969,7 @@ irréductible $x^8+x^4+x^3+x^2+1$.
 
 Dans cette partie, nous allons évaluer les performances d'encodage et de
 décodage des implémentations des codes à effacement Mojette et \rs,
-présentés précédemment. Ces tests sont réalisés sur un seul processeur.
+présentés précédemment.
 
 Les tests réalisés dans cette partie mettent en jeu plusieurs paramètres. Ainsi
 nous allons faire varier les paramètres $n$ et $k$ des codes à effacement, qui
@@ -1043,7 +1040,7 @@ aberrants \cite{intel1997rdtsc}.
 \label{fec4cloud}
 
 Enfin, nous affichons la valeur moyenne qui résulte de $100$ itérations.
-L'écart type n'est pas présenté puisqu'il est trop négligeable (et correspond à
+L'écart type n'est pas présenté puisqu'il est négligeable (et correspond à
 moins d'un pour-cent des valeurs présentées). La machine utilisée provient de
 la plate-forme *FEC4Cloud* située à Polytech Nantes. Cette machine dispose d'un
 processeur \intel Xeon à $1,80$\ GHz, de $16$\ Go de mémoire RAM et de caches
@@ -1294,7 +1291,11 @@ Rappelons cependant que les bonnes performances obtenues par le code à
 effacement Mojette nécessitent davantage d'information encodée que ce qui est
 produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
 \cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale quand
-la taille des blocs augmente.
+la taille des blocs augmente. Plus particulièrement, nous y avons analysé qu'en
+définissant des blocs de $\mathcal{M}=4$~Ko, comme utilisés dans nos tests, un
+surcout de données de seulement $3$\% est nécessaire. N'ayant pas d'impact
+significatif sur un système de stockage, ce faible surcout est largement
+contrebalancé par l'amélioration des performances que nous avons observée ici.
 
 Ce chapitre a permis de mettre en avant le fait que le code à effacement
 Mojette (systématique ou non-systématique) est suffisamment efficace pour ne

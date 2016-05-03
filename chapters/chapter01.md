@@ -34,7 +34,7 @@ possible de générer de la redondance en répétant plusieurs fois le bloc
 d'information à transmettre. Une quantité suffisante de répétitions permet
 de supprimer le bruit du canal. Toutefois, l'augmentation du nombre de
 répétitions entraine la diminution de la part d'information utile dans la
-transmission. Désigné comme le \ct{rendement}» du code, ce taux correspond au
+transmission. Désigné comme le \ct{rendement} du code, ce taux correspond au
 rapport entre le nombre de blocs utiles sur le nombre de blocs transférés.
 En définissant la notion d'entropie, \shannon est parvenu a établir un théorème
 qui pose les limites du codage canal \cite{shannon1948bstj}. Ce théorème 
@@ -932,7 +932,7 @@ par rapport aux additions (ce qui pénalise le critère $1$ et $2$).
 Plusieurs méthodes ont été proposées pour réduire cette complexité.
 \textcite{blomer1995icsi} utilisent des matrices d'encodage basées sur des
 matrices de \cauchy. En particulier, ils représentent la matrice d'encodage de
-façon à réaliser les opérations sans multiplications. En conséquence, ils
+façon à réaliser les opérations sans multiplication. En conséquence, ils
 parviennent à réduire la complexité à $\mathcal{O}(k^2)$.
 \textcite{lacan2010ccnc} ont par la suite réduit cette complexité à
 $\mathcal{O}(k \log k)$ en utilisant la transformée de \fourier.
@@ -1044,17 +1044,19 @@ l'élimination de \gj se réduit.
 
 \begin{table}
     \centering
-		\begin{tabular}{@{} l L L L L L @{} >{\kern\tabcolsep}l @{}}
+		\begin{tabular}{@{} l L L L L @{} >{\kern\tabcolsep}l @{}}
 		\toprule
-		& \(1\) & \(2\) & \(3\) & \(4\) & \(5\)\tabularnewline
+		& Répétition & Parité & \rs & LDPC\tabularnewline
 		\midrule
-		Répétition & \(-\) & \checkmark & \checkmark & \(-\) &
+		C1.\ complexité théorique & \(-\) & \checkmark & \(-\) & \checkmark
+		    \tabularnewline
+		C2.\ complexité opérationnelle & \checkmark & \checkmark & \(-\) &
 		    \checkmark \tabularnewline
-		Parité & \checkmark & \checkmark & \(-\) & \checkmark &
+		C3.\ indépendance des paramètres  & \checkmark & \(-\) & \checkmark &
 		    \checkmark \tabularnewline
-		\rs  & \(-\) & \(-\) & \checkmark & \checkmark &
-		    \(-\) \tabularnewline
-		LDPC & \checkmark & \checkmark & \checkmark & \(-\) &
+		C4.\ rendement & \(-\) & \checkmark & \checkmark & \(-\)
+		    \tabularnewline
+		C5.\ complexité systématique & \checkmark & \checkmark & \(-\) &
 		    \checkmark \tabularnewline
 		\bottomrule
 		\end{tabular}

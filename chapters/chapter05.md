@@ -393,7 +393,7 @@ des grappes de stockage de \textsc{Facebook} pour des données considérées
 \ct{tièdes} (i.e.\ $80$ lectures par seconde).
 GlusterFS\footnote{http://www.gluster.org/} et Ceph \cite{weil2006osdi} sont
 d'autres exemples de systèmes de stockage distribué populaire. Ceph a la
-particularité de stocker les données sous la forme d'objets. Toutefois, il
+particularité de stocker les données sous la forme d'objets. Toutefois,
 Ceph dispose d'un système de fichiers, nommé CephFS (pour *Ceph File System*),
 permettant de créer une interface POSIX entre les applications et les volumes
 de stockage objet. Par rapport à HDFS qui est conçu pour des applications
@@ -427,9 +427,9 @@ aux données froides, telles que l'archivage.
         \label{fig.ceph_archi}
     \end{subfigure}
     \caption{Représentations des architectures de RozoFS (a) et CephFS (b).
-    Les similitudes correspondent aux : serveur de métadonnées (*exportd* et
-    MDS), serveur de stockage (*storaged* et OSD) et aux clients
-    (*rozofsmount*). De plus, CephFS utilise un service de monitorage (MON).
+    Les similitudes correspondent aux : serveur de métadonnées (\emph{exportd} et
+    MDS), serveur de stockage (\emph{storaged} et OSD) et aux clients
+    (\emph{rozofsmount}). De plus, CephFS utilise un service de monitorage (MON).
     Alors que les serveurs de stockage de RozoFS stockent des projections
     Mojette, les OSD contiennent des objets pour CephFS.}
     \label{fig.rozoceph_archi}
@@ -462,8 +462,9 @@ dans la \cref{fig.rozo_archi} :
 
 3. Les clients qui utilisent le processus *rozofsmount* pour monter RozoFS.
 
-\noindent Dans la suite, ces différents composants sont décrits comme s'ils
-étaient distribués sur différents serveurs.
+\noindent Bien qu'il soit possible de combiner différents services au sein d'un
+même serveur, nous décrirons dans la suite ces différents composants de telle
+manière qu'ils soient distribués sur différents serveurs.
 
 #### Serveur de métadonnées
 
@@ -578,7 +579,7 @@ l'opération d'écriture.
         \caption{}
         \label{fig.read1}
     \end{subfigure}
-    \caption{Scénarios d'écriture et de lecture en *layout* $0$ (i.e.\
+    \caption{Scénarios d'écriture et de lecture en \emph{layout} $0$ (i.e.\
     utilisant le code Mojette systématique $(3,2)$). Les
     \cref{fig.write,fig.read} concernent les situations sans dégradation, alors
     que les \cref{fig.write1,fig.read1} concernent des opérations dégradées.
@@ -636,7 +637,7 @@ reconstruire l'information initiale. Cette situation est illustrée dans la
     \footnotesize
     \includesvg{img/rozofs_archi}
     \caption{Interactions entre les différents composants de RozoFS pendant les
-    opérations d'écriture et de lecture en *layout* $0$ (i.e.\ $(n=3,k=2)$).
+    opérations d'écriture et de lecture en \emph{layout} $0$ (i.e.\ $(n=3,k=2)$).
     Lorsqu'une application émet une requête, le client contacte le serveur de
     métadonnées afin d'obtenir la liste des supports de stockage $s_i$, au sein
     d'une grappe de serveurs $c_j$, relatifs à un fichier. Les serveurs de
@@ -681,7 +682,7 @@ de vérifier par exemple l'état d'une grappe de serveurs.
 
 Nous traitons ici l'expérimentation que nous avons réalisée. Sa mise en œuvre
 est présentée dans la première section, tandis que les deux autres sections
-présentent et analysent les résultat respectivement.
+présentent et analysent les résultats respectivement.
 
 ## Mise en place de l'évaluation
 
@@ -835,7 +836,7 @@ un disque séparé, ce qui aurait pu être mis en place sur une plate-forme plus
 grande qu'*econome*.
 
 
-### Évaluation en écriture
+### Évaluation en lecture
 
 \begin{figure}
     \begin{subfigure}{.49\textwidth}
@@ -878,7 +879,7 @@ ce cas, les performances de RozoFS sont trois plus élevées que celles obtenues
 par CephFS. Bien que les performances augmentent globalement pour les deux
 systèmes, il est intéressant de remarquer que celles de RozoFS plafonnent
 à proximité des $60000$ IOPS. Cette limite correspond à la même limite
-rencontrée en dans le test en séquentiel, et représentée dans la
+rencontrée dans le test en séquentiel, et représentée dans la
 \cref{fig.seq_write} (cf.\ \cpageref{fig.seq_write}). Les disques rotatifs
 offrent généralement les mêmes performances en lecture ou écriture quand les
 accès se font en aléatoire. En conséquence, cette limite correspond

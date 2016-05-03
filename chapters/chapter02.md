@@ -53,8 +53,8 @@ Radon Transform* ou FRT); (ii) la transformation Mojette. Cette première
 version sera étudiée dans la \cref{sec.frt}. Nous verrons en particulier le
 principe de cette transformation, un algorithme d'inversion, ainsi que sa mise en
 œuvre comme code à effacement. La propriété périodique de la FRT sera étudiée,
-et nous verrons qu'elle permet notamment de fournir un code MDS\
-\cite{normand2010wcnc}.
+et nous verrons qu'elle permet notamment de fournir un code
+MDS\ \cite{normand2010wcnc}.
 <!--
 %L'algorithme d'inversion algébrique
 %ART proposé par \textcite{gordon1970jtb} permet de comprendre simplement 
@@ -388,8 +388,8 @@ désigner les cellules);
 
 3. dont les cellules sont facilement adressables, pour cela on utilisera un
 pavage carré afin d'adresser directement les éléments par un couple de
-coordonnées $(x,y)$ (le maillage d'un pavage carré est carré contrairement au
-maillage d'un pavage triangulaire ou hexagonal).
+coordonnées $(x,y)$ (le maillage d'un pavage carré fournit une base orthonormée
+contrairement au maillage d'un pavage triangulaire ou hexagonal).
 
 \noindent Par la suite, nous utiliserons un pavage carré semblable à celui
 représenté dans la \cref{fig.pavage}. Plus précisément, on considérera une
@@ -698,9 +698,9 @@ transformée\ \cite{katz1978springer}. Les fantômes ne sont pas spécifiques à
 FRT, aussi nous les réutiliserons pour la transformation Mojette
 (\cref{sec.mojette}), et pour le calcul de nouvelles projections
 (\cref{sec.chap6}). \citeauthor{chandra2012tip} ont proposé un algorithme qui
-permet de supprimer ces fantômes afin de reconstruire la donnée\
-\cite{chandra2008icpr, chandra2012tip}. Nous étudierons cet algorithme afin 
-de concevoir un code à effacement. Dans cette section, la présentation des
+permet de supprimer ces fantômes afin de reconstruire la
+donnée\ \cite{chandra2008icpr, chandra2012tip}. Nous étudierons cet algorithme
+afin de concevoir un code à effacement. Dans cette section, la présentation des
 codes basés sur le FRT repose sur les travaux de \textcite{normand2010wcnc}.
 En particulier, ces travaux proposent une mise en œuvre de la FRT qui permet de
 construire un code à effacement MDS.

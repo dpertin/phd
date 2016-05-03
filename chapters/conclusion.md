@@ -38,7 +38,7 @@ rendement optimal des codes MDS quand la largeur de la grille augmente.
 Pour distinguer les codes, nous avons proposé une liste de critères
 (cf.\ \cpageref{sec.criteres}), permettant de distinguer les codes à effacement
 linéaires entre eux (e.g.\ critères sur la complexité théorique, l'indépendance
-des par.mètres, ou les débits de l'implémentation).
+des paramètres, ou les débits de l'implémentation).
 Nos travaux ont montré que le code Mojette est le plus apte à satisfaire ces
 critères.
 
@@ -160,7 +160,7 @@ implique un problème dans la mise à l'échelle du système. À la manière de
 l'algorithme \textsc{Crush}\ \cite{weil2007phd},
 la distribution des métadonnées (sous forme de projections Mojette) sur une
 grappe de serveurs de stockage permettrait de décentraliser ce service
-important. Les requêtes issues des client serait ainsi mieux gérer et ce, en
+important. Les requêtes issues des clients seraient ainsi mieux gérées et ce, en
 décentralisant la gestion des métadonnées. La thèse de Bastien
 \textsc{Confais} (débutée en octobre 2015) traite ce sujet dans le contexte de
 l'Internet des objets.

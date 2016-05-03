@@ -44,7 +44,7 @@ pannes. Avec le temps, les projections sont alors vouées à disparaître.
 Cette baisse de la redondance constitue le problème principal abordé
 dans ce chapitre. Afin de ne pas perdre définitivement de la donnée, il est
 nécessaire de rétablir le seuil de redondance du système. L'objectif ici sera
-chapitre est donc de fournir une méthode afin de distribuer de nouvelles
+donc de fournir une méthode afin de distribuer de nouvell  es
 données de redondance sur différents supports de stockage.
 Du point de vue de la transformée Mojette, le problème est illustré dans la
 \cref{fig.reprojection.pb}. Cet exemple met en jeu un ensemble de trois

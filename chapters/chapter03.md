@@ -316,7 +316,7 @@ sur le nombre d'éléments de la grille :
 remplacées par les $k$ lignes de la grille discrète quand le code est
 systématique. En conséquence, la valeur de $\mu$ correspond au quotient de la
 somme du nombre de pixels et de bins produits, sur le nombre de pixels de
-l'image:
+l'image :
 
 \begin{equation}
     \mu = \frac

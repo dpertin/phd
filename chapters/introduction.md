@@ -333,11 +333,6 @@ Ce travail de thèse a ainsi conduit aux contributions suivantes :
 
 2. la conception d'une version systématique du code à effacement Mojette;
 
-<!--
-%3. une comparaison du coût de la redondance des versions systématique et
-%non-systématique du code Mojette avec les codes MDS (e.g.\ \rs);
--->
-
 4. une implémentation des codes Mojette, ainsi qu'une comparaison des latences
 d'encodage et de décodage avec les codes de \rs fournis dans ISA-L));
 
@@ -347,6 +342,11 @@ comparaison des performances en lecture et en écriture avec le CephFS;
 6. une méthode pour ré-encoder de la redondance de façon distribuée, sans
 reconstruction explicite de la donnée initiale, dans l'objectif de rétablir un
 seuil de redondance au sein du NDSS.
+
+<!--
+%3. une comparaison du coût de la redondance des versions systématique et
+%non-systématique du code Mojette avec les codes MDS (e.g.\ \rs);
+-->
 
 
 \section*{Plan du manuscrit}
