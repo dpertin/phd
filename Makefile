@@ -30,7 +30,7 @@ $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
 		-use-make $<
 		# use-make useless
 
-$(MAIN).fmt: header.tex
+$(MAIN).fmt: header.tex these-LUNAM-UBL.cls
 	$(TEX)                  \
 	    -ini                \
 	    -jobname="$(MAIN)"  \
