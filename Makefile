@@ -18,7 +18,7 @@ CHPTDIR=chapters
 SRCS=$(shell find $(CHPTDIR) -name '*.md')
 OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
-all: these.pdf clean
+all: these.pdf
 
 # compute the .pdf file using latexmk
 $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
