@@ -18,6 +18,8 @@ CHPTDIR=chapters
 SRCS=$(shell find $(CHPTDIR) -name '*.md')
 OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
+TMP_FILES=$(shell find . -name 'these.m*')
+
 all: these.pdf clean
 
 # compute the .pdf file using latexmk
@@ -41,10 +43,10 @@ $(OBJS):
 # clean temporary files
 clean: 
 	latexmk -c
-	rm these.m*
+ifneq ("$(wildcard $(word 1, $(TMP_FILES)))","")
+	rm $(TMP_FILES)
+endif
 	cd $(CHPTDIR); make clean
-
-# pas très propre le rm these.m??? mais très chiant
 
 # clean temporary files + PDF output
 mrproper: 
