@@ -20,7 +20,7 @@ OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
 TMP_FILES=$(shell find . -name 'these.m*')
 
-all: these.pdf clean
+all: these.pdf
 
 # compute the .pdf file using latexmk
 $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
