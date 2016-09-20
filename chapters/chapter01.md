@@ -34,7 +34,7 @@ possible de générer de la redondance en répétant plusieurs fois le bloc
 d'information à transmettre. Une quantité suffisante de répétitions permet
 de supprimer le bruit du canal. Toutefois, l'augmentation du nombre de
 répétitions entraine la diminution de la part d'information utile dans la
-transmission. Désigné comme le \ct{rendement}» du code, ce taux correspond au
+transmission. Désigné comme le \ct{rendement} du code, ce taux correspond au
 rapport entre le nombre de blocs utiles sur le nombre de blocs transférés.
 En définissant la notion d'entropie, \shannon est parvenu a établir un théorème
 qui pose les limites du codage canal \cite{shannon1948bstj}. Ce théorème 
@@ -172,7 +172,7 @@ ces critères.
 
 
 
-# Notion de théorie des codes {#sec.theorie.codes}
+# Notions de théorie des codes {#sec.theorie.codes}
 
 Dans cette section, nous verrons dans un premier temps la théorie mathématique
 de l'information, introduite par \textcite{shannon1948bstj}. Cette étude
@@ -250,7 +250,7 @@ d'un canal. L'ensemble de ces définitions est introduit dans les travaux de
 Pour pouvoir définir l'entropie, il faut introduire au préalable le concept de
 \ct{degré d'originalité}. Ce degré d'originalité $I(s_i)$ (parfois appelé
 \ct{auto-information} est défini comme l'information transmise par le symbole
-$s_i$ (en bit) et vaut\ \cite[p. 1]{shannon1948bstj} :
+$s_i$ (en bit) et vaut\ \cite[p.\ 1]{shannon1948bstj} :
 
 \begin{equation}
     I(s_i) = -\log_2(p_i).
@@ -260,7 +260,7 @@ $s_i$ (en bit) et vaut\ \cite[p. 1]{shannon1948bstj} :
 d'information par rapport à un symbole qui apparaît très rarement.
 L'entropie $H(\mathcal{S})$ d'une source correspond à la valeur moyenne du
 degré d'originalité de l'ensemble des symboles de l'alphabet. Elle est ainsi
-définie comme\ \cite[p. 11]{shannon1948bstj} :
+définie comme\ \cite[p.\ 11]{shannon1948bstj} :
 
 \begin{equation}
     \begin{split}
@@ -313,8 +313,8 @@ $X$ lorsqu'une valeur de Y est connue :
 \end{equation}
 
 \noindent Cette notion peut être ensuite étendue dans le cas où l'on connait
-l'ensemble des degrés d'originalité des symboles de $Y$\ \cite[p.
-12]{shannon1948bstj} :
+l'ensemble des degrés d'originalité des symboles de
+$Y$\ \cite[p.\ 12]{shannon1948bstj} :
 
 \begin{equation}
     H(X|Y) = - \sum_{x,y} p_{x|y} \log_2 \left( \frac{p_y}{p_{x|y}} \right).
@@ -330,8 +330,8 @@ capable de déterminer le symbole $x_i$ transmis depuis la source, à partir des
 informations reçues $y_i$ par le récepteur. L'information mutuelle $I(X,Y)$
 mesure la quantité d'information reçue. Elle correspond à la quantité
 d'information restante lorsque l'on soustrait l'information perdue sur le
-canal $H(X|Y)$, à l'information émise par l'émetteur $H(X)$\ \cite[p.
-12]{shannon1948bstj} :
+canal $H(X|Y)$, à l'information émise par l'émetteur
+$H(X)$\ \cite[p.\ 12]{shannon1948bstj} :
 
 \begin{equation}
     \begin{split}
@@ -350,20 +350,23 @@ déterminée par $X$ et le canal ne provoque pas d'erreur.
 ### Capacité d'un canal
 
 La capacité d'un canal $C(X,Y)$ est définie
-ainsi\ \cite[p. 22]{shannon1948bstj} :
+ainsi\ \cite[p.\ 22]{shannon1948bstj} :
 
 \begin{equation}
     C(X,Y) = \max{I(X,Y)}\;.
 \end{equation}
 
-\noindent Elle correspond à la quantité maximale d'information qui peut être transmise par le canal.
+\noindent Elle correspond à la quantité maximale d'information qui peut être
+transmise par le canal.
 
 
 
 ## Exemples de canaux {#sec.exemples.canaux}
 
+
 Notre étude va s'intéresser aux deux canaux suivants : le canal binaire
 symétrique, et le canal à effacement.
+
 
 ### Canal binaire symétrique
 
@@ -393,7 +396,7 @@ ainsi :
 \noindent L'entropie est à son maximal lorsque la distribution de $Y$ est
 uniforme. Dans le cas du canal symétrique, cela correspond à une distribution
 de $X$ uniforme. En conséquence, l'information mutuelle est maximale lorsque
-$p=0.5$. La capacité du CBS correspond à \cite[p. 316]{dumas2007book} :
+$p=0.5$. La capacité du CBS correspond à \cite[p.\ 316]{dumas2007book} :
 
 \begin{equation}
     \begin{split}
@@ -423,7 +426,7 @@ tendre vers l'infini.
     \includesvg{img/cbe}
     \caption{Représentation d'un canal binaire à effacement. La source transmet
     sur le canal des bits qui peuvent être effacés avec une probabilité $p$.
-    L'effacement représente la transition d'un bit vers \ct{$?$\}.}
+    L'effacement représente la transition d'un bit vers \ct{$?$}.}
     \label{fig.cbe}
 \end{figure}
 
@@ -652,7 +655,7 @@ redondance est minimale pour une valeur de rendement fixé. Les codes qui
 atteignent la borne de \singleton sont appelés \ct{codes MDS}, pour *Maximum
 Distance Separable*.
 
-\textcite[p. 317]{macwilliams2006book} relient le terme \ct{\emph{separable}} à
+\textcite[p.\ 317]{macwilliams2006book} relient le terme \ct{\emph{separable}} à
 la séparation des symboles (message et parité) dans le cas des codes
 systématiques.
 Nous préférons considérer que les codes MDS peuvent être systématiques ou
@@ -715,14 +718,14 @@ Enfin, nous verrons dans la \cref{sec.distinction.differents.codes} ce qui
 distingue les différents codes à effacement.
 
 
-## Codage applicatif par paquets {#sec.codage.effacement.paquets}
+## Codage par paquets sur la couche applicative {#sec.codage.effacement.paquets}
 
 En pratique, les symboles peuvent représenter différents contenus d'information.
 Sur la couche physique, les symboles correspondent à des bits (comme
 nous l'avons vu jusqu'à présent). Dans le cas du standard de transmission vidéo
 DVB-H \cite{faria2006ieee}, un symbole correspond à un octet. Dans l'exemple
 d'un protocole réseau, il peut s'agir de paquets réseau
-\cite{tournoux2011tom,roca2015rfc}. Dans un contexte de stockage, un symbole
+\cite{tournoux2011tom,lacan2009rfc}. Dans un contexte de stockage, un symbole
 peut également représenter des parties de fichiers, voire des fichiers entiers
 \cite{huang2012atc}.
 
@@ -792,9 +795,9 @@ addition. Le coût d'une opération dépend cependant de la manière dont elle e
 mise en œuvre;
 
 3. l' \textbf{indépendance des paramètres} de codes forme le troisième critère.
-Ce critère correspond à la capacité de sélectionner arbitrairement les valeurs
+Ce critère correspond à la possibilité de choisir arbitrairement les valeurs
 $(n,k)$ du code. Nous verrons dans la prochaine section l'exemple du code de
-parité, restreint à $n=k+1$;
+parité, dont la longueur et la dimension sont liées par la relation $n=k+1$;
 
 4. le \textbf{rendement} correspond au quatrième critère. Nous cherchons à
 concevoir des codes MDS qui minimisent la quantité de redondance nécessaire;
@@ -910,7 +913,7 @@ suivante : n'importe quelle sous-matrice de taille $k \times k$ de $G$ est
 inversible. Les matrices de \vander $V_{i,j} = \alpha_i^{j-1}$, où
 les $\alpha_i$ correspondent à des éléments du corps fini, possèdent une telle
 propriété. L'encodage correspond alors à multiplier une matrice de \vander avec
-le vecteur colonne représentant le message à transmettre \cite{lacan2015rfc}.
+le vecteur colonne représentant le message à transmettre \cite{lacan2009rfc}.
 
 Soit $x'$ le message à transmettre, $x$ le mot de code transmis, et $y$ le
 message reçu. Dès que le destinataire reçoit $k$ symboles parmi les $n$
@@ -929,7 +932,7 @@ par rapport aux additions (ce qui pénalise le critère $1$ et $2$).
 Plusieurs méthodes ont été proposées pour réduire cette complexité.
 \textcite{blomer1995icsi} utilisent des matrices d'encodage basées sur des
 matrices de \cauchy. En particulier, ils représentent la matrice d'encodage de
-façon à réaliser les opérations sans multiplications. En conséquence, ils
+façon à réaliser les opérations sans multiplication. En conséquence, ils
 parviennent à réduire la complexité à $\mathcal{O}(k^2)$.
 \textcite{lacan2010ccnc} ont par la suite réduit cette complexité à
 $\mathcal{O}(k \log k)$ en utilisant la transformée de \fourier.
@@ -1041,17 +1044,19 @@ l'élimination de \gj se réduit.
 
 \begin{table}
     \centering
-		\begin{tabular}{@{} l L L L L L @{} >{\kern\tabcolsep}l @{}}
+		\begin{tabular}{@{} l L L L L @{} >{\kern\tabcolsep}l @{}}
 		\toprule
-		& \(1\) & \(2\) & \(3\) & \(4\) & \(5\)\tabularnewline
+		& Répétition & Parité & \rs & LDPC\tabularnewline
 		\midrule
-		Répétition & \(-\) & \checkmark & \checkmark & \(-\) &
+		C1.\ complexité théorique & \(-\) & \checkmark & \(-\) & \checkmark
+		    \tabularnewline
+		C2.\ complexité opérationnelle & \checkmark & \checkmark & \(-\) &
 		    \checkmark \tabularnewline
-		Parité & \checkmark & \checkmark & \(-\) & \checkmark &
+		C3.\ indépendance des paramètres  & \checkmark & \(-\) & \checkmark &
 		    \checkmark \tabularnewline
-		\rs  & \(-\) & \(-\) & \checkmark & \checkmark &
-		    \(-\) \tabularnewline
-		LDPC & \checkmark & \checkmark & \checkmark & \(-\) &
+		C4.\ rendement & \(-\) & \checkmark & \checkmark & \(-\)
+		    \tabularnewline
+		C5.\ complexité systématique & \checkmark & \checkmark & \(-\) &
 		    \checkmark \tabularnewline
 		\bottomrule
 		\end{tabular}
