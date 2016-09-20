@@ -1,30 +1,29 @@
+Les codes à effacement permettent de générer de la redondance de données
+numériques dans un système de stockage distribué. Cette redondance permet
+de restaurer une partie manquante des données en cas de panne. L'avantage des
+codes est de réduire considérablement la quantité de redondance générée par
+rapport aux techniques classiques de réplication. Toutefois, cette réduction
+s'accompagne d'une complexité calculatoire significative, pénalisant les
+performances d'encodage et de décodage, ce qui limite leur utilisation aux
+données froides.
 
-Les systèmes de stockage distribués sont sujets à des défaillances inévitables
-qui entraînent l'inaccessibilité temporaire, voire la perte définitive de blocs
-de données. La solution classique consiste à distribuer des copies de ces
-données sur différents supports de stockage, mais cela engendre un coût de
-stockage important.
-%
-Le codage à effacement est une alternative qui permet de réduire
-considérablement la quantité de redondance au prix d'une complexité
-calculatoire engendrée par les opérations d'encodage et de décodage.
+Dans cette thèse, nous nous intéressons à l'utilisation de la transformation
+Mojette afin de fournir un code à effacement performant, adapté aux données
+chaudes. Le code qui en résulte nécessite cependant plus de redondance par
+rapport aux codes classiques.
 
-La transformée Mojette (une version discrète et exacte de la transformée
-de \radon) est capable de représenter de manière redondante l'information,
-et de reconstruire efficacement cette information. % /!\
+La première contribution de ces travaux de thèse traite de la conception
+d'une version systématique du code à effacement Mojette. Cette version a
+l'avantage d'augmenter significativement les performances du code, tout en
+réduisant la quantité de redondance nécessaire.
 
-La conception d'une version systématique du code à effacement Mojette est la
-première contribution de nos travaux de recherche. Ce code a un rendement
-quasi-optimal, et les algorithmes pour le mettre en œuvre sont de faible
-complexité.
+La seconde contribution s'intéresse à l'intégration de cette solution au sein
+du système de fichiers distribué RozoFS.
+Cette contribution permet au système d'assurer un service continu en cas de
+panne, tout en étant capable de gérer les données chaudes avec deux fois moins
+de données par rapport aux systèmes basés sur la réplication.
 
-La seconde contribution est une nouvelle méthode distribuée pour ré-encoder de
-nouveaux symboles de mots de code, sans avoir à reconstruire explicitement
-l'information initiale. Cette technique permet de rétablir un niveau de
-redondance voulu.
-
-Réalisés en collaboration entre l'IRCCyN et la société Rozo Systems, ces
-travaux de recherche s'intègrent dans le système de fichiers
-distribué RozoFS développé par l'entreprise. En conséquence, une attention
-particulière a été portée aux performances des mises en œuvre réalisées.
-
+Un troisième axe de recherche se focalise sur la conception d'une méthode
+distribuée pour générer de nouveaux symboles de mots de code Mojette. Cette
+technique participe à la restauration d'un seuil de redondance du système de
+stockage.

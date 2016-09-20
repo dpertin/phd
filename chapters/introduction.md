@@ -24,15 +24,10 @@ de centres de données). Les utilisateurs aussi s'adaptent et découvrent de
 nouvelles applications (e.g.\ informatique en nuage, fouille de données).
 <!--%-->
 Dans ce contexte, le rôle des systèmes de stockage de données est
-crucial. En effet, cette explosion du nombre d'appareils s'accompagne d'une
-évolution exponentielle des données générées et stockées.
+crucial puisque cette évolution importante du nombre d'appareils
+s'accompagne d'une augmentation exponentielle des données générées et stockées.
 En particulier, le rapport d'IDC estime que la quantité de données stockées
 dans le monde correspondra à $44$ zettaoctets\footnote{
-%<!--
-%Si un caractère
-%nécessite un octet, un zettaoctet contiendrait plus de $200000$ milliards de
-%fois l'œuvre \emph{Le Monde Perdu} d'Arthur Conan Doyle.
-%-->
 \textcite{hilbert2011science} rappellent que ce volume de données correspond à
 la quantité d'information génétique contenue dans un corps humain, mais que
 \ct{par rapport à la capacité de la nature à traiter l'information, la capacité
@@ -45,7 +40,8 @@ critères (e.g.\ capacité de stockage, tolérance aux pannes, mise à l'échell
 débits des lectures et écritures). Les systèmes centralisés (composés d'un seul
 serveur) présentent des limites, notamment en ce qui concerne la mise à
 l'échelle (les ressources du serveur sont limitées) et la tolérance aux pannes
-(rien ne peut survivre à la perte du serveur). Pour satisfaire ces critères, il
+(perte de la totalité des données stockées sur le serveur).
+Pour satisfaire ces critères, il
 est en conséquence nécessaire d'utiliser des systèmes de stockage distribués.
 Un système distribué est défini par \textcite{tanenbaum2006book} comme \ct{un
 ensemble de serveurs indépendants, dont les utilisateurs ont une vision
@@ -172,11 +168,12 @@ $100\%$. Cette méthode implique alors un coût de stockage important.
 permettant au NDSS de supporter les pannes, tout en minimisant cette quantité
 de redondance}.
 
-Une fois qu'un seuil de redondance est mis en place dans le NDSS, les pannes
-inévitables entraînent nécessairement la réduction de cette redondance dans le
-temps. \textbf{Notre quatrième problème sera de rétablir un seuil de
-redondance}. Pour résumer, les quatre problèmes identifiés dans cette section
-visent à concevoir un NDSS capable :
+Une fois qu'un seuil de redondance est mis en place dans le NDSS, certaines
+pannes entraînent une perte de données qui se
+traduit par une réduction de la quantité de redondance.
+\textbf{Notre quatrième problème sera de déterminer un moyen efficace
+afin de rétablir et maintenir un seuil de redondance}. Pour résumer, les quatre
+problèmes identifiés dans cette section visent à concevoir un NDSS capable :
 
 <!--
 %Il est alors
@@ -194,9 +191,9 @@ visent à concevoir un NDSS capable :
 %problème de réparation » (*repair problem*)\ \cite{dimakis2010toit}.
 -->
 
-1. d'adapter dynamiquement ses ressources de stockage;
+1. d'être capable de délivrer de très hauts débits de lecture et d'écriture;
 
-2. d'être capable de délivrer de très hauts débits de lecture et d'écriture;
+2. d'adapter dynamiquement ses ressources de stockage;
 
 3. d'être tolérant aux pannes, tout en minimisant la quantité de redondance;
 
@@ -213,9 +210,10 @@ redondance générée par rapport aux techniques de réplication (typiquement d'
 facteur
 $2$)\ \cite{weatherspoon2001iptps,oggier2012icdcn,cook2014hitachi}. En
 particulier les codes optimaux (dits MDS pour *Maximum Distance Separable*)
-minimisent la quantité de redondance nécessaire pour protéger les données. Les
-codes de \rs sont largement utilisés parce qu'ils sont
-MDS\ \cite{reed1960jsiam}. Ils sont ainsi utilisés dans plusieurs DFS tels
+minimisent la quantité de redondance nécessaire pour protéger les données. Dans
+cette thèse, nous comparerons régulièrement nos codes aux codes MDS. Parmi eux,
+les codes de \rs sont largement utilisés\ \cite{reed1960jsiam}. Ils sont ainsi
+intégrés dans plusieurs DFS tels
 que CephFS\ \cite{weil2006osdi} ou DiskReduce\footnote{DiskReduce est une
 modification de \emph{Hadoop Distributed File System} (HDFS) qui intègre les
 codes de \rs. HDFS est un DFS open-source basé sur \emph{Google File System}
@@ -329,19 +327,24 @@ en lecture et écriture, tout en tolérant les pannes avec une quantité minimum
 de redondance (code MDS).
 Ce travail de thèse a ainsi conduit aux contributions suivantes :
 
-1. une comparaison théorique des codes présentés dans ce manuscrit; 
+1. l'établissement d'une liste de critères utilisée dans cette thèse afin de
+fournir une comparaison théorique des codes présentés dans ce manuscrit;
 
-2. la conception d'une version systématique du code à effacement Mojette;
+2. la conception et l'analyse d'une version systématique du code à effacement
+Mojette, permettant d'accélérer les performances du code, et d'en réduire la
+quantité de redondance nécessaire;
 
-4. une implémentation des codes Mojette, ainsi qu'une comparaison des latences
-d'encodage et de décodage avec les codes de \rs fournis dans ISA-L));
+4. la réalisation d'une implémentation des codes Mojette, ainsi qu'une
+comparaison des latences d'encodage et de décodage avec les codes de \rs
+fournis dans ISA-L;
 
 5. l'intégration du code Mojette systématique dans RozoFS, ainsi qu'une
-comparaison des performances en lecture et en écriture avec le CephFS;
+comparaison des performances en lecture et en écriture avec le système de
+fichiers distribué de référence : CephFS;
 
-6. une méthode pour ré-encoder de la redondance de façon distribuée, sans
-reconstruction explicite de la donnée initiale, dans l'objectif de rétablir un
-seuil de redondance au sein du NDSS.
+6. la conception d'une méthode pour ré-encoder de la redondance de façon
+distribuée, sans reconstruction explicite de la donnée initiale, dans
+l'objectif de rétablir un seuil de redondance au sein du NDSS.
 
 <!--
 %3. une comparaison du coût de la redondance des versions systématique et
@@ -354,10 +357,10 @@ seuil de redondance au sein du NDSS.
 \addcontentsline{toc}{section}{Plan du manuscrit}
 
 Les travaux de cette thèse sont organisés en deux parties qui comportent
-chacune trois chapitres. La première partie consiste à concevoir de nouveaux
-codes à effacement en utilisant conjointement théorie de l'information et
-transformée de \radon discrète. Les trois chapitres qui le composent présentent
-les éléments suivants :
+chacune trois chapitres. La première partie couvre la conception de nouveaux
+codes à effacement en utilisant conjointement la théorie de l'information et
+la transformée de \radon discrète. Les trois chapitres qui le composent
+présentent les éléments suivants :
 
 1. dans le \cref{sec.chap1}, nous introduisons des notions de la théorie de
 l'information nécessaires afin d'établir un état de l'art des codes à
@@ -374,27 +377,29 @@ effacement basés sur ces transformations. Nous verrons ainsi que la FRT donne
 un code MDS, tandis que la transformation Mojette dispose d'un algorithme de
 décodage itératif efficace;
 
-3. la première contribution est énoncée dans le \cref{sec.chap3}. Cette
-contribution est une nouvelle conception du code à effacement Mojette sous sa
-forme systématique. Cette conception a des avantages sur le rendement du code
-et permet de tendre d'avantage vers un code MDS. Dans un deuxième temps, un
-algorithme de décodage adapté à cette forme est donné. 
+3. la première contribution majeure est énoncée dans le \cref{sec.chap3}. Cette
+contribution correspond une nouvelle conception du code à effacement Mojette
+sous sa forme systématique. Cette conception a des avantages sur le rendement
+du code et permet de tendre d'avantage vers un code MDS. Dans un deuxième
+temps, un algorithme de décodage adapté à cette forme est donné.
 Nous évaluerons ainsi la quantité de redondance générée par cette nouvelle
 forme par rapport à la version classique et au cas MDS. Cette évaluation
-permet de mettre en évidence le rendement quasi-MDS de notre conception.
+permet de mettre en évidence le rendement quasi-MDS du code conçu.
 
-\noindent La première partie ayant permis la conception du code à effacement
-Mojette, la seconde partie s'intéresse à son intégration dans le contexte des
-systèmes de stockage distribués. Dans cette partie, les deux premiers chapitres
-mettent en avant l'utilisation du code à effacement Mojette dans une
-architecture de stockage distribué, puis spécifiquement dans RozoFS. Le
-troisième chapitre tente de répondre au problème de réparation. Plus
-particulièrement, les différents chapitres comportent les éléments suivants :
+\noindent La première partie ayant permis la conception d'un code à effacement
+Mojette performant, la seconde s'intéresse à son intégration dans le
+contexte des systèmes de stockage distribués. Dans cette partie, les deux
+premiers chapitres mettent respectivement en avant l'utilisation du code à
+effacement Mojette dans une architecture de stockage distribué, puis
+spécifiquement dans RozoFS. Le troisième chapitre tente de répondre au
+problème du maintien d'un seuil de redondance, dans un système dont les données
+se dégradent au cours du temps. Plus particulièrement, les différents chapitres
+comportent les éléments suivants :
 
 1. le \cref{sec.chap4} présente une analyse théorique et expérimentale des
 performances du code Mojette dans le contexte du stockage distribué. Les
 métriques utilisées (nombres d'opérations à l'encodage et au décodage, nombre
-de blocs impacté par la mise à jour de données) mettent en avant la simplicité
+de blocs impactés par la mise à jour de données) mettent en avant la simplicité
 algorithmique du code Mojette par rapport à d'autres codes (e.g.\ codes de \rs).
 En particulier, une mesure des latences en encodage et décodage des
 implémentations du code Mojette est donnée. Dans les conditions de nos tests,
@@ -402,18 +407,19 @@ notre nouvelle conception systématique permet de réduire par trois les temps
 d'encodage par rapport à la forme classique. De plus, aucun décodage n'est
 nécessaire en lecture, dans le cas où aucune panne ne survient. En particulier,
 ces mesures montrent également que notre implémentation est plus performante
-que l'implémentation des codes de \rs fournit dans ISA-L;
+que l'implémentation des codes de \rs fournit par la bibliothèque de
+référence : ISA-L;
 
 2. la mise en œuvre et l'intégration du code à effacement Mojette dans le
-système de fichiers distribué RozoFS est expliquée dans le \cref{sec.chap5}.
+système de fichiers distribué RozoFS est décrite dans le \cref{sec.chap5}.
 Une évaluation menée sur la plate-forme Grid'5000 permet de
 montrer que dans le cadre de nos tests, RozoFS est capable de fournir de
-meilleures performances que des systèmes basés sur de la réplication, tout en
-réduisant d'un facteur $2$ le volume total stocké;
+meilleures performances que des systèmes basés sur de la réplication (e.g.
+CephFS), tout en réduisant d'un facteur $2$ le volume total stocké;
 
 3. notre contribution sur le rétablissement du seuil de redondance du NDSS est
 fournie dans le \cref{sec.chap6}. Cette contribution concerne la conception
-d'une nouvelle méthode distribuée pour calculer de nouveaux symboles de mots de
+d'une méthode distribuée afin de calculer de nouveaux symboles de mots de
 code. Cette méthode peut être utilisée afin de maintenir le système de stockage
 à un niveau de redondance désiré. Une évaluation est réalisée afin de mettre en
 avant le bénéfice de la distribution des calculs.
@@ -430,8 +436,9 @@ recherche.
 Dans le cadre d'une convention CIFRE, ces travaux de recherche ont été menés
 conjointement au sein de l'équipe Image et Vidéo Communications (IVC) de
 l'Institut de Recherche en Communications et Cybernétique de Nantes (IRCCyN),
-et au sein de l'entreprise Rozo Systems. Cette entreprise développe le système
-de fichiers distribué RozoFS.
+et au sein de l'entreprise Rozo Systems. Cette entreprise développe notamment 
+le système de fichiers distribué RozoFS, qui sera largement abordé dans ce
+manuscrit.
 
 Une partie de ce travail de recherche a également été financée par le projet
 ANR FEC4Cloud (appel Emergence 2012). Ce projet a pour objectifs d'analyser et

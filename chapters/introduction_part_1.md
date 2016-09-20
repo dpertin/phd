@@ -9,34 +9,30 @@
 %phénomène de panne est considéré comme une norme plutôt qu'une exception
 %\cite{ford2010osdi}. Afin de supporter ces pannes, 
 -->
+
 Les systèmes d'information nécessitent l'ajout de données de redondance au
 message à transmettre afin que le destinataire puisse reconstituer
 l'information lorsque celle-ci est détériorée. Dans cette partie, nous
-tâcherons d'une part de minimiser la quantité de redondance générée, et,
-d'autre part d'optimiser les performances du code.
-Pour cela, l'objectif ici est de concevoir de nouveaux codes à
-effacement qui se basent sur des transformées discrètes afin de fournir deux
-éléments : un rendement optimal (code MDS), et, de nouveaux
-algorithmes d'encodage et de décodage de faible complexité.
+nous intéressons d'une part à minimiser la quantité de redondance générée, et,
+d'autre part, à optimiser les performances du code.
+L'objectif ici est de concevoir de nouveaux codes à effacement qui se basent
+sur des transformées discrètes afin de fournir deux choses : un rendement
+optimal (code MDS), et de nouveaux algorithmes d'encodage et de décodage de
+faible complexité.
 
-Pour cela, les bases mathématiques de la théorie des codes seront introduites
+Pour cela, les bases mathématiques de la théorie des codes sont introduites
 dans le \cref{sec.chap1} à travers l'étude des travaux fondamentaux de
-\textcite{shannon1948bstj}. En particulier, nous définirons une proposition de
-critères, comme base pour notre première contribution, à savoir, la comparaison
+\textcite{shannon1948bstj}. En particulier, nous proposons une liste de
+critères comme base pour notre première contribution, à savoir, la comparaison
 des différents codes présentés dans ce manuscrit. Le \cref{sec.chap2} décrit
 notre approche pour concevoir des codes à effacement à partir de versions discrètes
-de la transformation de \radon. Le \cref{sec.chap3} contient deux
-contributions. La première correspond à l'élaboration d'une construction
+de la transformation de \radon. Le \cref{sec.chap3} décrit notre seconde
+contribution correspondant à l'élaboration d'une construction
 du code à effacement Mojette sous une forme systématique. Cette construction
 vise à réduire la complexité du code, ainsi que la quantité
-de redondance générée. La seconde contribution, détaillée à l'issue de cette
-étude, correspond à une évaluation du gain de redondance de cette nouvelle
-construction, par rapport à la version non-systématique et aux codes MDS.
-
-
-
-
-
+de redondance générée. À l'issue de cette étude, nous présentons une évaluation
+de cette réduction de redondance par rapport à la version non-systématique et
+aux codes MDS.
 
 <!--
 %par une étude la

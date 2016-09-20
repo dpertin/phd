@@ -3,9 +3,10 @@
 
 \addstarredchapter{Introduction de la partie}
 
-Nous avons défini dans la partie précédente le code à effacement Mojette 
-afin de répondre au problème de la transmission d'informations sur un
-canal non-fiable. Dans cette nouvelle partie, nous nous intéresserons à
+La partie précédente a permis de définir le code à effacement Mojette 
+permettant de répondre efficacement au problème de la transmission
+d'informations sur un canal non-fiable.
+Dans cette nouvelle partie, nous nous intéresserons à
 l'application de ce code dans un système de stockage distribué (NDSS).
 Dans ce contexte, le phénomène de panne est considéré comme la
 norme plutôt que l'exception. L'objectif de cette nouvelle partie est de
@@ -58,19 +59,21 @@ Nous verrons en détail, les éléments suivants dans cette partie :
 -->
 
 1. le \cref{sec.chap4} présente l'utilisation des codes à effacement dans le
-contexte du stockage distribué. En particulier, le cas du RAID-6 est introduit
-avant de généraliser l'étude. Ce chapitre contient deux contributions
-concernant : (i) l'évaluation théorique des performances des codes à
-effacement (ii) l'évaluation des performances d'encodage et de décodage des
-implémentations des codes Mojette et \rs;
+contexte du stockage distribué. En particulier, le cas du RAID-6, protégeant
+les données face à une panne, est introduit
+avant de généraliser l'étude. Ce chapitre contient les deux contributions
+suivantes : (i) l'évaluation théorique des performances des codes à
+effacement (ii) la comparaison des performances d'encodage et de décodage des
+implémentations des codes Mojette par rapport aux codes MDS de référence
+(de \rs);
 
 2. le \cref{sec.chap5} étudie l'intégration du code à effacement Mojette dans
 RozoFS, le DFS développé par Rozo Systems. Une évaluation des latences de
 lecture et d'écriture enregistrées par RozoFS sera comparée à celles fournies
-par le DFS CephFS, basé sur une technique de réplication;
+par le DFS référent : CephFS, qui utilise des techniques de réplication;
 
 3. dans le \cref{sec.chap6}, nous proposons une nouvelle méthode distribuée
-pour réencoder de nouveaux symboles de mots de code (i.e.\ projections
+pour ré-encoder de nouveaux symboles de mots de code (i.e.\ projections
 Mojette), sans avoir à reconstruire explicitement la donnée initiale. Cette
 technique sera particulièrement utile dans le cas de la réparation de
 supports de stockage, ou d'allocation dynamique de redondance.
