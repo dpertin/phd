@@ -158,7 +158,7 @@
 
 \def\proj{\mathrm{proj}}
 \def\M{\mathcal{M}}
-\def\blocs{blocs}
+\def\blocs{blocs\xspace}
 
 
 \DeclareMathOperator*{\xor}{\bigoplus}
@@ -295,12 +295,19 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 % déclaration de la catégorie mine pour biblatex
 \DeclareBibliographyCategory{mine}
 
-\DeclareIndexNameFormat{mine}{%
-  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
-               and ( test {\ifdefstring{\prenom}{#3}}
-                     or test {\ifdefstring{\firstinit}{#4}} ) }
-    {\addtocategory{mine}{\thefield{entrykey}}}
-    {}}
+% Ce qui suit ne fonctionne plus depuis biblatex 3.3
+% http://tex.stackexchange.com/questions/299036/biblatex-3-3-name-formatting
+%\DeclareIndexNameFormat{mine}{%
+%  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
+%               and ( test {\ifdefstring{\prenom}{#3}}
+%                     or test {\ifdefstring{\firstinit}{#4}} ) }
+%    {\addtocategory{mine}{\thefield{entrykey}}}
+%    {}}
+
+\DeclareIndexNameFormat{mine}{
+      \ifboolexpr{ test {\ifstrequal{Pertin Dimitri}{#1}}}
+          {\addtocategory{mine}{\thefield{entrykey}}}
+              {}}
 
 \AtDataInput{%
   \indexnames[mine]{author}}
@@ -328,16 +335,16 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 %                                                                              %
 % Emphasize a particular author
 % adapted from: file:///usr/local/texlive/2010/texmf-dist/doc/latex/biblatex/biblatex.pdf
-\DeclareNameFormat{author}{%
-  \ifthenelse{\equal{#1}{\nom}}
-    {{\bf\ifblank{#3}{}{#3\space}%
-     #1}}%
-    {\ifblank{#3}{}{#3\space}%
-     #1}%
-  \ifthenelse{\value{listcount}<\value{liststop}}
-    {\addcomma\space}
-    {}
-}
+%\DeclareNameFormat{author}{%
+%  \ifthenelse{\equal{#1}{\nom}}
+%    {{\bf\ifblank{#3}{}{#3\space}%
+%     #1}}%
+%    {\ifblank{#3}{}{#3\space}%
+%     #1}%
+%  \ifthenelse{\value{listcount}<\value{liststop}}
+%    {\addcomma\space}
+%    {}
+%}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
