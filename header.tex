@@ -4,8 +4,8 @@
 \newcommand\matus{\citeauthor{matus1993pami}\xspace}
 \newcommand\katz{\citeauthor{katz1978springer}\xspace}
 \newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
-\newcommand\shannon{\citeauthor{shannon1948bstj}\xspace}
 
+\newcommand\shannon{\textsc{Shannon}\xspace}
 \newcommand\hamming{\textsc{Hamming}\xspace}
 \newcommand\vander{\textsc{Vandermonde}\xspace}
 \newcommand\cauchy{\textsc{Cauchy}\xspace}
@@ -19,11 +19,14 @@
 \newcommand\intel{\textsc{Intel}\xspace}
 
 \newcommand\ZZ{\mathbb{Z}}
+\newcommand\NN{\mathbb{N}}
 \newcommand\RR{\mathbb{R}}
 \newcommand\CC{\mathbb{C}}
 \newcommand\FF{\mathbb{F}}
 \newcommand\PP{\mathcal{P}}
 \newcommand\QQ{\mathcal{Q}}
+%\newcommand\MM{\mathcal{M}}
+\newcommand\MM{M}
 
 
 \documentclass[11pt,
@@ -94,8 +97,6 @@
 %\geometry{inner=2.5cm, outer=2.5cm, top=2.5cm, bottom=2cm}
 %\geometry{inner=1.5cm, outer=1.5cm, top=2cm, bottom=2cm}
 
-\usepackage[french=guillemets]{csquotes}
-
 \usepackage{textcomp}
 \usepackage{pdflscape}
 \usepackage{sistyle}
@@ -118,18 +119,19 @@
 
 \usepackage{listings}
 	\lstset{language=C++,
-	backgroundcolor=\color{mygrey},
+	%backgroundcolor=\color{mygrey},
 	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
 	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
-	commentstyle=\itshape\color{mybgrey},
+	commentstyle=\itshape\color{mygrey},
 	breaklines=true,
 	captionpos=b,
 	numbers=left,
 	numberstyle=\color{black},
 	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
-	basicstyle={\color{mywhite}},
+	%basicstyle={\color{mywhite}},
 	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
-	frame=none}
+	frame=single%none}
+}
 
 \newcommand{\firstinit}{D.}
 \newcommand{\prenom}{Dimitri}
@@ -156,7 +158,8 @@
 
 \def\proj{\mathrm{proj}}
 \def\M{\mathcal{M}}
-\def\blocs{blocs}
+\def\blocs{blocs\xspace}
+
 
 \DeclareMathOperator*{\xor}{\bigoplus}
              
@@ -165,14 +168,18 @@
 \DeclareMathOperator*{\bigast}{\ast}
 \DeclareMathOperator*{\bigastinv}{\ast^{-1}}
 \newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
-\def\dirset#1{\left\{#1\right\}}
-\def\ghost#1{G_{\dirset{#1}}}
+\def\dir#1{\left\{#1\right\}}
+\def\ghost#1{g_{#1}}
+\def\moj#1#2{M_{#1}\left[#2\right]}
+
+\def\ct#1{«~#1~»}
 
 \makeatletter
 \renewcommand{\ALG@name}{Algoritme}
 \makeatother
 
-\algrenewcommand\algorithmicrequire{\textbf{Nécessite :}}
+\algrenewcommand\algorithmicrequire{\textbf{Entrée :}}
+\algrenewcommand\algorithmicensure{\textbf{Sortie :}}
 \algrenewcommand\algorithmicfor{\textbf{pour}}
 \algrenewcommand\algorithmicforall{\textbf{pour tout}}
 \algrenewcommand\algorithmicdo{\textbf{faire}}
@@ -221,7 +228,8 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
     maxbibnames=99,
     language=french,
     babel=other,
-    backref=true
+    backref=true,
+	%style=trad-plain
 ]{biblatex}
 \addbibresource{these.bib}
 
@@ -287,12 +295,19 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 % déclaration de la catégorie mine pour biblatex
 \DeclareBibliographyCategory{mine}
 
-\DeclareIndexNameFormat{mine}{%
-  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
-               and ( test {\ifdefstring{\prenom}{#3}}
-                     or test {\ifdefstring{\firstinit}{#4}} ) }
-    {\addtocategory{mine}{\thefield{entrykey}}}
-    {}}
+% Ce qui suit ne fonctionne plus depuis biblatex 3.3
+% http://tex.stackexchange.com/questions/299036/biblatex-3-3-name-formatting
+%\DeclareIndexNameFormat{mine}{%
+%  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
+%               and ( test {\ifdefstring{\prenom}{#3}}
+%                     or test {\ifdefstring{\firstinit}{#4}} ) }
+%    {\addtocategory{mine}{\thefield{entrykey}}}
+%    {}}
+
+\DeclareIndexNameFormat{mine}{
+      \ifboolexpr{ test {\ifstrequal{Pertin Dimitri}{#1}}}
+          {\addtocategory{mine}{\thefield{entrykey}}}
+              {}}
 
 \AtDataInput{%
   \indexnames[mine]{author}}
@@ -320,16 +335,16 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 %                                                                              %
 % Emphasize a particular author
 % adapted from: file:///usr/local/texlive/2010/texmf-dist/doc/latex/biblatex/biblatex.pdf
-\DeclareNameFormat{author}{%
-  \ifthenelse{\equal{#1}{\nom}}
-    {{\bf\ifblank{#3}{}{#3\space}%
-     #1}}%
-    {\ifblank{#3}{}{#3\space}%
-     #1}%
-  \ifthenelse{\value{listcount}<\value{liststop}}
-    {\addcomma\space}
-    {}
-}
+%\DeclareNameFormat{author}{%
+%  \ifthenelse{\equal{#1}{\nom}}
+%    {{\bf\ifblank{#3}{}{#3\space}%
+%     #1}}%
+%    {\ifblank{#3}{}{#3\space}%
+%     #1}%
+%  \ifthenelse{\value{listcount}<\value{liststop}}
+%    {\addcomma\space}
+%    {}
+%}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
@@ -351,7 +366,7 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 % Cleveref can’t cope with active characters being present in cross-reference
 % label names. For example, if French babel support is loaded, the commonly
 % used “:”
-\usepackage[french,capitalize,nameinlink]{cleveref}
+\usepackage[french,nameinlink]{cleveref}
     \crefname{lstlisting}{Listing}{listings}
     \Crefname{lstlisting}{Listing}{Listings}
 
