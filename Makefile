@@ -49,8 +49,7 @@ endif
 	cd $(CHPTDIR); make clean
 
 # clean temporary files + PDF output
-mrproper: 
+mrproper: clean 
 	latexmk -C
 	rm these.fmt
-	cd $(CHPTDIR); make clean
 
