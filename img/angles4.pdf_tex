@@ -48,7 +48,7 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.93802692)%
+  \begin{picture}(1,0.921454)%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{angles4.pdf}}%
   \end{picture}%
 \endgroup%
