@@ -4,9 +4,9 @@
     \label{alg.systematique}
     \begin{algorithmic}[1]
 
-    %\Require $\text{Proj}(P_i,1,b)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
-    \Require $\text{Proj}(P_i,1)$ trié par $p_i$ croissant avec $i \in \ZZ_I$
-    \Require $\text{Eff}(i)$ trié par ordre décroissant, avec $i \in \ZZ_e$
+    %\Require $\text{Proj}(P_i,1,b)$ triées par $p_i$ croissants avec $i \in \ZZ_I$
+    \Require $\text{Proj}(P_i,1)$ triées par $p_i$ croissants avec $i \in \ZZ_I$
+    \Require $\text{Eff}(i)$ triés par ordre décroissant, avec $i \in \ZZ_e$
 
     \LineComment Calcule $S-$, $S+$ et $S$
     \LineComment \cref{eqn.sp,eqn.sm}
