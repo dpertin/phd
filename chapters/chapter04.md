@@ -1,8 +1,4 @@
 
-% \chapter{Redondance dans les systèmes de stockage
-
-% distribués par codage à effacement}
-
 \chapter{Les codes à effacement dans le stockage distribué}
 
 \label{sec.chap4}
@@ -37,7 +33,7 @@ performances de lecture et d'écriture sont améliorées grâce à la distributi
 des données qui permet d'exploiter l'ensemble des disques simultanément
 (*stripping*). Cette technique est notamment à la base du RAID-0.
 De l'autre, des techniques permettent d'améliorer la disponibilité des données.
-En particulier, ces technique génèrent de la redondance au sein du système de
+En particulier, ces techniques génèrent de la redondance au sein du système de
 stockage. Il est par exemple possible de répliquer l'information sur l'ensemble
 des disques disponibles, comme en RAID-1. D'autres méthodes permettent de
 calculer $r$ disques de parité à partir de $k$ disques de données, ce qui
@@ -60,7 +56,7 @@ exécutant la même instruction sur un jeu de données.
 Dans les systèmes de stockage organisés en RAID-4 et RAID-5, les informations
 du disque de parité correspondent à la somme des informations des disques de
 données. En revanche, il devient plus compliqué de fournir des disques de
-parité supplémentaires. En particulier, il existe plusieurs méthodes pour
+parité supplémentaires. Il existe plusieurs méthodes pour
 calculer un deuxième disque de parité en RAID-6 \cite{pertin2015sifwict}. Par
 exemple, les codes de \textcite{reed1960jsiam} peuvent être utilisés pour
 calculer ces disques de parité. Cependant, plusieurs méthodes optimisées pour
@@ -68,8 +64,8 @@ cette configuration ont été conçues et permettent de calculer ce deuxième
 disque de façon plus performante. En particulier, les *Array* codes rassemblent
 une famille de codes qui ont été conçus dans cette optique. Les codes \eo de
 \textcite{blaum1995toc} et les codes *Row Diagnoal Parity* (RDP) de
-\textcite{corbett2004fast} font partis de cette famille de codes. Bien que plus
-performants par rapport aux codes de \rs, ces méthodes sont limitées à deux
+\textcite{corbett2004fast} font partie de cette famille de codes. Bien que plus
+performantes par rapport aux codes de \rs, ces méthodes sont limitées à deux
 voir trois disques de parité, et se généralisent difficilement au delà
 \cite{blaum1996tit}. En conséquence, il n'existe pas de solution parfaite et
 les concepteurs de systèmes de stockage doivent privilégier soit les
@@ -77,18 +73,18 @@ performances, soit la haute disponibilité des données.
 
 Dans ce chapitre, une de nos contributions sera de fournir une étude
 sur les performances théoriques des codes conçus pour RAID-6
-(i.e.\ $r=2$). Plus particulièrement, les critères de comparaison porteront sur
+(i.e.\ $r=2$). Plus spécifiquement, les critères de comparaison porteront sur
 des métriques adaptées au contexte du stockage telles que les performances
 d'encodage, de décodage et de mise à jour des données.  La \cref{sec.raid6}
 fournit une comparaison des codes RAID-6 traditionnels avec le code Mojette
-dans sa version systématique, tel que défini précédemment dans
+dans sa version systématique, tel que défini précédemment dans le
 \cref{sec.chap3}. La \cref{sec.rsmoj} compare de manière théorique les codes de
 \rs et Mojette dans le cas général. Enfin, la \cref{sec.eval.perf} présente une
 évaluation des performances des implémentations du code Mojette face aux
 meilleures implémentations des codes de \rs fournies par
 \textcite{intel2015isal}. Nous montrerons en particulier que le code Mojette
 bénéficie de meilleures performances théoriques dans l'ensemble des métriques,
-au prix d'un léger surcout de données à stocker. Ces aspects théoriques seront
+au prix d'un léger surcoût de données à stocker. Ces aspects théoriques seront
 validés dans l'expérimentation en dernière partie.
 
 
@@ -103,31 +99,34 @@ validés dans l'expérimentation en dernière partie.
     \def\svgwidth{\textwidth}
     \includesvg{img/array}
     \caption{Représentation d'une matrice de disques organisés en RAID-6. Un
-    ensemble de $k$ disques de données sont utilisés pour encoder $2$ disques
+    ensemble de $k$ disques de données est utilisé pour encoder $2$ disques
     de parité : $\PP$ et $\QQ$. Les disques sont partitionnés en $w$ blocs. Une
     bande correspond à un ensemble de $n$ blocs impliqués dans un processus
-    d'encodage.}
+    d'encodage. Cette figure est extraite de \cite{plank2009fast}.}
     \label{fig.array}
 \end{figure}
 
-La particularité de l'organisation des disques en RAID-6 est d'améliorer les
-performances de lecture et d'écriture par la répartition des données sur les
-disques, et la protection des données face à deux pannes disques en proposant
-deux disques de parité. On représente généralement cette organisation sous la
-forme d'une matrice de $n$ disques possédant la même capacité de stockage. Ces
-$n$ disques sont divisés en deux parties : (i) un ensemble de $k$ disques de
-données; (ii) un ensemble de $(n-k)$ disques de parité contenant les données de
-redondance calculées depuis les disques de données. Chaque disque est divisé en
-$w$ blocs d'information de $\beta$ bits. La \cref{fig.array} représente une
-matrice RAID-6
-avec $w=2$ blocs. En pratique, un bloc correspond à un mot de $\beta$ bits
+La particularité de l'organisation des disques en RAID-6 est non seulement
+d'améliorer les performances de lecture et d'écriture, mais également
+d'apporter de la tolérance aux pannes. L'amélioration des performances provient
+de la distribution des données sur un ensemble de disques. Quant à la
+protection des données, elle se limite au cas où deux disques sont en panne, en
+utilisant deux disques de parité. On représente généralement cette organisation
+sous la forme d'une matrice de $n$ disques possédant la même capacité de
+stockage. Ces $n$ disques sont divisés en deux parties : (i) un ensemble de $k$
+disques de données; (ii) un ensemble de $(n-k)$ disques de parité contenant les
+données de redondance calculées depuis les disques de données. Chaque disque
+est divisé en $w$ blocs d'information de $\beta$ bits. La \cref{fig.array}
+(cf.\ \cpageref{fig.array}) représente une matrice RAID-6 avec $w=2$ blocs.
+En pratique, un bloc correspond à un mot de $\beta$ bits
 (e.g.\ $\{8,\dots,256\}$). En réalité, si l'on divise un disque en blocs
-de $\beta$ bits, la valeur de $w$ est trop grand. C'est pourquoi, on applique
+de $\beta$ bits, la valeur de $w$ est trop grande. C'est pourquoi, on applique
 la technique de codage sur des sous-ensembles de $w$ blocs adaptés pour le code.
 Nous verrons dans la suite quelle valeur de $w$ est utilisée pour chaque code.
 Les codes RAID-6 correspondent à une famille de codes généralement MDS,
-de paramètres $(n=k+2,k)$. En conséquence, le nombre de blocs $w$ des disques
-de parité correspond au nombre de blocs des disques de données.
+de paramètres $(n=k+2,k)$. Puisque les codes sont MDS, la quantité de données
+de parité est optimale. En conséquence, le nombre de blocs $w$ des disques
+de parité équivaut au nombre de blocs $w$ des disques de données.
 
 
 ## Métriques d'analyse de performance {#sec.metriques}
@@ -137,16 +136,15 @@ manière. Les $w$ blocs qu'il contient correspondent à des informations de
 parité horizontale des blocs des $n$ disques de données. En revanche, plusieurs
 méthodes présentées dans ce chapitre permettent de calculer les données du
 disque $\QQ$. Nous allons ainsi comparer ces techniques selon les métriques
-suivantes qui sont classiquement utilisées dans les papiers respectifs des
-codes étudiés :
+suivantes qui sont classiquement utilisées dans les travaux des codes étudiés :
 
 * Le **coût à l'encodage** correspond au nombre d'opérations nécessaires pour
 encoder un disque de parité;
 
 * Le **coût de mise à jour** correspond au nombre d'opérations nécessaires pour
-modifier un bloc de donnée et mettre à jour les données associées dans les
+modifier un bloc de données et mettre à jour les données associées dans les
 disques de parité. Par rapport aux études habituelles, nous considérerons une
-mise à jour différentielle dans notre étude. C'est à dire qu'au lieu de
+mise à jour différentielle dans notre étude. C'est-à-dire qu'au lieu de
 ré-encoder complètement les informations, nous calculerons seulement la
 différence avec la valeur d'origine. Par la suite, nous appliquerons par
 linéarité de l'opération d'encodage cette différence sur la donnée de parité,
@@ -166,12 +164,11 @@ disque $\QQ$ plutôt que $\PP$.
 
 Par rapport aux codes de \rs qui peuvent fournir un taux de codage
 arbitraire, les *Array* codes sont conçus et optimisés pour gérer une quantité
-limitée de redondance.
-Dans la suite, nous décrirons et analyserons les performances des codes de \rs,
-ainsi que deux *Array* codes (\eo et RDP). Enfin nous apporterons une
-comparaison des performances de ces codes avec le code Mojette. Nous verrons
-que ce dernier apporte de meilleures performances dans les différentes
-métriques définies précédemment.
+limitée de redondance.  Dans la suite, il s'agira de décrire et d'analyser les
+performances des codes de \rs, ainsi que deux *Array* codes (\eo et RDP). Enfin
+nous apporterons une comparaison des performances de ces codes avec le code
+Mojette. Nous verrons que ce dernier apporte de meilleures performances dans
+les différentes métriques définies précédemment.
 
 % Les résultats de cette analyse seront
 
@@ -251,8 +248,8 @@ l'\cref{eqn.anvin.raid6} :
 \noindent Dans cette représentation, il suffit alors de développer une
 implémentation efficace de la multiplication par deux.
 
-La modification d'un bloc de donnée entraîne la mise à jour de deux blocs de
-parité. Une addition est réalisée pour calculer la différence, deux
+La modification d'un bloc de données entraîne la mise à jour de deux blocs de
+parité. Une addition est réalisée pour calculer la différence, deux opérations
 supplémentaires sont nécessaires pour mettre à jour le bloc correspondant dans
 $\PP$ puis dans $\QQ$. Enfin, une multiplication permet de finir la mise à jour
 du bloc dans $\QQ$. En conséquence, la modification d'un bloc entraîne trois
@@ -297,7 +294,7 @@ $\QQ$ pour les codes \eo \cite{blaum1995toc} et RDP \cite{corbett2004fast}.
     figure s'intéresse en particulier au calcul des valeurs du disque $\QQ$, basé
     sur la valeur des données des disques $D_i$. L'ajusteur $S$ correspond à la
     somme des éléments de la diagonale blanche. Sa valeur est additionnée à
-    chaque bloc de $\QQ$, qui sont déterminés par une parité diagonale. Figure
+    chacun des blocs de $\QQ$, qui sont déterminés par une parité diagonale. Figure
     inspirée de \cite{plank2009fast}.}
     \label{fig.evenodd}
 \end{figure}
@@ -319,7 +316,7 @@ nécessite $(k-1) \times w$ additions pour calculer $\PP$ et $(k-1)w + k - 2$ po
 calculer les valeurs de $\QQ$. En conséquence, le disque $\QQ$ requiert plus
 d'opérations que le disque $\PP$.
 
-Les conséquences de la modification d'un bloc de donnée dépend de la position
+Les conséquences de la modification d'un bloc de données dépend de la position
 de ce bloc. Dans la plupart des cas, cette modification entraîne la mise à jour
 d'une valeur optimale de $2$ blocs de parité. On calcule ainsi la différence
 entre l'ancienne et la nouvelle valeur du bloc, puis on met à jour un bloc de
@@ -338,10 +335,10 @@ disques de données subissent deux pannes, il est tout d'abord nécessaire de
 recalculer la valeur de $S$. Le coût du calcul de $S$ dépend de la position des
 disques en panne. Soit $\gamma(S)$ le nombre d'opérations nécessaires pour
 recalculer la valeur de $S$. Soit deux entiers $i,j \in \ZZ_w$ tel que $i \neq
-j$ correspondant respectivement à l'index du premier et second disque en panne.
-Dans ce cas, on distingue les trois cas suivants :
+j$ correspondant respectivement à l'index du premier et du second disque en
+panne. Dans ce cas, on distingue les trois cas suivants :
 
-1. Si $i=0$ et $j \geq k$, alors la méthode utilisée lors de l'encodage permet
+1. Si $i=0$ et $j \geq k$, alors la méthode utilisé lors de l'encodage permet
 de recalculer la valeur de $S$, puisque le disque en panne n'impacte pas la
 diagonale blanche. En conséquence, $\gamma(S) = k-2$ opérations;
 
@@ -382,7 +379,7 @@ décodage et la mise à jour, que les codes de \rs et \eo.
 Le nombre d'opérations nécessaires pour le calcul des informations de $\PP$ et de
 $\QQ$ est identique et correspond à $(k-1)w$ additions. De manière similaire
 aux \eo, le coût de la mise à jour d'un bloc dépend de la position du bloc.
-Lorsque celui ci est situé sur la première ligne ou sur la diagonale spéciale,
+Lorsque celui-ci est situé sur la première ligne ou sur la diagonale spéciale,
 seulement deux blocs de parité sont impactés sur $\PP$ et $\QQ$ respectivement. En
 conséquence, trois opérations sont nécessaires. Dans tous les autres cas, trois
 blocs sont impactés du fait de l'interdépendance entre les disques de parité.
@@ -428,8 +425,9 @@ On le définit ainsi :
 \end{equation}
 
 \noindent où $B(k,w,p,q)$ correspond au nombre de bins de la projection (voir
-\cref{eqn.nombre_bins}). Puisque le disque $\PP$ correspond à la projection
-suivant l'horizontal : le nombre de bin $B(k,w,0,1) = w$. Le calcul de cette
+\cref{eqn.nombre_bins}, \cpageref{eqn.nombre_bins}). Puisque le disque
+$\PP$ correspond à la projection
+suivant l'horizontal : le nombre de bins $B(k,w,0,1) = w$. Le calcul de cette
 projection nécessite alors $(k-1)w$ opérations. Le nombre d'opérations pour le
 disque $\QQ$ correspond quant à lui à $(k-1)w - k + 1$. On remarque ici que pour
 la première fois, le nombre d'opérations nécessaires est inférieur pour
@@ -438,10 +436,10 @@ l'on utilise le disque $\PP'$ (correspondant à la projection suivant la
 direction $(-1,1)$) à la place du disque $\PP$, on réduit le nombre
 d'opérations global au prix d'un coût de redondance plus élevé.
 
-Les mises à jour dans le cas du code Mojette sont optimaux. En effet, la
+Les mises à jour dans le cas du code Mojette sont optimales. En effet, la
 modification d'un bloc de donnée impacte uniquement un bloc de parité
 correspondant dans chaque disque. Dans le cas étudié, on modifie uniquement
-deux bins quelque soit la position du pixel modifié.
+deux bins quelle que soit la position du pixel modifié.
 
 % cependant la position du pixel entraînera plus ou moins
 
@@ -488,7 +486,7 @@ $(p,q)=(0,1)$, alors $(Q-1)$ opérations seront nécessaires.
 Soit $l$ l'index d'une ligne à reconstruire. La \cref{fig.dec_sys_mojette}
 représente la situation où l'on souhaite reconstruire la ligne $l=2$ d'une
 grille $(P=12,Q=8)$ en utilisant la projection suivant la direction
-$(p=1,q=1)$. Les éléments de la grille en rouge représente les pixels utilisés
+$(p=1,q=1)$. Les éléments de la grille en rouge représentent les pixels utilisés
 dans la reconstruction de la ligne $l$. Le nombre d'opérations nécessaires à la
 reconstruction d'une ligne $l$ est défini par l'ensemble des pixels représentés
 en rouge. Cet ensemble correspond aux éléments de la grille discrète (hors
@@ -513,12 +511,11 @@ ligne correspond à :
     \centering
     \pgfplotsset{width=0.7\linewidth}
     \input{tikz/xor_dec.tex}
-    \caption{Nombre d'opérations nécessaires pour le reconstruction Mojette
+    \caption{Nombre d'opérations nécessaires pour la reconstruction Mojette
     depuis la projection de direction $(1,1)$, en fonction de
     la position de la ligne effacée. La grille utilisée correspond à $k=11$ et
-    $w=20$. La ligne en tirets représente les performances obtenues autant lors
-    de la reconstruction par la projection $(0,1)$, que par les codes RDP
-    (i.e.\ $(k-1)w$).}
+    $w=20$. La ligne en tirets représente les performances obtenues par les
+    codes RDP (i.e.\ $(k-1)w$).}
     \label{fig.decodeur_raid6}
 \end{figure}
 
@@ -549,15 +546,15 @@ de la grille, et dont le nombre de dépendances est réduit.
     \label{tab.comparaison}
 \end{table}
 
-Le \cref{tab.comparaison} résume les résultats obtenus précédemment. On y exprime
+Le \cref{tab.comparaison} (cf. \cpageref{tab.comparaison}) résume les résultats obtenus précédemment. On y exprime
 le nombre d'opérations nécessaires pour chaque métrique détaillée en première
 section, en fonction des différents codes. En particulier, on distingue les
 métriques d'encodage et de décodage en fonction de l'utilisation du disque $\PP$
-ou $\QQ$. On remarque que la génération ou la réparation relatives au disque
+ou $\QQ$. On remarque que la génération ou la réparation relative au disque
 $\PP$ nécessite toujours $(k-1)w$ opérations. En effet, ce disque correspond à
 la parité horizontale des disques de données. En revanche, le nombre
 d'opérations nécessaires quand on interagit avec $\QQ$ forme un critère
-intéressant puisque celui ci varie pour chaque code. Le critère de mis à jour
+intéressant puisque celui-ci varie pour chaque code. Le critère de mise à jour
 d'un bloc est également décisif et est optimal pour la Mojette. 
 
 #### Les spécificités des codes de \rs
@@ -579,7 +576,7 @@ opérations, comme référence. Cette référence correspond au meilleur résult
 obtenu par les codes MDS RDP.
 Concernant l'encodage, les codes de \rs et \eo ont tous les deux un coût
 supplémentaire par rapport à cette référence : (i) les codes de \rs nécessite
-deux multiplications supplémentaires; (ii) les code de \eo nécessite $(k-2)$
+deux multiplications supplémentaires; (ii) les \eo nécessitent $(k-2)$
 additions supplémentaires à cause du calcul de $S$. Le code Mojette en
 revanche, requiert moins d'opérations pour calculer le disque $Q$. Comme
 précisé précédemment, il s'agit par ailleurs du seul code qui nécessite moins
@@ -595,7 +592,7 @@ disque inaccessible, sa reconstruction par le disque $\QQ$ nécessitera toujours
 un nombre d'opérations inférieur à $(k-1)w$ comme le montre la
 \cref{fig.decodeur_raid6}.
 
-Quant aux mises à jour d'un bloc de données, bien que tous les codes sont
+Quant aux mises à jour d'un bloc de données, bien que tous les codes soient
 capables d'atteindre la meilleure performances de $3$ additions dans le
 meilleur des cas, seul le code Mojette fournit ces performances quelle que
 soit la position du bloc modifié.
@@ -607,7 +604,7 @@ cependant montré dans le chapitre précédent que ce coût est modéré et tend
 l'optimal quand la largeur de la grille augmente.
 
 
-Bien que les performances théoriques sont liées par le nombre et la nature des
+Bien que les performances théoriques soient liées par le nombre et la nature des
 opérations réalisées durant l'encodage et le décodage, d'autres critères
 entrent en jeu en pratique. Comme nous l'avons vu dans le chapitre précédent,
 les opérations doivent être réalisées au plus près du processeur. Un autre
@@ -636,7 +633,7 @@ valeur des paramètres peut être arbitrairement choisie. En
 particulier, cette application calcule $n$ mots encodés à partir de $k$ mots de
 données tel que $k \geq n$. Pour cela, une matrice d'encodage de taille
 $n \times k$ est utilisée pour la transformation. Pour définir un code MDS,
-cette matrice doit nécessaire posséder la propriété suivante : toute
+cette matrice doit nécessairement posséder la propriété suivante : toute
 sous-matrice de taille $k \times k$ doit être inversible. À l'origine, une
 matrice de \vander était utilisée puisque qu'elle possède une telle propriété.
 \textcite{blomer1995icsi} ont par la suite utilisé des matrices de
@@ -650,9 +647,9 @@ fonctions de OU-exclusif.
 #### Vandermonde-RS
 
 Les matrices de \vander $V$ permettent de générer de l'information redondante.
-En particulier, cette matrice est définie par un vecteur de $n$ éléments
-$\left( \alpha_0, \alpha_1, \dots, \alpha_{n-1} \right)$. Cette matrice est de
-la forme :
+Elles sont définies par un vecteur de $n$ éléments $\left( \alpha_0, \alpha_1,
+\dots, \alpha_{n-1} \right)$. Ce type de matrice s'écrit sous la forme
+suivante :
 
 \begin{equation}
     V = 
@@ -668,11 +665,11 @@ la forme :
 \end{equation}
 
 \noindent où $\alpha_{i}$ correspondent aux coefficients d'une matrice de
-\vander. Pour que l'ensemble des sous-matrices $k \times k$ soient
-inversibles, il est nécessaire que les éléments $\alpha_i$ du corps fini soient
+\vander. Pour que l'ensemble des sous-matrices $k \times k$ soit
+inversible, il est nécessaire que les éléments $\alpha_i$ du corps fini soient
 deux à deux distincts. Dans le cas d'un code de \rs non-sytématique, la matrice
 d'encodage correspond à une matrice de \vander tel que $G=V$. Pour obtenir un
-code de \rs systématique avec des paramètres $(n,k)$ arbitraire, il n'est pas
+code de \rs systématique avec des paramètres $(n,k)$ arbitraires, il n'est pas
 possible de construire une matrice d'encodage de la forme $G=[I_k | V]$ (comme
 nous l'avons vu précédemment dans le cas particulier de RAID-6). Dans une telle
 matrice, toute sous-matrice carrée n'est pas
@@ -682,20 +679,20 @@ d'élimination de \textsc{Gauss} sur les colonnes de $V$ afin de faire
 apparaître une matrice identité. Cette méthode est décrite dans
 \textcite{plank2003rs}. Une autre méthode est proposée par
 \textcite{lacan2004letters}. Une fois que l'on a déterminé la matrice
-d'encodage $G$, l'opération de codage correspond à calculer $Y = GX$.
+d'encodage $G$, l'opération d'encodage correspond à calculer $Y = GX$.
 
-N'importe quelle sous-matrice carrée $G'$ d'une matrice de \vander est
+Toute sous-matrice carrée $G'$ d'une matrice de \vander est
 inversible (en particulier une sous-matrice $k \times k$). Cette
-caractéristique des matrices de \vander permet d'inverse l'opération et
-reconstruire l'information perdue. En particulier, si l'on considère un message
-$X'$ de $k$ blocs, alors $Y' = G'X'$ où $Y'$ correspond à $k$ blocs encodés.
-Quand l'information subit des effacements, les lignes correspondant dans la
-matrice d'encodage sont supprimées pour donner une sous matrice $G'$ de taille
+caractéristique des matrices de \vander permet d'inverser l'opération
+réalisée à l'encodage, et de reconstruire l'information perdue.
+Quand l'information subit des effacements, les lignes correspondantes dans la
+matrice d'encodage sont supprimées pour donner une sous-matrice $G'$ de taille
 $(k \times k)$. L'inverse de cette matrice est déterminée afin de retrouver le
-message initiale : $X = G'^{-1}Y'$. 
-Considérons deux ensembles $i \in \ZZ_k$ et $j \in \ZZ_w$. Ainsi, $d_{i,j}$
-correspond au bloc de donnée situé dans la colonne $i$ et à la ligne $j$. Dans
-ce cas, les données d'un disque de parité $\mathcal{R}_j$ sont calculées ainsi :
+message initiale : $X = G'^{-1}Y'$, où $Y'$ correspond à un mot de code
+dégradé. Considérons deux ensembles $i \in \ZZ_k$ et $j \in \ZZ_w$. Ainsi,
+$d_{i,j}$ correspond au bloc de données situé dans la colonne $i$ et à la ligne
+$j$. Dans ce cas, les données d'un disque de parité $\mathcal{R}_j$ sont
+calculées ainsi :
 
 \begin{equation}
     \mathcal{R}_j = \xor_{i=0}^{k-1}d_{i,j}\alpha^{i}.
@@ -720,22 +717,22 @@ par \textcite{blomer1995icsi}. Un avantage de cette technique est de permettre
 une inversion matricielle plus efficace en $\mathcal{O}(n^2)$. De
 plus, les travaux de \citeauthor{blomer1995icsi} ont permis de remplacer les
 opérations de multiplications par des additions. Pour cela, chaque élément de
-la matrice d'encodage et étendu par $\beta$ dans les deux directions. Ses
+la matrice d'encodage est étendu par $\beta$ dans les deux directions. Ses
 performances sont ainsi liées au nombre de $1$ présents dans la matrice
 d'encodage ou de décodage. Des travaux ont été menés afin de rendre les
 matrices les plus creuses possible. En effet, étant donné les paramètres
 $(n,k)$ d'un code défini dans un corps de \galois, il existe une quantité
 importante de matrices de \cauchy permettant d'encoder l'information.
 \textcite{plank2006nca} ont déterminé que
-chaque matrice n'est pas égale en matière de performance. En particulier, 
-si l'on souhaite trouver la meilleure matrice, il faut énumérer tous les
-cas possibles, dont le nombre croît de manière exponentielle avec $n$. En
-conséquence, cette méthode peut convenir pour des codes avec des paramètres
-$(n,k,w)$ de faibles valeurs (e.g. $w \leq 4$).
+chaque matrice n'est pas égale en matière de performance. Si l'on souhaite
+trouver la meilleure matrice, il faut énumérer tous les cas possibles, dont le
+nombre croît de manière exponentielle avec $n$. En conséquence, cette méthode
+peut convenir pour des codes avec des paramètres $(n,k,w)$ de faibles valeurs
+(e.g. $w \leq 4$).
 \citeauthor{plank2006nca} donnent toutefois un algorithme pour déterminer
 une « bonne » matrice de \cauchy. Cependant, le nombre de $1$ dépend des
 ensembles d'éléments du corps de \galois choisis pour construire la matrice de
-\cauchy. En conséquence, aucune méthode efficace n'existe aujourd'hui afin de
+\cauchy. Or, aucune méthode efficace n'existe aujourd'hui afin de
 définir ce nombre minimum de $1$ dans la matrice d'encodage.
 
 ## Généralisation du code Mojette
@@ -745,7 +742,8 @@ définir ce nombre minimum de $1$ dans la matrice d'encodage.
 Nous allons analyser le nombre d'opérations nécessaires pour le calcul d'une
 projection.
 Bien que la génération d'une projection met en jeu l'ensemble des
-éléments de la grille discrète une et une seule fois (voir \cref{eqn.mojette}),
+éléments de la grille discrète une et une seule fois (voir \cref{eqn.mojette},
+\cpageref{eqn.mojette}),
 le nombre $\gamma$ d'opérations nécessaires pour l'encodage varie en fonction de
 deux paramètres : la taille de la grille, et la direction de projection.
 Le nombre d'additions nécessaires pour générer une projection
@@ -761,9 +759,10 @@ $\text{Proj}_{f}(p,q,b)$ correspond à :
 
 \noindent et représente le nombre d'éléments de la grille discrète ($P \times
 Q$) auquel on soustrait le nombre de bins de la projection, tel que défini dans
-\cref{eqn.nombre_bins}. Considérons à présent que l'on fixe la taille de la
-grille, ainsi qu'un paramètre de projection. Si l'on considère comme
-précédemment que $q_i=1$ :
+l'\cref{eqn.nombre_bins} (cf. \cpageref{eqn.nombre_bins}). Considérons à
+présent que l'on fixe la taille de la grille, ainsi qu'un paramètre de
+projection. Si on considère comme précédemment que $q_i=1$, cette équation
+devient :
 
 \begin{align}
     \gamma(P,Q)^{(p,1)} &= P \times Q - ((Q-1)|p| + P), \\
@@ -776,10 +775,11 @@ valeur de $|p|$ augmente, le nombre d'opérations nécessaires pour générer
 une projection $\gamma(P,Q)^{(p,q)}$ diminue. Cela signifie que pour une taille
 de grille fixée, plus une projection est grande, moins elle nécessite
 d'opérations d'addition pour être calculée.
-En conséquence, si seules les performances sont essentielles pour
+Aussi, si seules les performances sont essentielles pour
 une application, on choisira des projections avec de grandes valeurs de $|p|$.
 Pour un ensemble de projections $\{(p_i,1)\}$ donné, l'ensemble des opérations
-nécessaire pour l'encodage correspond à $\sum\limits_i \gamma(P,Q)^{\{(p_i,1)\}}$.
+nécessaires pour l'encodage correspond à $\sum\limits_i
+\gamma(P,Q)^{\{(p_i,1)\}}$.
 
 
 % ### Performances du décodeur Mojette non-systématique
@@ -843,13 +843,13 @@ l'\cref{eqn.mojette_decoding} pour chaque pixel de la ligne :
 Dans le cas où $e$ lignes sont effacées, le nombre total d'opérations
 nécessaires correspond à la somme des opérations nécessaires pour chaque ligne.
 Dans ce cas, une projection différente, issue d'un ensemble suffisant
-$\{(p_i,1)\} \mid i \in \ZZ_e$, est associé à la reconstruction d'une ligne.
-On détermine alors le nombre d'opération nécessaire ainsi :
+$\{(p_i,1)\} \mid i \in \ZZ_e$, est associée à la reconstruction d'une ligne.
+On détermine alors le nombre d'opérations nécessaires ainsi :
 
 \begin{equation}
     \gamma(k,w)_e^{\{(p_e,1)\}} =
         \sum_{e} \left( \gamma(k,w)_{l_e}^{(p_e,1)}\right).
-    \label{eqn.mojette_decoding2}
+    \label{eqn.mojette_decoding3}
 \end{equation}
 
 
@@ -861,16 +861,16 @@ Mojette et comparons ces résultats avec les performances des meilleures
 implémentations des codes de \rs.
 Nous détaillons en \cref{sec.implem} les caractéristiques des implémentations
 étudiées. La \cref{sec.expe} présente la mise en œuvre de l'expérimentation
-pour permettre le calcul des performances de ces implémentations. Enfin, nous
-verrons dans la dernière \cref{sec.expe.resultat} les résultats que nous
-analyserons.
+pour permettre le calcul des performances de ces implémentations. Enfin,
+dans la dernière \cref{sec.expe.resultat}, nous exposerons puis analyserons les
+résultat obtenus.
 
 ## Les implémentations à comparer {#sec.implem}
 
 Nous avons choisi de comparer les implémentations du code à effacement Mojette
 avec une implémentation des codes de \rs. De par leur popularité et
 leur accessibilité, les codes de \rs représentent un compétiteur 
-essentiel pour notre comparaison. Ces codes sont en effet largement
+essentiel pour notre comparaison. Ces codes sont en effet, largement
 distribués à travers de nombreuses bibliothèques.
 
 ### Implémentations Mojette
@@ -888,7 +888,7 @@ correspondre à un mot machine.
 Un mot correspond à l'unité de base, exprimée en bits, manipulée par
 un processeur. Pour les architectures classiques, la taille d'un mot
 correspond à $32$ ou $64$ bits. Il s'agit plus exactement de la taille des
-registres du processeurs. En conséquence, un processeur est d'autant plus
+registres du processeur. Par conséquent, un processeur est d'autant plus
 rapide que ses mots sont longs puisqu'une plus grande quantité d'information
 est traitée à chaque cycle. Nous avons alors fixé la taille des bins
 et pixels à $64$ bits. Cette valeur correspond à la taille des registres des
@@ -925,8 +925,8 @@ conséquence, dans notre mise en œuvre, l'addition est implémentée par des
 opérations de OU exclusif (XOR), correspondant à des additions modulo deux, sur
 des données de $128$ bits.
 
-Dans cette partie, nous allons comparer les débits observés dans une évaluation
-des performances d'encodage et et de décodage des deux implémentations de notre
+Dans cette partie, il s'agira de comparer les débits observés dans une évaluation
+des performances d'encodage et de décodage des deux implémentations de notre
 code à effacement Mojette et des codes de \rs. En particulier pour le code
 Mojette, nous évaluerons la version non-systématique, que l'on appellera
 *NS-Mojette*, ainsi que l'implémentation systématique que l'on désignera
@@ -936,18 +936,21 @@ simplement par *Mojette*.
 
 ISA-L (pour *\intel Storage Acceleration Library*) est une bibliothèques
 *open-source* développée par \textcite{intel2015isal} fournissant une
-implémentation des codes de \rs. En particulier, cette bibliothèque fournit des
-codes optimisée pour les applications de stockage. Dans
+implémentation des codes de \rs. Cette bibliothèque fournit des
+codes optimisés pour les applications de stockage. Dans
 la limite de notre expérience orientée dans le contexte du stockage, et des
 paramètres utilisés dans notre expérimentation, cette
 implémentation fournit de meilleurs résultats que d'autres bibliothèques
 fournissant des codes pour de la transmission, telles que \citetitle{openfec}
 et \textsc{Jerasure} \cite{openfec,plank2014jerasure}.
 En particulier, cette implémentation des codes de \rs utilise le polynôme
-irréductible $x^8+x^4+x^3+x^2+1$. Pour les opérations de multiplication, des
-instructions spécifiques aux architectures *x86* sont utilisées afin de
-réaliser efficacement les nécessaires dans les codes de \rs
-\cite{gueron2014intel}.
+irréductible $x^8+x^4+x^3+x^2+1$.
+<!--
+%Pour les opérations de multiplication, des
+%instructions spécifiques aux architectures *x86* sont utilisées afin de
+%réaliser efficacement les nécessaires dans les codes de \rs
+%\cite{gueron2014intel}.
+-->
 
 ## Configuration de l'expérimentation {#sec.expe}
 
@@ -966,7 +969,7 @@ réaliser efficacement les nécessaires dans les codes de \rs
 
 Dans cette partie, nous allons évaluer les performances d'encodage et de
 décodage des implémentations des codes à effacement Mojette et \rs,
-présentés précédemment. Ces tests sont réalisés sur un seul processeur.
+présentés précédemment.
 
 Les tests réalisés dans cette partie mettent en jeu plusieurs paramètres. Ainsi
 nous allons faire varier les paramètres $n$ et $k$ des codes à effacement, qui
@@ -979,23 +982,23 @@ stockage \cite{sathiamoorthy2013vldb}. Un second paramètre concerne la taille
 des données $\mathcal{M}$ que nous allons traiter. Dans la terminologie
 Mojette, cette taille correspond au nombre de pixels de la grille discrète. Ce
 paramètre dépend de l'application utilisée. Dans le cadre de stockage de
-données POSIX, on choisira une taille $\mathcal{M}$ correspondante à la taille
+données POSIX, on choisira une taille $\mathcal{M}$ correspondant à la taille
 des blocs du système de fichiers. Dans l'exemple d'*ext4*, cette taille de
-blocs est de $4$ Ko. En revanche, dans des applications mettant en jeu des
+blocs est de $4$\ Ko. En revanche, dans des applications mettant en jeu des
 accès séquentiels sur de grands fichiers, on choisira une taille de bloc
 beaucoup plus importante afin de limiter le nombre d'entrées/sorties. C'est le
 cas du système de fichiers *Hadoop Distributed File Systems* HDFS, qui met en
-jeu des applications d'analyse parallèle grâce à *Hadoop Map-Reduce* sur des
-blocs de *128* Mo par défaut \cite{shvachko2010msst}.
+jeu des applications d'analyse distribuées grâce à *Hadoop Map-Reduce* sur des
+blocs de $128$\ Mo par défaut \cite{shvachko2010msst}.
 
 La \cref{fig.expe_code} représente l'expérimentation que l'on réalise.
-Notre mesure lors de l'encodage corresponde
+Notre mesure lors de l'encodage correspond
 aux performances du CPU lors de la génération de $n$ blocs encodés à
 partir de $k$ blocs de données. Ces $k$ blocs totalisent $\mathcal{M}$ octets.
 Plus particulièrement dans notre mise en œuvre, ces $k$ blocs correspondent à
 une zone mémoire de $\mathcal{M}$ octets de données aléatoire, dont on
 représente chaque bloc par $k$ pointeurs vers l'adresse de début de ces blocs.
-L'encodage non systématique consiste alors à la génération de $n$ blocs de
+L'encodage non systématique consiste alors à générer $n$ blocs de
 données encodés à partir de ces données d'entrées. En revanche, pour les
 versions systématiques, l'encodage correspond aux opérations suivantes : (i)
 copie des $k$ blocs de données; (ii) puis génération de $(n-k)$ blocs de
@@ -1024,7 +1027,7 @@ optimisées pour nos architectures processeurs dont les temps d'exécution sont
 de l'ordre de la nanoseconde, il est imprécis, voire impossible, de mesurer le
 temps d'exécution de ces fonctions de nos implémentations. En revanche, puisque
 ces calculs sont bornées par les considérations vues dans la partie
-précédentes, et puisque nos instructions sur réalisées au sein d'un *thread*
+précédentes, et puisque nos instructions sont réalisées au sein d'un *thread*
 sur un processeur, il est possible d'obtenir une mesure sur le nombre de cycles
 du processeur. Plus précisément, on utilise le compteur temporel (*Time Stamp
 Counter* TSC) qui est un registre spécial qui s'incrémente à chaque cycle CPU.
@@ -1034,15 +1037,17 @@ valeur avant et après nos fonctions d'encodage et de décodage et d'afficher la
 différence. \intel propose une mise en œuvre afin de filtrer les résultats
 aberrants \cite{intel1997rdtsc}.
 
+\label{fec4cloud}
+
 Enfin, nous affichons la valeur moyenne qui résulte de $100$ itérations.
-L'écart type n'est pas présenté puisqu'il est trop négligeable (et correspond à
+L'écart type n'est pas présenté puisqu'il est négligeable (et correspond à
 moins d'un pour-cent des valeurs présentées). La machine utilisée provient de
 la plate-forme *FEC4Cloud* située à Polytech Nantes. Cette machine dispose d'un
-processeur \intel Xeon à $1,80$GHz, de $16$Go de mémoire RAM et de caches
-processeurs de $128$Ko, $1$Mo et $10$Mo pour les niveaux *L1*, *L2* et *L3*
+processeur \intel Xeon à $1,80$\ GHz, de $16$\ Go de mémoire RAM et de caches
+processeurs de $128$\ Ko, $1$\ Mo et $10$\ Mo pour les niveaux *L1*, *L2* et *L3*
 respectivement. Notons que cette plate-forme a été utilisée dans des
-expérimentations soumises à plusieurs publications \cite{pertin2014eurosys,
-pertin2015hotstorage, parrein2015ressi}.
+expérimentations soumises dans plusieurs publications \cite{pertin2014eurosys,
+pertin2015corr, parrein2015ressi}.
 
 ## Résultats de l'expérimentation {#sec.expe.resultat}
 
@@ -1066,7 +1071,7 @@ pertin2015hotstorage, parrein2015ressi}.
     \centering
     \ref{named}
     \caption{Comparaison des performances d'encodage sur des blocs de données
-    de $4$Ko (a) et $8$Ko (b). Les performances des codes Mojette et
+    de $4$\ Ko (a) et $8$\ Ko (b). Les performances des codes Mojette et
     \rs sont comparées par le nombre de cycles CPU nécessaires pour
     réaliser l'opération d'encodage (plus le résultat est petit, plus il est
     bon). Deux paramètres de codage ont été utilisés: $(6,4)$ et $(12,8)$. Les
@@ -1082,9 +1087,9 @@ des tailles de blocs $\mathcal{M}$ équivalent à $4096$ et $8192$ octets
 respectivement. Nous avons représenté en hachuré sur ces courbes, les
 performances optimales obtenues par une opération équivalente sans encodage.
 Plus précisément, ces performances correspondent à la copie de $n$ blocs de
-données. Dans le cas où $\mathcal{M}$ vaut $4$Ko, cette opération correspond à
-copier $6$Ko. Pour une taille de bloc de $\mathcal{M}=8$Ko, les performances
-optimaux représentées correspondent à la copie de $12$Ko de données. Dans notre
+données. Dans le cas où $\mathcal{M}$ vaut $4$\ Ko, cette opération correspond à
+copier $6$\ Ko. Pour une taille de bloc de $\mathcal{M}=8$\ Ko, les performances
+optimales représentées correspondent à la copie de $12$\ Ko de données. Dans notre
 expérimentation, cette opération de copie de cette information est implémentée
 à partir de la fonction *memcpy()* de la bibliothèque standard du C.
 
@@ -1098,12 +1103,12 @@ implémentation du code Mojette doit calculer trois fois plus de données que le
 autres implémentations testées dans notre expérimentation. En effet, puisque
 cette version est non-systématique, elle doit calculer $12$ projections Mojette
 dans le cas d'un code $(12,8)$, tandis que le code de \rs doit
-calculer seulement $4$ blocs de parité. On observe cependant dans le cas du
+calculer seulement $4$ blocs de parité. On constate cependant dans le cas du
 test de la \cref{fig.encoding4k}, qu'il nécessite plus de $30$\% de cycles
 supplémentaires par rapport à NS Mojette, pour protéger la donnée face à $4$
 pannes. On observe donc que malgré le désavantage calculatoire de notre code en
 version non-systématique, il parvient dans le cadre de nos tests à être
-compétitif avec des codes systématiques.
+compétitif face à des codes systématiques.
 
 Une deuxième observation est que la version systématique du code Mojette est
 plus performante que sa version non-systématique. Ce résultat était attendu
@@ -1115,7 +1120,7 @@ des implémentations systématiques correspond à : (i) la copie des $k$ blocs
 d'informations en clair; (ii) plus le calcul des $(n-k)$ blocs de
 parité. Les résultats observés correspondent donc à la somme de cette copie et
 de l'encodage. En revanche, si l'on prend l'exemple des résultats du code
-Mojette $(6,4)$ sur des blocs de $4$Ko, présentés dans la
+Mojette $(6,4)$ sur des blocs de $4$\ Ko, présentés dans la
 \cref{fig.encoding4k}, on observe que $(705-321) \times 3 = 1152$, où $321$
 correspond aux nombres de cycles CPU nécessaires pour copier $4096$ octets, et
 où $1152$ correspond à la valeur observée dans les résultats de la version
@@ -1170,13 +1175,13 @@ version est particulièrement réduit.
     \caption{Comparaison des performances de décodage pour des paramètres de
     codes $(6,4)$ (\cref{fig.decoding_4k_l1,fig.decoding_8k_l1}) et $(12,8)$
     (\cref{fig.decoding_4k_l2,fig.decoding_8k_l2}). Les courbes à gauche
-    montrent les résultats pour des tailles de blocs de $4$Ko
+    montrent les résultats pour des tailles de blocs de $4$\ Ko
     (\cref{fig.decoding_4k_l1,fig.decoding_4k_l2}) tandis que les courbes de
-    droite concernent des blocs de $8$Ko
+    droite concernent des blocs de $8$\ Ko
     (\cref{fig.decoding_8k_l1,fig.decoding_8k_l2}). Les performances des codes
     Mojette et \rs sont comparées par le nombre de cycles CPU enregistré durant
     l'opération de décodage (plus c'est bas, mieux c'est) alors que l'on
-    augmente progressivement le nombre d'effacement. Un effacement correspond à
+    augmente progressivement le nombre d'effacements. Un effacement correspond à
     la perte d'un bloc encodé. Les valeurs optimales sont représentées par « No
     coding ».}
     \label{fig:decoding}
@@ -1186,7 +1191,8 @@ Nous analysons dans cette partie les résultats à l'issu de notre
 expérimentation sur les performances de décodage en matière de cycles CPU
 nécessaires pour reconstruire la donnée initiale. Les
 \cref{fig.decoding_4k_l1,fig.decoding_8k_l1} donnent le nombre de cycles CPU
-nécessaires pour le décodage des codes $(6,4)$ pour des blocs de $4$Ko et $8$Ko
+nécessaires pour le décodage des codes $(6,4)$ pour des blocs de $4$\ Ko
+et $8$\ Ko
 respectivement.
 De manière similaire, les \cref{fig.decoding_4k_l2,fig.decoding_8k_l2}
 concernent des codes $(12,8)$. Nous avons représenté sur ces courbes les
@@ -1203,21 +1209,21 @@ niveau de l'implémentation, cette lecture correspond à la copie de cette
 information en clair.
 
 À présent, lorsque des effacements surviennent, des opérations de décodage sont
-déclenchées. Une première remarque globale est que l'influence des effacements
-n'est pas le même selon si le code est systématique ou non. Pour NS Mojette, le
-nombre d'effacement $e$ n'a pas d'influence sur les performances de décodage.
+déclenchées. L'on remarque que l'influence des effacements
+n'est pas la même selon que le code est systématique ou non. Pour NS Mojette, le
+nombre d'effacements $e$ n'a pas d'influence sur les performances de décodage.
 Ce résultat provient du fait que le décodage des codes non-systématiques
 correspond à la reconstruction entière des informations utilisateurs. Ainsi le
 nombre d'opérations est comparable quel que soit l'ensemble des blocs encodés
 utilisé pour cette reconstruction.
 
-Dans le cas des codes systématiques en revanche, le décodage correspond à
+Dans le cas des codes systématiques en revanche, le décodage consiste à
 reconstruire un ensemble partiellement reconstruit de la donnée. En
 conséquence, le nombre de cyles CPU nécessaires pour le décodage augmente au
 fur et à mesure que l'on augmente le nombre de blocs de données effacés.
 En particulier, la différence entre les performances de l'implémentation
 systématique du code Mojette et des valeurs optimales augmente avec le nombre
-d'effacement puisque l'on supprime progressivement des lignes de la grille
+d'effacements puisque l'on supprime progressivement des lignes de la grille
 discrète. En effet, puisque l'on considère une grille de moins en moins
 remplie, et puisque les opérations d'additions nécessaires à la reconstruction
 Mojette sont plus coûteuses que la copie utilisée dans *memcpy()*, les
@@ -1235,11 +1241,12 @@ Mojette.
 
 ### Impact de la taille des blocs
 
-L'influence de la tailles blocs $\mathcal{M}$ est étudiée ici.
-Dans nos tests, nous n'utilisons que de petites tailles de blocs, correspondant
+L'influence de la taille des blocs $\mathcal{M}$ est étudiée ici.
+Dans nos tests, nous n'utilisons que de petites tailles de blocs
+(i.e.\ $\mathcal{M}$ vaut $4$\ Ko ou 8\ Ko), correspondant
 à l'application de stockage visée. Pour les valeurs de nos tests, on observe
-que le nombre de cycles double en même temps que la valeur de $\mathcal{M}$
-dans le cas des deux versions du code Mojette. Cette observation est la même
+que le nombre de cycles double en même temps que la valeur de $\mathcal{M}$,
+pour les deux versions du code Mojette. Cette observation est la même
 dans le cas de l'encodage, que du décodage. Cela confirme la complexité
 linéaire de la transformation Mojette.
 
@@ -1248,12 +1255,12 @@ linéaire de la transformation Mojette.
 Nous analysons à présent l'impact du paramétrage $(n,k)$ du code sur les
 performances des codes systématiques. Bien que pour les valeurs des paramètres
 utilisés dans cette expérimentation, le code Mojette fournisse de meilleures
-performances que l'implémentation des codes de \rs, l'écart entre les deux
-semble diminuer à mesure que seuil maximum de tolérance aux pannes augmentent.
-En conséquence, il est possible que pour très grandes valeurs de paramètre, la
-situation s'inverse. Toutefois, comme précisé auparavant, une protection face à
-quatre pannes apporte déjà une protection importante
-\cite{sathiamoorthy2013vldb}.
+performances que l'implémentation des codes de \rs, l'écart des performances
+entre les deux méthodes semble diminuer à mesure que seuil maximum de tolérance
+aux pannes augmentent.  En conséquence, il est possible que pour très grandes
+valeurs de paramètre, la situation s'inverse. Toutefois, comme précisé
+auparavant, une protection face à quatre pannes apporte déjà une protection
+importante\ \cite{sathiamoorthy2013vldb}.
 
 
 
@@ -1275,7 +1282,7 @@ particulier, notre expérimentation a permis de montrer le gain significatif de
 notre nouvelle mise en œuvre du code systématique par rapport à la version
 non-systématique. Il est intéressant de remarquer toutefois, que malgré ce
 gain, le code sous sa forme non-systématique parvient tout à fait à fournir de
-bonnes performances. De plus, dans les cadres de notre expérimentation, notre
+bonnes performances. De plus, dans le cadre de notre expérimentation, notre
 implémentation obtient de meilleurs résultats en encodage (un facteur $2$) et
 décodage (jusqu'à un facteur $3$) que l'implémentation des codes de \rs
 contenue dans la bibliothèque développée par \textcite{intel2015isal}.
@@ -1284,11 +1291,17 @@ Rappelons cependant que les bonnes performances obtenues par le code à
 effacement Mojette nécessitent davantage d'information encodée que ce qui est
 produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
 \cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale quand
-la taille des blocs augmente.
+la taille des blocs augmente. Plus particulièrement, nous y avons analysé qu'en
+définissant des blocs de $\mathcal{M}=4$~Ko, comme utilisés dans nos tests, un
+surcout de données de seulement $3$\% est nécessaire. N'ayant pas d'impact
+significatif sur un système de stockage, ce faible surcout est largement
+contrebalancé par l'amélioration des performances que nous avons observée ici.
 
 Ce chapitre a permis de mettre en avant le fait que le code à effacement
 Mojette (systématique ou non-systématique) est suffisamment efficace pour ne
 pas former un goulot d'étranglement dans la chaîne de transmission des données.
 Dans le chapitre suivant, nous allons nous intéresser à l'intégration de ce
-code au sein d'un système de stockage distribué.
+code au sein d'un système de fichier distribué (DFS). Cette intégration vise à
+ce que le DFS puisse tirer parti du code à effacement pour protéger les données
+face aux pannes, tout en fournissant de bonnes performances.
 
