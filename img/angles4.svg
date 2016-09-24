@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="26.663475"
-     inkscape:cy="87.305037"
+     inkscape:zoom="22.4"
+     inkscape:cx="10.589573"
+     inkscape:cy="72.289683"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -128,37 +128,41 @@
          id="g336"
          transform="matrix(0.1253525,0,0,0.12464737,0.4280589,713.68966)">
         <path
-           d="m 2156.7,-3177.65 0,-585.12"
+           d="m 2156.7,-3177.65 0,-573.3009"
            style="fill:none;stroke:#000000;stroke-width:4.23999977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path338"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
       </g>
       <g
          id="g340"
          transform="matrix(0.1253525,0,0,0.12464737,0.4280589,713.68966)">
         <path
-           d="m 2347.51,-3177.65 0,-585.12"
+           d="m 2347.51,-3177.65 0,-573.3009"
            style="fill:none;stroke:#000000;stroke-width:4.23999977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path342"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
       </g>
       <g
          id="g344"
          transform="matrix(0.1253525,0,0,0.12464737,0.4280589,713.68966)">
         <path
-           d="m 2538.3,-3177.65 0,-585.12"
+           d="m 2538.3,-3177.65 0,-573.3009"
            style="fill:none;stroke:#000000;stroke-width:4.23999977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path346"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
       </g>
       <g
          id="g348"
          transform="matrix(0.1253525,0,0,0.12464737,0.4280589,713.68966)">
         <path
-           d="m 2741.82,-3177.65 0,-585.12"
+           d="m 2741.82,-3177.65 0,-573.3009"
            style="fill:none;stroke:#000000;stroke-width:4.23999977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
            id="path350"
-           inkscape:connector-curvature="0" />
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
       </g>
       <g
          id="g536"
