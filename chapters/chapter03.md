@@ -24,7 +24,7 @@ intéressons au cas des codes à effacement AL-FEC, utilisés par les couches
 ces codes, le rendement et la latence sont des critères essentiels. En effet,
 le rendement joue un rôle sur l'utilisation des ressources (e.g.\ bande
 passante sur un réseau, capacité d'un système de stockage). Quant à la latence,
-elle ne doit pas limitée les performances du système de communication, étant
+elle ne doit pas limiter les performances du système de communication, étant
 donné que l'encodeur et le décodeur sont des composants branchés en série dans
 la chaîne de traitement de l'information.
 Par exemple, dans les systèmes de stockage distribués logiciels (SDS), le
@@ -36,14 +36,14 @@ stockage du système, ni limiter la latence des transferts de fichiers.
 L'objectif de ce chapitre est de proposer une approche de conception du code à
 effacement Mojette sous sa forme systématique. Cette forme permet en somme
 d'intégrer les symboles sources dans les mots de code générés à l'encodage.
-La construction du code dans sa version systématique est présentée dans
-la \cref{sec.algo-sys}. Les \cref{sec.eval.red,sec.systematique} qui suivent
-mettent respectivement en avant les deux principaux avantages de cette version,
-qui correspondent à : (i) l'amélioration du rendement du code à effacement
-Mojette provoquée par la géométrie même de la transformation, une évaluation de
-ce gain de rendement est proposée afin de positionner le rendement de notre
-code par rapport au rendement optimal des codes MDS; (ii) la réduction du
-nombre d'opérations réalisées par le code.
+La construction du code dans sa version systématique sera présentée dans
+la \cref{sec.algo-sys}. Les \cref{sec.eval.red,sec.systematique} qui suivent,
+mettront respectivement en avant les deux principaux avantages de cette version,
+à savoir : (i) l'amélioration du rendement du code à effacement
+Mojette provoquée par la géométrie même de la transformation; une évaluation
+de ce gain de rendement sera d'ailleurs présentée afin de positionner le
+rendement de notre code par rapport au rendement optimal des codes MDS; (ii) la
+réduction du nombre d'opérations réalisées par le code.
 
 <!--
 %Jusque là, les seuls travaux réalisés sur cette technique concerne une mise en
@@ -60,9 +60,9 @@ Mojette dans sa version systématique. Dans un premier temps, cette conception
 repose sur une construction du code permettant d'intégrer les symboles sources
 dans le mot de code, lors de l'opération d'encodage. Cet aspect de notre
 méthode de conception sera abordé dans la
-\cref{sec.construction.code.systematique}. Dans un second temps, un algorithme
-de reconstruction sera donné dans la \cref{sec.algorithme}, afin de
-reconstituer les symboles sources en cas d'effacement. Nous verrons que
+\cref{sec.construction.code.systematique}. Dans un second temps, nous
+présenterons un algorithme de reconstruction dans la \cref{sec.algorithme},
+afin de reconstituer les symboles sources en cas d'effacement. Nous verrons que
 l'algorithme d'inversion présenté ici correspond à une extension de
 l'algorithme inverse de \textcite{normand2006dgci}, qui a été étudié dans le
 chapitre précédent.
@@ -79,7 +79,7 @@ On appelle \ct{image dégradée} (ou image partielle) $f'$, une grille dans
 laquelle $e$ lignes ont été effacées. Une mise en œuvre du code à effacement
 Mojette sous sa forme systématique, a été proposée par
 \textcite{david2013patent}. Dans ce brevet, le procédé pour reconstruire une
-image $f'$ repose sur trois étapes, qui correspondent à :
+image $f'$ repose sur les trois étapes suivantes :
 
 1. calculer les valeurs des projections $\moj{\dir{(p_i,q_i)}}{f'}$ de la
 grille partielle $f'$. Un ensemble suffisant de projections est défini par un
@@ -94,13 +94,13 @@ utilisant les projections obtenues précédemment. Dans la suite, nous allons
 présenter une nouvelle mise en œuvre basée sur l'algorithme de
 \textcite{normand2006dgci}.
 
-\noindent En conséquence, la construction de la version systématique du code à
+\noindent Par conséquent, la construction de la version systématique du code à
 effacement Mojette est direct. Les $n$ symboles du mot de code correspondent
-aux $k$ lignes de la grille, auxquels on ajout $(n-k)$ projections. Cette
+aux $k$ lignes de la grille, auxquels on ajoute $(n-k)$ projections. Cette
 approche en Mojette se distingue, par sa simplicité, de la détermination d'une
-matrice d'encodage d'un code de \rs systématique. Comme nous l'avons dans le
-premier chapitre, cette détermination nécessite une élimination de \gj pour
-faire apparaître la partie identité de la matrice.
+matrice d'encodage d'un code de \rs systématique. Comme nous l'avions précisé
+dans le premier chapitre, cette détermination nécessite une élimination de \gj
+pour faire apparaître la partie identité de la matrice.
 
 
 ## Algorithme de reconstruction {#sec.algorithme}
@@ -138,14 +138,14 @@ ordre permet à chaque itération, de ne considérer que les pixels du graphe su
 lesquels ne s'applique aucune dépendance.
 
 En non-systématique, toutes les lignes de la grille doivent être reconstruites.
-En conséquence, la valeur de l'offset d'une ligne est uniquement déterminée à
-partir de l'ensemble : index de cette ligne, et direction de la projection
+En conséquence, pour déterminer la valeur de l'offset d'une ligne, il est
+nécessaire de connaitre son index, ainsi que la direction de la projection
 utilisée pour la reconstruire.
 Dans la version systématique, il est par ailleurs nécessaire de prendre en
 compte les lignes déjà présentes dans le calcul des *offsets* des lignes à
 reconstruire.
 On considère dans la suite l'ensemble des index $\text{Eff}(i)$ des lignes
-effacées, trié par ordre décroissant, avec $i \in \ZZ_e$, tel que $e$ désigne
+effacées, triés par ordre décroissant, avec $i \in \ZZ_e$, tel que $e$ désigne
 le nombre de lignes effacées. La détermination des valeurs des *offsets* se
 fera de la dernière ligne à reconstruire, jusqu'à la première. Il est ainsi
 nécessaire de calculer au préalable l'offset de la dernière ligne à
@@ -163,7 +163,7 @@ de  $\text{Offset}(\text{Eff}(e-1))$, tel que :
 
 \noindent La méthode pour déterminer la valeur de l'offset des autres lignes
 est décrite entre les \cref{alg.offsets,alg.offsets.fin} de
-l'\cref{alg.systematique} de reconstruction.
+l'\cref{alg.systematique} de reconstruction (cf. \cpageref{alg.systematique}).
 
 
 ### Calcul de la valeur du pixel à reconstruire {#sec.pxl}
@@ -248,9 +248,9 @@ induits par les techniques de réplication et les codes MDS.
         \label{fig.sys}
     \end{subfigure}
     \caption{Comparaison entre l'encodage Mojette non-sytématique et
-    systématique. Les lettres correspondent à la valeur des pixels de l'image
-    $3 \times 3$ (i.e.\ de hauteur $k=3$) d'où sont calculées ces $n=6$ blocs
-    encodés.}
+    systématique. L'ensemble $\{a,\dots,i\}$ correspond aux valeurs des pixels
+    de l'image $3 \times 3$ (i.e.\ de hauteur $k=3$) qui ont permis de calculer
+    les $n=6$ blocs encodés de la version non-systématique.}
     \label{fig.nsys.sys}
 \end{figure}
 
@@ -271,7 +271,7 @@ projection :
 blocs encodés (i.e.\ les projections) varie, nous allons étudier le nombre
 d'éléments de projection par rapport au nombre de pixels. Dans le cas du code à
 effacement non-systématique, la valeur de $\mu$ correspond au quotient de la
-somme du nombre de bin $B$ de chaque projection de l'ensemble $\{(p_i,q_i)\}$,
+somme du nombre de bins $B$ de chaque projection de l'ensemble $\{(p_i,q_i)\}$,
 sur le nombre d'éléments de la grille :
 
 \begin{table}[t]
@@ -316,7 +316,7 @@ sur le nombre d'éléments de la grille :
 remplacées par les $k$ lignes de la grille discrète quand le code est
 systématique. En conséquence, la valeur de $\mu$ correspond au quotient de la
 somme du nombre de pixels et de bins produits, sur le nombre de pixels de
-l'image:
+l'image :
 
 \begin{equation}
     \mu = \frac
@@ -327,10 +327,10 @@ l'image:
 
 \noindent Puisque la taille d'une projection ne peut être inférieure à la
 longueur d'une ligne de la grille (i.e.\ $Q \leq B(P,Q,p_i,q_i)$), le coût $\mu$
-des données encodées est inférieur en systématique qu'en non-systématique.
+des données encodées est moindre en systématique qu'en non-systématique.
 Dans la suite de notre évaluation, nous considérons un ensemble de projections
 de telle sorte que $q_i =1$ pour $i \in \mathbb{Z}_Q$, on peut alors écrire
-\cref{eqn.nombre_bins2} ainsi :
+l'\cref{eqn.nombre_bins2} ainsi :
 
 \begin{equation}
     B(P,Q,p_i,1) = (Q-1)|p_i| + P.
@@ -354,7 +354,8 @@ ensembles de projection $S_{\left(\frac{n}{k}\right)} = \{(p_i,q_i)\}$ suivants 
 4. $S_{\left(\frac{12}{8}\right)} = \left\{(0,1),(1,1),(-1,1),(2,1)\right\}$.
 
 \noindent Ces ensembles partagent le même taux de codage $r=\frac{3}{2}$ et
-fournissent respectivement une tolérance face à une, deux et quatre pannes.
+fournissent respectivement une tolérance face à une, deux, trois et quatre
+pannes.
 
 \begin{figure}
 \centering
@@ -370,24 +371,28 @@ fournissent respectivement une tolérance face à une, deux et quatre pannes.
 \end{figure}
 
 Le \cref{tab.f} compare les résultats des coûts $\mu$ (à l'arrondi près) pour
-les deux versions du code à effacement Mojette avec les ensembles de projection
+les deux versions du code à effacement Mojette avec les ensembles de
+projections
 proposés précédemment. Pour obtenir ces résultats, on a utilisé une taille de
 pixel de $64$ bits. En conséquence, la valeur de $P$ qui correspond à la
-largeur de la grille est calculé peut être obtenu ainsi :
+largeur de la grille peut être obtenue ainsi :
 
 \begin{equation}
     P = \frac{\mathcal{M} \times 8}{k \times 64},
 \end{equation}
 
 \noindent avec $\mathcal{M}$ qui correspond à la taille des données traitées en
-octets. Ces résultats permettent d'observer que lorsque les paramètres $(n,k)$
-du code augmentent, la valeur de $\mu$ augmente. Plus précisément, en $(12,8)$,
+octets. Ces résultats permettent d'observer que la valeur de $\mu$ croît
+lorsque les paramètres $(n,k)$ du code augmentent. Plus précisément, en $(12,8)$,
 la version non-systématique possède un coût élevé de $\mu=3,47$, contre $1,72$ en
 systématique. Dans ce cas, $P = 16$, ce qui correspond à $(2 \times Q)$. Or,
-cette faible différence entraîne de grandes valeurs dans \cref{eqn.taille}.
+cette faible différence entraîne de grandes valeurs dans l'\cref{eqn.taille}.
 Plus la valeur de $P$ augmente, plus la valeur de $\mu$ diminue. C'est ce que
 l'on observe dans le tableau, où les valeurs de $\mu$ convergent vers la valeur
-optimale $\mu=1,50$ qui correspond à la valeur atteinte par un code MDS.
+optimale $\mu=1,50$ qui correspond à la valeur atteinte par un code MDS. En
+conséquence, on tâchera de considérer des tailles de blocs $\mathcal{M}$
+suffisamment grandes (dans la mesure du possible), afin de réduire au mieux la
+redondance contenue dans les symboles du mot de code.
 
 
 ## Coût de la redondance par rapport à d'autres codes
@@ -395,7 +400,7 @@ optimale $\mu=1,50$ qui correspond à la valeur atteinte par un code MDS.
 Dans notre évaluation, nous allons considérer trois techniques qui permettent
 de générer de la redondance : la réplication, le code à effacement MDS, et le
 code à effacement Mojette dans sa version systématique. La \cref{fig.ec_vs_rep}
-présente notre évaluation.
+(cf. \cpageref{fig.ec_vs_rep}) présente notre évaluation.
 
 Dans le cas de la réplication, le facteur de redondance $\mu$ correspond au
 nombre de copies générées. Par exemple, dans le cas où l'on souhaite protéger
@@ -420,17 +425,17 @@ tolérance aux pannes fixée.
 # Considérations sur la réduction du nombre d'opérations {#sec.systematique}
 
 Afin de ne pas former de goulot d'étranglement dans la chaine de transmission
-du système de communication dans lequel il est utilisé, un code doit être
+du système de communication dans lequel il est utilisé, un code doit
 fournir de bonnes latences en encodage et en décodage.
 La \cref{sec.syscode} permet de comprendre la position du code
-dans la chaîne de traitement. En particulier nous introduirons des rapports
+dans la chaîne de traitement. Nous introduirons des rapports
 entre les différents maillons de cette chaîne et expliquerons quel doit être
 l'ordre de grandeur des performances du code pour ne pas former un goulot
 d'étranglement. Les deux analyses suivantes permettent de comprendre en quoi
 une version systématique du code peut améliorer ses performances. En
 particulier, la \cref{sec.sysenc} détermine que le gain en encodage est
-significatif. La \cref{sec.sysdec} montre que les performances en décodage
-dépendent du schéma de perte.
+significatif. La \cref{sec.sysdec} montre quant à elle, que les performances en
+décodage dépendent du schéma de perte.
 
 
 ## Contraintes en performances des codes à effacement {#sec.syscode}
@@ -440,18 +445,19 @@ dépendent du schéma de perte.
     \def\svgwidth{\textwidth}
     \includesvg{img/data_path3}
     \caption{Représentation du chemin de données dans la transmission entre deux
-    terminaux. La donnée à présente dans la mémoire principale (RAM) du nœud
+    terminaux. La donnée est présente dans la mémoire principale (RAM) du nœud
     $1$. L'encodage est réalisé par le CPU de ce nœud avant de transmettre
     l'information de l'interface réseau (NIC). Cette interface transmet ensuite
     l'information encodée sur le canal à effacement. Après réception des
     données par le nœud $2$, une opération de décodage est réalisée avant de
-    restituer la donnée reconstruite à la mémoire.}
+    restituer la donnée reconstruite à la mémoire. Cette figure est inspirée de
+    \cite{tanenbaum2014os}.}
     \label{fig.data_path}
 \end{figure}
 
 Pour comprendre l'enjeu des performances des codes à effacement, nous
-analyserons dans un premier temps le positionnement du code à effacement dans
-la chaîne de traitement des données. Nous verrons alors qu'il doit être
+analyserons dans un premier temps son positionnement dans
+la chaîne de traitement des données. Nous verrons alors que le code doit être
 suffisamment performant pour ne pas former un goulot d'étranglement dans cette
 chaîne. Par la suite, nous déterminerons un ordre de grandeur des performances
 que notre code doit fournir.
@@ -480,7 +486,7 @@ que notre code doit fournir.
             Redémarrage du système & 5 m & 32 millénaires\\
         \bottomrule
 	\end{tabular}
-	\caption{Comparaison des temps d'accès réel pour différentes opérations
+	\caption{Comparaison des temps d'accès réels pour différentes opérations
 	informatiques. La troisième colonne normalise ces temps sur la base d'un
 	cycle CPU pour une seconde. Extrait de \cite{gregg2013performance}.
 	\label{tab.delai}}
@@ -548,7 +554,7 @@ Le \cref{tab.debit} donne l'ordre de grandeur des débits atteints par la RAM, l
 interfaces réseaux, et les disques. En particulier on observe que les disques
 et le réseau forment les éléments limitants.
 Afin d'améliorer les performances d'un système composé de ces différents
-éléments, il existe deux possibilités: (i) attendre puis acheter au prix cher
+éléments, il existe deux possibilités: (i) attendre puis acheter au prix fort
 la nouvelle génération de matériel; (ii) agréger plusieurs composants ensemble
 afin de partager leurs ressources. Bien que la seconde option apporte une
 complexité de mise en œuvre, son prix est nettement plus accessible.
@@ -568,7 +574,7 @@ et/ou du réseau. Une évaluation des performances des codes à effacement
 utilisés dans les applications de stockage a été réalisée par
 \textcite{plank2009fast}. Dans cette étude, \citeauthor{plank2009fast} montrent
 que les débits d'encodage et de décodage observés par les meilleurs codes sont
-de l'ordre d'un gigaoctet par seconde. En conséquence, il est possible que ces
+de l'ordre d'un gigaoctet par seconde. Par conséquent, il est possible que ces
 codes forment un goulot d'étranglement dans le cas où un agrégat de disques ou
 de liens réseaux sature le nœud.
 
@@ -611,8 +617,9 @@ blocs de parité générés entre les deux versions s'exprime ainsi :
 
 Prenons l'exemple d'un code avec un taux $r={2}$, comme un code
 $(6,3)$ fournissant de la protection face à trois effacements.
-La \cref{fig.comparaison_systematique} représente la comparaison entre les deux
-techniques pour cet exemple.
+La \cref{fig.comparaison_systematique}
+(cf.\ \cpageref{fig.comparaison_systematique}) représente la comparaison entre
+les deux techniques pour cet exemple.
 En version systématique, l'ensemble des données encodées correspond aux $k$
 lignes de la grille, auxquelles on ajoute $r=3$ projections calculées. Dans
 notre exemple, ces projections sont construites suivant les directions
@@ -620,7 +627,7 @@ $\{(p_i,q_i)\} = \{(-1,1),(0,1),(1,1)\}$. Sous sa forme non-systématique, le
 code à effacement Mojette doit calculer trois projections supplémentaires afin
 de fournir la même disponibilité des données. Sur la
 \cref{fig.comparaison_systematique}, ces projections supplémentaires sont
-représentées en rouge. En conséquence, cette nouvelle version systématique
+représentées en rouge. Cette nouvelle version systématique
 nécessite de calculer deux fois moins de projections dans cet exemple.
 Cette réduction du nombre d'opérations dépend des paramètres du code. Si
 l'on prend le cas d'un code $(6,4)$, l'encodage génère trois fois moins de
@@ -631,7 +638,7 @@ projections. Nous verrons dans la suite l'impact sur le décodage.
 
 Dans cette partie nous allons étudier le comportement du code systématique en
 fonction du schéma de perte. On distingue trois schémas de pertes : (i) le cas
-optimal correspond à la situation où la grille n'a subit aucun effacement; (ii)
+optimal correspond à la situation où la grille n'a subi aucun effacement; (ii)
 le cas où la grille est dégradée (i.e.\ elle subit un nombre $e$ d'effacements,
 où $e<k$); (iii) le pire cas où toute la grille est effacée.
 
@@ -665,8 +672,8 @@ Dans la suite, nous analysons le cas où des effacements se produisent.
 
 Une dégradation des données entraîne nécessairement une opération de décodage
 afin de restaurer la donnée perdue. Nous considérons à présent que le nombre de
-lignes de grille discrète effacés $e$ est inférieur à $k$. Dans ce cas,
-l'opération de décodage est possible dés lors que l'on accède à un ensemble
+lignes de grille discrète effacées $e$ est inférieur à $k$. Dans ce cas,
+l'opération de décodage est possible dès lors que l'on accède à un ensemble
 suffisant de $e$ projections pour reconstruire les $e$ lignes effacées. Plus
 précisément, ce problème correspond à reconstruire une grille partiellement
 remplie.
@@ -708,14 +715,13 @@ Lorsque des effacements apparaissent, les performances décroissent puisqu'il
 est nécessaire de déclencher l'opération de décodage.
 Ces performances se dégradent alors avec le nombre de lignes effacées. Le pire
 cas est obtenu quand toute la grille est effacée. Dans ce cas, l'opération de
-décodage correspond à l'opération effectuée en non-systématique. En
-conséquence dans ce cas, les performances sont semblables dans les deux
-techniques.
+décodage correspond à l'opération effectuée en non-systématique. Les
+performances sont en conséquence, semblables dans les deux techniques.
 Rappelons que la forme non-systématique fournit les mêmes performances quel que
 soit le schéma de perte puisqu'il est nécessaire de reconstruire la grille
 entière à partir de $k$ projections. En comparaison, cette situation correspond
 au pire scénario de perte dans le cas systématique. Dans tous les autres cas,
-les performances sont meilleures.
+les performances en systématique sont meilleures.
 
 
 
@@ -724,20 +730,21 @@ les performances sont meilleures.
 
 \addcontentsline{toc}{section}{Conclusion du chapitre}
 
-Dans ce chapitre, nous avons présenté un moyen qui permet d'améliorer le code à
+Dans ce chapitre, nous avons présenté un moyen permettant d'améliorer le code à
 effacement Mojette selon deux critères parmi la liste élaborée dans le premier
-chapitre. Cette méthode consiste à utiliser le code à effacement Mojette sous
-sa forme systématique. Une construction de cette version a été proposée dans la
-\cref{sec.algo-sys}. Cette construction (simple à mettre en œuvre) consiste à
-considérer que les $n$ symboles d'un mot de code, sont composés des $k$ lignes
-de la grille, et de $n-k$ projections Mojette. Pour accompagner cette
-proposition de conception, un algorithme d'inversion a été donné afin de
-reconstruire la grille dans le cas systématique. Par la suite, nous avons
-analysé les conséquences de cette construction, et avons déterminé deux
-améliorations.
+chapitre, à savoir, le rendement, et le nombre d'opérations nécessaires pour
+l'encodage et le décodage. Cette méthode consiste à utiliser le code à
+effacement Mojette sous sa forme systématique. Une construction de cette
+version a été proposée dans la \cref{sec.algo-sys}. Cette construction (simple
+à mettre en œuvre) consiste à considérer que les $n$ symboles d'un mot de code,
+sont composés des $k$ lignes de la grille, et de $n-k$ projections Mojette.
+Pour accompagner cette proposition de conception, un algorithme d'inversion a
+été donné afin de reconstruire la grille dans le cas systématique. Par la
+suite, nous avons analysé les conséquences de cette construction, et avons
+déterminé deux améliorations.
 
 La première amélioration concerne le rendement du code, qui est sous-optimal
-dans le cas du code à effacement Mojette. La \cref{eval.red.sec} a permis de
+dans le cas du code à effacement Mojette. La \cref{sec.eval.red} a permis de
 montrer que le surcoût de redondance de ce code provient de la géométrie de la
 transformation. Plus précisément, les projections sont de taille variable, et
 cette taille augmente avec l'index de la projection.
@@ -745,15 +752,15 @@ La version systématique permet de réduire la quantité de redondance généré
 le code en diminuant la quantité de projections à générer. Bien que le
 rendement converge vers l'optimal (au sens MDS) à mesure que la largeur de la
 grille augmente, nous avons pu observer une réduction de la quantité de données
-encodée par deux dans le cas extrême de notre évaluation. Ce cas met en jeu
+encodées par deux dans le cas extrême de notre évaluation. Ce cas met en jeu
 une grille de faible largeur (i.e.\ $P=16,Q=8$).
 
 La seconde amélioration, traitée dans la \cref{sec.systematique} s'intéresse
-à l'amélioration du critère lié au nombre d'opérations nécessaire pour
+à l'amélioration du critère lié au nombre d'opérations nécessaires pour
 l'encodage et le décodage. Pour les mêmes raisons que pour le rendement
 (i.e.\ moins de projections à calculer), le nombre d'opérations nécessaires en
 encodage est réduit. Par exemple, dans le cas d'un code de rendement
-$\frac{3}{2}$, il y a trois fois moins de projection à calculer. Le décodage
+$\frac{3}{2}$, il y a trois fois moins de projections à calculer. Le décodage
 nécessite également moins d'opérations, dans le cas où certaines lignes de la
 grille sont disponibles. Il faut également noter qu'un aspect important des
 codes systématiques est que le décodage n'est pas nécessaire lorsqu'aucun des
