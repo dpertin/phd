@@ -3,7 +3,7 @@
 	caption={Fonction \emph{map}. La directive \emph{pragma omp parallel}
 	permet de rendre la boucle parralèle.},
 	label={lst.map},]
-/* map the reprojection process for every projection, produce partial reconstructions */
+/* assigne le processus de reprojection pour chaque projection, retourne les reconstructions partielles */
 void map(int w, int k, projection_t *projections, projection_t *p_reprojections, int nb_proj, int extra_dir)
 {
     #pragma omp parallel for schedule(static)
