@@ -57,23 +57,28 @@
     \put(0.14063097,0.23220318){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{rozofsmount}}}%
     \put(0.8783011,0.23220318){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{rozofsmount}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{rozofs_archi.pdf}}%
-    \put(0.84322666,0.68962825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Where to read?}}}%
+    \put(0.84322666,0.68962825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Où
+    lire ?}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{rozofs_archi.pdf}}%
-    \put(0.18746789,0.68962825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Where to write?}}}%
+    \put(0.18746789,0.68962825){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Où
+    écrire ?}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{rozofs_archi.pdf}}%
-    \put(0.29384762,0.60429498){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c1: \{s1, s2, s3, [s4]\}}}}%
-    \put(0.7692218,0.60429498){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{c1: \{s1, s2, s3\}}}}%
+    \put(0.29384762,0.60429498){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_1$:
+    \{$s_1$, $s_2$, $s_3$, [$s_4$]\}}}}%
+    \put(0.7692218,0.60429498){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$c_1$:
+    \{$s_1$, $s_2$, $s_3$\}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{rozofs_archi.pdf}}%
-    \put(0.5152557,0.33424412){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{storage1}}}%
-    \put(0.5152557,0.22808321){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{storage2}}}%
-    \put(0.5152557,0.12192229){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{storage3}}}%
-    \put(0.5152557,0.01576133){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{storage4}}}%
-    \put(0.51523496,0.3976141){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{d1}}}%
-    \put(0.51523496,0.29145319){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{d2}}}%
-    \put(0.51447815,0.18767675){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{p1}}}%
-    \put(0.51523496,0.53948845){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{cluster1}}}%
-    \put(0.87905791,0.17558402){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{client2}}}%
-    \put(0.14138779,0.17558402){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{client1}}}%
-    \put(0.51335746,0.70954551){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{metadata server}}}%
+    \put(0.5152557,0.33424412){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage$_1$}}}%
+    \put(0.5152557,0.22808321){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage$_2$}}}%
+    \put(0.5152557,0.12192229){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage$_3$}}}%
+    \put(0.5152557,0.01576133){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{stockage$_4$}}}%
+    \put(0.51523496,0.3976141){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_1$}}}%
+    \put(0.51523496,0.29145319){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_2$}}}%
+    \put(0.51447815,0.18767675){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p_1$}}}%
+    \put(0.51523496,0.53948845){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{grappe$_1$}}}%
+    \put(0.87905791,0.17558402){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{client$_2$}}}%
+    \put(0.14138779,0.17558402){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{client$_1$}}}%
+    \put(0.51335746,0.70954551){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{serveur
+    de métadonnées}}}%
   \end{picture}%
 \endgroup%

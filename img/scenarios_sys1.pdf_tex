@@ -59,7 +59,8 @@
     \put(0.08716087,0.28019653){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_1$}}}%
     \put(0.33463015,0.33600798){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_2$}}}%
     \put(0.58317408,0.39181942){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p_1$}}}%
-    \put(0.4989944,0.56089404){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Fault-Free Write}}}%
+    \put(0.4989944,0.56089404){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Écriture
+    sans dégradation}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{img/scenarios_sys1.pdf}}%
   \end{picture}%
 \endgroup%
