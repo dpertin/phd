@@ -58,7 +58,9 @@
     \put(0.89060026,0.09986195){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_4$}}}%
     \put(0.08702943,0.27988996){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_1$}}}%
     \put(0.33449871,0.33570141){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_2$}}}%
-    \put(0.49641909,0.56058749){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Fault-free Read}}}%
-    \put(0.49641909,0.50477605){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(no decoding)}}}%
+    \put(0.49641909,0.56058749){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Lecture
+    sans dégradation}}}%
+    \put(0.49641909,0.50477605){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(sans
+    décodage)}}}%
   \end{picture}%
 \endgroup%

@@ -59,7 +59,8 @@
     \put(0.08716091,0.28178025){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_{1}$}}}%
     \put(0.33463019,0.33759169){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_{2}$}}}%
     \put(0.83432561,0.39340313){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p_{1}$}}}%
-    \put(0.49911703,0.56247776){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Degraded Write}}}%
-    \put(0.63793688,0.2372545){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Failure}}}%
+    \put(0.49911703,0.56247776){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Écriture
+    dégradée}}}%
+    \put(0.63793688,0.2372545){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Panne}}}%
   \end{picture}%
 \endgroup%

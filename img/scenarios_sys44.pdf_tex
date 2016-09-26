@@ -58,8 +58,9 @@
     \put(0.89060026,0.10175241){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$S_{4}$}}}%
     \put(0.08702952,0.28178016){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$d_{1}$}}}%
     \put(0.58304273,0.33759161){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{$p_{1}$}}}%
-    \put(0.49654172,0.56247776){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Degraded Read}}}%
+    \put(0.49654172,0.56247776){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Lecture
+    dégradée}}}%
     \put(0.49654172,0.50666631){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{(decoding)}}}%
-    \put(0.38742667,0.2372545){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Failure}}}%
+    \put(0.38742667,0.2372545){\color[rgb]{0,0,0}\makebox(0,0)[b]{\smash{Panne}}}%
   \end{picture}%
 \endgroup%

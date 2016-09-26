@@ -742,14 +742,14 @@ Nous verrons dans un premier temps les résultats de l'expérimentation en
         \centering
         \tikzset{every picture/.style={scale=0.82}}
         \input{expe_data/seq_write.tex}
-        \caption{Débit d'écriture séquentielle (Mo/s).}
+        \caption{Débits d'écriture séquentielle (Go/s).}
         \label{fig.seq_write}
     \end{subfigure}
     \begin{subfigure}{.49\textwidth}
         \centering
         \tikzset{every picture/.style={scale=0.82}}
         \input{expe_data/rand_write.tex}
-        \caption{Débit d'écriture aléatoire (ESPS).}
+        \caption{Débits d'écriture aléatoire (kESPS).}
         \label{fig.rand_write}
     \end{subfigure}
     \caption{Évaluation des performances d'écriture séquentielle et aléatoire.
@@ -835,14 +835,14 @@ grande qu'*econome*.
         \centering
         \tikzset{every picture/.style={scale=0.82}}
         \input{expe_data/seq_read.tex}
-        \caption{Débit de lecture séquentiel (Mo/s).}
+        \caption{Débits de lecture séquentiel (Go/s).}
         \label{fig.seq_read}
     \end{subfigure}
     \begin{subfigure}{.49\textwidth}
         \centering
         \tikzset{every picture/.style={scale=0.82}}
         \input{expe_data/rand_read.tex}
-        \caption{Débit de lecture aléatoire (ESPS).}
+        \caption{Débits de lecture aléatoire (kESPS).}
         \label{fig.rand_read}
     \end{subfigure}
     \caption{Évaluation des performances de lecture séquentielle et aléatoire.
@@ -870,7 +870,7 @@ La \cref{fig.rand_read} présente les résultats obtenus en accès aléatoire. D
 ce cas, les performances de RozoFS sont trois plus élevées que celles obtenues
 par CephFS. Bien que les performances augmentent globalement pour les deux
 systèmes, il est intéressant de remarquer que celles de RozoFS plafonnent
-à proximité des $60000$ IOPS. Cette limite correspond à la même limite
+à proximité des $60000$ ESPS. Cette limite correspond à la même limite
 rencontrée dans le test en séquentiel, et représentée dans la
 \cref{fig.seq_write} (cf.\ \cpageref{fig.seq_write}). Les disques rotatifs
 offrent généralement les mêmes performances en lecture ou écriture quand les
