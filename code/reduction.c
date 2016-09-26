@@ -2,7 +2,7 @@
 \begin{lstlisting}[
 	caption={Fonction \emph{reduction}},
 	label={lst.reduction},]
-/* reduce the results from map() into a single reprojection */
+/* fusionne les produits de map() en une reprojection */
 void reduce(projection_t *reproj, projection_t *p_reprojections, int nb_proj)
 {
     #pragma omp parallel for 
