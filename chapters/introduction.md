@@ -325,26 +325,32 @@ encodage et en décodage. Cette motivation est étendue à l'intégration du cod
 dans RozoFS, afin de fournir un DFS capable de fournir de bonnes performances
 en lecture et écriture, tout en tolérant les pannes avec une quantité minimum
 de redondance (code MDS).
-Ce travail de thèse a ainsi conduit aux contributions suivantes :
+Ce travail de thèse a ainsi conduit aux trois contributions suivantes :
 
-1. l'établissement d'une liste de critères utilisée dans cette thèse afin de
-fournir une comparaison théorique des codes présentés dans ce manuscrit;
-
-2. la conception et l'analyse d'une version systématique du code à effacement
+1. la conception et l'analyse d'une version systématique du code à effacement
 Mojette, permettant d'accélérer les performances du code, et d'en réduire la
 quantité de redondance nécessaire;
 
-4. la réalisation d'une implémentation des codes Mojette, ainsi qu'une
-comparaison des latences d'encodage et de décodage avec les codes de \rs
-fournis dans ISA-L;
+2. l'intégration de ce code Mojette systématique au niveau de la distribution
+des données dans RozoFS, dans l'objectif que celui-ci puisse gérer les données
+chaudes, tout en limitant le coût de la redondance;
 
-5. l'intégration du code Mojette systématique dans RozoFS, ainsi qu'une
-comparaison des performances en lecture et en écriture avec le système de
-fichiers distribué de référence : CephFS;
+3. la conception d'une méthode distribuée pour ré-encoder cette redondance,
+sans avoir à reconstruction la donnée initiale, afin de pouvoir rétablir un
+seuil de redondance au sein du NDSS.
 
-6. la conception d'une méthode pour ré-encoder de la redondance de façon
-distribuée, sans reconstruction explicite de la donnée initiale, dans
-l'objectif de rétablir un seuil de redondance au sein du NDSS.
+<!--
+%1. l'établissement d'une liste de critères utilisée dans cette thèse afin de
+%fournir une comparaison théorique des codes présentés dans ce manuscrit;
+
+%4. la réalisation d'une implémentation des codes Mojette, ainsi qu'une
+%comparaison des latences d'encodage et de décodage avec les codes de \rs
+%fournis dans ISA-L;
+
+%, ainsi qu'une
+%comparaison des performances en lecture et en écriture avec le système de
+%fichiers distribué de référence : CephFS;
+-->
 
 <!--
 %3. une comparaison du coût de la redondance des versions systématique et
