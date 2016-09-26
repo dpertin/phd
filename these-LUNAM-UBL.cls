@@ -1428,7 +1428,7 @@
       \vspace{\baselineskip}
 
       \footnotesizecover
-      \noindent\textbf{Soutenue le \@date}\par
+      \noindent\textbf{Soutenue le \@date\\ED 503}\par
       \ifx\@thesisnumber\@empty
       \else
          \noindent\textbf{Th\`ese n\textdegree\ : \@thesisnumber}\par
