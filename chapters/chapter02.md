@@ -1016,7 +1016,8 @@ parrein2012isccsp, pertin2012isivc}.
     \caption{Représentation de la mise en œuvre du code à effacement
     non-systématique basé sur la FRT. La colonne de parité correspond à une
     contrainte pour concevoir un code MDS. Les données encodées
-    correspondent aux $p$ projections de l'espace de \radon.}
+    correspondent aux $p$ projections de l'espace de \radon. Figure inspirée
+    depuis \cite{normand2010wcnc}.}
     \label{fig.frt_non-sys}
 \end{figure}
 
@@ -1213,7 +1214,7 @@ la \cref{sec.fecmojette}.
 \begin{figure}
     \centering
     \def\svgwidth{.7\textwidth}
-    \includesvg{img/mojette_forward_xor}
+    \includesvg{img/mojette_forward_xor3}
     \caption{Représentation de la transformée Mojette dans $\FF_2$. On
     considère une grille d'image $P \times Q = 3 \times 3$ sur laquelle nous
     calculons $4$ projections dont les directions $(p_i,q_i)$ sont comprises
