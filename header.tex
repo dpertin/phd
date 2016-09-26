@@ -305,7 +305,7 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 %    {}}
 
 \DeclareIndexNameFormat{mine}{
-      \ifboolexpr{ test {\ifstrequal{Pertin Dimitri}{#1}}}
+      \ifboolexpr{ test {\ifstrequal{Dimitri Pertin}{#1}}}
           {\addtocategory{mine}{\thefield{entrykey}}}
               {}}
 
@@ -345,6 +345,19 @@ densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
 %    {\addcomma\space}
 %    {}
 %}
+% http://tex.stackexchange.com/questions/299036/biblatex-3-3-name-formatting
+% don't know why but it works:
+\DeclareNameFormat{author}{%
+	\nameparts{#1}%
+	\ifthenelse{\equal{\namepartfamily}{\nom}}
+    {{\bf\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+     \namepartfamily}}%
+    {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+     \namepartfamily}%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}
+    {}
+}
 
 % http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
 % filtrer par date
