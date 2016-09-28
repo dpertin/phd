@@ -1231,11 +1231,11 @@ quelle forme, nous considèrerons dans la suite une image rectangulaire,
 composée de $P \times Q$ pixels. Une projection Mojette $\M$ est
 un ensemble d'éléments appelés *bins*, qui est définie par une direction de
 projection $(p,q)$, avec $p,q \in \ZZ$ premiers entre eux (comme expliqué en
-\cref{sec.angles}). La transformée Dirac-Mojette $[\M f]$ est définie par
+\cref{sec.angles}). La transformée Dirac-Mojette $\moj{}{f}$ est définie par
 \textcite{guedon1995vcip} comme l'ensemble de projections suivant :
 
 \begin{equation}
-    [\M f](b,p_{i},q_{i}) =
+    \moj{\{b,p_{i},q_{i}\}}{f} =
         \sum_{k=0}^{Q-1} \sum_{l=0}^{P-1}
         f \left(k,l\right)
         \Delta\left(b-lp_{i}+kq_{i}\right)\;,
