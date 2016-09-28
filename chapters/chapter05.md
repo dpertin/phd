@@ -939,7 +939,7 @@ symbole systématique tarde à arriver.
 Les \cref{sec.chap3,sec.chap4} ont montré que malgré le gain observé des
 performances en systématique, la version non-systématique permet déjà de fournir de
 très hauts débits. Le goulot d'étranglement du système réside alors soit dans
-la partie matérielle (e.g.\ disques ou réseau), soit dans le surcoût impliqué
+la partie matérielle (e.g.\ disques ou réseau), soit dans le surcout impliqué
 par la gestion logicielle du DFS (e.g.\ journalisation, réplication). Le
 critère des performances n'est donc pour l'instant pas déterminant dans le choix
 de la version du code. Par conséquent, l'utilisation du code non-systématique

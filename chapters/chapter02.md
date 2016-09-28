@@ -1577,7 +1577,7 @@ l'impact de l'encodage sera précisément évalué et comparé avec d'autres
 techniques (\cref{sec.surcout_stockage}).
 
 
-#### Réduction du surcoût de redondance
+#### Réduction du surcout de redondance
 
 \textcite{verbert2004wiamis} ont proposé une méthode basée sur l'analyse de
 l'algorithme de reconstruction afin de réduire la taille des projections.
@@ -1635,8 +1635,8 @@ altérées.
 
 La transformation Mojette correspond à une version apériodique de la FRT, ce
 qui a pour conséquence de rendre le code à effacement associé non-MDS,
-contrairement au code fourni par la FRT. Toutefois ce surcoût d'encodage est
-limité et la Mojette correspond à un code «\ quasi-MDS\ ». Ce léger surcoût
+contrairement au code fourni par la FRT. Toutefois ce surcout d'encodage est
+limité et la Mojette correspond à un code «\ quasi-MDS\ ». Ce léger surcout
 ouvre la voie à des algorithmes de reconstruction très efficaces. Actuellement
 disponible sous sa forme non-systématique, nous verrons qu'une
 mise en œuvre du code sous sa forme systématique peut améliorer les

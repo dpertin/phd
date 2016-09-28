@@ -83,7 +83,7 @@ dans sa version systématique, tel que défini précédemment dans le
 meilleures implémentations des codes de \rs fournies par
 \textcite{intel2015isal}. Nous montrerons en particulier que le code Mojette
 bénéficie de meilleures performances théoriques dans l'ensemble des métriques,
-au prix d'un léger surcoût de données à stocker. Ces aspects théoriques seront
+au prix d'un léger surcout de données à stocker. Ces aspects théoriques seront
 validés dans l'expérimentation en dernière partie.
 
 

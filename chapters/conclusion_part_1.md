@@ -36,7 +36,7 @@ projections peuvent être choisis arbitrairement);
 4. une forme systématique possible, et dont la mise en œuvre est simple.
 
 L'efficacité des opérations d'encodage et de décodage du code à effacement
-Mojette se fait au détriment d'un faible surcoût de redondance nécessaire
+Mojette se fait au détriment d'un faible surcout de redondance nécessaire
 (désigné par $\epsilon$ dans notre étude).
 Le code Mojette est donc le code approprié pour concevoir un système de
 stockage capable de gérer à la fois, les données froides, et les données

@@ -162,7 +162,7 @@ solution classique pour supporter ces pannes consiste à exploiter la nature des
 NDSS en distribuant plusieurs copies des blocs de données sur des supports de
 stockage différents. Cette méthode permet d'accéder à la copie d'un
 bloc lorsque les autres ne sont pas disponibles. Bien que simple à
-mettre en œuvre, chaque copie générée ajoute un surcoût de redondance de
+mettre en œuvre, chaque copie générée ajoute un surcout de redondance de
 $100\%$. Cette méthode implique alors un coût de stockage important.
 \textbf{Notre troisième problème consiste à garantir un seuil de redondance
 permettant au NDSS de supporter les pannes, tout en minimisant cette quantité

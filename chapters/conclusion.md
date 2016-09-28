@@ -31,7 +31,7 @@ de la transformation Mojette, dont les projections ont des tailles variables.
 Malgré cela, nous avons montré dans le \cref{sec.chap3}, que le rendement de
 notre version du code Mojette tend vers le rendement optimal des codes MDS
 quand la largeur de la grille augmente. En conséquence, on observe un très
-faible surcoût de $3$\% avec blocs de données de $4$ Ko (taille utilisée en
+faible surcout de $3$\% avec blocs de données de $4$ Ko (taille utilisée en
 pratique), par rapport aux codes MDS, ce qui est négligeable pour un NDSS.
 
 Plus particulièrement, nous avons proposé une liste de critères
