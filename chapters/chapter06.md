@@ -789,7 +789,7 @@ en parallélisme.
 
 Dans notre expérience, nous enregistrons la latence nécessaire pour réaliser
 ces opérations en fonction de la technique utilisée. En particulier, nos tests
-mettent en jeu la technique classique qui consiste à reconstruire l'image à
+mettent en jeu la technique classique qui consiste à reconstruire l'image a
 priori, et la nouvelle technique décrite précédemment, sans reconstruction de
 l'image. Puisque ces résultats dépendent de la difficulté de l'opération de
 reprojection, nous faisons varier la taille $\mathcal{M}$ des blocs étudiés.
