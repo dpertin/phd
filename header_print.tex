@@ -1,0 +1,390 @@
+
+% raccourcis de feignasse \o/ 
+\newcommand\radon{\citeauthor{radon1917akad}\xspace}
+\newcommand\matus{\citeauthor{matus1993pami}\xspace}
+\newcommand\katz{\citeauthor{katz1978springer}\xspace}
+\newcommand\reed{\citeauthor{reed1960jsiam}\xspace}
+
+\newcommand\shannon{\textsc{Shannon}\xspace}
+\newcommand\hamming{\textsc{Hamming}\xspace}
+\newcommand\vander{\textsc{Vandermonde}\xspace}
+\newcommand\cauchy{\textsc{Cauchy}\xspace}
+\newcommand\gauss{\textsc{Gauss}\xspace}
+\newcommand\gj{\textsc{Gauss-Jordan}\xspace}
+\newcommand\singleton{\textsc{Singleton}\xspace}
+\newcommand\rs{\textsc{Reed-Solomon}\xspace}
+\newcommand\eo{\textsc{EVENODD}\xspace}
+\newcommand\fourier{\textsc{Fourier}\xspace}
+\newcommand\galois{\textsc{Galois}\xspace}
+\newcommand\intel{\textsc{Intel}\xspace}
+
+\newcommand\ZZ{\mathbb{Z}}
+\newcommand\NN{\mathbb{N}}
+\newcommand\RR{\mathbb{R}}
+\newcommand\CC{\mathbb{C}}
+\newcommand\FF{\mathbb{F}}
+\newcommand\PP{\mathcal{P}}
+\newcommand\QQ{\mathcal{Q}}
+%\newcommand\MM{\mathcal{M}}
+\newcommand\MM{M}
+
+
+\documentclass[11pt,
+    french,
+    fancyChapter,
+    fancyPart,
+    %squeezeComittee,
+    ]{these-LUNAM-UBL}
+    %]{report}
+
+% je retire les en-tête parce que c'est bof
+%\pagestyle{plain}
+
+% en fait je les laisse mais en plus petit
+% faut voir comment garder les chapitres et parties "fancy" <3 ...
+% http://tex.stackexchange.com/questions/78550/how-to-modify-the-headers-of-this-book-to-lower-case
+\usepackage{fancyhdr}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\itshape\nouppercase{\rightmark}}
+\fancyhead[RE]{\itshape\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0pt}
+
+%\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{times}
+
+%\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% http://tex.stackexchange.com/questions/74880/algorithmicx-package-comments-on-a-single-line
+    \algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
+%\usepackage[pdftex]{graphicx}
+\usepackage{url}
+\usepackage{longtable, booktabs, multirow}
+\usepackage{makeidx}
+\usepackage{transparent}
+\usepackage{xspace}
+\usepackage{minitoc}
+    \mtcselectlanguage{french}
+
+\usepackage{array,booktabs}
+\newcolumntype{L}{@{}>{\kern\tabcolsep}l<{\kern\tabcolsep}}
+\usepackage{colortbl}
+
+\usepackage{tikz,pgfplots,pgfgantt}
+	\usetikzlibrary{arrows,positioning,matrix}
+%http://tex.stackexchange.com/questions/102460/underbraces-in-matrix-divided-in-blocks
+	\usetikzlibrary{decorations.pathreplacing}
+	\newcommand{\tikzmark}[1]{\tikz[overlay,remember
+	picture,baseline=(#1.base)]
+	  \node (#1) {\strut};}
+
+%http://tex.stackexchange.com/questions/132783/how-to-write-checkmark-in-latex
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15)
+    -- cycle;}
+\usepackage{lscape,afterpage}
+%\usepackage{xcolor} %déjà intégré dans le .cls
+
+%\geometry{inner=2.5cm, outer=2.5cm, top=2.5cm, bottom=2cm}
+%\geometry{inner=1.5cm, outer=1.5cm, top=2cm, bottom=2cm}
+
+\usepackage{textcomp}
+\usepackage{pdflscape}
+\usepackage{sistyle}
+
+\definecolor{myred}{HTML}{810303}
+\definecolor{myblue}{HTML}{000080}
+
+\definecolor{mygrey}{HTML}{272822}
+\definecolor{mybgrey}{HTML}{75715E}
+\definecolor{mywhite}{HTML}{DDDDDD}
+\definecolor{mypink}{HTML}{F92672}
+\definecolor{mygreen}{HTML}{A6E22E}
+
+\definecolor{ubl_blue}{HTML}{31849B}
+\definecolor{ubl_red}{HTML}{FF320A}
+\definecolor{ubl_green}{HTML}{C8C83C}
+\definecolor{ubl_black}{HTML}{2B2B2A}
+\definecolor{ubl_gray}{HTML}{ECF0DF}
+\definecolor{ubl_light_gray}{HTML}{F8F8F8}
+
+\usepackage{listings}
+	\lstset{language=C++,
+	%backgroundcolor=\color{mygrey},
+	emph={map,reduce,pragma}, emphstyle={\bfseries\color{mygreen}},
+	emph={[2]void, int, for}, emphstyle={[2]\bfseries\color{mypink}},
+	commentstyle=\itshape\color{mygrey},
+	breaklines=true,
+	captionpos=b,
+	numbers=left,
+	numberstyle=\color{black},
+	xleftmargin=2em,    % pour que les numéros ne sortent pas du paragraphe
+	%basicstyle={\color{mywhite}},
+	escapechar={\&},     % pour mettre des morceaux de LaTeX dedans
+	frame=single%none}
+}
+
+\newcommand{\firstinit}{D.}
+\newcommand{\prenom}{Dimitri}
+\newcommand{\nom}{Pertin}
+
+% régle la profondeur de la table des matières
+% \setcounter{tocdepth}{3}
+% \setcounter{secnumdepth}{3}
+
+% options et procédures pour inclure les images SVG
+\graphicspath{{img/}}
+
+\newcommand{\executeiffilenewer}[3]{%
+ \ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+ {\pdffilemoddate{#2}}>0%
+ {\immediate\write18{#3}}\fi%
+}
+\newcommand{\includesvg}[1]{%
+  \executeiffilenewer{#1.svg}{#1.pdf}%
+  {inkscape -z -D --file=#1.svg %
+  --export-pdf=#1.pdf --export-latex}%
+ \input {#1.pdf_tex}%
+}
+
+\def\proj{\mathrm{proj}}
+\def\M{\mathcal{M}}
+\def\blocs{blocs\xspace}
+
+
+\DeclareMathOperator*{\xor}{\bigoplus}
+             
+
+% relatif au papier reprojection
+\DeclareMathOperator*{\bigast}{\ast}
+\DeclareMathOperator*{\bigastinv}{\ast^{-1}}
+\newcommand{\Conv}{\mathop{\scalebox{1.5}{\raisebox{-0.2ex}{$\ast$}}}}%homemade
+\def\dir#1{\left\{#1\right\}}
+\def\ghost#1{g_{#1}}
+\def\moj#1#2{M_{#1}\left[#2\right]}
+
+\def\ct#1{«~#1~»}
+
+\makeatletter
+\renewcommand{\ALG@name}{Algoritme}
+\makeatother
+
+\algrenewcommand\algorithmicrequire{\textbf{Entrée :}}
+\algrenewcommand\algorithmicensure{\textbf{Sortie :}}
+\algrenewcommand\algorithmicfor{\textbf{pour}}
+\algrenewcommand\algorithmicforall{\textbf{pour tout}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicend{\textbf{fin}}
+\algrenewcommand\algorithmicif{\textbf{si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
+
+\pgfplotscreateplotcyclelist{my black white}{%
+solid, every mark/.append style={solid, fill=gray}, mark=*\\%
+dotted, every mark/.append style={solid, fill=gray}, mark=square*\\%
+densely dotted, every mark/.append style={solid, fill=gray}, mark=otimes*\\%
+loosely dotted, every mark/.append style={solid, fill=gray}, mark=triangle*\\%
+dashed, every mark/.append style={solid, fill=gray},mark=diamond*\\%
+loosely dashed, every mark/.append style={solid, fill=gray},mark=*\\%
+densely dashed, every mark/.append style={solid, fill=gray},mark=square*\\%
+dashdotted, every mark/.append style={solid, fill=gray},mark=otimes*\\%
+dasdotdotted, every mark/.append style={solid},mark=star\\%
+densely dashdotted,every mark/.append style={solid, fill=gray},mark=diamond*\\%
+}
+
+% Style to select only points from #1 to #2 (inclusive)
+\pgfplotsset{select coords between index/.style 2 args={
+    x filter/.code={
+        \ifnum\coordindex<#1\def\pgfmathresult{}\fi
+        \ifnum\coordindex>#2\def\pgfmathresult{}\fi
+    }
+}}
+
+% same reference for footnotes in table
+% http://tex.stackexchange.com/questions/35043/reference-different-places-to-the-same-footnote
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+
+% ultime cheat pour avoir des méga matrices
+\setcounter{MaxMatrixCols}{20}
+
+% curious (et flemmard ...)
+\usepackage{totcount}
+\usepackage{lipsum}
+
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+	maxnames=2,
+    maxbibnames=99,
+    language=french,
+    babel=other,
+    backref=true,
+	%style=trad-plain
+]{biblatex}
+\addbibresource{these.bib}
+
+\usepackage[bookmarks,%
+                colorlinks,%
+                urlcolor=blue,%
+                citecolor=blue,%
+                linkcolor=blue,%
+                hyperfigures,%
+                %pagebackref,%
+                pdfcreator=LaTeX,%
+                breaklinks=true,%
+                pdfpagelayout=SinglePage,%
+                bookmarksopen=true,%
+                bookmarksopenlevel=2]{hyperref}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black},
+    hidelinks,
+}
+
+%%% RELATIF À HYPERREF %%%
+
+%http://tex.stackexchange.com/questions/15951/hyperlink-name-with-biblatex-authoryear-biblatex-1-4b
+
+%\DeclareFieldFormat{citehyperref}{%
+%  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+%  \bibhyperref{#1}}
+%
+%\DeclareFieldFormat{textcitehyperref}{%
+%  \DeclareFieldAlias{bibhyperref}{noformat}% Avoid nested links
+%  \bibhyperref{%
+%    #1%
+%    \ifbool{cbx:parens}
+%      {\bibcloseparen\global\boolfalse{cbx:parens}}
+%      {}}}
+%
+%\savebibmacro{cite}
+%\savebibmacro{textcite}
+%
+%\renewbibmacro*{cite}{%
+%  \printtext[citehyperref]{%
+%    \restorebibmacro{cite}%
+%    \usebibmacro{cite}}}
+%
+%\renewbibmacro*{textcite}{%
+%  \ifboolexpr{
+%    ( not test {\iffieldundef{prenote}} and
+%      test {\ifnumequal{\value{citecount}}{1}} )
+%    or
+%    ( not test {\iffieldundef{postnote}} and
+%      test {\ifnumequal{\value{citecount}}{\value{citetotal}}} )
+%  }
+%    {\DeclareFieldAlias{textcitehyperref}{noformat}}
+%    {}%
+%  \printtext[textcitehyperref]{%
+%    \restorebibmacro{textcite}%
+%    \usebibmacro{textcite}}
+%}
+
+
+%%% RELATIF À BIBLATEX %%%
+
+% déclaration de la catégorie mine pour biblatex
+\DeclareBibliographyCategory{mine}
+
+% Ce qui suit ne fonctionne plus depuis biblatex 3.3
+% http://tex.stackexchange.com/questions/299036/biblatex-3-3-name-formatting
+%\DeclareIndexNameFormat{mine}{%
+%  \ifboolexpr{ test {\ifdefstring{\nom}{#1}}
+%               and ( test {\ifdefstring{\prenom}{#3}}
+%                     or test {\ifdefstring{\firstinit}{#4}} ) }
+%    {\addtocategory{mine}{\thefield{entrykey}}}
+%    {}}
+
+\DeclareIndexNameFormat{mine}{
+      \ifboolexpr{ test {\ifstrequal{Dimitri Pertin}{#1}}}
+          {\addtocategory{mine}{\thefield{entrykey}}}
+              {}}
+
+\AtDataInput{%
+  \indexnames[mine]{author}}
+
+\defbibfilter{publications}{
+  type=article or
+  type=inproceedings or
+  type=unpublished
+}
+
+% environnement pour bibliographie sans labels
+\defbibenvironment{midbib}
+  {\list
+     {}
+     {\setlength{\leftmargin}{\bibhang}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}}
+  {\endlist}
+  {\item}
+
+% Clear the url field if doi is defined
+\AtEveryBibitem{\iffieldundef{doi}{}{\clearfield{url}}}
+
+%                                                                              %
+% Emphasize a particular author
+% adapted from: file:///usr/local/texlive/2010/texmf-dist/doc/latex/biblatex/biblatex.pdf
+%\DeclareNameFormat{author}{%
+%  \ifthenelse{\equal{#1}{\nom}}
+%    {{\bf\ifblank{#3}{}{#3\space}%
+%     #1}}%
+%    {\ifblank{#3}{}{#3\space}%
+%     #1}%
+%  \ifthenelse{\value{listcount}<\value{liststop}}
+%    {\addcomma\space}
+%    {}
+%}
+% http://tex.stackexchange.com/questions/299036/biblatex-3-3-name-formatting
+% don't know why but it works:
+\DeclareNameFormat{author}{%
+	\nameparts{#1}%
+	\ifthenelse{\equal{\namepartfamily}{\nom}}
+    {{\bf\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+     \namepartfamily}}%
+    {\ifblank{\namepartgiven}{}{\namepartgiven\space}%
+     \namepartfamily}%
+  \ifthenelse{\value{listcount}<\value{liststop}}
+    {\addcomma\space}
+    {}
+}
+
+% http://tex.stackexchange.com/questions/74364/biber-biblatex-printbibliography-spits-out-section-heading-despite-filters-che
+% filtrer par date
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map[overwrite=true]{
+      \step[fieldsource=year,
+      match=\regexp{^20(0[8-9]|[1-9][0-9])$},
+      final]
+      \step[fieldsource=keywords, match=\regexp{^}, replace=\regexp{recent,}]
+    }
+  }
+}
+
+\newtotcounter{citenum}
+\AtEveryBibitem{\stepcounter{citenum}}
+
+% http://texdoc.net/texmf-dist/doc/latex/cleveref/cleveref.pdf
+% Cleveref can’t cope with active characters being present in cross-reference
+% label names. For example, if French babel support is loaded, the commonly
+% used “:”
+\usepackage[french,nameinlink]{cleveref}
+    \crefname{lstlisting}{Listing}{listings}
+    \Crefname{lstlisting}{Listing}{Listings}
+
+\usepackage{subcaption}
+
