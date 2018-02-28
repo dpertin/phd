@@ -69,17 +69,21 @@ pour garantir la capacité de l'algorithme à reconstruire exactement
 l'information initiale. En conséquence, il est possible que le code Mojette
 corresponde à une structure particulière des codes LDPC.
 
+<!--
 % Mojette non-systématique
 % moins d'opérations, ok
 % presque MDS
+-->
 
 \section{Code à effacement Mojette systématique}
 
+<!--
 % Mojette systématique
 % encore moins d'opération -> plus performant
 % encore plus MDS
 
 %\addcontentsline{toc}{section}{Code à effacement Mojette systématique}
+-->
 
 Partant du principe que la transformation Mojette n'est pas MDS, nous nous
 sommes intéressés à réduire la quantité de redondance qu'elle génère.
