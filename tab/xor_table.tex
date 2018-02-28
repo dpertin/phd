@@ -1,0 +1,37 @@
+
+\begin{minipage}{\textwidth}
+\footnotesize
+\begin{tabular}{@{} l L L L L L @{} >{\kern\tabcolsep}l @{}}    \toprule
+    \emph{Code} & \emph{Encoder $P$}& \emph{Encoder $Q$} & \emph{Mise à jour} &
+    \emph{Décoder depuis $P$} & \emph{Décoder depuis $Q$} \\\midrule
+    RS\footnote{Pour les codes de \rs, les opérations de multiplication sont
+    symbolisées par $\otimes$.}  & 
+        $(k-1)w$ & 
+        $(k-1)w + (kw)_{\otimes}$ & 
+        $3 + 1_{\otimes}$ &
+        $(k-1)w$ &
+        $(k-1)w + (kw)_{\otimes}$  \\ 
+    \rowcolor{black!20}[0pt][0pt] \eo & 
+        $(k-1)w$ &
+        $(k-1)w + k-2$\footnote{\label{fn.pire_cas}Le nombre d'opérations
+        correspond au pire cas (par exemple, ça peut dépendre de $\gamma(S)$
+        pour \eo).} &
+        $w+2$\footnoteref{fn.pire_cas} &
+        $(k-1)w$ &
+        $(k-1)w+2(k-2)$\footnoteref{fn.pire_cas} \\ 
+    RDP &
+        $(k-1)w$ &
+        $(k-1)w$ &
+        $4$\footnoteref{fn.pire_cas} &
+        $(k-1)w$ & 
+        $(k-1)w$ \\ 
+    \rowcolor{black!20}[0pt][0pt]Mojette &
+        $(k-1)w$ &
+        $(k-1)w-k+1$ &
+        $3$ &
+        $(k-1) w$ &
+        $\rho(k,w,l)^{(1,1)}$\footnote{Cette valeur dépend également de l'index
+        $l$ de la ligne perdue, voir l'\cref{eqn.dec_sys_mojette}.}
+        \\\bottomrule
+\end{tabular}
+\end{minipage}
