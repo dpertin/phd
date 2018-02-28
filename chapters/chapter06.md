@@ -407,11 +407,11 @@ est suffisant pour reconstruire l'image de manière unique.
 Puisque les projections d'un fantôme sont nulles, la convolution d'une image
 $f$ avec un fantôme $\ghost{\dir{(p,q)}}$ donne une image dont les valeurs des
 projections suivant les directions de $\dir{(p,q)}$ sont nulles. La
-\cref{fig.convolution.fg} illustre un exemple dans lequel une image $f$ de
-hauteur $Q=1$ est convoluée avec le fantôme composé
-$\ghost{\dir{(-1,1),(1,1)}}$. L'image qui correspond à cette opération possède
-des projections nulles suivant les directions du fantôme. Dans cet exemple,
-les opérations sont réalisées modulo $6$.
+\cref{fig.convolution.fg} (cf.\ \cpageref{fig.convolution.fg}) illustre un
+exemple dans lequel une image $f$ de hauteur $Q=1$ est convoluée avec le
+fantôme composé $\ghost{\dir{(-1,1),(1,1)}}$. L'image qui correspond à cette
+opération possède des projections nulles suivant les directions du fantôme.
+Dans cet exemple, les opérations sont réalisées modulo $6$.
 
 
 ### Reprojection par convolutions 1D

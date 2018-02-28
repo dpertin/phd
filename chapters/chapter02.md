@@ -19,8 +19,9 @@ algorithmes de complexité quadratique. Nous avons vu précédemment qu'un code
 parfait doit être MDS, de paramètres $(n,k)$ arbitraires, et disposant
 d'algorithmes d'encodage et de décodage de faible complexité.
 Dans ce chapitre, nous proposons d'attaquer le problème de reconstruction à
-partir d'une approche par géométrie discrète, afin de concevoir de nouveaux
-codes à effacement.
+partir d'une approche par géométrie discrète, en détaillant les travaux qui ont
+été réalisés jusqu'à aujourd'hui, dans le but de concevoir de nouveaux codes à
+effacement.
 <!--
 %En particulier, nous verrons que cette approche permet de définir de nouvelles
 %méthodes de codage de faibles complexités plus avantageuses par rapport à la
@@ -217,7 +218,7 @@ l'unicité de la solution.
 
 ### Transformation de \radon
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
     \includesvg{img/radon_xxx_simple3}
@@ -271,6 +272,16 @@ de \radon d'une fonction $f$ est l'ensemble des projections tel que :
     \label{eqn.radon}
 \end{equation}
 
+\begin{figure}[t]
+    \centering
+    \def\svgwidth{.6\textwidth}
+    \includesvg{img/interpolation5}
+    \caption{L'inversion de la transformée de \fourier rapide nécessite
+    l'interpolation de la grille polaire (ronds rouges) obtenue par le
+    théorème de la tranche centrale, à la grille cartésienne (carrés bleus).}
+    \label{fig.interpolation}
+\end{figure}
+
 La seconde étape en tomographie consiste à inverser l'opération précédente.
 Cette opération consiste à déterminer $f$ en tout point de l'espace, c'est à
 dire :
@@ -290,16 +301,6 @@ illustre la transformation d'une projection de \radon en une tranche du domaine
 de \fourier. En utilisant l'ensemble des projections, il est possible de
 construire entièrement le domaine de \fourier. Une transformation de \fourier
 $2$D inverse de ce domaine permet de reconstruire l'image $f$.
-
-\begin{figure}
-    \centering
-    \def\svgwidth{.6\textwidth}
-    \includesvg{img/interpolation5}
-    \caption{L'inversion de la transformée de \fourier rapide nécessite 
-    l'interpolation de la grille polaire (ronds rouges) obtenue par le
-    théorème de la tranche centrale, à la grille cartésienne (carrés bleus).}
-    \label{fig.interpolation}
-\end{figure}
 
 Cependant, la principale limitation de cette méthode réside dans la nécessité
 d'interpoler la grille polaire à la grille cartésienne dans le domaine de
@@ -355,7 +356,7 @@ projection. Ces notions sont extraites du livre de
 
 ### Notions topologiques : pavage et connexité dans le domaine discret
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{\textwidth}
     \includesvg{img/pavages4}
@@ -420,7 +421,7 @@ existe un chemin reliant $P$ à $Q$ dont tous les points appartiennent à $S$.
 
 ### Angle discret et droite discrète {#sec.angles}
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \begin{subfigure}{.19\textwidth}
 		\centering
@@ -512,7 +513,7 @@ la transformation de \radon (\cref{sec.frt,sec.mojette}).
 
 ## Méthode algébrique de reconstruction d'une image discrète {#sec.inverse}
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \begin{subfigure}{.48\textwidth}
 		\centering
@@ -713,7 +714,7 @@ de reconstruction de la grille à partir de la transformée, tel que le décrit
 
 ### Transformation de \radon finie directe
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.5\textwidth}
     \includesvg{img/frt2}
@@ -759,9 +760,10 @@ calcule la $(p+1)$-ème projection qui correspond à la somme des éléments de 
 grille suivant l'horizontale.
 Dans le domaine de \radon, chacune des $(p+1)$ projections indexées par $m$
 contient $p$ valeurs correspondant à un décalage de $t$ suivant l'axe des $y$.
-La \cref{fig.frt_line} représente l'une de ces mesures pour la droite
-d'équation $y \equiv 2 x \pmod 5$ sur un pavage carré défini par $p=5$, avec
-$t=0$. Dans le cas général, ces droites de projection ont pour équation :
+La \cref{fig.frt_line}, \cpageref{fig.frt_line} représente l'une de ces mesures
+pour la droite d'équation $y \equiv 2 x \pmod 5$ sur un pavage carré défini par
+$p=5$, avec $t=0$. Dans le cas général, ces droites de projection ont pour
+équation :
 
 \begin{equation}
     y \equiv m x + t \pmod p\;.
@@ -776,7 +778,7 @@ pour les $5$ mesures de la projection $m=2$. En conséquence, la somme des
 valeurs d'une projection correspond à la somme des pixels de l'image. Cette
 valeur, notée $I_{sum}$ sera utilisée dans la suite.
 
-\begin{figure}
+\begin{figure}[t]
 	\centering
     \def\svgwidth{.7\textwidth}
     \includesvg{img/frt_retro}
@@ -930,7 +932,7 @@ ainsi reconstruire sa valeur initiale.
 
 ### Structure des fantômes et distribution sur l'image
 
-\begin{figure}
+\begin{figure}[t]
 	\centering \input{tikz/espace_fantome.tex}
 	\caption{Représentation des distributions circulantes des fantômes
 	${a, b,	c}$ générés par l'effacement respectif des projections $m={1,3,4}$.
@@ -1009,7 +1011,7 @@ parrein2012isccsp, pertin2012isivc}.
 
 ### Forme non-systématique
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.7\textwidth}
     \includesvg{img/frt_design_non-sys}
@@ -1050,7 +1052,7 @@ que celle décrite précédemment, pour reconstruire la zone de $k \times (p-1)$
 
 ### Forme systématique
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.7\textwidth}
     \includesvg{img/frt_design_sys}
@@ -1211,7 +1213,7 @@ la \cref{sec.fecmojette}.
 
 ## Transformation Dirac-Mojette directe {#sec.mojette-forward}
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.7\textwidth}
     \includesvg{img/mojette_forward_xor3}
@@ -1379,7 +1381,7 @@ la valeur d'un pixel lorsqu'il est le seul inconnu de l'équation définie par l
 droite de projection. En conséquence, il existe des dépendances entre les
 pixels.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.3\textwidth}
     \input{img/graphe_dependance.pdf_tex}
@@ -1450,7 +1452,7 @@ Comme nous l'avons vu précédemment avec la FRT, les fantômes correspondent au
     \end{cases}\;.
 \end{equation}
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.2\textwidth}
     \includesvg{img/fantome_elementaire}
@@ -1458,8 +1460,8 @@ Comme nous l'avons vu précédemment avec la FRT, les fantômes correspondent au
     \label{fig.fantome_elementaire}
 \end{figure}
 
-\noindent La \cref{fig.fantome_elementaire} représente le fantôme élémentaire
-selon la direction $(p,q)=(2,1)$.
+\noindent Sur la page suivante, la \cref{fig.fantome_elementaire} représente le
+fantôme élémentaire selon la direction $(p,q)=(2,1)$.
 
 Soit un ensemble de projections suivant les directions de l'ensemble
 $\{(p_i,q_i)\}$, \textcite{philippe1998phd} a montré qu'il existe une unique

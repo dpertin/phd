@@ -1300,7 +1300,7 @@ effacement Mojette nécessitent davantage d'information encodée que ce qui est
 produit dans le cas des codes MDS. Toutefois, nous avons montré dans le
 \cref{sec.chap3} que ce coût est modéré, et tend vers la borne minimale quand
 la taille des blocs augmente. Plus particulièrement, nous y avons analysé qu'en
-définissant des blocs de $\mathcal{M}=4$~Ko, comme utilisés dans nos tests, un
+définissant des blocs de $\mathcal{M}=4$\ Ko, comme utilisés dans nos tests, un
 surcout de données de seulement $3$\% est nécessaire. N'ayant pas d'impact
 significatif sur un système de stockage, ce faible surcout est largement
 contrebalancé par l'amélioration des performances que nous avons observée ici.

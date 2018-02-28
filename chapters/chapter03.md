@@ -202,6 +202,31 @@ $f'$, tel que décrit dans les instructions entre les
 # Évaluation du gain dans le rendement du code {#sec.eval.red}
 \label{sec.surcout_stockage}
 
+\begin{figure}[t]
+    \centering
+	\begin{subfigure}{.5\textwidth}
+        \centering
+        \def\svgwidth{\textwidth}
+        \footnotesize
+			\includesvg{img/mojette3_nsys}
+        \caption{Non-systématique}
+        \label{fig.nsys}
+    \end{subfigure}
+    \begin{subfigure}{.3\textwidth}
+        \centering
+        \def\svgwidth{\textwidth}
+        \footnotesize
+            \includesvg{img/mojette3_sys}
+        \caption{Systématique}
+        \label{fig.sys}
+    \end{subfigure}
+    \caption{Comparaison entre l'encodage Mojette non-sytématique et
+    systématique. L'ensemble $\{a,\dots,i\}$ correspond aux valeurs des pixels
+    de l'image $3 \times 3$ (i.e.\ de hauteur $k=3$) qui ont permis de calculer
+    les $n=6$ blocs encodés de la version non-systématique.}
+    \label{fig.nsys.sys}
+\end{figure}
+
 Un code MDS génère la quantité minimale de redondance pour une tolérance aux
 pannes donnée. Dans le chapitre précédent, nous avons vu que le code à
 effacement Mojette n'est pas optimal et est considéré comme $(1+\epsilon)$
@@ -231,38 +256,13 @@ qui résultent des techniques de réplication et des codes MDS.
 
 ## Réduction de la redondance en systématique
 
-\begin{figure}[t]
-    \centering
-	\begin{subfigure}{.5\textwidth}
- 		\centering
-        \def\svgwidth{\textwidth}
-        \footnotesize
-			\includesvg{img/mojette3_nsys}
-        \caption{Non-systématique}
-        \label{fig.nsys}
-    \end{subfigure}
-    \begin{subfigure}{.3\textwidth}
-    	\centering
-        \def\svgwidth{\textwidth}
-        \footnotesize
-        	\includesvg{img/mojette3_sys}
-        \caption{Systématique}
-        \label{fig.sys}
-    \end{subfigure}
-    \caption{Comparaison entre l'encodage Mojette non-sytématique et
-    systématique. L'ensemble $\{a,\dots,i\}$ correspond aux valeurs des pixels
-    de l'image $3 \times 3$ (i.e.\ de hauteur $k=3$) qui ont permis de calculer
-    les $n=6$ blocs encodés de la version non-systématique.}
-    \label{fig.nsys.sys}
-\end{figure}
-
-La \cref{fig.nsys.sys} illustre le gain de la version systématique d'un code
-Mojette $(6,3)$ par rapport à la version non-systématique. L'objectif de cette
-section est d'analyser ce gain. Nous avons vu précédemment que la taille des
-projections varie en fonction des paramètres de la grille discrète $P$ et $Q$,
-ainsi que des paramètres de l'ensemble des directions de projection $\{(p_i,
-q_i)\}$. Nous rappelons ici la formule permettant de déterminer la taille d'une
-projection :
+La \cref{fig.nsys.sys} (\cpageref{fig.nsys.sys} illustre le gain de la version
+systématique d'un code Mojette $(6,3)$ par rapport à la version
+non-systématique. L'objectif de cette section est d'analyser ce gain. Nous
+avons vu précédemment que la taille des projections varie en fonction des
+paramètres de la grille discrète $P$ et $Q$, ainsi que des paramètres de
+l'ensemble des directions de projection $\{(p_i, q_i)\}$. Nous rappelons ici la
+formule permettant de déterminer la taille d'une projection :
 
 \begin{equation}
     B(P,Q,p,q) = |p_i|(Q-1) + |q_i|(P-1) + 1.
@@ -372,11 +372,11 @@ pannes.
 \label{fig.ec_vs_rep}
 \end{figure}
 
-Le \cref{tab.f} compare les résultats des coûts $\mu$ (à l'arrondi près) pour
-les deux versions du code à effacement Mojette avec les ensembles de
-projections proposés précédemment. Pour obtenir ces résultats, on a utilisé une
-taille de pixel de $64$ bits. En conséquence, la valeur de $P$ qui correspond à
-la largeur de la grille peut être obtenue ainsi :
+Le \cref{tab.f} de la \cpageref{tab.f} compare les résultats des coûts $\mu$ (à
+l'arrondi près) pour les deux versions du code à effacement Mojette avec les
+ensembles de projections proposés précédemment. Pour obtenir ces résultats, on
+a utilisé une taille de pixel de $64$ bits. En conséquence, la valeur de $P$
+qui correspond à la largeur de la grille peut être obtenue ainsi :
 
 \begin{equation}
     P = \frac{\mathcal{M} \times 8}{k \times 64},
@@ -401,7 +401,7 @@ redondance contenue dans les symboles du mot de code.
 Dans notre évaluation, nous allons considérer trois techniques qui permettent
 de générer de la redondance : la réplication, le code à effacement MDS, et le
 code à effacement Mojette dans sa version systématique. La \cref{fig.ec_vs_rep}
-(cf. \cpageref{fig.ec_vs_rep}) présente notre évaluation.
+présente notre évaluation.
 
 Dans le cas de la réplication, le facteur de redondance $\mu$ correspond au
 nombre de copies générées. Par exemple, dans le cas où l'on souhaite protéger
@@ -421,6 +421,10 @@ la tolérance aux pannes du code. En conséquence dans la \cref{fig.ec_vs_rep},
 la valeur de $\mu$ correspond à $r=\frac{3}{2}=1,5$ quelle que soit la
 tolérance aux pannes fixée.
 
+Bien que le code Mojette ne soit pas MDS, nous avons vu dans le \cref{tab.f}
+que pour une taille de bloc de $4$\ Ko, le code Mojette systématique n'entraîne
+un surcout de seulement $3$\% (puiqsue $\mu = 1,55$). Ce qui le rend dans ce
+cas, quasi-MDS.
 
 
 # Considérations sur la réduction du nombre d'opérations {#sec.systematique}
@@ -619,8 +623,7 @@ blocs de parité générés entre les deux versions s'exprime ainsi :
 
 Prenons l'exemple d'un code avec un taux $r={2}$, comme un code
 $(6,3)$ fournissant de la protection face à trois effacements.
-La \cref{fig.comparaison_systematique}
-(cf.\ \cpageref{fig.comparaison_systematique}) représente la comparaison entre
+La \cref{fig.comparaison_systematique} représente la comparaison entre
 les deux techniques pour cet exemple.
 En version systématique, l'ensemble des données encodées correspond aux $k$
 lignes de la grille, auxquelles on ajoute $r=3$ projections calculées. Dans
@@ -679,6 +682,8 @@ l'opération de décodage est possible dès lors que l'on accède à un ensemble
 suffisant de $e$ projections pour reconstruire les $e$ lignes effacées. Plus
 précisément, ce problème correspond à reconstruire une grille partiellement
 remplie.
+
+<!--
 %L'algorithme d'inversion doit donc prendre en compte non seulement la valeur
 %des bins des projections, mais également la valeur des pixels déjà présents
 %dans la grille. Nous verrons en détail ce nouvel algorithme dans la prochaine
@@ -691,6 +696,7 @@ remplie.
 %de décodage consiste à rétablir les données des lignes perdues
 
 %à partir de $e = 2$ projections.
+-->
 
 En comparaison avec la version non-systématique, cette nouvelle mise en œuvre
 est plus performante. En effet, quelque soit le schéma de perte en
@@ -748,7 +754,7 @@ suite, nous avons analysé les conséquences de cette construction, et avons
 déterminé deux améliorations.
 
 La première amélioration concerne le rendement du code Mojette. La
-\cref{sec.eval.red} a permis de montrer que le surcoût de redondance de ce code
+\cref{sec.eval.red} a permis de montrer que le surcout de redondance de ce code
 provient de la géométrie de la transformation. Plus précisément, les
 projections sont de taille variable, et cette taille augmente avec l'index de
 la projection. La version systématique permet de réduire la quantité de
@@ -757,6 +763,9 @@ générer. Bien que le rendement converge vers l'optimal (au sens MDS) à mesure
 que la largeur de la grille augmente, nous avons pu observer une réduction de
 la quantité de données encodées par deux dans le cas extrême de notre
 évaluation. Ce cas met en jeu une grille de faible largeur (i.e.\ $P=16,Q=8$).
+Dans la pratique, nous avons vu qu'un code $(12,8)$ qui opère sur des blocs de
+$4$\ Ko nécessite un surcout que de $3$\%, ce qui correspond à un code
+quasi-MDS.
 
 La seconde amélioration, traitée dans la \cref{sec.systematique} s'intéresse
 à l'amélioration du critère lié au nombre d'opérations nécessaires pour
@@ -768,6 +777,4 @@ nécessite également moins d'opérations, dans le cas où certaines lignes de l
 grille sont disponibles. En particulier, cette amélioration permet un accès
 immédiat aux données lorsqu'aucun des symboles sources (i.e.\ les lignes de la
 grille) n'est effacé.
-
-% ça poutre !
 

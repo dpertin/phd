@@ -181,19 +181,6 @@ ces critères.
 
 # Notions de théorie des codes {#sec.theorie.codes}
 
-Dans cette section, nous verrons dans un premier temps la théorie mathématique
-de l'information, introduite par \textcite{shannon1948bstj}. Cette étude
-sera le sujet de la \cref{sec.canal}. Les notions d'entropie,
-d'information mutuelle et de capacité du canal y seront traitées. Nous verrons
-par la suite l'exemple du canal binaire symétrique et du canal à effacement
-dans la \cref{sec.exemples.canaux}. La \cref{sec.theorie.codes.correcteurs}
-présentera la théorie algébrique des codes correcteurs, définie par
-\textcite{hamming1950bstj}. Nous y définirons notamment les opérations
-d'encodage, de décodage, ainsi que les caractéristiques des codes à effacement.
-
-
-## Théorie mathématique de l'information {#sec.canal}
-
 \begin{figure}
     \centering
     \def\svgwidth{\textwidth}
@@ -206,10 +193,24 @@ d'encodage, de décodage, ainsi que les caractéristiques des codes à effacemen
     \label{fig.canal}
 \end{figure}
 
+Dans cette section, nous verrons dans un premier temps la théorie mathématique
+de l'information, introduite par \textcite{shannon1948bstj}. Cette étude
+sera le sujet de la \cref{sec.canal}. Les notions d'entropie,
+d'information mutuelle et de capacité du canal y seront traitées. Nous verrons
+par la suite l'exemple du canal binaire symétrique et du canal à effacement
+dans la \cref{sec.exemples.canaux}. La \cref{sec.theorie.codes.correcteurs}
+présentera la théorie algébrique des codes correcteurs, définie par
+\textcite{hamming1950bstj}. Nous y définirons notamment les opérations
+d'encodage, de décodage, ainsi que les caractéristiques des codes à effacement.
+
+
+
+## Théorie mathématique de l'information {#sec.canal}
+
 Un canal de communication est un support de transmission d'information
 permettant d'acheminer une information depuis un émetteur vers un destinataire.
-La \cref{fig.canal} représente la modélisation d'un canal. Un canal
-$C\left[X,Y,P(X|Y)\right]$ est défini par :
+La \cref{fig.canal} de la\ \cpageref{fig.canal}, représente la modélisation
+d'un canal. Un canal $C\left[X,Y,P(X|Y)\right]$ est défini par :
 
 1. Un alphabet d'entrée $X = \{x_1,\dots,x_{r}\}$, de cardinal $r$,
 représentant la source;
@@ -370,13 +371,6 @@ transmise par le canal.
 
 ## Exemples de canaux {#sec.exemples.canaux}
 
-
-Notre étude va s'intéresser aux deux canaux suivants : le canal binaire
-symétrique, et le canal à effacement.
-
-
-### Canal binaire symétrique
-
 \begin{figure}
     \centering
     \def\svgwidth{.6\textwidth}
@@ -387,11 +381,17 @@ symétrique, et le canal à effacement.
     \label{fig.cbs}
 \end{figure}
 
+Notre étude va s'intéresser aux deux canaux suivants : le canal binaire
+symétrique, et le canal à effacement.
+
+
+### Canal binaire symétrique
+
 Le canal binaire symétrique (CBS) est un canal dont la source est définie par
 un alphabet $A=\{0,1\}$. En conséquence, elle émet des bits à travers un canal
 caractérisé par une probabilité $p$ d'inverser la valeur du bit. La
-\cref{fig.cbs} illustre ce canal. La loi de transition de ce canal est définie
-ainsi :
+\cref{fig.cbs} de la prochaine page, illustre ce canal. La loi de transition de
+ce canal est définie ainsi :
 
 \begin{equation}
     P(X|Y) = \begin{cases}
@@ -440,11 +440,11 @@ tendre vers l'infini.
 Le canal binaire à effacement (CBE) a été introduit par \textcite{elias1955it}.
 Ce canal se distingue du CBS par le fait que l'information n'est pas modifiée,
 mais effacée lors de la transmission. Un effacement correspond simplement à la
-perte de l'information. La \cref{fig.cbe} illustre ce canal, et l'on y
-représente la perte d'information par le symbole \ct{$?$}. La probabilité qu'un
-symbole soit effacé vaut $p$, ce qui signifie qu'un symbole est correctement
-transmis avec une probabilité $1-p$. En conséquence, on peut représenter la loi
-de transition $P(X|Y)$ ainsi :
+perte de l'information. Sur la page suivante, la \cref{fig.cbe} illustre ce
+canal, et l'on y représente la perte d'information par le symbole \ct{$?$}. La
+probabilité qu'un symbole soit effacé vaut $p$, ce qui signifie qu'un symbole
+est correctement transmis avec une probabilité $1-p$. En conséquence, on peut
+représenter la loi de transition $P(X|Y)$ ainsi :
 
 \begin{equation}
     P(X|Y) = \begin{pmatrix}

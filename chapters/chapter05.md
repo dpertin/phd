@@ -125,11 +125,12 @@ Ainsi, il est possible que des processus installés sur différentes machines,
 fonctionnant sur différents systèmes d'exploitation, puissent interagir avec un
 système de fichiers virtuel partagé.
 
-Côté client, NFS permet de monter le système de fichiers distant. Cette
-opération est possible grâce au *Virtual File System* (VFS) qui remplace
-l'interface du système de fichiers local afin d'interfacer plusieurs systèmes de
-fichiers\ \cite{kleiman1986usenix}. En particulier, il intercepte les appels
-systèmes pour les transmettre au client NFS.
+Côté client, NFS permet de monter le système de fichiers distant. Comme le
+représente la \cref{fig.nfs}, cette opération est possible grâce au *Virtual
+File System* (VFS) qui remplace l'interface du système de fichiers local afin
+d'interfacer plusieurs systèmes de fichiers\ \cite{kleiman1986usenix}. En
+particulier, il intercepte les appels systèmes pour les transmettre au client
+NFS.
 
 
 ### Architectures en grappe centralisées
@@ -153,11 +154,11 @@ nœuds de la grappe. Puisque plusieurs éléments disposent de la donnée, il es
 alors possible de distribuer également les applications.
 Dans cette approche, proposée par \textsc{Google} pour son *Google File System*
 (GFS)\ \cite{ghemawat2003sosp}, chaque grappe correspond à un nœud maître et
-plusieurs nœuds de stockage. Le nœud maître maintient et transmet les
-informations liées aux métadonnées d'un fichier. Pour y accéder, un client
-doit lui fournir l'identifiant du fichier afin qu'il lui transmette les
-informations permettant d'atteindre les données relatives à ce fichier,
-qui sont réparties sur les serveurs de stockage.
+plusieurs nœuds de stockage. La \cref{fig.dfs} illustre cette approche. Le nœud
+maître maintient et transmet les informations liées aux métadonnées d'un
+fichier. Pour y accéder, un client doit lui fournir l'identifiant du fichier
+afin qu'il lui transmette les informations permettant d'atteindre les données
+relatives à ce fichier, qui sont réparties sur les serveurs de stockage.
 
 
 ### Architectures en grappe complètement distribuées
@@ -532,7 +533,7 @@ de supporter les éventuelles pannes durant l'opération. Par exemple, en
 (12-8) = 16$ afin de supporter l'indisponibilité de quatre nœuds durant
 l'opération d'écriture.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \small
     \begin{subfigure}{.48\textwidth}
@@ -581,7 +582,7 @@ quel est l'impact les pannes sur le fonctionnement du système.
 ### Les opérations d'écriture
 
 Lorsqu'un client initialise une opération d'écriture, cela déclenche un
-processus d'encodage Mojette. Plus particulièrement, un flux de données à
+processus d'encodage Mojette. Plus particulièrement, le fichier à
 écrire est découpé en blocs de $\mathcal{M} = 4$\ Ko (valeur par défaut).
 Ces blocs de données remplissent un *buffer* adressé par $k$ pointeurs, qui
 représentent les $k$ lignes d'une grille Mojette. On utilise des *threads*, qui
@@ -597,6 +598,13 @@ fichiers fait environ $500$\ Mo tel que $d_1$ et $d_2$ contiennent les données
 en clair, et $p_1$ contient les données de la projection suivant la direction
 $(0,1)$.
 
+Afin d'étendre la structure des inodes à la structure de RozoFS, des
+métadonnées spécifiques sont allouées à chaque fichier sous la forme
+d'attributs étendus. Parmi ces métadonnées, on trouve notamment l'identifiant
+unique du fichier (l'équivalent du numéro d'inode pour l'espace de noms de
+RozoFS) ainsi que la liste des serveurs de stockage sur lesquels sont
+distribuées les données.
+
 ### Les opérations de lecture
 
 Lorsqu'une application demande la lecture d'une donnée présente sur le point de
@@ -605,6 +613,12 @@ clair (i.e.\ $d_1$ et $d_2$). Cette situation est représentée dans la
 \cref{fig.read} (cf. \cpageref{fig.read}). Le processus transfère alors environ
 $2 \times 500$\ Mo en parallèle. Ensuite, la donnée est transmise à
 l'application.
+
+Lors de l'appel de lecture, la correspondance entre le chemin du fichier et son
+identifiant unique est réalisée par le serveur de métadonnées, qui retourne au
+client les données relatives à l'emplacement des données désirées
+(i.e.\ l'ensemble des serveurs utilisés lors de la distribution pendant
+l'écriture).
 
 ### Impact en cas de pannes
 
@@ -618,7 +632,7 @@ client accède à $k$ blocs, une opération de décodage est déclenchée afin d
 reconstruire l'information initiale. Cette situation est illustrée dans la
 \cref{fig.read1}.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \def\svgwidth{.8\textwidth}
     \footnotesize
@@ -647,10 +661,10 @@ $\{s_1,s_2,s_3\}$. Si l'un de ces nœuds n'est pas joignable, $s_4$ est défini
 comme nœud de secours.
 Après quoi de son côté, client$_2$ reçoit la même liste de la part d'*exportd*,
 une fois qu'il a émis la requête de lire ce même fichier. Dans l'exemple de la
-\cref{fig.rozofs_interactions} (cf. \cpageref{fig.rozofs_interactions}), une
-panne survient sur le nœud $s_1$ lors de la lecture. En conséquence, le client
-reçoit $d_2$ et $p_1$. Une fois obtenues, ces informations sont passées en
-entrée du décodeur Mojette afin de reconstituer $d_1$.
+\cref{fig.rozofs_interactions}, une panne survient sur le nœud $s_1$ lors de la
+lecture. En conséquence, le client reçoit $d_2$ et $p_1$. Une fois obtenues,
+ces informations sont passées en entrée du décodeur Mojette afin de
+reconstituer $d_1$.
 
 
 
@@ -729,15 +743,7 @@ correspondent à la moyenne de $30$ itérations. Les caches des clients sont
 effacés entre chaque itération afin de garantir l'absence d'effet de cache du
 côté client.
 
-
-## Résultats de l'expérimentation {#sec.res.expe}
-
-Nous verrons dans un premier temps les résultats de l'expérimentation en
-écriture, avant de nous intéresser aux lectures.
-
-### Évaluation en écriture
-
-\begin{figure}
+\begin{figure}[t]
     \begin{subfigure}{.49\textwidth}
         \centering
         \tikzset{every picture/.style={scale=0.82}}
@@ -761,6 +767,14 @@ Nous verrons dans un premier temps les résultats de l'expérimentation en
     \label{fig.write_dfs}
 \end{figure}
 
+## Résultats de l'expérimentation {#sec.res.expe}
+
+Nous verrons dans un premier temps les résultats de l'expérimentation en
+écriture, avant de nous intéresser aux lectures.
+
+### Évaluation en écriture
+
+
 Dans cette section, nous étudions les performances de RozoFS et de CephFS en
 écriture séquentielle, puis aléatoire. Les débits mesurés correspondent
 au quotient de la taille du fichier écrit sur le temps nécessaire pour stocker
@@ -770,15 +784,16 @@ stockage. Notons cependant qu'en pratique, à un moment donné, la donnée peut
 être contenue dans le cache d'un nœud de stockage et non de manière sûre sur le
 support de stockage de masse sous-jacent.
 
-La \cref{fig.write_dfs} illustre les débits obtenus à mesure que l'on augmente
-le nombre de clients qui écrivent simultanément dans les points de montage.
-Plus particulièrement, les \cref{fig.seq_write,fig.rand_write}
-représentent respectivement les résultats pour des accès séquentiels et
-aléatoires. Dans les deux cas, on observe que les performances de RozoFS sont
-supérieures à celles fournies par CephFS. Alors qu'à mesure que l'on ajoute de
-nouveaux clients, les performances de RozoFS augmentent jusqu'à une limite
-correspondant à $2.7$\ Go/s en séquentiel, et $60000$\ ESPS en aléatoire, les
-mesures obtenues pour CephFS n'évoluent pas de manière distinctive.
+La \cref{fig.write_dfs} (cf.\ \cpageref{fig.write_dfs}) illustre les débits
+obtenus à mesure que l'on augmente le nombre de clients qui écrivent
+simultanément dans les points de montage. Plus particulièrement, les
+\cref{fig.seq_write,fig.rand_write} représentent respectivement les résultats
+pour des accès séquentiels et aléatoires. Dans les deux cas, on observe que les
+performances de RozoFS sont supérieures à celles fournies par CephFS. Alors
+qu'à mesure que l'on ajoute de nouveaux clients, les performances de RozoFS
+augmentent jusqu'à une limite correspondant à $2.7$\ Go/s en séquentiel, et
+$60000$\ ESPS en aléatoire, les mesures obtenues pour CephFS n'évoluent pas de
+manière distinctive.
 
 Il semble alors que RozoFS ait atteint les limites imposées par le matériel
 (e.g.\ les disques ou le réseau), tandis que CephFS soit limité par des
@@ -798,7 +813,7 @@ réplication et de la distribution des données aux seins des différents OSD du
 PG. Cette distribution séquentielle des données entraîne un coût significatif
 dans les débits mesurés.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \input{./expe_data/ceph_rep.tex}
     \caption{Impact du facteur de réplication sur les performances en écriture
@@ -813,24 +828,24 @@ Pour mettre en évidence cette considération, nous avons réalisé une évaluat
 des performances en écriture de CephFS. Les paramètres sont similaires à
 l'expérience précédente, cependant, le facteur de réplication $r$ varie de $1$
 à $3$. Les résultats de cette expérimentation sont fournis dans la
-\cref{fig.ceph_sequential_write}. Par exemple, lorsque dix clients écrivent
-simultanément, CephFS atteint un débit proche des $300$\ Mo/s quand aucune
-copie d'information n'est générée (i.e.\ $r=1$). En revanche, la valeur de ce
-débit chute à $120$\ Mo/s lorsque le système gère $r=3$ copies d'information.
-Enfin un élément supplémentaire concerne la gestion de la cohérence des
-données. Dans CephFS, un journal est tenu afin garantir des transactions
-fiables. En conséquence, lorsqu'une E/S modifie la donnée, une E/S
-supplémentaire est nécessaire pour enregistrer une entrée dans ce journal. Cela
-réduit significativement les performances, en particulier lorsque plusieurs
-répliquas sont en jeu (puisqu'autant d'entrées sont nécessaires dans le
-journal). Un moyen de contrer ce problème est de mettre en place le journal sur
-un disque séparé, ce qui aurait pu être mis en place sur une plate-forme plus
-grande qu'*econome*.
+\cref{fig.ceph_sequential_write} (\cpageref{fig.ceph_sequential_write}). Par
+exemple, lorsque dix clients écrivent simultanément, CephFS atteint un débit
+proche des $300$\ Mo/s quand aucune copie d'information n'est générée (i.e.\
+$r=1$). En revanche, la valeur de ce débit chute à $120$\ Mo/s lorsque le
+système gère $r=3$ copies d'information. Enfin un élément supplémentaire
+concerne la gestion de la cohérence des données. Dans CephFS, un journal est
+tenu afin garantir des transactions fiables. En conséquence, lorsqu'une E/S
+modifie la donnée, une E/S supplémentaire est nécessaire pour enregistrer une
+entrée dans ce journal. Cela réduit significativement les performances, en
+particulier lorsque plusieurs répliquas sont en jeu (puisqu'autant d'entrées
+sont nécessaires dans le journal). Un moyen de contrer ce problème est de
+mettre en place le journal sur un disque séparé, ce qui aurait pu être mis en
+place sur une plate-forme plus grande qu'*econome*.
 
 
 ### Évaluation en lecture
 
-\begin{figure}
+\begin{figure}[t]
     \begin{subfigure}{.49\textwidth}
         \centering
         \tikzset{every picture/.style={scale=0.82}}
@@ -855,16 +870,16 @@ grande qu'*econome*.
 \end{figure}
 
 On considère à présent les performances des deux systèmes en lecture. Les
-résultats des tests sont illustrés dans la \cref{fig.read_dfs}. En particulier,
-la \cref{fig.seq_read} présente les résultats en accès séquentiel.
-Dans ce test, les performances de RozoFS sont $30$\% plus faibles que celles
-fournies par CephFS. À la différence des opérations en écriture, la lecture met
-en jeu la récupération de la même quantité d'informations pour les deux
-systèmes. La différence provient probablement de la taille des blocs utilisés
-dans chaque système. CephFS accède aux données par des blocs de $4$\ Mo, tandis
-que RozoFS utilise des blocs de $4$\ Ko. En conséquence, le nombre d'E/S
-nécessaire pour le premier est moins important et CephFS bénéficie des accès
-séquentiels du test.
+résultats des tests sont illustrés dans la \cref{fig.read_dfs}
+(cf.\ \cpageref{fig.read_dfs}). En particulier, la \cref{fig.seq_read} présente
+les résultats en accès séquentiel. Dans ce test, les performances de RozoFS
+sont $30$\% plus faibles que celles fournies par CephFS. À la différence des
+opérations en écriture, la lecture met en jeu la récupération de la même
+quantité d'informations pour les deux systèmes. La différence provient
+probablement de la taille des blocs utilisés dans chaque système. CephFS accède
+aux données par des blocs de $4$\ Mo, tandis que RozoFS utilise des blocs de
+$4$\ Ko. En conséquence, le nombre d'E/S nécessaire pour le premier est moins
+important et CephFS bénéficie des accès séquentiels du test.
 
 La \cref{fig.rand_read} présente les résultats obtenus en accès aléatoire. Dans
 ce cas, les performances de RozoFS sont trois plus élevées que celles obtenues
@@ -937,13 +952,14 @@ délai d'attente en lecture avant de réclamer une projection, lorsque le dernie
 symbole systématique tarde à arriver.
 
 Les \cref{sec.chap3,sec.chap4} ont montré que malgré le gain observé des
-performances en systématique, la version non-systématique permet déjà de fournir de
-très hauts débits. Le goulot d'étranglement du système réside alors soit dans
-la partie matérielle (e.g.\ disques ou réseau), soit dans le surcout impliqué
-par la gestion logicielle du DFS (e.g.\ journalisation, réplication). Le
-critère des performances n'est donc pour l'instant pas déterminant dans le choix
-de la version du code. Par conséquent, l'utilisation du code non-systématique
-dans RozoFS peut se justifier par les avantages présentés précédemment.
+performances en systématique, la version non-systématique permet déjà de
+fournir de très hauts débits. Le goulot d'étranglement du système réside alors
+soit dans la partie matérielle (e.g.\ disques ou réseau), soit dans le surcout
+impliqué par la gestion logicielle du DFS (e.g.\ journalisation, réplication).
+Le critère des performances n'est donc pour l'instant pas déterminant dans le
+choix de la version du code. Par conséquent, l'utilisation du code
+non-systématique dans RozoFS peut se justifier par les avantages présentés
+précédemment.
 <!--
 %; (ii)
 %l'ensemble des nœuds à contacter pour récupérer un bloc de donnée. Dans le cas
