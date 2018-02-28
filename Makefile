@@ -12,7 +12,7 @@ MAIN = these
 
 PANDOC = pandoc
 TEX = pdflatex
-BIB = biblatex
+VIEWER = zathura
 
 CHPTDIR=chapters
 SRCS=$(shell find $(CHPTDIR) -name '*.md')
@@ -20,7 +20,7 @@ OBJS=$(patsubst %.md,$(CHPTDIR)/%.tex,$SRCS)
 
 TMP_FILES=$(shell find . -name 'these.m*')
 
-all: pertin_these.pdf
+all: pertin_$(MAIN).pdf pertin_$(MAIN)_print.pdf
 
 # compute the .pdf file using latexmk
 $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
@@ -30,30 +30,50 @@ $(MAIN).pdf: $(MAIN).tex $(MAIN).fmt $(OBJS)
 		-use-make $<
 		# use-make useless
 	
+# compute the .pdf file using latexmk (printable version)
+$(MAIN)_print.pdf: $(MAIN)_print.tex $(MAIN)_print.fmt $(OBJS)
+	latexmk  				\
+		-pdf 				\
+		-pdflatex="$(TEX)"  \
+		-use-make $<
+		# use-make useless
+
 $(MAIN).fmt: header.tex these-LUNAM-UBL.cls
 	$(TEX)                  \
 	    -ini                \
 	    -jobname="$(MAIN)"  \
 	    "&$(TEX) header.tex\dump"
 
+$(MAIN)_print.fmt: header_print.tex these-LUNAM-UBL.cls
+	$(TEX)                  \
+	    -ini                \
+	    -jobname="$(MAIN)_print"  \
+	    "&$(TEX) header_print.tex\dump"
+
 pertin_$(MAIN).pdf: $(MAIN).pdf
+	pdftk $< cat 1-r2 output $@
+
+pertin_$(MAIN)_print.pdf: $(MAIN)_print.pdf
 	pdftk $< cat 1-r2 output $@
 
 # compute .tex files from .md files related to chapters
 $(OBJS):
-		cd $(CHPTDIR); make
+	cd $(CHPTDIR); make
+
+open: $(MAIN).pdf
+	$(VIEWER) $<
 
 # clean temporary files
 clean: 
 	latexmk -c
 ifneq ("$(wildcard $(word 1, $(TMP_FILES)))","")
-	rm $(TMP_FILES)
+	-rm $(TMP_FILES)
 endif
-	cd $(CHPTDIR); make clean
+	-cd $(CHPTDIR); make clean
 
 # clean temporary files + PDF output
 mrproper: clean 
 	latexmk -C
-	rm these.fmt
-	rm pertin_these.pdf
+	-rm these.fmt
+	-rm pertin_these.pdf
 

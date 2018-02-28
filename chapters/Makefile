@@ -17,11 +17,11 @@ all: $(TEXS) bidouille
 # convert .md files into .tex files using pandoc
 %.tex:%.md
 	$(PANDOC) 							\
-		-R								\
-		--smart							\
+		-f markdown-latex_macros		\
 		--biblatex						\
 		--bibliography=these.bib		\
 		-o $@ $<
+# markdown+raw_tex+smart
 
 # bidouille is used to manage LaTeX comments...
 bidouille: $(TEXS)
@@ -29,7 +29,7 @@ bidouille: $(TEXS)
 
 # remove all pandoc outputs
 clean: 
-	rm $(TEXS)
+	-rm $(TEXS)
 
 # remove all pandoc outputs then build them again
 rebuild: clean all
