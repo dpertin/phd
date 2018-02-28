@@ -22,17 +22,16 @@ faible complexité.
 
 Pour cela, les bases mathématiques de la théorie des codes sont introduites
 dans le \cref{sec.chap1} à travers l'étude des travaux fondamentaux de
-\textcite{shannon1948bstj}. En particulier, nous proposons une liste de
-critères comme base pour notre première contribution, à savoir, la comparaison
-des différents codes présentés dans ce manuscrit. Le \cref{sec.chap2} décrit
-notre approche pour concevoir des codes à effacement à partir de versions discrètes
-de la transformation de \radon. Le \cref{sec.chap3} décrit notre seconde
-contribution correspondant à l'élaboration d'une construction
-du code à effacement Mojette sous une forme systématique. Cette construction
-vise à réduire la complexité du code, ainsi que la quantité
-de redondance générée. À l'issue de cette étude, nous présentons une évaluation
-de cette réduction de redondance par rapport à la version non-systématique et
-aux codes MDS.
+\textcite{shannon1948bstj}. En particulier, nous élaborons une liste de
+critères comme base pour la comparaison des différents codes présentés dans ce
+manuscrit. Le \cref{sec.chap2} décrit notre approche pour concevoir des codes à
+effacement à partir de versions discrètes de la transformation de \radon. Le
+\cref{sec.chap3} décrit notre première contribution correspondant à
+l'élaboration d'une construction du code à effacement Mojette sous une forme
+systématique. Cette construction vise à réduire la complexité du code, ainsi
+que la quantité de redondance générée. À l'issue de cette étude, nous
+présentons une évaluation de cette réduction de redondance par rapport à la
+version non-systématique et aux codes MDS.
 
 <!--
 %par une étude la

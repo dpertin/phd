@@ -23,7 +23,6 @@ en tâchant d'améliorer son rendement.
 Dans le \cref{sec.chap3}, la construction d'une version systématique, et
 l'élaboration d'un algorithme de décodage adapté, ont permis d'améliorer le
 rendement et les performances de notre code.
-
 Jusque là, le code à effacement Mojette satisfait les critères suivants :
 
 1. une complexité théorique faible grâce à l'algorithme de décodage itératif;
@@ -37,7 +36,8 @@ projections peuvent être choisis arbitrairement);
 
 L'efficacité des opérations d'encodage et de décodage du code à effacement
 Mojette se fait au détriment d'un faible surcout de redondance nécessaire
-(désigné par $\epsilon$ dans notre étude).
+(désigné par $\mu$ dans notre étude). Toutefois, nous avons vu que ce surcout
+par rapport aux code MDS, se limite à $3$\% en pratique.
 Le code Mojette est donc le code approprié pour concevoir un système de
 stockage capable de gérer à la fois, les données froides, et les données
 chaudes.
